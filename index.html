@@ -157,13 +157,12 @@
             text-transform: uppercase;
         }
 
-        .names {
-            color: var(--bordeaux);
-            font-size: clamp(3rem, 8vw, 5.6rem);
-            font-weight: normal;
-            line-height: 1.05;
-            letter-spacing: -1.5px;
-        }
+       .names-image {
+    display: block;
+    width: min(420px, 82vw);
+    height: auto;
+    margin: 22px auto 18px;
+}
 
         .date {
             display: flex;
@@ -539,7 +538,10 @@
         <section class="hero">
             <p class="eyebrow">Notre mariage</p>
 
-            <h1 class="names">Élodie &amp; Alexandre</h1>
+            <img
+    src="images/style/nom.jpg"
+    alt="Élodie et Alexandre"
+    class="names-image">
 
             <p class="date">23 mai 2026</p>
 
