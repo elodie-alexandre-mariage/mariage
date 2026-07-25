@@ -5,21 +5,53 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <title>L'invitation — Élodie & Alexandre</title>
+    <title>
+        L'invitation — Élodie & Alexandre
+    </title>
 
-    <style>
+     <style>
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
 
+        :root {
+            --bordeaux: #72000b;
+            --bordeaux-dark: #580008;
+            --text: #403936;
+            --muted: #746b67;
+            --line: #eee8e5;
+            --soft: #f8f5f3;
+            --white: #ffffff;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
+            background: var(--white);
+            color: var(--text);
             font-family: Georgia, "Times New Roman", serif;
-            background: #ffffff;
-            color: #333;
+        }
+
+        body.lightbox-open {
+            overflow: hidden;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        button {
+            font: inherit;
         }
 
         /* =========================
