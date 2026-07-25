@@ -390,6 +390,39 @@
         }
 
         /* =========================
+           BOUTON SPOTIFY
+        ========================= */
+
+        .spotify-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 42px;
+            padding: 15px 34px;
+            border: 1px solid var(--gold);
+            background: transparent;
+            color: var(--gold);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 13px;
+            letter-spacing: 1.8px;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition:
+                background 0.3s ease,
+                color 0.3s ease,
+                box-shadow 0.3s ease,
+                transform 0.3s ease;
+        }
+
+        .spotify-button:hover {
+            background: var(--gold);
+            color: #000000;
+            box-shadow: 0 0 24px rgba(214, 180, 119, 0.35);
+            transform: translateY(-2px);
+        }
+
+        /* =========================
            GALERIE MOSAÏQUE
         ========================= */
 
@@ -907,6 +940,16 @@
                 </p>
 
                 <a
+                    href="https://open.spotify.com/playlist/5UpV5PpTRBuM89XHAKNVkj?si=IMlI4J-YS-ms3_mRRJWUpw"
+                    class="spotify-button"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Écouter la playlist Spotify de la soirée"
+                >
+                    Écouter la playlist de la soirée
+                </a>
+
+                <a
                     href="#gallery-section"
                     class="scroll-indicator"
                     aria-label="Découvrir les photographies de la soirée"
@@ -1039,14 +1082,10 @@
 
         const photos = photoNumbers.map(function(number, index) {
 
-            const fileName =
-                "Soirée - Elodie & Alexandre-" +
+            const path =
+                "../images/soiree/Soirée - Elodie & Alexandre-" +
                 number +
                 ".jpg";
-
-            const path =
-                "../images/soiree/" +
-                encodeURI(fileName);
 
             const button = document.createElement("button");
 
