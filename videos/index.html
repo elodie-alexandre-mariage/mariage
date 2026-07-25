@@ -1,1 +1,1374 @@
+<!DOCTYPE html>
+<html lang="fr">
 
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Le film et les vidéos du mariage d’Élodie et Alexandre, célébré le 23 mai 2026."
+    >
+
+    <title>Vidéos — Élodie & Alexandre</title>
+
+    <style>
+
+        /* =========================
+           RÉGLAGES GÉNÉRAUX
+        ========================= */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bordeaux: #72000b;
+            --bordeaux-dark: #580008;
+            --text: #403936;
+            --muted: #746b67;
+            --line: #eee8e5;
+            --soft: #f8f5f3;
+            --white: #ffffff;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            overflow-x: hidden;
+            background: var(--white);
+            color: var(--text);
+            font-family: Georgia, "Times New Roman", serif;
+        }
+
+        img,
+        iframe {
+            display: block;
+            max-width: 100%;
+        }
+
+        a {
+            color: inherit;
+        }
+
+
+        /* =========================
+           EN-TÊTE
+        ========================= */
+
+        .site-header {
+            position: relative;
+            z-index: 10;
+            padding: 28px 20px 26px;
+            background: var(--white);
+            text-align: center;
+        }
+
+        .back-button {
+            position: absolute;
+            top: 22px;
+            left: 24px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 15px;
+            border: 1px solid #e7e1de;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.96);
+            color: #5d5552;
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            text-decoration: none;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+            transition:
+                transform 0.2s ease,
+                color 0.2s ease,
+                border-color 0.2s ease;
+        }
+
+        .back-button svg {
+            width: 17px;
+            height: 17px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .back-button:hover {
+            color: var(--bordeaux);
+            border-color: var(--bordeaux);
+            transform: translateX(-2px);
+        }
+
+        .logo {
+            display: block;
+            width: 180px;
+            max-width: 55vw;
+            height: auto;
+            margin: 0 auto 12px;
+        }
+
+        .section-nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px 20px;
+            max-width: 1050px;
+            margin: 12px auto 0;
+            padding: 14px 18px 0;
+            border-top: 1px solid var(--line);
+            font-family: Arial, sans-serif;
+        }
+
+        .section-nav a {
+            position: relative;
+            padding: 5px 0;
+            color: #6d6561;
+            font-size: 13px;
+            letter-spacing: 0.25px;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .section-nav a::after {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            margin: auto;
+            background: var(--bordeaux);
+            content: "";
+            transition: width 0.2s ease;
+        }
+
+        .section-nav a:hover,
+        .section-nav a.active {
+            color: var(--bordeaux);
+        }
+
+        .section-nav a:hover::after,
+        .section-nav a.active::after {
+            width: 100%;
+        }
+
+
+        /* =========================
+           INTRODUCTION
+        ========================= */
+
+        .hero {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 490px;
+            padding: 85px 24px 105px;
+            overflow: hidden;
+            background:
+                radial-gradient(
+                    circle at 50% 15%,
+                    rgba(114, 0, 11, 0.045),
+                    transparent 34%
+                ),
+                linear-gradient(
+                    180deg,
+                    #ffffff 0%,
+                    #fbf8f7 100%
+                );
+            text-align: center;
+        }
+
+        .hero::before,
+        .hero::after {
+            position: absolute;
+            border: 1px solid rgba(114, 0, 11, 0.06);
+            border-radius: 50%;
+            content: "";
+            pointer-events: none;
+        }
+
+        .hero::before {
+            top: 55px;
+            left: -170px;
+            width: 390px;
+            height: 390px;
+        }
+
+        .hero::after {
+            right: -210px;
+            bottom: -230px;
+            width: 500px;
+            height: 500px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 790px;
+        }
+
+        .eyebrow {
+            margin-bottom: 22px;
+            color: var(--bordeaux);
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            color: var(--bordeaux);
+            font-size: clamp(2.6rem, 6vw, 5.2rem);
+            font-weight: normal;
+            line-height: 1.04;
+            letter-spacing: -1.6px;
+        }
+
+        .title-line {
+            width: 55px;
+            height: 1px;
+            margin: 32px auto;
+            background: var(--bordeaux);
+        }
+
+        .intro {
+            max-width: 670px;
+            margin: 0 auto;
+            color: var(--muted);
+            font-size: 1.07rem;
+            line-height: 1.9;
+        }
+
+
+        /* =========================
+           FILM PRINCIPAL
+        ========================= */
+
+        .main-film-section {
+            padding: 105px 24px 125px;
+            background: var(--white);
+        }
+
+        .main-film-container {
+            max-width: 1180px;
+            margin: 0 auto;
+        }
+
+        .section-heading {
+            max-width: 760px;
+            margin: 0 auto 52px;
+            text-align: center;
+        }
+
+        .section-heading .small-title {
+            margin-bottom: 16px;
+            color: var(--bordeaux);
+            font-family: Arial, sans-serif;
+            font-size: 11px;
+            letter-spacing: 2.8px;
+            text-transform: uppercase;
+        }
+
+        .section-heading h2 {
+            color: var(--bordeaux);
+            font-size: clamp(2rem, 4.5vw, 3.5rem);
+            font-weight: normal;
+            line-height: 1.15;
+        }
+
+        .section-heading p {
+            max-width: 650px;
+            margin: 23px auto 0;
+            color: var(--muted);
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .main-film-frame {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--line);
+            background: #000000;
+            box-shadow:
+                0 30px 70px rgba(53, 32, 28, 0.12),
+                0 8px 22px rgba(53, 32, 28, 0.07);
+        }
+
+        .main-film-frame::before {
+            display: block;
+            padding-top: 56.25%;
+            content: "";
+        }
+
+        .main-film-frame iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .film-caption {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 35px;
+            align-items: end;
+            padding: 34px 2px 0;
+        }
+
+        .film-caption h3 {
+            margin-bottom: 8px;
+            color: var(--text);
+            font-size: clamp(1.4rem, 3vw, 2rem);
+            font-weight: normal;
+        }
+
+        .film-caption p {
+            color: var(--muted);
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .youtube-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            min-height: 44px;
+            padding: 11px 20px;
+            border: 1px solid var(--bordeaux);
+            border-radius: 999px;
+            color: var(--bordeaux);
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            text-decoration: none;
+            white-space: nowrap;
+            transition:
+                background 0.2s ease,
+                color 0.2s ease,
+                transform 0.2s ease;
+        }
+
+        .youtube-link svg {
+            width: 17px;
+            height: 17px;
+            fill: currentColor;
+        }
+
+        .youtube-link:hover {
+            background: var(--bordeaux);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+
+        /* =========================
+           VIDÉOS SOUVENIRS
+        ========================= */
+
+        .memories-section {
+            padding: 110px 24px 135px;
+            border-top: 1px solid var(--line);
+            background: var(--soft);
+        }
+
+        .memories-container {
+            max-width: 1180px;
+            margin: 0 auto;
+        }
+
+        .memories-intro {
+            max-width: 720px;
+            margin: 0 auto 65px;
+            text-align: center;
+        }
+
+        .memories-intro .small-title {
+            margin-bottom: 16px;
+            color: var(--bordeaux);
+            font-family: Arial, sans-serif;
+            font-size: 11px;
+            letter-spacing: 2.8px;
+            text-transform: uppercase;
+        }
+
+        .memories-intro h2 {
+            color: var(--bordeaux);
+            font-size: clamp(2rem, 4.5vw, 3.5rem);
+            font-weight: normal;
+            line-height: 1.16;
+        }
+
+        .memories-intro p {
+            max-width: 650px;
+            margin: 23px auto 0;
+            color: var(--muted);
+            font-size: 1rem;
+            line-height: 1.85;
+        }
+
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(6, minmax(0, 1fr));
+            gap: 28px 22px;
+            align-items: start;
+        }
+
+        .video-card {
+            grid-column: span 2;
+            min-width: 0;
+        }
+
+        .video-card.landscape {
+            grid-column: span 3;
+        }
+
+        .video-frame {
+            position: relative;
+            overflow: hidden;
+            background: #111111;
+            box-shadow: 0 14px 34px rgba(46, 30, 28, 0.09);
+        }
+
+        .video-card.vertical .video-frame {
+            aspect-ratio: 9 / 16;
+        }
+
+        .video-card.landscape .video-frame {
+            aspect-ratio: 16 / 9;
+        }
+
+        .video-frame iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .video-information {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            padding-top: 14px;
+        }
+
+        .video-number {
+            color: var(--bordeaux);
+            font-family: Arial, sans-serif;
+            font-size: 10px;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+        }
+
+        .video-format {
+            color: #978d88;
+            font-family: Arial, sans-serif;
+            font-size: 10px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+
+        /* =========================
+           REMERCIEMENT
+        ========================= */
+
+        .thanks-section {
+            padding: 100px 24px;
+            background: var(--white);
+            text-align: center;
+        }
+
+        .thanks-section::before {
+            display: block;
+            width: 45px;
+            height: 1px;
+            margin: 0 auto 36px;
+            background: var(--bordeaux);
+            content: "";
+        }
+
+        .thanks-section p {
+            max-width: 670px;
+            margin: 0 auto;
+            color: var(--muted);
+            font-size: 1.06rem;
+            font-style: italic;
+            line-height: 1.9;
+        }
+
+        .thanks-section strong {
+            color: var(--bordeaux);
+            font-weight: normal;
+        }
+
+
+        /* =========================
+           PIED DE PAGE
+        ========================= */
+
+        .footer {
+            padding: 47px 20px 50px;
+            border-top: 1px solid var(--line);
+            background: var(--white);
+            text-align: center;
+        }
+
+        .footer-mark {
+            margin-bottom: 8px;
+            color: var(--bordeaux);
+            font-size: 1.2rem;
+        }
+
+        .footer-date {
+            color: #8b817c;
+            font-family: Arial, sans-serif;
+            font-size: 11px;
+            letter-spacing: 1.6px;
+            text-transform: uppercase;
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 950px) {
+
+            .videos-grid {
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+            }
+
+            .video-card {
+                grid-column: span 2;
+            }
+
+            .video-card.landscape {
+                grid-column: span 4;
+            }
+
+        }
+
+        @media (max-width: 760px) {
+
+            .site-header {
+                padding: 82px 16px 22px;
+            }
+
+            .back-button {
+                top: 18px;
+                left: 18px;
+            }
+
+            .logo {
+                width: 145px;
+            }
+
+            .section-nav {
+                justify-content: flex-start;
+                flex-wrap: nowrap;
+                gap: 20px;
+                overflow-x: auto;
+                padding: 15px 4px 5px;
+                scrollbar-width: none;
+            }
+
+            .section-nav::-webkit-scrollbar {
+                display: none;
+            }
+
+            .section-nav a {
+                flex: 0 0 auto;
+                font-size: 12px;
+            }
+
+            .hero {
+                min-height: 430px;
+                padding: 68px 22px 84px;
+            }
+
+            .hero h1 {
+                letter-spacing: -0.8px;
+            }
+
+            .main-film-section {
+                padding: 80px 16px 95px;
+            }
+
+            .film-caption {
+                grid-template-columns: 1fr;
+                gap: 22px;
+            }
+
+            .youtube-link {
+                justify-self: start;
+            }
+
+            .memories-section {
+                padding: 85px 16px 100px;
+            }
+
+            .memories-intro {
+                margin-bottom: 48px;
+            }
+
+            .videos-grid {
+                gap: 28px 14px;
+            }
+
+        }
+
+        @media (max-width: 520px) {
+
+            .back-button {
+                padding: 9px 13px;
+                font-size: 12px;
+            }
+
+            .hero {
+                min-height: 395px;
+                padding-top: 58px;
+            }
+
+            .eyebrow {
+                margin-bottom: 18px;
+                font-size: 10px;
+                letter-spacing: 2.4px;
+            }
+
+            .title-line {
+                margin: 27px auto;
+            }
+
+            .intro {
+                font-size: 0.98rem;
+                line-height: 1.8;
+            }
+
+            .main-film-section {
+                padding-right: 10px;
+                padding-left: 10px;
+            }
+
+            .main-film-frame {
+                box-shadow: 0 20px 45px rgba(53, 32, 28, 0.11);
+            }
+
+            .film-caption {
+                padding: 25px 8px 0;
+            }
+
+            .memories-section {
+                padding-right: 18px;
+                padding-left: 18px;
+            }
+
+            .videos-grid {
+                display: block;
+            }
+
+            .video-card {
+                width: min(100%, 330px);
+                margin: 0 auto 42px;
+            }
+
+            .video-card.landscape {
+                width: 100%;
+                max-width: 520px;
+            }
+
+            .video-card:last-child {
+                margin-bottom: 0;
+            }
+
+            .thanks-section {
+                padding: 75px 24px;
+            }
+
+            .thanks-section p {
+                font-size: 1rem;
+            }
+
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <header class="site-header">
+
+        <a
+            href="../"
+            class="back-button"
+            aria-label="Retour au menu principal"
+        >
+
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M15 18l-6-6 6-6"></path>
+            </svg>
+
+            Retour au menu
+
+        </a>
+
+        <img
+            src="../images/style/logosansfond.jpg"
+            alt="Monogramme Élodie et Alexandre"
+            class="logo"
+        >
+
+        <nav
+            class="section-nav"
+            aria-label="Navigation entre les différentes parties du mariage"
+        >
+
+            <a href="../invitation/">
+                Invitation
+            </a>
+
+            <a href="../preparatifs/">
+                Préparatifs
+            </a>
+
+            <a href="../first-look/">
+                First Look
+            </a>
+
+            <a href="../mairie/">
+                Mairie
+            </a>
+
+            <a href="../eglise/">
+                Église
+            </a>
+
+            <a href="../vin_d_honneur/">
+                Vin d’honneur
+            </a>
+
+            <a href="../soiree/">
+                Soirée
+            </a>
+
+            <a
+                href="../videos/"
+                class="active"
+                aria-current="page"
+            >
+                Vidéos
+            </a>
+
+            <a href="../photobooth/">
+                Photobooth
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <!-- INTRODUCTION -->
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <p class="eyebrow">
+                    Notre mariage en mouvement
+                </p>
+
+                <h1>
+                    Revivre cette journée
+                </h1>
+
+                <div class="title-line"></div>
+
+                <p class="intro">
+                    Parce que certaines émotions ne se racontent pas seulement
+                    en photo, retrouvez ici le film de notre mariage ainsi que
+                    quelques instants capturés sur le vif pendant la soirée.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- FILM PRINCIPAL -->
+
+        <section
+            class="main-film-section"
+            aria-labelledby="main-film-title"
+        >
+
+            <div class="main-film-container">
+
+                <div class="section-heading">
+
+                    <p class="small-title">
+                        Le film de notre mariage
+                    </p>
+
+                    <h2 id="main-film-title">
+                        Notre mariage — 23 mai 2026
+                    </h2>
+
+                    <p>
+                        11 minutes pour revivre une journée qui restera à jamais
+                        gravée dans nos mémoires : du bonheur, des émotions,
+                        des rires, quelques larmes et beaucoup d’amour.
+                    </p>
+
+                </div>
+
+                <div class="main-film-frame">
+
+                    <iframe
+                        src="https://www.youtube-nocookie.com/embed/oO1xxYHbBYg?rel=0"
+                        title="Film du mariage d’Élodie et Alexandre"
+                        loading="eager"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen
+                    ></iframe>
+
+                </div>
+
+                <div class="film-caption">
+
+                    <div>
+
+                        <h3>
+                            Élodie &amp; Alexandre
+                        </h3>
+
+                        <p>
+                            Film réalisé par Julie Mondon
+                        </p>
+
+                    </div>
+
+                    <a
+                        href="https://youtu.be/oO1xxYHbBYg"
+                        class="youtube-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Regarder le film du mariage directement sur YouTube"
+                    >
+
+                        <svg
+                            viewBox="0 0 576 512"
+                            aria-hidden="true"
+                        >
+                            <path d="M549.7 124.1c-6.3-23.7-24.9-42.3-48.6-48.6C458.8 64 288 64 288 64S117.2 64 74.9 75.5c-23.7 6.3-42.3 24.9-48.6 48.6C15 167 15 256.4 15 256.4s0 89.4 11.3 132.3c6.3 23.7 24.9 41.5 48.6 47.8C117.2 448 288 448 288 448s170.8 0 213.1-11.5c23.7-6.3 42.3-24.1 48.6-47.8C561 345.8 561 256.4 561 256.4s0-89.4-11.3-132.3zm-317.5 213V175.7l142.7 80.7-142.7 80.7z"></path>
+                        </svg>
+
+                        Regarder sur YouTube
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- VIDÉOS PRISCA -->
+
+        <section
+            class="memories-section"
+            aria-labelledby="memories-title"
+        >
+
+            <div class="memories-container">
+
+                <div class="memories-intro">
+
+                    <p class="small-title">
+                        Les vidéos de la soirée
+                    </p>
+
+                    <h2 id="memories-title">
+                        Quelques instants pris sur le vif
+                    </h2>
+
+                    <p>
+                        Des vidéos plus spontanées, capturées et partagées
+                        par Prisca, pour retrouver l’ambiance de la soirée,
+                        les surprises et les derniers pas de danse.
+                    </p>
+
+                </div>
+
+
+                <div class="videos-grid">
+
+                    <!-- VIDÉO 1 -->
+
+                    <article class="video-card vertical">
+
+                        <div class="video-frame">
+
+                            <iframe
+                                src="https://www.youtube-nocookie.com/embed/uJYcYoHqMZw?rel=0"
+                                title="Vidéo souvenir 1 du mariage"
+                                loading="lazy"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allowfullscreen
+                            ></iframe>
+
+                        </div>
+
+                        <div class="video-information">
+                            <span class="video-number">Souvenir 01</span>
+                            <span class="video-format">Vidéo verticale</span>
+                        </div>
+
+                    </article>
+
+
+                    <!-- VIDÉO 2 -->
+
+                    <article class="video-card vertical">
+
+                        <div class="video-frame">
+
+                            <iframe
+                                src="https://www.youtube-nocookie.com/embed/yHMruNQA1HY?rel=0"
+                                title="Vidéo souvenir 2 du mariage"
+                                loading="lazy"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allowfullscreen
+                            ></iframe>
+
+                        </div>
+
+                        <div class="video-information">
+                            <span class="video-number">Souvenir 02</span>
+                            <span class="video-format">Vidéo verticale</span>
+                        </div>
+
+                    </article>
+
+
+                    <!-- VIDÉO 3 -->
+
+                    <article class="video-card vertical">
+
+                        <div class="video-frame">
+
+                            <iframe
+                                src="https://www.youtube-nocookie.com/embed/RfZ1WlOI60c?rel=0"
+                                title="Vidéo souvenir 3 du mariage"
+                                loading="lazy"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allowfullscreen
+                            ></iframe>
+
+                        </div>
+
+                        <div class="video-information">
+                            <span class="video-number">Souvenir 03</span>
+                            <span class="video-format">Vidéo verticale</span>
+                        </div>
+
+                    </article>
+
+
+                    <!-- VIDÉO 4 -->
+
+                    <article class="video-card vertical">
+
+                        <div class="video-frame">
+
+                            <iframe
+                                src="https://www.youtube-nocookie.com/embed/DwIcpMOa3Qg?rel=0"
+                                title="Vidéo souvenir 4 du mariage"
+                                loading="lazy"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allowfullscreen
+                            ></iframe>
+
+                        </div>
+
+                        <div class="video-information">
+                            <span class="video-number">Souvenir 04</span>
+                            <span class="video-format">Vidéo verticale</span>
+                        </div>
+
+                    </article>
+
+
+                    <!-- VIDÉO 5 — HORIZONTALE -->
+
+                    <article class="video-card landscape">
+
+                        <div class="video-frame">
+
+                            <iframe
+                                src="https://www.youtube-nocookie.com/embed/xToKf2EJwzw?rel=0"
+                                title="Vidéo souvenir 5 du mariage"
+                                loading="lazy"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allowfullscreen
+                            ></iframe>
+
+                        </div>
+
+                        <div class="video-information">
+                            <span class="video-number">Souvenir 05</span>
+                            <span class="video-format">Vidéo horizontale</span>
+                        </div>
+
+                    </article>
+
+
+                    <!-- VIDÉO 6 -->
+
+                    <article class="video-card vertical">
+
+                        <div class="video-frame">
+
+                            <iframe
+                                src="https://www.youtube-nocookie.com/embed/M8iVyyu-bxE?rel=0"
+                                title="Vidéo souvenir 6 du mariage"
+                                loading="lazy"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allowfullscreen
+                            ></iframe>
+
+                        </div>
+
+                        <div class="video-information">
+                            <span class="video-number">Souvenir 06</span>
+                            <span class="video-format">Vidéo verticale</span>
+                        </div>
+
+                    </article>
+
+
+                    <!-- VIDÉO 7 -->
+
+                    <article class="video-card vertical">
+
+                        <div class="video-frame">
+
+                            <iframe
+                                src="https://www.youtube-nocookie.com/embed/5_tkYsMPiWI?rel=0"
+                                title="Vidéo souvenir 7 du mariage"
+                                loading="lazy"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allowfullscreen
+                            ></iframe>
+
+                        </div>
+
+                        <div class="video-information">
+                            <span class="video-number">Souvenir 07</span>
+                            <span class="video-format">Vidéo verticale</span>
+                        </div>
+
+                    </article>
+
+
+                    <!-- VIDÉO 8 -->
+
+                    <article class="video-card vertical">
+
+                        <div class="video-frame">
+
+                            <iframe
+                                src="https://www.youtube-nocookie.com/embed/uhpeCdw-C70?rel=0"
+                                title="Vidéo souvenir 8 du mariage"
+                                loading="lazy"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allowfullscreen
+                            ></iframe>
+
+                        </div>
+
+                        <div class="video-information">
+                            <span class="video-number">Souvenir 08</span>
+                            <span class="video-format">Vidéo verticale</span>
+                        </div>
+
+                    </article>
+
+
+                    <!-- VIDÉO 9 — HORIZONTALE -->
+
+                    <article class="video-card landscape">
+
+                        <div class="video-frame">
+
+                            <iframe
+                                src="https://www.youtube-nocookie.com/embed/lOvfN0R6szo?rel=0"
+                                title="Vidéo souvenir 9 du mariage"
+                                loading="lazy"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allowfullscreen
+                            ></iframe>
+
+                        </div>
+
+                        <div class="video-information">
+                            <span class="video-number">Souvenir 09</span>
+                            <span class="video-format">Vidéo horizontale</span>
+                        </div>
+
+                    </article>
+
+
+                    <!-- VIDÉO 10 -->
+
+                    <article class="video-card vertical">
+
+                        <div class="video-frame">
+
+                            <iframe
+                                src="https://www.youtube-nocookie.com/embed/rkFKtVcf1oo?rel=0"
+                                title="Vidéo souvenir 10 du mariage"
+                                loading="lazy"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allowfullscreen
+                            ></iframe>
+
+                        </div>
+
+                        <div class="video-information">
+                            <span class="video-number">Souvenir 10</span>
+                            <span class="video-format">Vidéo verticale</span>
+                        </div>
+
+                    </article>
+
+
+                    <!-- VIDÉO 11 -->
+
+                    <article class="video-card vertical">
+
+                        <div class="video-frame">
+
+                            <iframe
+                                src="https://www.youtube-nocookie.com/embed/Xm6nyqRweIE?rel=0"
+                                title="Vidéo souvenir 11 du mariage"
+                                loading="lazy"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allowfullscreen
+                            ></iframe>
+
+                        </div>
+
+                        <div class="video-information">
+                            <span class="video-number">Souvenir 11</span>
+                            <span class="video-format">Vidéo verticale</span>
+                        </div>
+
+                    </article>
+
+
+                    <!-- VIDÉO 12 -->
+
+                    <article class="video-card vertical">
+
+                        <div class="video-frame">
+
+                            <iframe
+                                src="https://www.youtube-nocookie.com/embed/_TWSIWjd1Zk?rel=0"
+                                title="Vidéo souvenir 12 du mariage"
+                                loading="lazy"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allowfullscreen
+                            ></iframe>
+
+                        </div>
+
+                        <div class="video-information">
+                            <span class="video-number">Souvenir 12</span>
+                            <span class="video-format">Vidéo verticale</span>
+                        </div>
+
+                    </article>
+
+
+                    <!-- VIDÉO 13 -->
+
+                    <article class="video-card vertical">
+
+                        <div class="video-frame">
+
+                            <iframe
+                                src="https://www.youtube-nocookie.com/embed/qwjY9SkTujU?rel=0"
+                                title="Vidéo souvenir 13 du mariage"
+                                loading="lazy"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allowfullscreen
+                            ></iframe>
+
+                        </div>
+
+                        <div class="video-information">
+                            <span class="video-number">Souvenir 13</span>
+                            <span class="video-format">Vidéo verticale</span>
+                        </div>
+
+                    </article>
+
+
+                    <!-- VIDÉO 14 -->
+
+                    <article class="video-card vertical">
+
+                        <div class="video-frame">
+
+                            <iframe
+                                src="https://www.youtube-nocookie.com/embed/qLKDuwBP1gs?rel=0"
+                                title="Vidéo souvenir 14 du mariage"
+                                loading="lazy"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allowfullscreen
+                            ></iframe>
+
+                        </div>
+
+                        <div class="video-information">
+                            <span class="video-number">Souvenir 14</span>
+                            <span class="video-format">Vidéo verticale</span>
+                        </div>
+
+                    </article>
+
+
+                    <!-- VIDÉO 15 -->
+
+                    <article class="video-card vertical">
+
+                        <div class="video-frame">
+
+                            <iframe
+                                src="https://www.youtube-nocookie.com/embed/KjjscVsTrQc?rel=0"
+                                title="Vidéo souvenir 15 du mariage"
+                                loading="lazy"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allowfullscreen
+                            ></iframe>
+
+                        </div>
+
+                        <div class="video-information">
+                            <span class="video-number">Souvenir 15</span>
+                            <span class="video-format">Vidéo verticale</span>
+                        </div>
+
+                    </article>
+
+
+                    <!-- VIDÉO 16 -->
+
+                    <article class="video-card vertical">
+
+                        <div class="video-frame">
+
+                            <iframe
+                                src="https://www.youtube-nocookie.com/embed/xpmDFPvUSLw?rel=0"
+                                title="Vidéo souvenir 16 du mariage"
+                                loading="lazy"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allowfullscreen
+                            ></iframe>
+
+                        </div>
+
+                        <div class="video-information">
+                            <span class="video-number">Souvenir 16</span>
+                            <span class="video-format">Vidéo verticale</span>
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- REMERCIEMENT -->
+
+        <section class="thanks-section">
+
+            <p>
+                Merci à <strong>Julie</strong> d’avoir raconté cette journée
+                à travers notre film, et à <strong>Prisca</strong> d’avoir
+                capturé et partagé tous ces instants spontanés de la soirée.
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <footer class="footer">
+
+        <p class="footer-mark">
+            Élodie &amp; Alexandre
+        </p>
+
+        <p class="footer-date">
+            23 mai 2026
+        </p>
+
+    </footer>
+
+</body>
+
+</html>
