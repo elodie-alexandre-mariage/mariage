@@ -1,1 +1,987 @@
 
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Notre vin d’honneur — Élodie & Alexandre
+    </title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bordeaux: #72000b;
+            --bordeaux-dark: #580008;
+            --text: #403936;
+            --muted: #746b67;
+            --line: #eee8e5;
+            --soft: #f8f5f3;
+            --white: #ffffff;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--white);
+            color: var(--text);
+            font-family: Georgia, "Times New Roman", serif;
+        }
+
+        body.lightbox-open {
+            overflow: hidden;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        button {
+            font: inherit;
+        }
+
+        /* =========================
+           EN-TÊTE
+        ========================= */
+
+        .site-header {
+            position: relative;
+            padding: 28px 20px 26px;
+            background: var(--white);
+            text-align: center;
+        }
+
+        .back-button {
+            position: absolute;
+            top: 22px;
+            left: 24px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 15px;
+            border: 1px solid #e7e1de;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.96);
+            color: #5d5552;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 13px;
+            text-decoration: none;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+            transition:
+                color 0.2s ease,
+                border-color 0.2s ease,
+                transform 0.2s ease;
+        }
+
+        .back-button svg {
+            width: 17px;
+            height: 17px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .back-button:hover {
+            color: var(--bordeaux);
+            border-color: var(--bordeaux);
+            transform: translateX(-2px);
+        }
+
+        .logo {
+            display: block;
+            width: 180px;
+            max-width: 55vw;
+            height: auto;
+            margin: 0 auto 12px;
+        }
+
+        .section-nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px 20px;
+            max-width: 1050px;
+            margin: 12px auto 0;
+            padding: 14px 18px 0;
+            border-top: 1px solid var(--line);
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .section-nav a {
+            position: relative;
+            padding: 5px 0;
+            color: #6f6764;
+            font-size: 13px;
+            letter-spacing: 0.2px;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .section-nav a:hover,
+        .section-nav a.active {
+            color: var(--bordeaux);
+        }
+
+        .section-nav a.active::after {
+            position: absolute;
+            right: 0;
+            bottom: -3px;
+            left: 0;
+            height: 1px;
+            background: var(--bordeaux);
+            content: "";
+        }
+
+        /* =========================
+           INTRODUCTION
+        ========================= */
+
+        .hero {
+            padding: 76px 25px 70px;
+            text-align: center;
+        }
+
+        .eyebrow {
+            margin-bottom: 18px;
+            color: var(--bordeaux);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 11px;
+            letter-spacing: 3.5px;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            color: var(--text);
+            font-size: clamp(2.6rem, 7vw, 4.7rem);
+            font-weight: normal;
+            line-height: 1.08;
+        }
+
+        .title-line {
+            width: 56px;
+            height: 1px;
+            margin: 28px auto;
+            background: var(--bordeaux);
+        }
+
+        .intro {
+            max-width: 700px;
+            margin: auto;
+            color: var(--muted);
+            font-size: 17px;
+            line-height: 1.9;
+        }
+
+        /* =========================
+           BOUTON SPOTIFY
+        ========================= */
+
+        .spotify-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 30px;
+            padding: 13px 22px;
+            border: 1px solid var(--bordeaux);
+            border-radius: 999px;
+            background: var(--white);
+            color: var(--bordeaux);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 12px;
+            letter-spacing: 0.8px;
+            text-decoration: none;
+            transition:
+                background 0.25s ease,
+                color 0.25s ease,
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
+        }
+
+        .spotify-button svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        .spotify-button:hover {
+            background: var(--bordeaux);
+            color: var(--white);
+            box-shadow: 0 10px 24px rgba(114, 0, 11, 0.16);
+            transform: translateY(-2px);
+        }
+
+        /* =========================
+           REMERCIEMENT
+        ========================= */
+
+        .reception-note {
+            padding: 0 25px 70px;
+            background: var(--white);
+            text-align: center;
+        }
+
+        .reception-note p {
+            max-width: 760px;
+            margin: auto;
+            padding: 30px 36px;
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+            color: var(--muted);
+            font-size: 17px;
+            font-style: italic;
+            line-height: 1.8;
+        }
+
+        /* =========================
+           GALERIE
+        ========================= */
+
+        .gallery-section {
+            padding: 70px 25px 105px;
+            border-top: 1px solid var(--line);
+            background: var(--soft);
+        }
+
+        .gallery-heading {
+            max-width: 760px;
+            margin: 0 auto 42px;
+            text-align: center;
+        }
+
+        .gallery-heading p {
+            margin-bottom: 12px;
+            color: var(--bordeaux);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 11px;
+            letter-spacing: 3.2px;
+            text-transform: uppercase;
+        }
+
+        .gallery-heading h2 {
+            color: var(--text);
+            font-size: clamp(1.9rem, 5vw, 2.8rem);
+            font-weight: normal;
+            line-height: 1.25;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 12px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .gallery-item {
+            position: relative;
+            display: block;
+            overflow: hidden;
+            padding: 0;
+            border: 0;
+            background: #e9e3df;
+            cursor: zoom-in;
+        }
+
+        .gallery-item::after {
+            position: absolute;
+            inset: 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            content: "";
+            pointer-events: none;
+        }
+
+        .gallery-item img {
+            display: block;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            transition:
+                transform 0.55s ease,
+                filter 0.35s ease;
+        }
+
+        .gallery-item:hover img {
+            filter: brightness(0.94);
+            transform: scale(1.035);
+        }
+
+        .gallery-item:focus-visible {
+            outline: 2px solid var(--bordeaux);
+            outline-offset: 4px;
+        }
+
+        /* =========================
+           LIGHTBOX
+        ========================= */
+
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 34px 95px;
+            background: rgba(15, 12, 11, 0.96);
+            opacity: 0;
+            visibility: hidden;
+            transition:
+                opacity 0.25s ease,
+                visibility 0.25s ease;
+        }
+
+        .lightbox.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .lightbox-image {
+            display: block;
+            max-width: 90vw;
+            max-height: 86vh;
+            object-fit: contain;
+            box-shadow: 0 15px 55px rgba(0, 0, 0, 0.35);
+            transform: scale(0.985);
+            transition: transform 0.25s ease;
+        }
+
+        .lightbox.open .lightbox-image {
+            transform: scale(1);
+        }
+
+        .lightbox-close {
+            position: fixed;
+            top: 22px;
+            right: 28px;
+            z-index: 1002;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 46px;
+            height: 46px;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--white);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 29px;
+            font-weight: 200;
+            line-height: 1;
+            cursor: pointer;
+            transition:
+                background 0.2s ease,
+                transform 0.2s ease;
+        }
+
+        .lightbox-close:hover {
+            background: rgba(255, 255, 255, 0.17);
+            transform: rotate(4deg);
+        }
+
+        .lightbox-arrow {
+            position: fixed;
+            top: 50%;
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 52px;
+            height: 52px;
+            border: 1px solid rgba(255, 255, 255, 0.32);
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 31px;
+            font-weight: 200;
+            cursor: pointer;
+            transform: translateY(-50%);
+            transition:
+                background 0.2s ease,
+                transform 0.2s ease;
+        }
+
+        .lightbox-arrow:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .previous {
+            left: 28px;
+        }
+
+        .previous:hover {
+            transform: translate(-3px, -50%);
+        }
+
+        .next {
+            right: 28px;
+        }
+
+        .next:hover {
+            transform: translate(3px, -50%);
+        }
+
+        .photo-counter {
+            position: fixed;
+            bottom: 22px;
+            left: 50%;
+            z-index: 1002;
+            color: rgba(255, 255, 255, 0.76);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 11px;
+            letter-spacing: 2px;
+            transform: translateX(-50%);
+        }
+
+        /* =========================
+           PIED DE PAGE
+        ========================= */
+
+        .footer {
+            padding: 52px 20px 58px;
+            background: var(--white);
+            text-align: center;
+        }
+
+        .footer-mark {
+            color: var(--bordeaux);
+            font-size: 1.3rem;
+        }
+
+        .footer-date {
+            margin-top: 10px;
+            color: #918681;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 10px;
+            letter-spacing: 2.6px;
+            text-transform: uppercase;
+        }
+
+        /* =========================
+           TABLETTE
+        ========================= */
+
+        @media (max-width: 950px) {
+
+            .gallery {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 650px) {
+
+            .site-header {
+                padding: 22px 14px 0;
+            }
+
+            .back-button {
+                position: static;
+                margin-bottom: 20px;
+            }
+
+            .logo {
+                width: 145px;
+            }
+
+            .section-nav {
+                gap: 7px 14px;
+                padding-right: 6px;
+                padding-left: 6px;
+            }
+
+            .section-nav a {
+                font-size: 11px;
+            }
+
+            .hero {
+                padding: 54px 20px 56px;
+            }
+
+            .intro {
+                font-size: 15px;
+                line-height: 1.8;
+            }
+
+            .spotify-button {
+                padding: 12px 18px;
+                font-size: 11px;
+            }
+
+            .reception-note {
+                padding: 0 20px 55px;
+            }
+
+            .reception-note p {
+                padding: 24px 12px;
+                font-size: 15px;
+            }
+
+            .gallery-section {
+                padding: 58px 10px 75px;
+            }
+
+            .gallery-heading {
+                padding: 0 10px;
+                margin-bottom: 34px;
+            }
+
+            .gallery {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 7px;
+            }
+
+            .lightbox {
+                padding: 70px 12px 65px;
+            }
+
+            .lightbox-image {
+                max-width: 96vw;
+                max-height: 79vh;
+            }
+
+            .lightbox-close {
+                top: 14px;
+                right: 14px;
+                width: 42px;
+                height: 42px;
+            }
+
+            .lightbox-arrow {
+                top: auto;
+                bottom: 14px;
+                width: 44px;
+                height: 44px;
+                transform: none;
+            }
+
+            .previous {
+                left: 15px;
+            }
+
+            .next {
+                right: 15px;
+            }
+
+            .previous:hover {
+                transform: translateX(-2px);
+            }
+
+            .next:hover {
+                transform: translateX(2px);
+            }
+
+            .photo-counter {
+                bottom: 29px;
+            }
+
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <header class="site-header">
+
+        <a
+            href="../"
+            class="back-button"
+            aria-label="Retour au menu"
+        >
+
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M15 18l-6-6 6-6"></path>
+            </svg>
+
+            Retour au menu
+
+        </a>
+
+        <img
+            src="../images/style/logosansfond.jpg"
+            alt="Monogramme Élodie et Alexandre"
+            class="logo"
+        >
+
+        <nav
+            class="section-nav"
+            aria-label="Navigation entre les différentes parties du mariage"
+        >
+
+            <a href="../invitation/">
+                Invitation
+            </a>
+
+            <a href="../preparatifs/">
+                Préparatifs
+            </a>
+
+            <a href="../first-look/">
+                First Look
+            </a>
+
+            <a href="../mairie/">
+                Mairie
+            </a>
+
+            <a href="../eglise/" class="active">
+                Église
+            </a>
+
+            <a href="../vin_d_honneur/" class="active">
+                Vin d’honneur
+            </a>
+
+            <a href="../soiree/">
+                Soirée
+            </a>
+
+            <a href="../videos/">
+                Vidéos
+            </a>
+
+            <a href="../photobooth/">
+                Photobooth
+            </a>
+
+        </nav>
+
+    </header>
+
+    <main>
+
+        <section class="hero">
+
+            <p class="eyebrow">
+                Le vin d’honneur
+            </p>
+
+            <h1>
+                Le temps des retrouvailles
+            </h1>
+
+            <div class="title-line"></div>
+
+            <p class="intro">
+                Après les cérémonies, nous avons retrouvé nos familles et nos amis pour partager un premier moment de fête, entre éclats de rire, embrassades, champagne et souvenirs qui commencent déjà à s’écrire.
+            </p>
+
+
+
+        </section>
+
+        <section class="reception-note" aria-label="Remerciement">
+
+            <p>
+                Plus de 120 personnes étaient présentes pour partager ce moment avec nous.
+                Merci d’avoir rendu cette journée si inoubliable.
+            </p>
+
+        </section>
+
+        <section
+            class="gallery-section"
+            aria-labelledby="gallery-title"
+        >
+
+            <div class="gallery-heading">
+
+                <p>
+                    Les premiers instants de la réception
+                </p>
+
+                <h2 id="gallery-title">
+                    Un moment de partage, de rires et de bonheur
+                </h2>
+
+            </div>
+
+            <div
+                class="gallery"
+                id="gallery"
+            ></div>
+
+        </section>
+
+    </main>
+
+    <footer class="footer">
+
+        <p class="footer-mark">
+            Élodie &amp; Alexandre
+        </p>
+
+        <p class="footer-date">
+            23 mai 2026
+        </p>
+
+    </footer>
+
+    <div
+        class="lightbox"
+        id="lightbox"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Agrandissement de la photographie"
+        aria-hidden="true"
+    >
+
+        <button
+            type="button"
+            class="lightbox-close"
+            id="closeButton"
+            aria-label="Fermer la photographie"
+        >
+            ×
+        </button>
+
+        <button
+            type="button"
+            class="lightbox-arrow previous"
+            id="previousButton"
+            aria-label="Photographie précédente"
+        >
+            ‹
+        </button>
+
+        <img
+            class="lightbox-image"
+            id="lightboxImage"
+            src=""
+            alt="Vin d’honneur d’Élodie et Alexandre"
+        >
+
+        <button
+            type="button"
+            class="lightbox-arrow next"
+            id="nextButton"
+            aria-label="Photographie suivante"
+        >
+            ›
+        </button>
+
+        <p
+            class="photo-counter"
+            id="photoCounter"
+            aria-live="polite"
+        ></p>
+
+    </div>
+
+    <script>
+
+        const firstPhotoNumber = 1;
+        const lastPhotoNumber = 129;
+
+        const photoNumbers = [];
+
+        for (
+            let number = firstPhotoNumber;
+            number <= lastPhotoNumber;
+            number++
+        ) {
+            photoNumbers.push(number);
+        }
+
+        const gallery = document.getElementById("gallery");
+
+        const lightbox = document.getElementById("lightbox");
+        const lightboxImage = document.getElementById("lightboxImage");
+        const photoCounter = document.getElementById("photoCounter");
+
+        const closeButton = document.getElementById("closeButton");
+        const previousButton = document.getElementById("previousButton");
+        const nextButton = document.getElementById("nextButton");
+
+        let currentImage = 0;
+        let previousFocusedElement = null;
+
+        const photos = photoNumbers.map(function(number, index) {
+
+            const fileName =
+                "Vin d'honneur - Elodie & Alexandre-" +
+                number +
+                ".jpg";
+
+            const path =
+                "../images/vin d'honneur/" +
+                encodeURI(fileName);
+
+            const button = document.createElement("button");
+
+            button.type = "button";
+            button.className = "gallery-item";
+
+            button.setAttribute(
+                "aria-label",
+                "Agrandir la photographie " +
+                (index + 1) +
+                " sur " +
+                photoNumbers.length
+            );
+
+            const image = document.createElement("img");
+
+            image.src = path;
+
+            image.alt =
+                "Vin d’honneur d’Élodie et Alexandre — photographie " +
+                (index + 1);
+
+            image.loading = "lazy";
+            image.decoding = "async";
+
+            button.appendChild(image);
+
+            button.addEventListener("click", function() {
+                openLightbox(index);
+            });
+
+            gallery.appendChild(button);
+
+            return path;
+
+        });
+
+        function updateLightbox() {
+
+            lightboxImage.src = photos[currentImage];
+
+            lightboxImage.alt =
+                "Vin d’honneur d’Élodie et Alexandre — photographie " +
+                (currentImage + 1) +
+                " sur " +
+                photos.length;
+
+            photoCounter.textContent =
+                (currentImage + 1) +
+                " / " +
+                photos.length;
+
+        }
+
+        function openLightbox(index) {
+
+            previousFocusedElement = document.activeElement;
+            currentImage = index;
+
+            updateLightbox();
+
+            lightbox.classList.add("open");
+            lightbox.setAttribute("aria-hidden", "false");
+
+            document.body.classList.add("lightbox-open");
+
+            closeButton.focus();
+
+        }
+
+        function closeLightbox() {
+
+            lightbox.classList.remove("open");
+            lightbox.setAttribute("aria-hidden", "true");
+
+            document.body.classList.remove("lightbox-open");
+
+            lightboxImage.src = "";
+
+            if (previousFocusedElement) {
+                previousFocusedElement.focus();
+            }
+
+        }
+
+        function changeImage(direction) {
+
+            currentImage += direction;
+
+            if (currentImage < 0) {
+                currentImage = photos.length - 1;
+            }
+
+            if (currentImage >= photos.length) {
+                currentImage = 0;
+            }
+
+            updateLightbox();
+
+        }
+
+        closeButton.addEventListener("click", closeLightbox);
+
+        previousButton.addEventListener("click", function() {
+            changeImage(-1);
+        });
+
+        nextButton.addEventListener("click", function() {
+            changeImage(1);
+        });
+
+        lightbox.addEventListener("click", function(event) {
+
+            if (event.target === lightbox) {
+                closeLightbox();
+            }
+
+        });
+
+        document.addEventListener("keydown", function(event) {
+
+            if (!lightbox.classList.contains("open")) {
+                return;
+            }
+
+            if (event.key === "Escape") {
+                closeLightbox();
+            }
+
+            if (event.key === "ArrowLeft") {
+                changeImage(-1);
+            }
+
+            if (event.key === "ArrowRight") {
+                changeImage(1);
+            }
+
+        });
+
+    </script>
+
+</body>
+
+</html>
