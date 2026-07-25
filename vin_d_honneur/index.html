@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -832,14 +833,11 @@
 
         const photos = photoNumbers.map(function(number, index) {
 
-            const fileName =
-                "Vin d'honneur - Elodie & Alexandre-" +
+            const path =
+                "../images/vin%20d%27honneur/" +
+                "Vin%20d%27honneur%20-%20Elodie%20%26%20Alexandre-" +
                 number +
                 ".jpg";
-
-            const path =
-                "../images/vin d'honneur/" +
-                encodeURI(fileName);
 
             const button = document.createElement("button");
 
