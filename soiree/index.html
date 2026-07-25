@@ -350,44 +350,6 @@
             line-height: 1.95;
         }
 
-        .scroll-indicator {
-            display: inline-flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 12px;
-            margin-top: 42px;
-            color: var(--gold);
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 9px;
-            letter-spacing: 2.7px;
-            text-decoration: none;
-            text-transform: uppercase;
-        }
-
-        .scroll-indicator span {
-            display: block;
-            width: 1px;
-            height: 38px;
-            background: linear-gradient(
-                var(--gold),
-                transparent
-            );
-            animation: scrollLine 1.9s ease-in-out infinite;
-        }
-
-        @keyframes scrollLine {
-            0%, 100% {
-                opacity: 0.35;
-                transform: scaleY(0.65);
-                transform-origin: top;
-            }
-
-            50% {
-                opacity: 1;
-                transform: scaleY(1);
-                transform-origin: top;
-            }
-        }
 
         /* =========================
            BOUTON SPOTIFY
@@ -398,27 +360,34 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
-            margin-top: 42px;
-            padding: 15px 34px;
+            margin-top: 30px;
+            padding: 13px 22px;
             border: 1px solid var(--gold);
+            border-radius: 999px;
             background: transparent;
             color: var(--gold);
             font-family: Arial, Helvetica, sans-serif;
-            font-size: 13px;
-            letter-spacing: 1.8px;
+            font-size: 12px;
+            letter-spacing: 0.8px;
             text-decoration: none;
-            text-transform: uppercase;
             transition:
-                background 0.3s ease,
-                color 0.3s ease,
-                box-shadow 0.3s ease,
-                transform 0.3s ease;
+                background 0.25s ease,
+                color 0.25s ease,
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
+        }
+
+        .spotify-button svg {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+            fill: currentColor;
         }
 
         .spotify-button:hover {
             background: var(--gold);
             color: #000000;
-            box-shadow: 0 0 24px rgba(214, 180, 119, 0.35);
+            box-shadow: 0 10px 24px rgba(214, 180, 119, 0.28);
             transform: translateY(-2px);
         }
 
@@ -946,10 +915,12 @@
                     rel="noopener noreferrer"
                     aria-label="Écouter la playlist Spotify de la soirée"
                 >
-                    Écouter la playlist de la soirée
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" aria-hidden="true">
+                        <path d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm101.7 357.6c-4 6.5-12.5 8.5-19 4.5-52-31.8-117.5-39-194.7-21.3-7.4 1.7-14.8-3-16.5-10.4-1.7-7.4 3-14.8 10.4-16.5 84.3-19.3 156.7-11.1 215.2 24.6 6.4 4 8.4 12.5 4.6 19.1zm27.2-60.5c-5 8.1-15.6 10.6-23.7 5.7-59.5-36.5-150.3-47.1-220.7-25.7-9.1 2.7-18.7-2.4-21.5-11.5-2.7-9.1 2.4-18.7 11.5-21.5 80.5-24.4 180.6-12.5 248.8 29.3 8.1 5 10.6 15.6 5.6 23.7zm2.3-63C308.2 200 190.6 196.3 126 216c-10.9 3.3-22.4-2.8-25.7-13.7-3.3-10.9 2.8-22.4 13.7-25.7 74.2-22.5 203.3-18.2 284.2 30.2 9.8 5.9 13 18.6 7.1 28.4-5.8 9.8-18.6 13-28.1 7z"/>
+                    </svg>
+                    <span>Écouter la playlist de la soirée</span>
                 </a>
 
-               
             </div>
 
         </section>
@@ -1072,12 +1043,36 @@
         let currentImage = 0;
         let previousFocusedElement = null;
 
+        function getPhotoPaths(number) {
+
+            const endings = [".jpg", ".JPG", ".jpeg", ".JPEG"];
+
+            const names = [
+                "Soirée - Elodie & Alexandre-", // é décomposé
+                "Soirée - Elodie & Alexandre-",  // é composé
+                "Soiree - Elodie & Alexandre-"   // sans accent
+            ];
+
+            const paths = [];
+
+            names.forEach(function(name) {
+                endings.forEach(function(extension) {
+                    paths.push(
+                        "../images/soiree/" +
+                        name +
+                        number +
+                        extension
+                    );
+                });
+            });
+
+            return paths;
+        }
+
         const photos = photoNumbers.map(function(number, index) {
 
-            const path =
-                "../images/soiree/Soirée - Elodie & Alexandre-" +
-                number +
-                ".jpg";
+            const candidatePaths = getPhotoPaths(number);
+            const path = candidatePaths[0];
 
             const button = document.createElement("button");
 
@@ -1094,7 +1089,22 @@
 
             const image = document.createElement("img");
 
-            image.src = path;
+            let candidateIndex = 0;
+
+            image.src = candidatePaths[candidateIndex];
+
+            image.addEventListener("error", function() {
+
+                candidateIndex++;
+
+                if (candidateIndex < candidatePaths.length) {
+                    image.src = candidatePaths[candidateIndex];
+                    return;
+                }
+
+                button.hidden = true;
+
+            });
 
             image.alt =
                 "Soirée du mariage d’Élodie et Alexandre — photographie " +
@@ -1111,13 +1121,16 @@
 
             gallery.appendChild(button);
 
-            return path;
+            return {
+                image: image,
+                candidates: candidatePaths
+            };
 
         });
 
         function updateLightbox() {
 
-            lightboxImage.src = photos[currentImage];
+            lightboxImage.src = photos[currentImage].image.currentSrc || photos[currentImage].image.src;
 
             lightboxImage.alt =
                 "Soirée du mariage d’Élodie et Alexandre — photographie " +
