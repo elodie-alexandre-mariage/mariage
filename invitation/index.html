@@ -61,7 +61,7 @@
         .site-header {
             position: relative;
             padding: 28px 20px 26px;
-            background: #ffffff;
+            background: var(--white);
             text-align: center;
         }
 
@@ -77,11 +77,14 @@
             border-radius: 999px;
             background: rgba(255, 255, 255, 0.96);
             color: #5d5552;
-            font-family: Arial, sans-serif;
+            font-family: Arial, Helvetica, sans-serif;
             font-size: 13px;
             text-decoration: none;
             box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
-            transition: transform 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+            transition:
+                color 0.2s ease,
+                border-color 0.2s ease,
+                transform 0.2s ease;
         }
 
         .back-button svg {
@@ -95,8 +98,8 @@
         }
 
         .back-button:hover {
-            color: #72000b;
-            border-color: #72000b;
+            color: var(--bordeaux);
+            border-color: var(--bordeaux);
             transform: translateX(-2px);
         }
 
@@ -108,24 +111,16 @@
             margin: 0 auto 12px;
         }
 
-        h1 {
-            margin: 22px 0 0;
-            color: #72000b;
-            font-size: 30px;
-            font-weight: normal;
-            letter-spacing: 0.7px;
-        }
-
         .section-nav {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 8px 20px;
-            max-width: 1050px;
+            max-width: 1250px;
             margin: 12px auto 0;
             padding: 14px 18px 0;
-            border-top: 1px solid #eee8e5;
-            font-family: Arial, sans-serif;
+            border-top: 1px solid var(--line);
+            font-family: Arial, Helvetica, sans-serif;
         }
 
         .section-nav a {
@@ -135,12 +130,13 @@
             font-size: 13px;
             letter-spacing: 0.2px;
             text-decoration: none;
+            white-space: nowrap;
             transition: color 0.2s ease;
         }
 
         .section-nav a:hover,
         .section-nav a.active {
-            color: #72000b;
+            color: var(--bordeaux);
         }
 
         .section-nav a.active::after {
@@ -149,40 +145,93 @@
             bottom: -3px;
             left: 0;
             height: 1px;
-            background: #72000b;
+            background: var(--bordeaux);
             content: "";
         }
 
         /* =========================
-           CONTENU
+           INTRODUCTION
         ========================= */
 
-        .page {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 18px 25px 100px;
+        .hero {
+            padding: 76px 25px 70px;
+            text-align: center;
+        }
+
+        .eyebrow {
+            margin-bottom: 18px;
+            color: var(--bordeaux);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 11px;
+            letter-spacing: 3.5px;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            color: var(--text);
+            font-size: clamp(2.6rem, 7vw, 4.7rem);
+            font-weight: normal;
+            line-height: 1.08;
+        }
+
+        .title-line {
+            width: 56px;
+            height: 1px;
+            margin: 28px auto;
+            background: var(--bordeaux);
         }
 
         .intro {
-            max-width: 650px;
-            margin: 0 auto 72px;
-            color: #6f6764;
-            font-size: 16px;
-            line-height: 1.8;
-            text-align: center;
+            max-width: 700px;
+            margin: auto;
+            color: var(--muted);
+            font-size: 17px;
+            line-height: 1.9;
+        }
+
+        /* =========================
+           FAIRE-PART
+        ========================= */
+
+        .page {
+            padding: 70px 25px 105px;
+            border-top: 1px solid var(--line);
+            background: var(--soft);
+        }
+
+        .page-inner {
+            max-width: 1200px;
+            margin: auto;
         }
 
         .invitation {
-            margin-bottom: 95px;
+            margin-bottom: 92px;
         }
 
-        h2 {
-            margin-bottom: 34px;
-            color: #4d4542;
-            font-size: 1.65rem;
-            font-weight: normal;
-            letter-spacing: 0.25px;
+        .invitation:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-heading {
+            max-width: 760px;
+            margin: 0 auto 42px;
             text-align: center;
+        }
+
+        .section-heading p {
+            margin-bottom: 12px;
+            color: var(--bordeaux);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 11px;
+            letter-spacing: 3.2px;
+            text-transform: uppercase;
+        }
+
+        .section-heading h2 {
+            color: var(--text);
+            font-size: clamp(1.9rem, 5vw, 2.8rem);
+            font-weight: normal;
+            line-height: 1.25;
         }
 
         .viewer {
@@ -191,7 +240,6 @@
             margin: auto;
         }
 
-        /* Les deux faire-part ont la même hauteur visuelle sur ordinateur. */
         .viewer-square {
             max-width: 590px;
         }
@@ -208,9 +256,11 @@
             overflow: hidden;
             padding: 14px;
             border: 1px solid #eee9e6;
-            background: #ffffff;
+            background: var(--white);
             box-shadow: 0 14px 38px rgba(55, 40, 36, 0.10);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
         }
 
         .image-container:hover {
@@ -235,22 +285,28 @@
             position: absolute;
             top: 50%;
             z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             width: 46px;
             height: 46px;
             border: 1px solid rgba(114, 0, 11, 0.12);
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.96);
-            color: #72000b;
+            color: var(--bordeaux);
             box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
             font-size: 1.8rem;
             cursor: pointer;
             transform: translateY(-50%);
-            transition: transform 0.2s ease, background 0.2s ease;
+            transition:
+                transform 0.2s ease,
+                background 0.2s ease,
+                color 0.2s ease;
         }
 
         .arrow:hover {
-            background: #72000b;
-            color: #ffffff;
+            background: var(--bordeaux);
+            color: var(--white);
             transform: translateY(-50%) scale(1.06);
         }
 
@@ -275,46 +331,72 @@
             border-radius: 50%;
             background: #d8d1ce;
             cursor: pointer;
-            transition: transform 0.2s ease, background 0.2s ease;
+            transition:
+                transform 0.2s ease,
+                background 0.2s ease;
         }
 
         .dot.active {
-            background: #72000b;
+            background: var(--bordeaux);
             transform: scale(1.2);
         }
 
         /* =========================
-           VUE AGRANDIE
+           LIGHTBOX
         ========================= */
 
         .lightbox {
-            display: none;
             position: fixed;
             inset: 0;
             z-index: 1000;
+            display: flex;
             align-items: center;
             justify-content: center;
-            padding: 30px;
-            background: rgba(20, 15, 15, 0.96);
+            visibility: hidden;
+            padding: 34px 95px;
+            background: rgba(15, 12, 11, 0.96);
+            opacity: 0;
+            transition:
+                opacity 0.25s ease,
+                visibility 0.25s ease;
         }
 
         .lightbox.open {
-            display: flex;
+            visibility: visible;
+            opacity: 1;
         }
 
         .lightbox img {
-            max-width: 85vw;
-            max-height: 88vh;
+            display: block;
+            max-width: 90vw;
+            max-height: 86vh;
             object-fit: contain;
+            box-shadow: 0 15px 55px rgba(0, 0, 0, 0.35);
+            transform: scale(0.985);
+            transition: transform 0.25s ease;
+        }
+
+        .lightbox.open img {
+            transform: scale(1);
         }
 
         .close {
             position: fixed;
-            top: 15px;
-            right: 25px;
+            top: 22px;
+            right: 28px;
             z-index: 1003;
-            color: white;
-            font-size: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 46px;
+            height: 46px;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--white);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 29px;
+            line-height: 1;
             cursor: pointer;
         }
 
@@ -322,27 +404,26 @@
             position: fixed;
             top: 50%;
             z-index: 1002;
-            width: 55px;
-            height: 70px;
-            border: none;
-            background: rgba(255, 255, 255, 0.14);
-            color: white;
-            font-size: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 52px;
+            height: 52px;
+            border: 1px solid rgba(255, 255, 255, 0.32);
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.10);
+            color: var(--white);
+            font-size: 31px;
             cursor: pointer;
             transform: translateY(-50%);
-            transition: background 0.2s ease;
-        }
-
-        .lightbox-arrow:hover {
-            background: rgba(255, 255, 255, 0.28);
         }
 
         .lightbox-previous {
-            left: 20px;
+            left: 28px;
         }
 
         .lightbox-next {
-            right: 20px;
+            right: 28px;
         }
 
         .lightbox-dots {
@@ -364,57 +445,81 @@
         }
 
         .lightbox-dot.active {
-            background: white;
+            background: var(--white);
         }
 
-        @media (max-width: 700px) {
+        /* =========================
+           PIED DE PAGE
+        ========================= */
+
+        .footer {
+            padding: 52px 20px 58px;
+            background: var(--white);
+            text-align: center;
+        }
+
+        .footer-mark {
+            color: var(--bordeaux);
+            font-size: 1.3rem;
+        }
+
+        .footer-date {
+            margin-top: 10px;
+            color: #918681;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 10px;
+            letter-spacing: 2.6px;
+            text-transform: uppercase;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 650px) {
             .site-header {
-                padding: 76px 14px 22px;
+                padding: 22px 14px 0;
             }
 
             .back-button {
-                top: 18px;
-                left: 14px;
-                padding: 9px 12px;
-                font-size: 12px;
+                position: static;
+                margin-bottom: 20px;
             }
 
             .logo {
-                width: 135px;
-            }
-
-            h1 {
-                margin-top: 18px;
-                font-size: 23px;
+                width: 145px;
             }
 
             .section-nav {
-                gap: 6px 14px;
-                margin-top: 10px;
-                padding: 12px 8px 0;
+                gap: 7px 14px;
+                padding-right: 6px;
+                padding-left: 6px;
             }
 
             .section-nav a {
-                font-size: 12px;
+                font-size: 11px;
             }
 
-            .page {
-                padding: 12px 12px 70px;
+            .hero {
+                padding: 54px 20px 56px;
             }
 
             .intro {
-                margin-bottom: 55px;
-                padding: 0 10px;
                 font-size: 15px;
+                line-height: 1.8;
+            }
+
+            .page {
+                padding: 58px 10px 75px;
             }
 
             .invitation {
                 margin-bottom: 70px;
             }
 
-            h2 {
-                margin-bottom: 26px;
-                font-size: 1.35rem;
+            .section-heading {
+                padding: 0 10px;
+                margin-bottom: 34px;
             }
 
             .viewer-square,
@@ -442,32 +547,50 @@
             .arrow {
                 width: 40px;
                 height: 40px;
-                background: rgba(255, 255, 255, 0.92);
             }
 
             .lightbox {
-                padding: 15px;
+                padding: 70px 12px 65px;
             }
 
             .lightbox img {
-                max-width: 95vw;
-                max-height: 82vh;
+                max-width: 96vw;
+                max-height: 79vh;
             }
 
-            .lightbox-previous {
-                left: 3px;
-            }
-
-            .lightbox-next {
-                right: 3px;
+            .close {
+                top: 14px;
+                right: 14px;
+                width: 42px;
+                height: 42px;
             }
 
             .lightbox-arrow {
-                width: 38px;
-                height: 58px;
-                font-size: 30px;
+                top: auto;
+                bottom: 14px;
+                width: 44px;
+                height: 44px;
+                transform: none;
+            }
+
+            .lightbox-previous {
+                left: 15px;
+            }
+
+            .lightbox-next {
+                right: 15px;
             }
         }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
     </style>
 
 
@@ -481,7 +604,7 @@
             <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M15 18l-6-6 6-6"></path>
             </svg>
-            <span>Retour au menu principal</span>
+            <span>Retour au menu</span>
         </a>
 
         <img
@@ -504,25 +627,48 @@
             <a href="../photobooth/">Photobooth</a>
         </nav>
 
-        <h1>L'invitation</h1>
-
     </header>
 
-    <main class="page">
+    <main>
 
-        <p class="intro">
-            Tout a commencé par une invitation.
-            <br><br>
-            Retrouvez ici les faire-part qui annonçaient cette journée si particulière.
-        </p>
+        <section class="hero">
+
+            <p class="eyebrow">
+                Le commencement
+            </p>
+
+            <h1>
+                L’invitation
+            </h1>
+
+            <div class="title-line"></div>
+
+            <p class="intro">
+                Tout a commencé par une invitation.<br>
+                Retrouvez ici les faire-part qui annonçaient cette journée si particulière.
+            </p>
+
+        </section>
+
+        <section class="page">
+
+            <div class="page-inner">
 
         <!-- FAIRE-PART VIN D'HONNEUR -->
 
         <section class="invitation">
 
-            <h2>
-                Faire-part — Vin d'honneur
-            </h2>
+            <div class="section-heading">
+
+                <p>
+                    Le vin d’honneur
+                </p>
+
+                <h2>
+                    Faire-part — Vin d’honneur
+                </h2>
+
+            </div>
 
             <div class="viewer viewer-square">
 
@@ -561,9 +707,17 @@
 
         <section class="invitation">
 
-            <h2>
-                Faire-part — Repas
-            </h2>
+            <div class="section-heading">
+
+                <p>
+                    La réception
+                </p>
+
+                <h2>
+                    Faire-part — Repas
+                </h2>
+
+            </div>
 
             <div class="viewer viewer-triptyque">
 
@@ -598,7 +752,23 @@
 
         </section>
 
+            </div>
+
+        </section>
+
     </main>
+
+    <footer class="footer">
+
+        <p class="footer-mark">
+            Élodie &amp; Alexandre
+        </p>
+
+        <p class="footer-date">
+            23 mai 2026
+        </p>
+
+    </footer>
 
     <!-- VUE AGRANDIE -->
 
@@ -713,6 +883,8 @@
                 .classList
                 .add("open");
 
+            document.body.classList.add("lightbox-open");
+
             showLightboxImage(
                 currentImages[viewer]
             );
@@ -776,7 +948,31 @@
                 .classList
                 .remove("open");
 
+            document.body.classList.remove("lightbox-open");
+
         }
+
+        document.addEventListener("keydown", function(event) {
+
+            const lightbox = document.getElementById("lightbox");
+
+            if (!lightbox.classList.contains("open")) {
+                return;
+            }
+
+            if (event.key === "Escape") {
+                closeLightbox();
+            }
+
+            if (event.key === "ArrowLeft") {
+                changeLightboxImage(-1);
+            }
+
+            if (event.key === "ArrowRight") {
+                changeLightboxImage(1);
+            }
+
+        });
 
     </script>
 
