@@ -1,13 +1,13 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Photobooth — Élodie & Alexandre</title>
+<title>Mariette La Photobooth — Élodie & Alexandre</title>
 
 <style>
 
@@ -17,35 +17,68 @@
 
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: Georgia, "Times New Roman", serif;
     background: #faf9f7;
     color: #333;
     text-align: center;
 }
 
-h1 {
-    margin: 30px 0 10px;
-    font-size: 28px;
+/* =========================
+   EN-TÊTE
+========================= */
+
+.header {
+    padding: 32px 20px 20px;
 }
+
+.logo {
+    width: 150px;
+    max-width: 45vw;
+    margin-bottom: 8px;
+}
+
+h1 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: normal;
+    letter-spacing: 1px;
+    color: #72000b;
+}
+
+.subtitle {
+    margin-top: 8px;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #777;
+}
+
+/* =========================
+   GALERIE
+========================= */
 
 .gallery {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     max-width: 1000px;
-    margin: 40px auto;
+    margin: 35px auto 50px;
     padding: 0 20px;
 }
 
 .photo {
+    position: relative;
     aspect-ratio: 1 / 1;
     overflow: hidden;
     cursor: pointer;
-    transition: transform 0.2s ease;
+    background: #eee;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .photo:hover {
-    transform: scale(1.04);
+    transform: scale(1.025);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.18);
 }
 
 .photo img {
@@ -55,11 +88,43 @@ h1 {
     display: block;
 }
 
+/* =========================
+   INDICATEUR MULTIPLES PHOTOS
+========================= */
+
+.photo-count {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.92);
+    color: #72000b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.photo-count::before {
+    content: "▧";
+    font-size: 18px;
+    margin-right: 2px;
+}
+
+/* =========================
+   VISIONNEUSE
+========================= */
+
 .viewer {
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.94);
+    background: rgba(20, 15, 15, 0.96);
     z-index: 100;
     align-items: center;
     justify-content: center;
@@ -88,6 +153,10 @@ h1 {
     object-fit: contain;
     cursor: zoom-in;
 }
+
+/* =========================
+   PLEIN ÉCRAN
+========================= */
 
 .fullscreen {
     display: none;
@@ -119,18 +188,27 @@ h1 {
     z-index: 310;
 }
 
+/* =========================
+   NAVIGATION
+========================= */
+
 .arrow {
     position: fixed;
     top: 50%;
     transform: translateY(-50%);
     border: none;
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.14);
     color: white;
     font-size: 45px;
     width: 55px;
     height: 80px;
     cursor: pointer;
     z-index: 110;
+    transition: background 0.2s ease;
+}
+
+.arrow:hover {
+    background: rgba(255, 255, 255, 0.28);
 }
 
 .arrow-left {
@@ -140,6 +218,10 @@ h1 {
 .arrow-right {
     right: 20px;
 }
+
+/* =========================
+   MINIATURES
+========================= */
 
 .thumbnails {
     display: flex;
@@ -158,6 +240,7 @@ h1 {
     opacity: 0.45;
     cursor: pointer;
     border: 2px solid transparent;
+    transition: all 0.2s ease;
 }
 
 .thumbnail.active {
@@ -166,31 +249,9 @@ h1 {
     transform: scale(1.08);
 }
 
-.actions {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    margin-top: 20px;
-    flex-wrap: wrap;
-}
-
-.actions button {
-    border: none;
-    padding: 10px 16px;
-    cursor: pointer;
-    font-size: 14px;
-    border-radius: 4px;
-}
-
-.download {
-    background: white;
-    color: #222;
-}
-
-.download-group {
-    background: #72000b;
-    color: white;
-}
+/* =========================
+   FERMETURE / COMPTEUR
+========================= */
 
 .close {
     position: fixed;
@@ -205,15 +266,32 @@ h1 {
 .counter {
     color: white;
     margin-top: 12px;
+    font-family: Arial, sans-serif;
     font-size: 14px;
     opacity: 0.8;
 }
 
+/* =========================
+   MOBILE
+========================= */
+
 @media (max-width: 700px) {
+
+    .header {
+        padding-top: 22px;
+    }
+
+    .logo {
+        width: 120px;
+    }
 
     h1 {
         font-size: 23px;
-        margin-top: 22px;
+    }
+
+    .subtitle {
+        font-size: 11px;
+        letter-spacing: 1.5px;
     }
 
     .gallery {
@@ -255,9 +333,16 @@ h1 {
         height: 55px;
     }
 
-    .actions button {
-        font-size: 13px;
-        padding: 9px 12px;
+    .photo-count {
+        top: 6px;
+        right: 6px;
+        width: 29px;
+        height: 29px;
+        font-size: 11px;
+    }
+
+    .photo-count::before {
+        font-size: 15px;
     }
 
 }
@@ -268,65 +353,115 @@ h1 {
 
 <body>
 
-<h1>Le photobooth 📸</h1>
+<header class="header">
+
+```
+<img
+    src="../images/style/logosansfond.jpg"
+    alt="Élodie & Alexandre"
+    class="logo"
+>
+
+<h1>Mariette La Photobooth</h1>
+
+<div class="subtitle">
+    Élodie & Alexandre — 23 mai 2026
+</div>
+```
+
+</header>
 
 <div class="gallery" id="gallery"></div>
 
+<!-- =========================
+     VISIONNEUSE
+========================= -->
+
 <div class="viewer" id="viewer">
 
-    <span class="close" id="close">&times;</span>
+```
+<span class="close" id="close">&times;</span>
 
-    <button class="arrow arrow-left" id="previous">‹</button>
+<button class="arrow arrow-left" id="previous">
+    ‹
+</button>
 
-    <button class="arrow arrow-right" id="next">›</button>
+<button class="arrow arrow-right" id="next">
+    ›
+</button>
 
-    <div class="viewer-content">
+<div class="viewer-content">
 
-        <div class="main-photo-container">
+    <div class="main-photo-container">
 
-            <img id="mainPhoto" class="main-photo">
-
-        </div>
-
-        <div id="thumbnails" class="thumbnails"></div>
-
-        <div class="actions">
-
-            <button class="download" id="downloadPhoto">
-                ⬇️ Télécharger cette photo
-            </button>
-
-            <button class="download-group" id="downloadGroup">
-                📦 Télécharger le groupe
-            </button>
-
-        </div>
-
-        <div id="counter" class="counter"></div>
+        <img
+            id="mainPhoto"
+            class="main-photo"
+            alt="Photo du photobooth"
+        >
 
     </div>
 
+    <div
+        id="thumbnails"
+        class="thumbnails"
+    ></div>
+
+    <div
+        id="counter"
+        class="counter"
+    ></div>
+
+</div>
+```
+
 </div>
 
-<div class="fullscreen" id="fullscreen">
+<!-- =========================
+     PLEIN ÉCRAN
+========================= -->
 
-    <span class="fullscreen-close" id="fullscreenClose">
-        &times;
-    </span>
+<div
+    class="fullscreen"
+    id="fullscreen"
+>
 
-    <button class="arrow arrow-left" id="fullscreenPrevious">
-        ‹
-    </button>
+```
+<span
+    class="fullscreen-close"
+    id="fullscreenClose"
+>
+    &times;
+</span>
 
-    <img id="fullscreenPhoto">
+<button
+    class="arrow arrow-left"
+    id="fullscreenPrevious"
+>
+    ‹
+</button>
 
-    <button class="arrow arrow-right" id="fullscreenNext">
-        ›
-    </button>
+<img
+    id="fullscreenPhoto"
+    alt="Photo en plein écran"
+>
+
+<button
+    class="arrow arrow-right"
+    id="fullscreenNext"
+>
+    ›
+</button>
+```
 
 </div>
 
 <script>
+
+
+/* =========================
+   DOSSIER DES PHOTOS
+========================= */
 
 const dossier = "../images/photobooth/";
 
@@ -576,7 +711,7 @@ const photos = [
 
 
 /* =========================
-   PHOTOS IMG DU PHOTOGRAPHE
+   PHOTOS DU PHOTOGRAPHE
 ========================= */
 
 const photosPhotographe = [
@@ -980,34 +1115,42 @@ function obtenirDatePhoto(nom) {
 }
 
 
+/* =========================
+   TRI CHRONOLOGIQUE
+========================= */
+
 const photosPrincipales =
-    photos.map(function(photo) {
+    photos
+        .map(function(photo) {
 
-        return {
-            nom: photo,
-            date: obtenirDatePhoto(photo)
-        };
+            return {
+                nom: photo,
+                date: obtenirDatePhoto(photo)
+            };
 
-    }).sort(function(a, b) {
+        })
+        .sort(function(a, b) {
 
-        return a.date - b.date;
+            return a.date - b.date;
 
-    });
+        });
 
 
 const photosPhotographeTriees =
-    photosPhotographe.map(function(photo) {
+    photosPhotographe
+        .map(function(photo) {
 
-        return {
-            nom: photo,
-            date: obtenirDatePhoto(photo)
-        };
+            return {
+                nom: photo,
+                date: obtenirDatePhoto(photo)
+            };
 
-    }).sort(function(a, b) {
+        })
+        .sort(function(a, b) {
 
-        return a.date - b.date;
+            return a.date - b.date;
 
-    });
+        });
 
 
 /* =========================
@@ -1017,7 +1160,12 @@ const photosPhotographeTriees =
 const groupes = [];
 
 
-photosPrincipales.forEach(function(photoPrincipale, index) {
+photosPrincipales.forEach(function(
+
+    photoPrincipale,
+    index
+
+) {
 
     const datePrecedente =
         index === 0
@@ -1031,7 +1179,6 @@ photosPrincipales.forEach(function(photoPrincipale, index) {
             return (
 
                 photo.date > datePrecedente &&
-
                 photo.date < photoPrincipale.date
 
             );
@@ -1041,7 +1188,8 @@ photosPrincipales.forEach(function(photoPrincipale, index) {
 
     groupes.push({
 
-        principale: photoPrincipale.nom,
+        principale:
+            photoPrincipale.nom,
 
         photos: [
 
@@ -1061,7 +1209,7 @@ photosPrincipales.forEach(function(photoPrincipale, index) {
 
 
 /* =========================
-   ÉLÉMENTS
+   ÉLÉMENTS HTML
 ========================= */
 
 const gallery =
@@ -1092,10 +1240,15 @@ let photoActuelle = 0;
 
 
 /* =========================
-   GALERIE
+   CRÉATION DE LA GALERIE
 ========================= */
 
-groupes.forEach(function(groupe, index) {
+groupes.forEach(function(
+
+    groupe,
+    index
+
+) {
 
     const div =
         document.createElement("div");
@@ -1103,9 +1256,10 @@ groupes.forEach(function(groupe, index) {
     div.className = "photo";
 
 
-    const img =
-        document.createElement("img");
-
+    /*
+       La vignette reste toujours
+       la première photo IMG du groupe.
+    */
 
     const premierePhotoIMG =
         groupe.photos.find(function(photo) {
@@ -1115,10 +1269,15 @@ groupes.forEach(function(groupe, index) {
         });
 
 
+    const img =
+        document.createElement("img");
+
+
     if (premierePhotoIMG) {
 
         img.src =
-            dossier + premierePhotoIMG;
+            dossier +
+            premierePhotoIMG;
 
     }
 
@@ -1129,11 +1288,42 @@ groupes.forEach(function(groupe, index) {
     div.appendChild(img);
 
 
+    /*
+       Indicateur de plusieurs photos
+    */
+
+    if (groupe.photos.length > 1) {
+
+        const compteur =
+            document.createElement("div");
+
+        compteur.className =
+            "photo-count";
+
+        compteur.textContent =
+            groupe.photos.length;
+
+        div.appendChild(compteur);
+
+    }
+
+
+    /*
+       Ouverture du groupe
+
+       IMPORTANT :
+       on commence à 0,
+       donc la photo principale
+       s'affiche en premier.
+    */
+
     div.onclick = function() {
 
-        groupeActuel = index;
+        groupeActuel =
+            index;
 
-        photoActuelle = 0;
+        photoActuelle =
+            0;
 
         afficherPhoto();
 
@@ -1151,7 +1341,7 @@ groupes.forEach(function(groupe, index) {
 
 
 /* =========================
-   AFFICHAGE
+   AFFICHAGE PHOTO
 ========================= */
 
 function afficherPhoto() {
@@ -1165,30 +1355,27 @@ function afficherPhoto() {
 
 
     mainPhoto.src =
-        dossier + photo;
+        dossier +
+        photo;
 
 
     fullscreenPhoto.src =
-        dossier + photo;
+        dossier +
+        photo;
 
 
     counter.textContent =
 
-        "Groupe "
+        "Groupe " +
+        (groupeActuel + 1) +
+        " / " +
+        groupes.length +
 
-        + (groupeActuel + 1)
+        " — Photo " +
 
-        + " / "
-
-        + groupes.length
-
-        + " — Photo "
-
-        + (photoActuelle + 1)
-
-        + " / "
-
-        + groupe.photos.length;
+        (photoActuelle + 1) +
+        " / " +
+        groupe.photos.length;
 
 
     afficherMiniatures();
@@ -1202,44 +1389,62 @@ function afficherPhoto() {
 
 function afficherMiniatures() {
 
-    thumbnails.innerHTML = "";
+    thumbnails.innerHTML =
+        "";
 
 
     const groupe =
         groupes[groupeActuel];
 
 
-    groupe.photos.forEach(function(photo, index) {
+    groupe.photos.forEach(function(
+
+        photo,
+        index
+
+    ) {
 
         const thumbnail =
             document.createElement("img");
 
 
         thumbnail.src =
-            dossier + photo;
+            dossier +
+            photo;
 
 
         thumbnail.className =
             "thumbnail";
 
 
-        if (index === photoActuelle) {
+        if (
 
-            thumbnail.classList.add("active");
+            index ===
+            photoActuelle
+
+        ) {
+
+            thumbnail.classList.add(
+                "active"
+            );
 
         }
 
 
-        thumbnail.onclick = function() {
+        thumbnail.onclick =
+            function() {
 
-            photoActuelle = index;
+                photoActuelle =
+                    index;
 
-            afficherPhoto();
+                afficherPhoto();
 
-        };
+            };
 
 
-        thumbnails.appendChild(thumbnail);
+        thumbnails.appendChild(
+            thumbnail
+        );
 
     });
 
@@ -1258,9 +1463,13 @@ function photoSuivante() {
 
     photoActuelle =
 
-        (photoActuelle + 1)
+        (
 
-        % groupe.photos.length;
+            photoActuelle + 1
+
+        ) %
+
+        groupe.photos.length;
 
 
     afficherPhoto();
@@ -1278,13 +1487,13 @@ function photoPrecedente() {
 
         (
 
-            photoActuelle - 1
+            photoActuelle -
+            1 +
+            groupe.photos.length
 
-            + groupe.photos.length
+        ) %
 
-        )
-
-        % groupe.photos.length;
+        groupe.photos.length;
 
 
     afficherPhoto();
@@ -1292,19 +1501,27 @@ function photoPrecedente() {
 }
 
 
-document.getElementById("next").onclick =
+document.getElementById(
+    "next"
+).onclick =
     photoSuivante;
 
 
-document.getElementById("previous").onclick =
+document.getElementById(
+    "previous"
+).onclick =
     photoPrecedente;
 
 
-document.getElementById("fullscreenNext").onclick =
+document.getElementById(
+    "fullscreenNext"
+).onclick =
     photoSuivante;
 
 
-document.getElementById("fullscreenPrevious").onclick =
+document.getElementById(
+    "fullscreenPrevious"
+).onclick =
     photoPrecedente;
 
 
@@ -1312,201 +1529,205 @@ document.getElementById("fullscreenPrevious").onclick =
    PLEIN ÉCRAN
 ========================= */
 
-mainPhoto.onclick = function() {
+mainPhoto.onclick =
+    function() {
 
-    fullscreen.classList.add("active");
+        fullscreen.classList.add(
+            "active"
+        );
 
-};
+    };
 
 
-document.getElementById("fullscreenClose").onclick =
-function() {
+document.getElementById(
+    "fullscreenClose"
+).onclick =
+    function() {
 
-    fullscreen.classList.remove("active");
+        fullscreen.classList.remove(
+            "active"
+        );
 
-};
+    };
 
 
 /* =========================
    FERMETURE
 ========================= */
 
-document.getElementById("close").onclick =
-function() {
+document.getElementById(
+    "close"
+).onclick =
+    function() {
 
-    viewer.classList.remove("active");
+        viewer.classList.remove(
+            "active"
+        );
 
-    fullscreen.classList.remove("active");
+        fullscreen.classList.remove(
+            "active"
+        );
 
-    document.body.style.overflow = "";
+        document.body.style.overflow =
+            "";
 
-};
-
-
-/* =========================
-   TÉLÉCHARGEMENT PHOTO
-========================= */
-
-document.getElementById("downloadPhoto").onclick =
-function() {
-
-    const groupe =
-        groupes[groupeActuel];
-
-
-    const photo =
-        groupe.photos[photoActuelle];
-
-
-    const lien =
-        document.createElement("a");
-
-
-    lien.href =
-        dossier + photo;
-
-
-    lien.download =
-        photo;
-
-
-    lien.click();
-
-};
-
-
-/* =========================
-   TÉLÉCHARGEMENT GROUPE
-========================= */
-
-document.getElementById("downloadGroup").onclick =
-function() {
-
-    const groupe =
-        groupes[groupeActuel];
-
-
-    groupe.photos.forEach(function(photo, index) {
-
-        setTimeout(function() {
-
-            const lien =
-                document.createElement("a");
-
-
-            lien.href =
-                dossier + photo;
-
-
-            lien.download =
-                photo;
-
-
-            lien.click();
-
-        }, index * 300);
-
-    });
-
-};
+    };
 
 
 /* =========================
    CLAVIER
 ========================= */
 
-document.addEventListener("keydown", function(event) {
+document.addEventListener(
+    "keydown",
+    function(event) {
 
-    if (!viewer.classList.contains("active")) {
+        if (
 
-        return;
+            !viewer.classList.contains(
+                "active"
+            )
 
-    }
+        ) {
 
-
-    if (event.key === "ArrowRight") {
-
-        photoSuivante();
-
-    }
-
-
-    if (event.key === "ArrowLeft") {
-
-        photoPrecedente();
-
-    }
-
-
-    if (event.key === "Escape") {
-
-        if (fullscreen.classList.contains("active")) {
-
-            fullscreen.classList.remove("active");
+            return;
 
         }
 
-        else {
 
-            viewer.classList.remove("active");
+        if (
 
-            document.body.style.overflow = "";
+            event.key ===
+            "ArrowRight"
+
+        ) {
+
+            photoSuivante();
+
+        }
+
+
+        if (
+
+            event.key ===
+            "ArrowLeft"
+
+        ) {
+
+            photoPrecedente();
+
+        }
+
+
+        if (
+
+            event.key ===
+            "Escape"
+
+        ) {
+
+            if (
+
+                fullscreen.classList.contains(
+                    "active"
+                )
+
+            ) {
+
+                fullscreen.classList.remove(
+                    "active"
+                );
+
+            }
+
+            else {
+
+                viewer.classList.remove(
+                    "active"
+                );
+
+                document.body.style.overflow =
+                    "";
+
+            }
 
         }
 
     }
 
-});
+);
 
 
 /* =========================
    SWIPE MOBILE
 ========================= */
 
-let touchStartX = 0;
+let touchStartX =
+    0;
+
+let touchEndX =
+    0;
 
 
-let touchEndX = 0;
+viewer.addEventListener(
+    "touchstart",
+    function(event) {
 
-
-viewer.addEventListener("touchstart", function(event) {
-
-    touchStartX =
-        event.changedTouches[0].screenX;
-
-});
-
-
-viewer.addEventListener("touchend", function(event) {
-
-    touchEndX =
-        event.changedTouches[0].screenX;
-
-
-    const difference =
-        touchStartX - touchEndX;
-
-
-    if (Math.abs(difference) < 50) {
-
-        return;
+        touchStartX =
+            event.changedTouches[0]
+                .screenX;
 
     }
 
+);
 
-    if (difference > 0) {
 
-        photoSuivante();
+viewer.addEventListener(
+    "touchend",
+    function(event) {
+
+        touchEndX =
+            event.changedTouches[0]
+                .screenX;
+
+
+        const difference =
+            touchStartX -
+            touchEndX;
+
+
+        if (
+
+            Math.abs(difference)
+            < 50
+
+        ) {
+
+            return;
+
+        }
+
+
+        if (
+
+            difference > 0
+
+        ) {
+
+            photoSuivante();
+
+        }
+
+        else {
+
+            photoPrecedente();
+
+        }
 
     }
 
-    else {
+);
 
-        photoPrecedente();
-
-    }
-
-});
 
 </script>
 
