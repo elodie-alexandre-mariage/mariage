@@ -2,15 +2,12 @@
 <html lang="fr">
 
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Notre mariage — Élodie & Alexandre</title>
+    <title>Élodie & Alexandre — 23 mai 2026</title>
 
     <style>
-
         * {
             box-sizing: border-box;
             margin: 0;
@@ -19,11 +16,11 @@
 
         :root {
             --bordeaux: #72000b;
-            --bordeaux-dark: #560008;
-            --text: #333333;
-            --muted: #6f6a67;
-            --line: #ded8d4;
-            --background: #faf9f7;
+            --bordeaux-dark: #580008;
+            --text: #403936;
+            --muted: #746b67;
+            --line: #eee8e5;
+            --soft: #f8f5f3;
             --white: #ffffff;
         }
 
@@ -32,636 +29,580 @@
         }
 
         body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: var(--background);
+            background: var(--white);
             color: var(--text);
+            font-family: Georgia, "Times New Roman", serif;
         }
 
-        .page {
-            min-height: 100vh;
-            padding: 34px 24px 70px;
+        a {
+            color: inherit;
         }
 
-        .top-nav {
-            max-width: 1240px;
-            margin: 0 auto 58px;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 8px 22px;
-            padding: 16px 20px;
-            border-top: 1px solid var(--line);
-            border-bottom: 1px solid var(--line);
-        }
+        /* =========================
+           EN-TÊTE COMMUN
+        ========================= */
 
-        .top-nav a {
-            position: relative;
-            color: #5c5653;
-            text-decoration: none;
-            font-size: 0.82rem;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            transition: color 0.25s ease;
-        }
-
-        .top-nav a:hover,
-        .top-nav a:focus-visible {
-            color: var(--bordeaux);
-        }
-
-        .top-nav a.active {
-            color: var(--bordeaux);
-        }
-
-        .top-nav a.active::after {
-            content: "";
-            position: absolute;
-            left: 50%;
-            bottom: -8px;
-            width: 28px;
-            height: 1px;
-            background: var(--bordeaux);
-            transform: translateX(-50%);
-        }
-
-        .hero {
-            max-width: 940px;
-            margin: auto;
+        .site-header {
+            padding: 28px 20px 0;
+            background: var(--white);
             text-align: center;
         }
 
-        .brand-stack {
+        .logo {
+            display: block;
+            width: 180px;
+            max-width: 55vw;
+            height: auto;
+            margin: 0 auto 12px;
+        }
+
+        .section-nav {
             display: flex;
-            flex-direction: column;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px 20px;
+            max-width: 1050px;
+            margin: 12px auto 0;
+            padding: 14px 18px 0;
+            border-top: 1px solid var(--line);
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .section-nav a {
+            position: relative;
+            padding: 5px 0;
+            color: #6f6764;
+            font-size: 13px;
+            letter-spacing: 0.2px;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .section-nav a:hover {
+            color: var(--bordeaux);
+        }
+
+        /* =========================
+           INTRODUCTION
+        ========================= */
+
+        .hero {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 78px 25px 84px;
+            text-align: center;
+        }
+
+        .eyebrow {
+            margin-bottom: 18px;
+            color: var(--bordeaux);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 12px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        .names {
+            color: var(--bordeaux);
+            font-size: clamp(3rem, 8vw, 5.6rem);
+            font-weight: normal;
+            line-height: 1.05;
+            letter-spacing: -1.5px;
+        }
+
+        .date {
+            display: flex;
             align-items: center;
+            justify-content: center;
+            gap: 18px;
+            margin: 26px auto 36px;
+            color: var(--muted);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 12px;
+            letter-spacing: 3.5px;
+            text-transform: uppercase;
         }
 
-        .brand-logo {
-            width: 100px;
-            max-width: 28vw;
-            height: auto;
-            display: block;
-            margin-bottom: 25px;
-        }
-
-        .brand-names {
-            width: min(560px, 88vw);
-            height: auto;
-            display: block;
-            margin-bottom: 20px;
-        }
-
-        .brand-date {
-            width: min(220px, 48vw);
-            height: auto;
-            display: block;
-        }
-
-        .hero-divider {
-            width: 75px;
+        .date::before,
+        .date::after {
+            width: 54px;
             height: 1px;
-            margin: 48px auto 42px;
-            background: var(--bordeaux);
-            opacity: 0.5;
+            background: #d8ceca;
+            content: "";
         }
 
         .intro {
-            max-width: 720px;
+            max-width: 680px;
             margin: auto;
-            font-family: Georgia, "Times New Roman", serif;
-        }
-
-        .intro h1 {
-            font-size: clamp(2rem, 5vw, 3.2rem);
-            font-weight: normal;
-            color: var(--bordeaux);
-            margin-bottom: 28px;
-        }
-
-        .intro p {
-            font-size: 1.08rem;
+            color: #655c58;
+            font-size: 17px;
             line-height: 1.9;
-            color: #5d5754;
-            margin-top: 14px;
         }
 
-        .chapters-heading {
-            max-width: 1100px;
-            margin: 82px auto 34px;
+        .intro strong {
+            display: block;
+            margin-bottom: 14px;
+            color: var(--text);
+            font-size: 1.55rem;
+            font-weight: normal;
+        }
+
+        /* =========================
+           CHAPITRES
+        ========================= */
+
+        .chapters-section {
+            padding: 80px 25px 105px;
+            border-top: 1px solid var(--line);
+            background: var(--soft);
+        }
+
+        .section-heading {
+            max-width: 1180px;
+            margin: 0 auto 42px;
             text-align: center;
         }
 
-        .chapters-heading span {
-            display: inline-block;
-            color: var(--bordeaux);
-            font-size: 0.78rem;
-            letter-spacing: 0.22em;
-            text-transform: uppercase;
+        .section-heading p {
             margin-bottom: 12px;
+            color: var(--bordeaux);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 11px;
+            letter-spacing: 3.2px;
+            text-transform: uppercase;
         }
 
-        .chapters-heading h2 {
-            font-family: Georgia, "Times New Roman", serif;
+        .section-heading h2 {
+            color: var(--text);
             font-size: clamp(2rem, 5vw, 3.1rem);
             font-weight: normal;
-            color: var(--bordeaux);
-        }
-
-        .chapters-heading p {
-            max-width: 620px;
-            margin: 16px auto 0;
-            color: var(--muted);
-            line-height: 1.7;
         }
 
         .menu {
-            max-width: 1160px;
-            margin: auto;
             display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+            max-width: 1180px;
+            margin: auto;
         }
 
         .card {
             position: relative;
-            min-height: 210px;
+            display: flex;
+            min-height: 255px;
             overflow: hidden;
-            border: 1px solid var(--line);
-            background: var(--white);
-            text-decoration: none;
+            padding: 28px;
+            border: 1px solid #e5deda;
+            background: rgba(255, 255, 255, 0.94);
             color: var(--text);
-            transition:
-                transform 0.35s ease,
-                box-shadow 0.35s ease,
-                border-color 0.35s ease;
+            text-decoration: none;
+            transition: transform 0.32s ease, box-shadow 0.32s ease, border-color 0.32s ease;
         }
-
-        /*
-         * Pour ajouter une photo plus tard :
-         *
-         * 1. Ajoute une classe propre à la carte, par exemple :
-         *    class="card card-preparatifs"
-         *
-         * 2. Ajoute ensuite :
-         *
-         * .card-preparatifs {
-         *     background-image:
-         *         linear-gradient(rgba(255,255,255,.78), rgba(255,255,255,.78)),
-         *         url("images/menu/preparatifs.jpg");
-         *     background-size: cover;
-         *     background-position: center;
-         * }
-         */
 
         .card::before {
-            content: "";
             position: absolute;
-            inset: 0;
-            border-top: 3px solid transparent;
-            pointer-events: none;
-            transition: border-color 0.35s ease;
+            top: 0;
+            right: 0;
+            left: 0;
+            height: 3px;
+            background: var(--bordeaux);
+            content: "";
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.35s ease;
         }
 
-        .card:hover,
-        .card:focus-visible {
+        .card:hover {
+            z-index: 2;
+            border-color: #cfb6b4;
+            box-shadow: 0 18px 44px rgba(65, 43, 38, 0.11);
             transform: translateY(-6px);
-            border-color: #c7b7b3;
-            box-shadow: 0 18px 45px rgba(65, 42, 42, 0.1);
         }
 
-        .card:hover::before,
-        .card:focus-visible::before {
-            border-top-color: var(--bordeaux);
+        .card:hover::before {
+            transform: scaleX(1);
         }
 
-        .card-content {
-            min-height: 210px;
-            padding: 40px 38px;
+        .card-inner {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
+            width: 100%;
         }
 
         .chapter-number {
-            margin-bottom: 17px;
-            color: #9d928d;
-            font-size: 0.73rem;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
+            margin-bottom: auto;
+            color: #a39893;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 11px;
+            letter-spacing: 2px;
         }
 
         .card h3 {
-            font-family: Georgia, "Times New Roman", serif;
-            font-size: 1.65rem;
-            font-weight: normal;
+            margin-top: 42px;
             color: var(--bordeaux);
+            font-size: 1.55rem;
+            font-weight: normal;
+            line-height: 1.25;
         }
 
         .card p {
-            max-width: 360px;
-            margin-top: 12px;
+            margin-top: 11px;
             color: var(--muted);
-            font-size: 0.95rem;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 13px;
             line-height: 1.6;
         }
 
-        .featured {
-            grid-column: span 2;
-            min-height: 245px;
-            background: var(--bordeaux);
-            border-color: var(--bordeaux);
+        .card-arrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 25px;
+            color: var(--bordeaux);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 11px;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
         }
 
-        .featured .card-content {
-            min-height: 245px;
+        .card-arrow::after {
+            font-size: 16px;
+            content: "→";
+            transition: transform 0.25s ease;
+        }
+
+        .card:hover .card-arrow::after {
+            transform: translateX(4px);
+        }
+
+        .featured {
+            grid-column: span 3;
+            min-height: 230px;
+            border-color: var(--bordeaux);
+            background: var(--bordeaux);
+            color: var(--white);
+        }
+
+        .featured::before {
+            background: rgba(255, 255, 255, 0.65);
+        }
+
+        .featured:hover {
+            border-color: var(--bordeaux-dark);
+            background: var(--bordeaux-dark);
+            box-shadow: 0 18px 44px rgba(80, 0, 8, 0.22);
         }
 
         .featured .chapter-number,
         .featured h3,
-        .featured p {
+        .featured p,
+        .featured .card-arrow {
             color: var(--white);
         }
 
-        .featured .chapter-number {
-            opacity: 0.68;
+        .featured .card-inner {
+            display: grid;
+            grid-template-columns: 110px 1fr auto;
+            align-items: center;
+            gap: 30px;
         }
 
-        .featured:hover,
-        .featured:focus-visible {
-            background: var(--bordeaux-dark);
-            border-color: var(--bordeaux-dark);
-            box-shadow: 0 18px 45px rgba(114, 0, 11, 0.2);
+        .featured .chapter-number,
+        .featured h3,
+        .featured .card-arrow {
+            margin: 0;
         }
 
-        .featured:hover::before,
-        .featured:focus-visible::before {
-            border-top-color: rgba(255, 255, 255, 0.72);
+        .featured h3 {
+            font-size: clamp(1.8rem, 4vw, 2.7rem);
         }
+
+        .featured p {
+            max-width: 500px;
+        }
+
+        /* =========================
+           PIED DE PAGE
+        ========================= */
 
         .footer {
-            margin-top: 80px;
+            padding: 52px 20px 58px;
+            background: var(--white);
             text-align: center;
+        }
+
+        .footer-mark {
             color: var(--bordeaux);
+            font-size: 1.3rem;
         }
 
-        .footer::before {
-            content: "";
-            display: block;
-            width: 58px;
-            height: 1px;
-            margin: 0 auto 24px;
-            background: var(--bordeaux);
-            opacity: 0.45;
+        .footer-date {
+            margin-top: 10px;
+            color: #918681;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 10px;
+            letter-spacing: 2.6px;
+            text-transform: uppercase;
         }
 
-        .footer p {
-            font-family: Georgia, "Times New Roman", serif;
-            font-size: 1.15rem;
+        /* =========================
+           TABLETTE ET MOBILE
+        ========================= */
+
+        @media (max-width: 900px) {
+            .menu {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .featured {
+                grid-column: span 2;
+            }
+
+            .featured .card-inner {
+                grid-template-columns: 80px 1fr;
+            }
+
+            .featured .card-arrow {
+                grid-column: 2;
+            }
         }
 
-        @media (max-width: 800px) {
-
-            .page {
-                padding: 25px 18px 55px;
+        @media (max-width: 650px) {
+            .site-header {
+                padding: 22px 14px 0;
             }
 
-            .top-nav {
-                margin-bottom: 42px;
-                gap: 10px 17px;
-                padding: 15px 10px;
+            .logo {
+                width: 145px;
             }
 
-            .top-nav a {
-                font-size: 0.72rem;
+            .section-nav {
+                gap: 7px 14px;
+                padding-right: 6px;
+                padding-left: 6px;
             }
 
-            .brand-logo {
-                width: 88px;
-                margin-bottom: 21px;
+            .section-nav a {
+                font-size: 11px;
             }
 
-            .brand-names {
-                width: min(500px, 92vw);
-                margin-bottom: 16px;
+            .hero {
+                padding: 54px 20px 62px;
             }
 
-            .brand-date {
-                width: min(195px, 52vw);
+            .names {
+                letter-spacing: -0.8px;
             }
 
-            .hero-divider {
-                margin: 38px auto 34px;
+            .date {
+                gap: 11px;
+                font-size: 10px;
+                letter-spacing: 2.4px;
             }
 
-            .intro p {
-                font-size: 1rem;
+            .date::before,
+            .date::after {
+                width: 26px;
+            }
+
+            .intro {
+                font-size: 15px;
                 line-height: 1.8;
             }
 
-            .chapters-heading {
-                margin-top: 65px;
+            .intro strong {
+                font-size: 1.35rem;
+            }
+
+            .chapters-section {
+                padding: 60px 16px 75px;
             }
 
             .menu {
                 grid-template-columns: 1fr;
-            }
-
-            .featured {
-                grid-column: span 1;
-            }
-
-        }
-
-        @media (max-width: 520px) {
-
-            .top-nav {
-                justify-content: flex-start;
-                flex-wrap: nowrap;
-                overflow-x: auto;
-                scrollbar-width: none;
-                padding-left: 4px;
-                padding-right: 4px;
-            }
-
-            .top-nav::-webkit-scrollbar {
-                display: none;
-            }
-
-            .top-nav a {
-                flex: 0 0 auto;
+                gap: 14px;
             }
 
             .card,
-            .card-content {
-                min-height: 175px;
+            .featured {
+                grid-column: span 1;
+                min-height: 220px;
+                padding: 24px;
             }
 
-            .card-content {
-                padding: 32px 22px;
+            .featured .card-inner {
+                display: flex;
             }
 
-            .featured,
-            .featured .card-content {
-                min-height: 205px;
+            .featured .chapter-number {
+                margin-bottom: auto;
             }
 
-            .card h3 {
-                font-size: 1.45rem;
+            .featured h3 {
+                margin-top: 42px;
             }
 
+            .featured .card-arrow {
+                margin-top: 25px;
+            }
         }
 
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
     </style>
-
 </head>
 
 <body>
 
-    <main class="page">
+    <header class="site-header">
+        <img
+            src="images/style/logosansfond.jpg"
+            alt="Monogramme Élodie et Alexandre"
+            class="logo"
+        >
 
-        <nav class="top-nav" aria-label="Navigation principale">
-
-            <a href="./" class="active" aria-current="page">Accueil</a>
-
+        <nav class="section-nav" aria-label="Navigation entre les différentes parties du mariage">
             <a href="invitation/">Invitation</a>
-
             <a href="preparatifs/">Préparatifs</a>
-
             <a href="first-look/">First Look</a>
-
             <a href="mairie/">Mairie</a>
-
             <a href="ceremonie/">Église</a>
-
-            <a href="vin-honneur/">Vin d'honneur</a>
-
+            <a href="vin-honneur/">Vin d’honneur</a>
             <a href="soiree/">Soirée</a>
-
             <a href="videos/">Vidéos</a>
-
             <a href="photobooth/">Photobooth</a>
-
         </nav>
+    </header>
 
-        <header class="hero">
+    <main>
+        <section class="hero">
+            <p class="eyebrow">Notre mariage</p>
 
-            <div class="brand-stack">
+            <h1 class="names">Élodie &amp; Alexandre</h1>
 
-                <img
-                    src="images/style/logosansfond.jpg"
-                    alt="Monogramme Élodie et Alexandre"
-                    class="brand-logo"
-                >
-
-                <img
-                    src="images/style/nomsansfond.jpg"
-                    alt="Élodie et Alexandre"
-                    class="brand-names"
-                >
-
-                <img
-                    src="images/style/datesansfond.jpg"
-                    alt="23 mai 2026"
-                    class="brand-date"
-                >
-
-            </div>
-
-            <div class="hero-divider"></div>
+            <p class="date">23 mai 2026</p>
 
             <div class="intro">
-
-                <h1>Notre mariage</h1>
-
+                <strong>Une journée que nous n’oublierons jamais.</strong>
                 <p>
-                    Le 23 mai 2026 restera à jamais gravé dans nos mémoires.
+                    Des mois de préparatifs, beaucoup d’émotions, énormément de rires
+                    et mille souvenirs que nous avons réunis ici, pour les revivre encore et encore.
                 </p>
+            </div>
+        </section>
 
-                <p>
-                    Après des mois de préparatifs, de rires et d'émotions,
-                    nous nous sommes dit « oui » entourés des personnes
-                    qui comptent le plus pour nous.
-                </p>
-
-                <p>
-                    Nous avons créé cet espace pour revivre cette journée
-                    et la partager avec tous ceux qui en ont fait
-                    un souvenir inoubliable.
-                </p>
-
+        <section class="chapters-section" aria-labelledby="chapters-title">
+            <div class="section-heading">
+                <p>Les chapitres</p>
+                <h2 id="chapters-title">Revivez cette journée avec nous</h2>
             </div>
 
-        </header>
+            <div class="menu">
+                <a href="invitation/" class="card">
+                    <div class="card-inner">
+                        <span class="chapter-number">01</span>
+                        <h3>L’invitation</h3>
+                        <p>Les faire-part qui annonçaient cette journée si particulière.</p>
+                        <span class="card-arrow">Découvrir</span>
+                    </div>
+                </a>
 
-        <section class="chapters-heading">
+                <a href="preparatifs/" class="card">
+                    <div class="card-inner">
+                        <span class="chapter-number">02</span>
+                        <h3>Les préparatifs</h3>
+                        <p>Les derniers instants avant de nous retrouver.</p>
+                        <span class="card-arrow">Découvrir</span>
+                    </div>
+                </a>
 
-            <span>Notre histoire</span>
+                <a href="first-look/" class="card">
+                    <div class="card-inner">
+                        <span class="chapter-number">03</span>
+                        <h3>Le First Look</h3>
+                        <p>Le moment suspendu où nous nous sommes découverts.</p>
+                        <span class="card-arrow">Découvrir</span>
+                    </div>
+                </a>
 
-            <h2>Feuilletez notre journée</h2>
+                <a href="mairie/" class="card">
+                    <div class="card-inner">
+                        <span class="chapter-number">04</span>
+                        <h3>La mairie</h3>
+                        <p>Notre premier « oui », entourés de ceux que nous aimons.</p>
+                        <span class="card-arrow">Découvrir</span>
+                    </div>
+                </a>
 
-            <p>
-                Des premiers préparatifs jusqu'aux derniers pas de danse,
-                chaque chapitre raconte un instant de notre mariage.
-            </p>
+                <a href="ceremonie/" class="card">
+                    <div class="card-inner">
+                        <span class="chapter-number">05</span>
+                        <h3>L’église</h3>
+                        <p>La cérémonie, les émotions et notre grand « oui ».</p>
+                        <span class="card-arrow">Découvrir</span>
+                    </div>
+                </a>
 
+                <a href="vin-honneur/" class="card">
+                    <div class="card-inner">
+                        <span class="chapter-number">06</span>
+                        <h3>Le vin d’honneur</h3>
+                        <p>Les retrouvailles, les sourires et les premiers verres levés.</p>
+                        <span class="card-arrow">Découvrir</span>
+                    </div>
+                </a>
+
+                <a href="soiree/" class="card">
+                    <div class="card-inner">
+                        <span class="chapter-number">07</span>
+                        <h3>La soirée</h3>
+                        <p>Le repas, les surprises, les discours et la fête.</p>
+                        <span class="card-arrow">Découvrir</span>
+                    </div>
+                </a>
+
+                <a href="videos/" class="card">
+                    <div class="card-inner">
+                        <span class="chapter-number">08</span>
+                        <h3>Les vidéos</h3>
+                        <p>Notre journée en mouvement, à regarder encore une fois.</p>
+                        <span class="card-arrow">Découvrir</span>
+                    </div>
+                </a>
+
+                <a href="photobooth/" class="card">
+                    <div class="card-inner">
+                        <span class="chapter-number">09</span>
+                        <h3>Le Photobooth</h3>
+                        <p>Les poses, les éclats de rire et les souvenirs les plus spontanés.</p>
+                        <span class="card-arrow">Découvrir</span>
+                    </div>
+                </a>
+
+                <a href="mariage-en-images/" class="card featured">
+                    <div class="card-inner">
+                        <span class="chapter-number">Galerie</span>
+                        <div>
+                            <h3>Notre mariage en images</h3>
+                            <p>Retrouvez l’ensemble des photographies de cette journée inoubliable.</p>
+                        </div>
+                        <span class="card-arrow">Voir la galerie</span>
+                    </div>
+                </a>
+            </div>
         </section>
-
-        <section class="menu" aria-label="Les chapitres de notre mariage">
-
-            <a href="invitation/" class="card">
-
-                <div class="card-content">
-
-                    <span class="chapter-number">Chapitre 01</span>
-
-                    <h3>L'invitation</h3>
-
-                    <p>Le début de notre histoire.</p>
-
-                </div>
-
-            </a>
-
-            <a href="preparatifs/" class="card">
-
-                <div class="card-content">
-
-                    <span class="chapter-number">Chapitre 02</span>
-
-                    <h3>Les préparatifs</h3>
-
-                    <p>Les derniers instants avant le grand jour.</p>
-
-                </div>
-
-            </a>
-
-            <a href="first-look/" class="card">
-
-                <div class="card-content">
-
-                    <span class="chapter-number">Chapitre 03</span>
-
-                    <h3>Le First Look</h3>
-
-                    <p>Le moment où nos regards se sont retrouvés.</p>
-
-                </div>
-
-            </a>
-
-            <a href="mairie/" class="card">
-
-                <div class="card-content">
-
-                    <span class="chapter-number">Chapitre 04</span>
-
-                    <h3>La mairie</h3>
-
-                    <p>Notre premier « oui ».</p>
-
-                </div>
-
-            </a>
-
-            <a href="ceremonie/" class="card">
-
-                <div class="card-content">
-
-                    <span class="chapter-number">Chapitre 05</span>
-
-                    <h3>L'église</h3>
-
-                    <p>La cérémonie et notre grand « oui ».</p>
-
-                </div>
-
-            </a>
-
-            <a href="vin-honneur/" class="card">
-
-                <div class="card-content">
-
-                    <span class="chapter-number">Chapitre 06</span>
-
-                    <h3>Le vin d'honneur</h3>
-
-                    <p>Les premiers instants de fête avec nos proches.</p>
-
-                </div>
-
-            </a>
-
-            <a href="soiree/" class="card">
-
-                <div class="card-content">
-
-                    <span class="chapter-number">Chapitre 07</span>
-
-                    <h3>La soirée</h3>
-
-                    <p>Le repas, les discours et la fête.</p>
-
-                </div>
-
-            </a>
-
-            <a href="videos/" class="card">
-
-                <div class="card-content">
-
-                    <span class="chapter-number">Chapitre 08</span>
-
-                    <h3>Les vidéos</h3>
-
-                    <p>Revivre les émotions en mouvement.</p>
-
-                </div>
-
-            </a>
-
-            <a href="photobooth/" class="card">
-
-                <div class="card-content">
-
-                    <span class="chapter-number">Chapitre 09</span>
-
-                    <h3>Le photobooth</h3>
-
-                    <p>Les souvenirs les plus spontanés.</p>
-
-                </div>
-
-            </a>
-
-            <a href="mariage-en-images/" class="card featured">
-
-                <div class="card-content">
-
-                    <span class="chapter-number">La galerie complète</span>
-
-                    <h3>Notre mariage en images</h3>
-
-                    <p>
-                        Toutes les photographies de cette journée,
-                        réunies dans une seule galerie.
-                    </p>
-
-                </div>
-
-            </a>
-
-        </section>
-
-        <footer class="footer">
-
-            <p>Élodie & Alexandre</p>
-
-        </footer>
-
     </main>
+
+    <footer class="footer">
+        <p class="footer-mark">Élodie &amp; Alexandre</p>
+        <p class="footer-date">23 mai 2026</p>
+    </footer>
 
 </body>
 
