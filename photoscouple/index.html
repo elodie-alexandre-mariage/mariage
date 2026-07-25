@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Les photos de couple du mariage d’Élodie et Alexandre, célébré le 23 mai 2026.">
+<title>Photos de couple — Élodie & Alexandre</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bordeaux:#72000b;--text:#403936;--muted:#746b67;--line:#eee8e5;--soft:#f8f5f3;--white:#fff}
+html{scroll-behavior:smooth}
+body{min-height:100vh;overflow-x:hidden;background:var(--white);color:var(--text);font-family:Georgia,"Times New Roman",serif}
+body.lightbox-open{overflow:hidden}
+img{display:block;max-width:100%}
+a{color:inherit}
+button{font:inherit}
+.site-header{position:relative;z-index:10;padding:28px 20px 26px;background:var(--white);text-align:center}
+.back-button{position:absolute;top:22px;left:24px;display:inline-flex;align-items:center;gap:8px;padding:10px 15px;border:1px solid #e7e1de;border-radius:999px;background:rgba(255,255,255,.96);color:#5d5552;font-family:Arial,sans-serif;font-size:13px;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.05);transition:transform .2s ease,color .2s ease,border-color .2s ease}
+.back-button svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.back-button:hover{color:var(--bordeaux);border-color:var(--bordeaux);transform:translateX(-2px)}
+.logo{width:180px;max-width:55vw;height:auto;margin:0 auto 12px}
+.section-nav{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 20px;max-width:1250px;margin:12px auto 0;padding:14px 18px 0;border-top:1px solid var(--line);font-family:Arial,sans-serif}
+.section-nav a{position:relative;padding:5px 0;color:#6d6561;font-size:13px;letter-spacing:.25px;text-decoration:none;white-space:nowrap;transition:color .2s ease}
+.section-nav a::after{position:absolute;right:0;bottom:0;left:0;width:0;height:1px;margin:auto;background:var(--bordeaux);content:"";transition:width .2s ease}
+.section-nav a:hover,.section-nav a.active{color:var(--bordeaux)}
+.section-nav a:hover::after,.section-nav a.active::after{width:100%}
+.hero{position:relative;display:flex;align-items:center;justify-content:center;min-height:500px;padding:90px 24px 110px;overflow:hidden;background:radial-gradient(circle at 50% 10%,rgba(114,0,11,.05),transparent 35%),linear-gradient(180deg,#fff 0%,#faf7f6 100%);text-align:center}
+.hero::before,.hero::after{position:absolute;border:1px solid rgba(114,0,11,.06);border-radius:50%;content:"";pointer-events:none}
+.hero::before{top:60px;left:-165px;width:390px;height:390px}
+.hero::after{right:-205px;bottom:-245px;width:500px;height:500px}
+.hero-content{position:relative;z-index:1;width:100%;max-width:790px}
+.eyebrow{margin-bottom:22px;color:var(--bordeaux);font-family:Arial,sans-serif;font-size:12px;font-weight:500;letter-spacing:3px;text-transform:uppercase}
+.hero h1{color:var(--bordeaux);font-size:clamp(2.7rem,6vw,5.2rem);font-weight:normal;line-height:1.04;letter-spacing:-1.6px}
+.title-line{width:55px;height:1px;margin:32px auto;background:var(--bordeaux)}
+.intro{max-width:680px;margin:0 auto;color:var(--muted);font-size:1.07rem;line-height:1.9}
+.gallery-section{padding:110px 24px 135px;background:var(--white)}
+.gallery-heading{max-width:760px;margin:0 auto 62px;text-align:center}
+.gallery-heading>p:first-child{margin-bottom:16px;color:var(--bordeaux);font-family:Arial,sans-serif;font-size:11px;letter-spacing:2.8px;text-transform:uppercase}
+.gallery-heading h2{color:var(--bordeaux);font-size:clamp(2rem,4.5vw,3.5rem);font-weight:normal;line-height:1.16}
+.gallery-count{margin-top:22px;color:var(--muted);font-family:Arial,sans-serif;font-size:13px;letter-spacing:.4px}
+.gallery{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-auto-rows:92px;gap:12px;max-width:1380px;margin:0 auto}
+.gallery-item{position:relative;grid-column:span 4;grid-row:span 4;min-width:0;overflow:hidden;border:0;background:#eee9e6;cursor:pointer}
+.gallery-item:nth-child(12n + 1),.gallery-item:nth-child(12n + 7){grid-column:span 8;grid-row:span 5}
+.gallery-item:nth-child(12n + 3),.gallery-item:nth-child(12n + 6),.gallery-item:nth-child(12n + 10){grid-column:span 4;grid-row:span 5}
+.gallery-item:nth-child(12n + 5),.gallery-item:nth-child(12n + 11){grid-column:span 6;grid-row:span 4}
+.gallery-item:nth-child(12n + 8),.gallery-item:nth-child(12n + 12){grid-column:span 6;grid-row:span 5}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .55s ease,filter .4s ease}
+.gallery-item::after{position:absolute;inset:0;background:rgba(114,0,11,0);content:"";transition:background .3s ease}
+.gallery-item:hover img{transform:scale(1.025)}
+.gallery-item:hover::after{background:rgba(114,0,11,.035)}
+.lightbox{position:fixed;z-index:1000;inset:0;display:flex;align-items:center;justify-content:center;visibility:hidden;padding:75px 90px 70px;background:rgba(19,15,14,.96);opacity:0;transition:opacity .25s ease,visibility .25s ease}
+.lightbox.open{visibility:visible;opacity:1}
+.lightbox-image{max-width:min(88vw,1500px);max-height:82vh;object-fit:contain;box-shadow:0 28px 70px rgba(0,0,0,.28)}
+.lightbox-close,.lightbox-arrow{position:absolute;z-index:2;border:0;background:transparent;color:rgba(255,255,255,.88);cursor:pointer;transition:color .2s ease,transform .2s ease}
+.lightbox-close{top:20px;right:28px;font-family:Arial,sans-serif;font-size:42px;font-weight:200;line-height:1}
+.lightbox-arrow{top:50%;width:56px;height:70px;font-family:Georgia,serif;font-size:58px;transform:translateY(-50%)}
+.previous{left:18px}.next{right:18px}
+.lightbox-close:hover,.lightbox-arrow:hover{color:#fff}
+.previous:hover{transform:translate(-3px,-50%)}.next:hover{transform:translate(3px,-50%)}
+.photo-counter{position:absolute;bottom:23px;left:50%;color:rgba(255,255,255,.75);font-family:Arial,sans-serif;font-size:12px;letter-spacing:1.4px;transform:translateX(-50%)}
+.footer{padding:48px 20px 52px;border-top:1px solid var(--line);background:var(--white);text-align:center}
+.footer-mark{margin-bottom:8px;color:var(--bordeaux);font-size:1.2rem}
+.footer-date{color:#8b817c;font-family:Arial,sans-serif;font-size:11px;letter-spacing:1.6px;text-transform:uppercase}
+@media(max-width:950px){
+.gallery{grid-template-columns:repeat(8,minmax(0,1fr));grid-auto-rows:88px;gap:10px}
+.gallery-item,.gallery-item:nth-child(n){grid-column:span 4;grid-row:span 4}
+.gallery-item:nth-child(8n + 1),.gallery-item:nth-child(8n + 6){grid-column:span 8;grid-row:span 5}
+}
+@media(max-width:760px){
+.site-header{padding:82px 16px 22px}.back-button{top:18px;left:18px}.logo{width:145px}
+.section-nav{justify-content:flex-start;flex-wrap:nowrap;gap:20px;overflow-x:auto;padding:15px 4px 5px;scrollbar-width:none}
+.section-nav::-webkit-scrollbar{display:none}.section-nav a{flex:0 0 auto;font-size:12px}
+.hero{min-height:430px;padding:68px 22px 84px}.gallery-section{padding:85px 12px 100px}.gallery-heading{margin-bottom:46px;padding:0 12px}
+.lightbox{padding:70px 12px 66px}.lightbox-image{max-width:96vw;max-height:79vh}.lightbox-close{top:13px;right:16px;font-size:36px}
+.lightbox-arrow{top:auto;bottom:12px;width:44px;height:44px;font-size:46px;transform:none}.previous{left:15px}.next{right:15px}
+.previous:hover{transform:translateX(-2px)}.next:hover{transform:translateX(2px)}.photo-counter{bottom:28px}
+}
+@media(max-width:520px){
+.back-button{padding:9px 13px;font-size:12px}.hero{min-height:395px;padding-top:58px}.eyebrow{margin-bottom:18px;font-size:10px;letter-spacing:2.4px}
+.title-line{margin:27px auto}.intro{font-size:.98rem;line-height:1.8}
+.gallery{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:115px;gap:7px}
+.gallery-item,.gallery-item:nth-child(n){grid-column:span 1;grid-row:span 2}
+.gallery-item:nth-child(6n + 1),.gallery-item:nth-child(6n + 5){grid-column:span 2;grid-row:span 3}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<header class="site-header">
+<a href="../" class="back-button" aria-label="Retour au menu principal">
+<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg>
+Retour au menu
+</a>
+<img src="../images/style/logosansfond.jpg" alt="Monogramme Élodie et Alexandre" class="logo">
+<nav class="section-nav" aria-label="Navigation entre les différentes parties du mariage">
+<a href="../invitation/">Invitation</a>
+<a href="../preparatifs/">Préparatifs</a>
+<a href="../first-look/">First Look</a>
+<a href="../mairie/">Mairie</a>
+<a href="../eglise/">Église</a>
+<a href="../vin_d_honneur/">Vin d’honneur</a>
+<a href="../soiree/">Soirée</a>
+<a href="../videos/">Vidéos</a>
+<a href="../photoscouple/" class="active" aria-current="page">Photos de couple</a>
+<a href="../photosgroupe/">Photos de groupe</a>
+<a href="../photobooth/">Photobooth</a>
+</nav>
+</header>
+
+<main>
+<section class="hero">
+<div class="hero-content">
+<p class="eyebrow">Rien que nous deux</p>
+<h1>Nos photos de couple</h1>
+<div class="title-line"></div>
+<p class="intro">Quelques instants suspendus au milieu de cette journée, loin de l’agitation, pour nous retrouver, respirer et garder une trace de tout ce que nous ressentions.</p>
+</div>
+</section>
+
+<section class="gallery-section" aria-labelledby="gallery-title">
+<div class="gallery-heading">
+<p>Élodie &amp; Alexandre</p>
+<h2 id="gallery-title">Un moment à deux</h2>
+<p class="gallery-count">64 photographies</p>
+</div>
+<div class="gallery" id="gallery" aria-label="Galerie des photos de couple"></div>
+</section>
+</main>
+
+<footer class="footer">
+<p class="footer-mark">Élodie &amp; Alexandre</p>
+<p class="footer-date">23 mai 2026</p>
+</footer>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Agrandissement de la photographie" aria-hidden="true">
+<button type="button" class="lightbox-close" id="closeButton" aria-label="Fermer la photographie">×</button>
+<button type="button" class="lightbox-arrow previous" id="previousButton" aria-label="Photographie précédente">‹</button>
+<img class="lightbox-image" id="lightboxImage" src="" alt="">
+<button type="button" class="lightbox-arrow next" id="nextButton" aria-label="Photographie suivante">›</button>
+<p class="photo-counter" id="photoCounter" aria-live="polite"></p>
+</div>
+
+<script>
+const totalPhotos=64;
+const gallery=document.getElementById("gallery");
+const lightbox=document.getElementById("lightbox");
+const lightboxImage=document.getElementById("lightboxImage");
+const photoCounter=document.getElementById("photoCounter");
+const closeButton=document.getElementById("closeButton");
+const previousButton=document.getElementById("previousButton");
+const nextButton=document.getElementById("nextButton");
+let currentImage=0;
+let previousFocusedElement=null;
+
+const photoPaths=Array.from({length:totalPhotos},function(_,index){
+const number=index+1;
+return "../images/photos_couple/Photos de couple - Elodie & Alexandre-"+number+".jpg";
+});
+
+photoPaths.forEach(function(path,index){
+const button=document.createElement("button");
+const image=document.createElement("img");
+button.type="button";
+button.className="gallery-item";
+button.setAttribute("aria-label","Agrandir la photo de couple "+(index+1)+" sur "+totalPhotos);
+image.src=path;
+image.alt="Élodie et Alexandre — photo de couple "+(index+1)+" sur "+totalPhotos;
+image.loading=index<6?"eager":"lazy";
+image.decoding="async";
+button.appendChild(image);
+button.addEventListener("click",function(){openLightbox(index);});
+gallery.appendChild(button);
+});
+
+function updateLightbox(){
+lightboxImage.src=photoPaths[currentImage];
+lightboxImage.alt="Élodie et Alexandre — photo de couple "+(currentImage+1)+" sur "+totalPhotos;
+photoCounter.textContent=(currentImage+1)+" / "+totalPhotos;
+}
+function openLightbox(index){
+previousFocusedElement=document.activeElement;
+currentImage=index;
+updateLightbox();
+lightbox.classList.add("open");
+lightbox.setAttribute("aria-hidden","false");
+document.body.classList.add("lightbox-open");
+closeButton.focus();
+}
+function closeLightbox(){
+lightbox.classList.remove("open");
+lightbox.setAttribute("aria-hidden","true");
+document.body.classList.remove("lightbox-open");
+lightboxImage.src="";
+if(previousFocusedElement){previousFocusedElement.focus();}
+}
+function changeImage(direction){
+currentImage+=direction;
+if(currentImage<0){currentImage=totalPhotos-1;}
+if(currentImage>=totalPhotos){currentImage=0;}
+updateLightbox();
+}
+closeButton.addEventListener("click",closeLightbox);
+previousButton.addEventListener("click",function(){changeImage(-1);});
+nextButton.addEventListener("click",function(){changeImage(1);});
+lightbox.addEventListener("click",function(event){if(event.target===lightbox){closeLightbox();}});
+document.addEventListener("keydown",function(event){
+if(!lightbox.classList.contains("open")){return;}
+if(event.key==="Escape"){closeLightbox();}
+if(event.key==="ArrowLeft"){changeImage(-1);}
+if(event.key==="ArrowRight"){changeImage(1);}
+});
+</script>
+</body>
+</html>
