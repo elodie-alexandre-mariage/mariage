@@ -77,11 +77,48 @@
         }
 
         h1 {
-            margin: 0;
+            margin: 22px 0 0;
             color: #72000b;
             font-size: 30px;
             font-weight: normal;
             letter-spacing: 0.7px;
+        }
+
+        .section-nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px 20px;
+            max-width: 1050px;
+            margin: 12px auto 0;
+            padding: 14px 18px 0;
+            border-top: 1px solid #eee8e5;
+            font-family: Arial, sans-serif;
+        }
+
+        .section-nav a {
+            position: relative;
+            padding: 5px 0;
+            color: #6f6764;
+            font-size: 13px;
+            letter-spacing: 0.2px;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .section-nav a:hover,
+        .section-nav a.active {
+            color: #72000b;
+        }
+
+        .section-nav a.active::after {
+            position: absolute;
+            right: 0;
+            bottom: -3px;
+            left: 0;
+            height: 1px;
+            background: #72000b;
+            content: "";
         }
 
         /* =========================
@@ -89,7 +126,7 @@
         ========================= */
 
         .page {
-            max-width: 1100px;
+            max-width: 1280px;
             margin: 0 auto;
             padding: 18px 25px 100px;
         }
@@ -118,8 +155,16 @@
 
         .viewer {
             position: relative;
-            max-width: 700px;
+            width: 100%;
             margin: auto;
+        }
+
+        .viewer-square {
+            max-width: 520px;
+        }
+
+        .viewer-triptyque {
+            max-width: 950px;
         }
 
         .image-container {
@@ -300,7 +345,18 @@
             }
 
             h1 {
+                margin-top: 18px;
                 font-size: 23px;
+            }
+
+            .section-nav {
+                gap: 6px 14px;
+                margin-top: 10px;
+                padding: 12px 8px 0;
+            }
+
+            .section-nav a {
+                font-size: 12px;
             }
 
             .page {
@@ -385,6 +441,18 @@
             class="logo"
         >
 
+        <nav class="section-nav" aria-label="Navigation entre les différentes parties du mariage">
+            <a href="../invitation/" class="active" aria-current="page">Invitation</a>
+            <a href="../preparatifs/">Préparatifs</a>
+            <a href="../first-look/">First Look</a>
+            <a href="../mairie/">Mairie</a>
+            <a href="../eglise/">Église</a>
+            <a href="../vin-honneur/">Vin d’honneur</a>
+            <a href="../soiree/">Soirée</a>
+            <a href="../videos/">Vidéos</a>
+            <a href="../photobooth/">Photobooth</a>
+        </nav>
+
         <h1>L'invitation</h1>
 
     </header>
@@ -405,7 +473,7 @@
                 Faire-part — Vin d'honneur
             </h2>
 
-            <div class="viewer">
+            <div class="viewer viewer-square">
 
                 <button class="arrow previous" onclick="changeImage(0, -1)">
                     ‹
@@ -446,7 +514,7 @@
                 Faire-part — Repas
             </h2>
 
-            <div class="viewer">
+            <div class="viewer viewer-triptyque">
 
                 <button class="arrow previous" onclick="changeImage(1, -1)">
                     ‹
