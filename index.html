@@ -38,14 +38,50 @@
             color: inherit;
         }
 
-        /* =========================
+           /* =========================
            EN-TÊTE COMMUN
         ========================= */
 
         .site-header {
-            padding: 28px 20px 0;
-            background: var(--white);
+            position: relative;
+            padding: 28px 20px 26px;
+            background: #ffffff;
             text-align: center;
+        }
+
+        .back-button {
+            position: absolute;
+            top: 22px;
+            left: 24px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 15px;
+            border: 1px solid #e7e1de;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.96);
+            color: #5d5552;
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            text-decoration: none;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+        }
+
+        .back-button svg {
+            width: 17px;
+            height: 17px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .back-button:hover {
+            color: #72000b;
+            border-color: #72000b;
+            transform: translateX(-2px);
         }
 
         .logo {
@@ -56,6 +92,14 @@
             margin: 0 auto 12px;
         }
 
+        h1 {
+            margin: 22px 0 0;
+            color: #72000b;
+            font-size: 30px;
+            font-weight: normal;
+            letter-spacing: 0.7px;
+        }
+
         .section-nav {
             display: flex;
             flex-wrap: wrap;
@@ -64,8 +108,8 @@
             max-width: 1050px;
             margin: 12px auto 0;
             padding: 14px 18px 0;
-            border-top: 1px solid var(--line);
-            font-family: Arial, Helvetica, sans-serif;
+            border-top: 1px solid #eee8e5;
+            font-family: Arial, sans-serif;
         }
 
         .section-nav a {
@@ -78,8 +122,19 @@
             transition: color 0.2s ease;
         }
 
-        .section-nav a:hover {
-            color: var(--bordeaux);
+        .section-nav a:hover,
+        .section-nav a.active {
+            color: #72000b;
+        }
+
+        .section-nav a.active::after {
+            position: absolute;
+            right: 0;
+            bottom: -3px;
+            left: 0;
+            height: 1px;
+            background: #72000b;
+            content: "";
         }
 
         /* =========================
