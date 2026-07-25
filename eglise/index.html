@@ -628,7 +628,7 @@
                 Mairie
             </a>
 
-            <a href="../ceremonie/" class="active">
+            <a href="../eglise/" class="active">
                 Église
             </a>
 
@@ -811,13 +811,13 @@
         const photos = photoNumbers.map(function(number, index) {
 
             const fileName =
-                "Ce%CC%81re%CC%81monie%20religieuse%20-%20Elodie%20%26%20Alexandre-" +
+                "Cérémonie religieuse  - Elodie & Alexandre-" +
                 number +
                 ".jpg";
 
             const path =
                 "../images/eglise/" +
-                fileName;
+                encodeURI(fileName);
 
             const button = document.createElement("button");
 
