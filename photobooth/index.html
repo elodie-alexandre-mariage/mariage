@@ -13,24 +13,51 @@
 
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --bordeaux: #72000b;
+    --bordeaux-dark: #580008;
+    --text: #403936;
+    --muted: #746b67;
+    --line: #eee8e5;
+    --soft: #f8f5f3;
+    --white: #ffffff;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
-    margin: 0;
+    background: var(--white);
+    color: var(--text);
     font-family: Georgia, "Times New Roman", serif;
-    background: #ffffff;
-    color: #333;
-    text-align: center;
+}
+
+body.viewer-open {
+    overflow: hidden;
+}
+
+a {
+    color: inherit;
+}
+
+button {
+    font: inherit;
 }
 
 /* =========================
-   EN-TÊTE
+   EN-TÊTE COMMUN
 ========================= */
 
-.header {
+.site-header {
     position: relative;
-    padding: 28px 20px 20px;
-    background: #ffffff;
+    padding: 28px 20px 26px;
+    background: var(--white);
+    text-align: center;
 }
 
 .back-button {
@@ -45,11 +72,14 @@ body {
     border-radius: 999px;
     background: rgba(255, 255, 255, 0.96);
     color: #5d5552;
-    font-family: Arial, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 13px;
     text-decoration: none;
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
-    transition: transform 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    transition:
+        color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
 }
 
 .back-button svg {
@@ -63,8 +93,8 @@ body {
 }
 
 .back-button:hover {
-    color: #72000b;
-    border-color: #72000b;
+    color: var(--bordeaux);
+    border-color: var(--bordeaux);
     transform: translateX(-2px);
 }
 
@@ -76,102 +106,196 @@ body {
     margin: 0 auto 12px;
 }
 
-h1 {
-    margin: 0;
-    font-size: 30px;
-    font-weight: normal;
-    letter-spacing: 0.7px;
-    color: #72000b;
+.section-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px 20px;
+    max-width: 1250px;
+    margin: 12px auto 0;
+    padding: 14px 18px 0;
+    border-top: 1px solid var(--line);
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-.subtitle {
-    margin: 8px 0 0;
-    font-family: Arial, sans-serif;
+.section-nav a {
+    position: relative;
+    padding: 5px 0;
+    color: #6f6764;
     font-size: 13px;
-    letter-spacing: 1.8px;
+    letter-spacing: 0.2px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.2s ease;
+}
+
+.section-nav a:hover,
+.section-nav a.active {
+    color: var(--bordeaux);
+}
+
+.section-nav a.active::after {
+    position: absolute;
+    right: 0;
+    bottom: -3px;
+    left: 0;
+    height: 1px;
+    background: var(--bordeaux);
+    content: "";
+}
+
+/* =========================
+   INTRODUCTION
+========================= */
+
+.hero {
+    padding: 76px 25px 70px;
+    text-align: center;
+}
+
+.eyebrow {
+    margin-bottom: 18px;
+    color: var(--bordeaux);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    letter-spacing: 3.5px;
     text-transform: uppercase;
-    color: #777;
+}
+
+.hero h1 {
+    color: var(--text);
+    font-size: clamp(2.6rem, 7vw, 4.7rem);
+    font-weight: normal;
+    line-height: 1.08;
+}
+
+.title-line {
+    width: 56px;
+    height: 1px;
+    margin: 28px auto;
+    background: var(--bordeaux);
+}
+
+.intro {
+    max-width: 700px;
+    margin: auto;
+    color: var(--muted);
+    font-size: 17px;
+    line-height: 1.9;
 }
 
 /* =========================
    GALERIE
 ========================= */
 
+.gallery-section {
+    padding: 70px 25px 105px;
+    border-top: 1px solid var(--line);
+    background: var(--soft);
+}
+
+.gallery-heading {
+    max-width: 760px;
+    margin: 0 auto 42px;
+    text-align: center;
+}
+
+.gallery-heading p {
+    margin-bottom: 12px;
+    color: var(--bordeaux);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    letter-spacing: 3.2px;
+    text-transform: uppercase;
+}
+
+.gallery-heading h2 {
+    color: var(--text);
+    font-size: clamp(1.9rem, 5vw, 2.8rem);
+    font-weight: normal;
+    line-height: 1.25;
+}
+
 .gallery {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    max-width: 1400px;
-    margin: 35px auto 50px;
-    padding: 0 20px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+    max-width: 1200px;
+    margin: auto;
 }
 
 .photo {
     position: relative;
-    aspect-ratio: 1 / 1;
+    display: block;
     overflow: hidden;
-    cursor: pointer;
-    background: #eee;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    aspect-ratio: 1 / 1;
+    border: 0;
+    background: #e9e3df;
+    cursor: zoom-in;
 }
 
-.photo:hover {
-    transform: translateY(-4px) scale(1.06);
-    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.18);
+.photo::after {
+    position: absolute;
+    inset: 0;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    content: "";
+    pointer-events: none;
 }
 
 .photo img {
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    display: block;
+    transition:
+        transform 0.55s ease,
+        filter 0.35s ease;
 }
 
-/* =========================
-   INDICATEUR MULTIPLES PHOTOS
-========================= */
+.photo:hover img {
+    filter: brightness(0.94);
+    transform: scale(1.035);
+}
 
 .photo-count {
     position: absolute;
     top: 10px;
     right: 10px;
+    z-index: 2;
     min-width: 42px;
     height: 30px;
     padding: 0 10px 0 31px;
     border: 1px solid rgba(255, 255, 255, 0.75);
     border-radius: 999px;
     background: rgba(25, 25, 25, 0.72);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    color: #ffffff;
+    color: var(--white);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: Arial, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 12px;
     font-weight: 600;
-    line-height: 1;
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
 }
 
 .photo-count::before,
 .photo-count::after {
-    content: "";
     position: absolute;
     width: 12px;
     height: 10px;
-    border: 1.5px solid #ffffff;
+    border: 1.5px solid var(--white);
     border-radius: 2px;
+    content: "";
 }
 
 .photo-count::before {
-    left: 12px;
     top: 8px;
+    left: 12px;
 }
 
 .photo-count::after {
-    left: 15px;
     top: 11px;
+    left: 15px;
     background: rgba(25, 25, 25, 0.72);
 }
 
@@ -180,18 +304,24 @@ h1 {
 ========================= */
 
 .viewer {
-    display: none;
     position: fixed;
     inset: 0;
-    background: rgba(20, 15, 15, 0.96);
-    z-index: 100;
+    z-index: 1000;
+    display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    visibility: hidden;
+    padding: 34px 95px;
+    background: rgba(15, 12, 11, 0.96);
+    opacity: 0;
+    transition:
+        opacity 0.25s ease,
+        visibility 0.25s ease;
 }
 
 .viewer.active {
-    display: flex;
+    visibility: visible;
+    opacity: 1;
 }
 
 .viewer-content {
@@ -207,10 +337,97 @@ h1 {
 }
 
 .main-photo {
-    max-width: 100%;
+    max-width: 90vw;
     max-height: 70vh;
     object-fit: contain;
     cursor: zoom-in;
+    box-shadow: 0 15px 55px rgba(0, 0, 0, 0.35);
+}
+
+.close,
+.fullscreen-close {
+    position: fixed;
+    top: 22px;
+    right: 28px;
+    z-index: 1200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--white);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 29px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.arrow {
+    position: fixed;
+    top: 50%;
+    z-index: 1100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    border: 1px solid rgba(255, 255, 255, 0.32);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.10);
+    color: var(--white);
+    font-size: 31px;
+    cursor: pointer;
+    transform: translateY(-50%);
+}
+
+.arrow-left {
+    left: 28px;
+}
+
+.arrow-right {
+    right: 28px;
+}
+
+.thumbnails {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    min-height: 82px;
+    margin-top: 18px;
+    overflow: hidden;
+}
+
+.thumbnail {
+    width: 66px;
+    height: 66px;
+    border: 2px solid transparent;
+    object-fit: cover;
+    opacity: 0.45;
+    cursor: pointer;
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.thumbnail.active {
+    border-color: var(--white);
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+.counter {
+    margin-top: 12px;
+    color: rgba(255, 255, 255, 0.76);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-align: center;
+    text-transform: uppercase;
 }
 
 /* =========================
@@ -218,17 +435,23 @@ h1 {
 ========================= */
 
 .fullscreen {
-    display: none;
     position: fixed;
     inset: 0;
-    background: black;
-    z-index: 300;
+    z-index: 1300;
+    display: flex;
     align-items: center;
     justify-content: center;
+    visibility: hidden;
+    background: #000;
+    opacity: 0;
+    transition:
+        opacity 0.2s ease,
+        visibility 0.2s ease;
 }
 
 .fullscreen.active {
-    display: flex;
+    visibility: visible;
+    opacity: 1;
 }
 
 .fullscreen img {
@@ -237,166 +460,127 @@ h1 {
     object-fit: contain;
 }
 
-.fullscreen-close {
-    position: fixed;
-    top: 15px;
-    right: 25px;
-    color: white;
-    font-size: 42px;
-    cursor: pointer;
-    z-index: 310;
+/* =========================
+   PIED DE PAGE
+========================= */
+
+.footer {
+    padding: 52px 20px 58px;
+    background: var(--white);
+    text-align: center;
+}
+
+.footer-mark {
+    color: var(--bordeaux);
+    font-size: 1.3rem;
+}
+
+.footer-date {
+    margin-top: 10px;
+    color: #918681;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10px;
+    letter-spacing: 2.6px;
+    text-transform: uppercase;
 }
 
 /* =========================
-   NAVIGATION
+   TABLETTE ET MOBILE
 ========================= */
 
-.arrow {
-    position: fixed;
-    top: 50%;
-    transform: translateY(-50%);
-    border: none;
-    background: rgba(255, 255, 255, 0.14);
-    color: white;
-    font-size: 45px;
-    width: 55px;
-    height: 80px;
-    cursor: pointer;
-    z-index: 110;
-    transition: background 0.2s ease;
+@media (max-width: 950px) {
+    .gallery {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
 }
 
-.arrow:hover {
-    background: rgba(255, 255, 255, 0.28);
-}
-
-.arrow-left {
-    left: 20px;
-}
-
-.arrow-right {
-    right: 20px;
-}
-
-/* =========================
-   MINIATURES
-========================= */
-
-.thumbnails {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    margin-top: 20px;
-    overflow: hidden;
-    min-height: 90px;
-}
-
-.thumbnail {
-    width: 75px;
-    height: 75px;
-    object-fit: cover;
-    opacity: 0.45;
-    cursor: pointer;
-    border: 2px solid transparent;
-    transition: all 0.2s ease;
-}
-
-.thumbnail.active {
-    opacity: 1;
-    border-color: white;
-    transform: scale(1.08);
-}
-
-/* =========================
-   FERMETURE / COMPTEUR
-========================= */
-
-.close {
-    position: fixed;
-    top: 15px;
-    right: 25px;
-    color: white;
-    font-size: 42px;
-    cursor: pointer;
-    z-index: 120;
-}
-
-.counter {
-    color: white;
-    margin-top: 12px;
-    font-family: Arial, sans-serif;
-    font-size: 14px;
-    opacity: 0.8;
-}
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 700px) {
-
-    .header {
-        padding: 76px 14px 16px;
+@media (max-width: 650px) {
+    .site-header {
+        padding: 22px 14px 0;
     }
 
     .back-button {
-        top: 18px;
-        left: 14px;
-        padding: 9px 12px;
-        font-size: 12px;
+        position: static;
+        margin-bottom: 20px;
     }
 
     .logo {
-        width: 135px;
+        width: 145px;
     }
 
-    h1 {
-        font-size: 23px;
+    .section-nav {
+        gap: 7px 14px;
+        padding-right: 6px;
+        padding-left: 6px;
     }
 
-    .subtitle {
+    .section-nav a {
         font-size: 11px;
-        letter-spacing: 1.5px;
+    }
+
+    .hero {
+        padding: 54px 20px 56px;
+    }
+
+    .intro {
+        font-size: 15px;
+        line-height: 1.8;
+    }
+
+    .gallery-section {
+        padding: 58px 10px 75px;
+    }
+
+    .gallery-heading {
+        padding: 0 10px;
+        margin-bottom: 34px;
     }
 
     .gallery {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 8px;
-        padding: 0 8px;
-        margin-top: 25px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 7px;
     }
 
     .viewer {
-        padding: 10px;
+        padding: 70px 12px 110px;
     }
 
     .main-photo-container {
-        height: 65vh;
+        height: 62vh;
     }
 
     .main-photo {
-        max-width: 90vw;
-        max-height: 65vh;
+        max-width: 96vw;
+        max-height: 62vh;
+    }
+
+    .close,
+    .fullscreen-close {
+        top: 14px;
+        right: 14px;
+        width: 42px;
+        height: 42px;
     }
 
     .arrow {
-        width: 38px;
-        height: 58px;
-        font-size: 30px;
+        top: auto;
+        bottom: 14px;
+        width: 44px;
+        height: 44px;
+        transform: none;
     }
 
     .arrow-left {
-        left: 3px;
+        left: 15px;
     }
 
     .arrow-right {
-        right: 3px;
+        right: 15px;
     }
 
     .thumbnail {
-        width: 55px;
-        height: 55px;
+        width: 50px;
+        height: 50px;
     }
 
     .photo-count {
@@ -409,15 +593,23 @@ h1 {
     }
 
     .photo-count::before {
-        left: 10px;
         top: 7px;
+        left: 10px;
     }
 
     .photo-count::after {
-        left: 13px;
         top: 10px;
+        left: 13px;
     }
+}
 
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
 }
 
 </style>
@@ -426,27 +618,89 @@ h1 {
 
 <body>
 
-<header class="header">
+<header class="site-header">
 
-    <a href="../index.html" class="back-button" aria-label="Retour au menu principal">
+    <a href="../" class="back-button" aria-label="Retour au menu">
         <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M15 18l-6-6 6-6"></path>
         </svg>
-        <span>Retour au menu principal</span>
+        <span>Retour au menu</span>
     </a>
 
     <img
         src="../images/style/logosansfond.jpg"
-        alt="Logo Élodie et Alexandre"
+        alt="Monogramme Élodie et Alexandre"
         class="logo"
     >
 
-    <h1>Mariette La Photobooth</h1>
+    <nav class="section-nav" aria-label="Navigation entre les différentes parties du mariage">
+        <a href="../invitation/">Invitation</a>
+        <a href="../preparatifs/">Préparatifs</a>
+        <a href="../first-look/">First Look</a>
+        <a href="../mairie/">Mairie</a>
+        <a href="../eglise/">Église</a>
+        <a href="../vin_d_honneur/">Vin d’honneur</a>
+        <a href="../soiree/">Soirée</a>
+        <a href="../videos/">Vidéos</a>
+        <a href="../photoscouple/">Photos de couple</a>
+        <a href="../photosgroupe/">Photos de groupe</a>
+        <a href="../photobooth/" class="active" aria-current="page">Photobooth</a>
+    </nav>
 
-    
 </header>
 
-<div class="gallery" id="gallery"></div>
+<main>
+
+    <section class="hero">
+
+        <p class="eyebrow">
+            Les souvenirs de la soirée
+        </p>
+
+        <h1>
+            Mariette La Photobooth
+        </h1>
+
+        <div class="title-line"></div>
+
+        <p class="intro">
+            Des sourires, des accessoires et beaucoup de spontanéité :
+            retrouvez ici tous les passages devant le photobooth.
+        </p>
+
+    </section>
+
+    <section class="gallery-section" aria-labelledby="gallery-title">
+
+        <div class="gallery-heading">
+
+            <p>
+                Au fil de la soirée
+            </p>
+
+            <h2 id="gallery-title">
+                Tous vos souvenirs en images
+            </h2>
+
+        </div>
+
+        <div class="gallery" id="gallery"></div>
+
+    </section>
+
+</main>
+
+<footer class="footer">
+
+    <p class="footer-mark">
+        Élodie &amp; Alexandre
+    </p>
+
+    <p class="footer-date">
+        23 mai 2026
+    </p>
+
+</footer>
 
 <!-- =========================
      VISIONNEUSE
@@ -1396,8 +1650,7 @@ groupes.forEach(function(
 
         viewer.classList.add("active");
 
-        document.body.style.overflow =
-            "hidden";
+        document.body.classList.add("viewer-open");
 
     };
 
