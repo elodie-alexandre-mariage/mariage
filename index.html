@@ -28,7 +28,7 @@
             --soft: #f8f5f3;
             --paper: #fefefe;
             --white: #ffffff;
-            --background: var(--background);
+            --background: #fefefe;
             --sidebar-width: 255px;
         }
 
@@ -52,7 +52,7 @@
             color: inherit;
         }
 
-       /* =========================
+        /* =========================
            NAVIGATION LATÉRALE
         ========================= */
 
@@ -133,7 +133,7 @@
             padding: 3px 4px;
             color: #766c68;
             font-family: Arial, Helvetica, sans-serif;
-            font-size: 12px;
+            font-size: 11px;
             text-decoration: none;
             transition:
                 color 0.2s ease,
@@ -215,139 +215,81 @@
             background: var(--background);
         }
 
-        .premium-photo-wrap::after {
-            position: absolute;
-            inset: 0;
-            background:
-                linear-gradient(
-                    180deg,
-                    rgba(35, 25, 23, 0.03) 0%,
-                    rgba(35, 25, 23, 0.00) 62%,
-                    rgba(35, 25, 23, 0.22) 100%
-                );
-            pointer-events: none;
-            content: "";
-        }
-
-
-
-        .cover-page {
-            min-height: 100vh;
-            background: var(--background);
-        }
-
         .cover-content {
             width: 100%;
-            max-width: none;
             margin: 0;
-            padding: 0;
         }
 
         .premium-photo-wrap {
             position: relative;
             width: 100%;
-            height: 100vh;
-            min-height: 620px;
+            height: clamp(520px, 76vh, 790px);
             margin: 0;
             overflow: hidden;
-            border: 0;
-            border-radius: 0;
-            box-shadow: none;
-            background: transparent;
+            background: var(--background);
         }
 
         .premium-photo {
-            display: block;
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: center;
-            border: 0;
-            border-radius: 0;
-            box-shadow: none;
+            object-position: center top;
+        }
+
+        .cover-overlay {
+            position: absolute;
+            z-index: 1;
+            inset: 0;
+            background:
+                linear-gradient(
+                    to bottom,
+                    rgba(15, 10, 10, 0) 52%,
+                    rgba(15, 10, 10, 0.10) 69%,
+                    rgba(15, 10, 10, 0.52) 100%
+                );
+            pointer-events: none;
         }
 
         .cover-invitation {
-            max-width: 660px;
-            margin: 24px auto 0;
+            position: absolute;
+            z-index: 2;
+            right: 28px;
+            bottom: 34px;
+            left: 28px;
+            color: var(--white);
             text-align: center;
         }
 
         .cover-invitation p {
-            color: #655c58;
-            font-size: 16px;
+            max-width: 720px;
+            margin: 0 auto 14px;
+            font-size: 17px;
             font-style: italic;
-            line-height: 1.7;
+            line-height: 1.6;
+            text-shadow: 0 2px 16px rgba(0, 0, 0, 0.42);
         }
 
         .open-album {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            margin-top: 14px;
-            color: var(--bordeaux);
+            gap: 9px;
+            color: var(--white);
             font-family: Arial, Helvetica, sans-serif;
             font-size: 11px;
             letter-spacing: 2px;
             text-decoration: none;
             text-transform: uppercase;
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.38);
         }
 
         .open-album::after {
-            font-size: 17px;
+            font-size: 16px;
             content: "→";
             transition: transform 0.25s ease;
         }
 
         .open-album:hover::after {
             transform: translateX(5px);
-        }
-
-        /* =========================
-           BOUTONS PAGE PRÉCÉDENTE / SUIVANTE
-        ========================= */
-
-        .page-turn {
-            position: fixed;
-            z-index: 1200;
-            bottom: 22px;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            min-height: 46px;
-            padding: 11px 17px;
-            border: 1px solid rgba(99, 9, 9, 0.22);
-            border-radius: 999px;
-            background: rgba(254, 254, 254, 0.97);
-            -webkit-backdrop-filter: blur(12px);
-            backdrop-filter: blur(12px);
-            color: var(--bordeaux);
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 11px;
-            letter-spacing: 0.6px;
-            text-decoration: none;
-            box-shadow: 0 8px 24px rgba(53, 36, 31, 0.10);
-            transition:
-                background 0.2s ease,
-                color 0.2s ease,
-                transform 0.2s ease;
-        }
-
-        .page-turn:hover {
-            background: var(--bordeaux);
-            color: var(--white);
-            transform: translateY(-2px);
-        }
-
-        .page-turn.disabled {
-            cursor: default;
-            opacity: 0.45;
-            pointer-events: none;
-        }
-
-        .page-turn-icon {
-            font-size: 17px;
-            line-height: 1;
         }
 
         /* =========================
@@ -358,137 +300,7 @@
             display: none;
         }
 
-        
-        .page-list {
-            position: relative;
-            list-style: none;
-            margin: 0;
-            padding: 0 0 0 8px;
-        }
-
-        .page-list::before {
-            content: "";
-            position: absolute;
-            top: 18px;
-            bottom: 18px;
-            left: 24px;
-            width: 1px;
-            background: linear-gradient(
-                to bottom,
-                rgba(99, 9, 9, 0.78),
-                rgba(99, 9, 9, 0.34) 55%,
-                rgba(99, 9, 9, 0.12)
-            );
-        }
-
-        .page-item {
-            position: relative;
-            margin: 0;
-            padding: 0;
-        }
-
-        .page-link {
-            position: relative;
-            z-index: 1;
-            display: grid;
-            grid-template-columns: 34px 1fr;
-            align-items: center;
-            min-height: 39px;
-            padding: 3px 4px;
-            color: #7a7471;
-            font-size: 12px;
-            text-decoration: none;
-        }
-
-        .page-dot {
-            position: relative;
-            z-index: 2;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 28px;
-            height: 28px;
-            color: #9c9591;
-            font-family: Georgia, serif;
-            font-size: 12px;
-            font-weight: 400;
-            letter-spacing: 0.02em;
-            background: #fefefe;
-            border: 1px solid rgba(99, 9, 9, 0.18);
-            border-radius: 50%;
-            box-shadow: 0 0 0 5px #fefefe;
-            transition:
-                color 0.2s ease,
-                border-color 0.2s ease,
-                background 0.2s ease,
-                transform 0.2s ease,
-                box-shadow 0.2s ease;
-        }
-
-        .page-label {
-            padding-left: 8px;
-            color: inherit;
-            font-size: 12px;
-            line-height: 1.2;
-            letter-spacing: 0.015em;
-            transition: color 0.2s ease, font-weight 0.2s ease;
-        }
-
-        .page-link.is-visited .page-dot {
-            color: #ffffff;
-            background: #630909;
-            border-color: #630909;
-        }
-
-        .page-link.is-current .page-dot {
-            color: #ffffff;
-            font-weight: 700;
-            background: #630909;
-            border-color: #630909;
-            transform: scale(1.09);
-            box-shadow:
-                0 0 0 5px #fefefe,
-                0 0 0 6px rgba(99, 9, 9, 0.28),
-                0 0 16px rgba(99, 9, 9, 0.18);
-        }
-
-        .page-link.is-current .page-label {
-            color: #630909;
-            font-weight: 700;
-        }
-
-        .page-link:hover .page-dot {
-            border-color: rgba(99, 9, 9, 0.55);
-            transform: scale(1.05);
-        }
-
-        .page-link:hover .page-label {
-            color: #630909;
-        }
-
-@media (max-width: 900px) {
-
-            .cover-page,
-            .premium-photo-wrap {
-                min-height: 100svh;
-                height: 100svh;
-            }
-
-            .premium-photo {
-                height: 100%;
-                object-fit: cover;
-            }
-
-            .cover-invitation {
-                bottom: 22px;
-                width: calc(100% - 24px);
-                padding: 28px 18px 20px;
-            }
-
-            .cover-invitation p {
-                font-size: 15px;
-            }
-
+        @media (max-width: 900px) {
             :root {
                 --sidebar-width: 220px;
             }
@@ -499,9 +311,8 @@
                 padding-left: 18px;
             }
 
-            .cover {
-                padding-right: 28px;
-                padding-left: 28px;
+            .premium-photo-wrap {
+                height: clamp(520px, 74vh, 720px);
             }
         }
 
@@ -541,28 +352,19 @@
                 margin-left: 0;
             }
 
-            .cover {
-                padding: 58px 16px 96px;
+            .premium-photo-wrap {
+                height: clamp(500px, 70vh, 660px);
             }
 
-            .premium-photo {
-                height: 68vh;
-                min-height: 420px;
+            .cover-invitation {
+                right: 18px;
+                bottom: 24px;
+                left: 18px;
             }
 
-            .page-turn {
-                bottom: 14px;
-                min-height: 44px;
-                padding: 10px 14px;
-                font-size: 10px;
-            }
-
-            .page-turn.next {
-                right: 14px;
-            }
-
-            .page-turn-text {
-                display: none;
+            .cover-invitation p {
+                margin-bottom: 12px;
+                font-size: 15px;
             }
         }
 
@@ -732,13 +534,17 @@
                         class="premium-photo"
                     >
 
-                <div class="cover-invitation">
-                    <p>Replongez avec nous dans les souvenirs de cette journée inoubliable.</p>
+                    <div class="cover-overlay" aria-hidden="true"></div>
 
-                    <a href="sommaire/" class="open-album">
-                        Découvrir notre album
-                    </a>
-                </div>
+                    <figcaption class="cover-invitation">
+                        <p>
+                            Replongez avec nous dans les souvenirs de cette journée inoubliable.
+                        </p>
+
+                        <a href="sommaire/" class="open-album">
+                            Découvrir l’album
+                        </a>
+                    </figcaption>
 
                 </figure>
 
@@ -747,8 +553,6 @@
         </section>
 
     </main>
-        <span class="page-turn-text">Page précédente</span>
-    </span>
 
     <script>
         const currentPage = "bienvenue";
