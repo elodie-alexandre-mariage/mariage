@@ -67,16 +67,19 @@
         }
 
         .back-button {
-            position: absolute;
-            top: 22px;
-            left: 24px;
+            position: fixed;
+            z-index: 1000;
+            top: 18px;
+            left: 18px;
             display: inline-flex;
             align-items: center;
             gap: 8px;
             padding: 10px 15px;
             border: 1px solid #e7e1de;
             border-radius: 999px;
-            background: rgba(255, 255, 255, 0.96);
+            background: rgba(255, 255, 255, 0.90);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
             color: #5d5552;
             font-family: Arial, Helvetica, sans-serif;
             font-size: 13px;
@@ -485,8 +488,12 @@
             }
 
             .back-button {
-                position: static;
-                margin-bottom: 20px;
+                position: fixed;
+                top: 12px;
+                left: 12px;
+                min-height: 40px;
+                padding: 9px 13px;
+                font-size: 12px;
             }
 
             .logo {
@@ -1193,6 +1200,31 @@
                         <div class="video-information">
                             <span class="video-number">Souvenir 16</span>
                             <span class="video-format">Vidéo verticale</span>
+                        </div>
+
+                    </article>
+
+
+                    <!-- VIDÉO 17 — VIMEO -->
+
+                    <article class="video-card landscape">
+
+                        <div class="video-frame">
+
+                            <iframe
+                                src="https://player.vimeo.com/video/1213000834?dnt=1&amp;title=0&amp;byline=0&amp;portrait=0"
+                                title="Vidéo souvenir 17 du mariage"
+                                loading="lazy"
+                                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allowfullscreen
+                            ></iframe>
+
+                        </div>
+
+                        <div class="video-information">
+                            <span class="video-number">Souvenir 17</span>
+                            <span class="video-format">Vidéo horizontale</span>
                         </div>
 
                     </article>
