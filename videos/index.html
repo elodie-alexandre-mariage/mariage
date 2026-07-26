@@ -324,6 +324,75 @@
             transform: translateY(-2px);
         }
 
+
+        /* =========================
+           MOMENTS À LA UNE
+        ========================= */
+
+        .featured-videos-section {
+            padding: 76px 25px 105px;
+            border-top: 1px solid var(--line);
+            background: var(--white);
+        }
+
+        .featured-videos-container {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .featured-videos-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 26px;
+        }
+
+        .featured-video-card {
+            min-width: 0;
+        }
+
+        .featured-video-frame {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 16 / 9;
+            border: 1px solid rgba(114, 0, 11, 0.10);
+            background: #111111;
+            box-shadow: 0 16px 42px rgba(56, 39, 34, 0.12);
+        }
+
+        .featured-video-frame iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .featured-video-caption {
+            padding: 22px 2px 0;
+        }
+
+        .featured-video-kicker {
+            margin-bottom: 8px;
+            color: var(--bordeaux);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 10px;
+            letter-spacing: 2.2px;
+            text-transform: uppercase;
+        }
+
+        .featured-video-caption h3 {
+            color: var(--text);
+            font-size: clamp(1.55rem, 3vw, 2.15rem);
+            font-weight: normal;
+            line-height: 1.25;
+        }
+
+        .featured-video-caption p:last-child {
+            margin-top: 10px;
+            color: var(--muted);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
         /* =========================
            VIDÉOS SOUVENIRS
         ========================= */
@@ -520,8 +589,14 @@
             }
 
             .main-film-section,
+            .featured-videos-section,
             .memories-section {
                 padding: 58px 10px 75px;
+            }
+
+            .featured-videos-grid {
+                grid-template-columns: 1fr;
+                gap: 42px;
             }
 
             .section-heading,
@@ -775,6 +850,87 @@
         </section>
 
 
+        <!-- MOMENTS À LA UNE -->
+
+        <section
+            class="featured-videos-section"
+            aria-labelledby="featured-videos-title"
+        >
+
+            <div class="featured-videos-container">
+
+                <div class="section-heading">
+
+                    <p class="small-title">
+                        Deux moments à revivre
+                    </p>
+
+                    <h2 id="featured-videos-title">
+                        Nos souvenirs à la une
+                    </h2>
+
+                    <p>
+                        Notre première danse et le diaporama préparé pour cette journée :
+                        deux souvenirs que nous tenions particulièrement à mettre en avant.
+                    </p>
+
+                </div>
+
+                <div class="featured-videos-grid">
+
+                    <article class="featured-video-card">
+
+                        <div class="featured-video-frame">
+
+                            <iframe
+                                src="https://www.youtube-nocookie.com/embed/lOvfN0R6szo?rel=0"
+                                title="Première danse d’Élodie et Alexandre"
+                                loading="lazy"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allowfullscreen
+                            ></iframe>
+
+                        </div>
+
+                        <div class="featured-video-caption">
+                            <p class="featured-video-kicker">Moment fort</p>
+                            <h3>Notre première danse</h3>
+                            <p>Quelques minutes suspendues, rien que tous les deux.</p>
+                        </div>
+
+                    </article>
+
+                    <article class="featured-video-card">
+
+                        <div class="featured-video-frame">
+
+                            <iframe
+                                src="https://player.vimeo.com/video/1213000834?dnt=1&amp;title=0&amp;byline=0&amp;portrait=0"
+                                title="Diaporama du mariage d’Élodie et Alexandre"
+                                loading="lazy"
+                                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allowfullscreen
+                            ></iframe>
+
+                        </div>
+
+                        <div class="featured-video-caption">
+                            <p class="featured-video-kicker">Souvenir en images</p>
+                            <h3>Le diaporama</h3>
+                            <p>Une sélection d’images pour revivre les moments les plus précieux.</p>
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
         <!-- VIDÉOS PRISCA -->
 
         <section
@@ -895,7 +1051,7 @@
                         </div>
 
                         <div class="video-information">
-                            <span class="video-number">Jeu de la bouteile 01</span>
+                            <span class="video-number">Jeu de la bouteille 01</span>
                                                     </div>
 
                     </article>
@@ -919,7 +1075,7 @@
                         </div>
 
                         <div class="video-information">
-                            <span class="video-number">Jeu de la bouteile 02</span>
+                            <span class="video-number">Jeu de la bouteille 02</span>
                                                     </div>
 
                     </article>
@@ -995,33 +1151,7 @@
                                                     </div>
 
                     </article>
-
-
-                    <!-- VIDÉO 9 — HORIZONTALE -->
-
-                    <article class="video-card landscape">
-
-                        <div class="video-frame">
-
-                            <iframe
-                                src="https://www.youtube-nocookie.com/embed/lOvfN0R6szo?rel=0"
-                                title="Vidéo souvenir 9 du mariage"
-                                loading="lazy"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                referrerpolicy="strict-origin-when-cross-origin"
-                                allowfullscreen
-                            ></iframe>
-
-                        </div>
-
-                        <div class="video-information">
-                            <span class="video-number">Première danse</span>
-                                                    </div>
-
-                    </article>
-
-
-                    <!-- VIDÉO 10 -->
+<!-- VIDÉO 10 -->
 
                     <article class="video-card vertical">
 
@@ -1188,32 +1318,7 @@
                                                    </div>
 
                     </article>
-
-
-                    <!-- VIDÉO 17 — VIMEO -->
-
-                    <article class="video-card landscape">
-
-                        <div class="video-frame">
-
-                            <iframe
-                                src="https://player.vimeo.com/video/1213000834?dnt=1&amp;title=0&amp;byline=0&amp;portrait=0"
-                                title="Vidéo souvenir 17 du mariage"
-                                loading="lazy"
-                                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-                                referrerpolicy="strict-origin-when-cross-origin"
-                                allowfullscreen
-                            ></iframe>
-
-                        </div>
-
-                        <div class="video-information">
-                            <span class="video-number">Diaporama</span>
-                                                    </div>
-
-                    </article>
-
-                </div>
+</div>
 
             </div>
 
