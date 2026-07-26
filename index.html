@@ -38,104 +38,6 @@
             color: inherit;
         }
 
-           /* =========================
-           EN-TÊTE COMMUN
-        ========================= */
-
-        .site-header {
-            position: relative;
-            padding: 28px 20px 26px;
-            background: #ffffff;
-            text-align: center;
-        }
-
-        .back-button {
-            position: absolute;
-            top: 22px;
-            left: 24px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 15px;
-            border: 1px solid #e7e1de;
-            border-radius: 999px;
-            background: rgba(255, 255, 255, 0.96);
-            color: #5d5552;
-            font-family: Arial, sans-serif;
-            font-size: 13px;
-            text-decoration: none;
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
-            transition: transform 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-        }
-
-        .back-button svg {
-            width: 17px;
-            height: 17px;
-            fill: none;
-            stroke: currentColor;
-            stroke-width: 1.8;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-
-        .back-button:hover {
-            color: #72000b;
-            border-color: #72000b;
-            transform: translateX(-2px);
-        }
-
-        .logo {
-            display: block;
-            width: 180px;
-            max-width: 55vw;
-            height: auto;
-            margin: 0 auto 12px;
-        }
-
-        h1 {
-            margin: 22px 0 0;
-            color: #72000b;
-            font-size: 30px;
-            font-weight: normal;
-            letter-spacing: 0.7px;
-        }
-
-        .section-nav {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 8px 20px;
-            max-width: 1050px;
-            margin: 12px auto 0;
-            padding: 14px 18px 0;
-            border-top: 1px solid #eee8e5;
-            font-family: Arial, sans-serif;
-        }
-
-        .section-nav a {
-            position: relative;
-            padding: 5px 0;
-            color: #6f6764;
-            font-size: 13px;
-            letter-spacing: 0.2px;
-            text-decoration: none;
-            transition: color 0.2s ease;
-        }
-
-        .section-nav a:hover,
-        .section-nav a.active {
-            color: #72000b;
-        }
-
-        .section-nav a.active::after {
-            position: absolute;
-            right: 0;
-            bottom: -3px;
-            left: 0;
-            height: 1px;
-            background: #72000b;
-            content: "";
-        }
 
         /* =========================
            INTRODUCTION
@@ -144,7 +46,7 @@
         .hero {
             max-width: 900px;
             margin: 0 auto;
-            padding: 78px 25px 84px;
+            padding: 105px 25px 95px;
             text-align: center;
         }
 
@@ -430,25 +332,7 @@
         }
 
         @media (max-width: 650px) {
-            .site-header {
-                padding: 22px 14px 0;
-            }
-
-            .logo {
-                width: 145px;
-            }
-
-            .section-nav {
-                gap: 7px 14px;
-                padding-right: 6px;
-                padding-left: 6px;
-            }
-
-            .section-nav a {
-                font-size: 11px;
-            }
-
-            .hero {
+.hero {
                 padding: 54px 20px 62px;
             }
 
@@ -521,30 +405,7 @@
 </head>
 
 <body>
-
-    <header class="site-header">
-        <img
-            src="images/style/logosansfond.jpg"
-            alt="Monogramme Élodie et Alexandre"
-            class="logo"
-        >
-
-        <nav class="section-nav" aria-label="Navigation entre les différentes parties du mariage">
-            <a href="invitation/">Invitation</a>
-            <a href="preparatifs/">Préparatifs</a>
-            <a href="first-look/">First Look</a>
-            <a href="mairie/">Mairie</a>
-            <a href="eglise/">Église</a>
-            <a href="vin_d_honneur/">Vin d’honneur</a>
-            <a href="soiree/">Soirée</a>
-            <a href="videos/">Vidéos</a>
-            <a href="photoscouple/">Photos de couple</a>
-            <a href="photosgroupe/">Photos de groupe</a>
-            <a href="photobooth/">Photobooth</a>
-        </nav>
-    </header>
-
-    <main>
+<main>
         <section class="hero">
             <p class="eyebrow">Notre mariage</p>
 
@@ -647,14 +508,33 @@
                 </a>
 
                 
+
+                <a href="photoscouple/" class="card">
+                    <div class="card-inner">
+                        <span class="chapter-number">09</span>
+                        <h3>Les photos de couple</h3>
+                        <p>Nos portraits à deux, entre émotion, douceur et complicité.</p>
+                        <span class="card-arrow">Découvrir</span>
+                    </div>
+                </a>
+
+                <a href="photosgroupe/" class="card">
+                    <div class="card-inner">
+                        <span class="chapter-number">10</span>
+                        <h3>Les photos de groupe</h3>
+                        <p>Nos familles, nos amis et tous ceux qui ont partagé cette journée.</p>
+                        <span class="card-arrow">Découvrir</span>
+                    </div>
+                </a>
+
                 <a href="photobooth/" class="card featured">
                     <div class="card-inner">
-                        <span class="chapter-number">Galerie</span>
+                        <span class="chapter-number">11</span>
                         <div>
-                            <h3>Notre mariage en images</h3>
-                            <p>Retrouvez l’ensemble des photographies de Mariette La Photobooth</p>
+                            <h3>Le photobooth</h3>
+                            <p>Des sourires, des accessoires et beaucoup de spontanéité jusqu’au bout de la nuit.</p>
                         </div>
-                        <span class="card-arrow">Voir la galerie</span>
+                        <span class="card-arrow">Découvrir</span>
                     </div>
                 </a>
             </div>
