@@ -133,7 +133,7 @@
             padding: 3px 4px;
             color: #766c68;
             font-family: Arial, Helvetica, sans-serif;
-            font-size: 11px;
+            font-size: 12px;
             text-decoration: none;
             transition:
                 color 0.2s ease,
@@ -249,17 +249,31 @@
 
         .premium-photo {
             width: 100%;
-            height: min(80vh, 860px);
-            min-height: 520px;
+            height: min(72vh, 780px);
+            min-height: 460px;
             object-fit: cover;
             object-position: center;
+        }
+
+
+        .cover-invitation {
+            max-width: 660px;
+            margin: 24px auto 0;
+            text-align: center;
+        }
+
+        .cover-invitation p {
+            color: #655c58;
+            font-size: 16px;
+            font-style: italic;
+            line-height: 1.7;
         }
 
         .open-album {
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            margin-top: 26px;
+            margin-top: 14px;
             color: var(--bordeaux);
             font-family: Arial, Helvetica, sans-serif;
             font-size: 11px;
@@ -394,6 +408,16 @@
                 padding: 58px 16px 96px;
             }
 
+
+            .cover-invitation {
+                margin-top: 18px;
+                padding: 0 10px;
+            }
+
+            .cover-invitation p {
+                font-size: 14px;
+            }
+
             .premium-photo {
                 height: 72vh;
                 min-height: 460px;
@@ -460,11 +484,11 @@
                         <a
                             href="./"
                             class="page-link is-current"
-                            data-page="couverture"
+                            data-page="bienvenue"
                             aria-current="page"
                         >
                             <span class="page-dot">01</span>
-                            <span class="page-label">Couverture</span>
+                            <span class="page-label">Bienvenue</span>
                         </a>
                     </li>
 
@@ -552,6 +576,13 @@
                         </a>
                     </li>
 
+                    <li class="page-item">
+                        <a href="remerciements/" class="page-link" data-page="remerciements">
+                            <span class="page-dot">14</span>
+                            <span class="page-label">Remerciements</span>
+                        </a>
+                    </li>
+
                 </ol>
 
             </nav>
@@ -566,20 +597,6 @@
 
             <div class="cover-content">
 
-                <p class="eyebrow">Notre mariage</p>
-
-                <img
-                    src="images/style/nomsansfond.jpg"
-                    alt="Élodie et Alexandre"
-                    class="names-image"
-                >
-
-                <img
-                    src="images/style/datesansfond.jpg"
-                    alt="23 mai 2026"
-                    class="date-image"
-                >
-
                 <figure class="premium-photo-wrap">
 
                     <img
@@ -590,9 +607,13 @@
 
                 </figure>
 
-                <a href="sommaire/" class="open-album">
-                    Ouvrir l’album
-                </a>
+                <div class="cover-invitation">
+                    <p>Replongez avec nous dans les souvenirs de cette journée inoubliable.</p>
+
+                    <a href="sommaire/" class="open-album">
+                        Découvrir notre album
+                    </a>
+                </div>
 
             </div>
 
@@ -612,10 +633,10 @@
     </a>
 
     <script>
-        const currentPage = "couverture";
+        const currentPage = "bienvenue";
 
         const pageOrder = [
-            "couverture",
+            "bienvenue",
             "sommaire",
             "invitation",
             "preparatifs",
@@ -627,7 +648,8 @@
             "videos",
             "photos-couple",
             "photos-groupe",
-            "photobooth"
+            "photobooth",
+            "remerciements"
         ];
 
         const currentIndex = pageOrder.indexOf(currentPage);
