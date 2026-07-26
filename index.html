@@ -28,7 +28,7 @@
             --soft: #f8f5f3;
             --paper: #fefefe;
             --white: #ffffff;
-            --background: #fefefe;
+            --background: var(--background);
             --sidebar-width: 255px;
         }
 
@@ -90,15 +90,32 @@
             background: var(--bordeaux-dark);
         }
 
+
+        .sidebar-logo {
+            display: block;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+        .sidebar-logo img {
+            display: block;
+            margin: 0 auto;
+        }
+
+        .page-list {
+            margin-top: 0;
+            padding-top: 0;
+        }
+
         .sidebar-inner {
             min-height: 100%;
-            padding: 14px 20px 24px;
+            padding: 4px 20px 18px;
         }
 
         .wedding-logo {
             width: 75px;
             height: auto;
-            margin: 0 auto 10px;
+            margin: 0 auto 0;
         }
 
         .page-list {
@@ -129,8 +146,8 @@
             grid-template-columns: 27px 1fr;
             gap: 12px;
             align-items: center;
-            min-height: 39px;
-            padding: 3px 4px;
+            min-height: 36px;
+            padding: 2px 4px;
             color: #766c68;
             font-family: Arial, Helvetica, sans-serif;
             font-size: 12px;
@@ -249,9 +266,9 @@
 
         .premium-photo {
             width: 100%;
-            height: min(72vh, 780px);
-            min-height: 460px;
-            object-fit: cover;
+            height: min(74vh, 800px);
+            min-height: 420px;
+            object-fit: contain;
             object-position: center;
         }
 
@@ -419,8 +436,8 @@
             }
 
             .premium-photo {
-                height: 72vh;
-                min-height: 460px;
+                height: 68vh;
+                min-height: 420px;
             }
 
             .page-turn {
