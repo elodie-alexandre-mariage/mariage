@@ -144,27 +144,27 @@
 
         .menu {
             display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 18px;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 24px;
             max-width: 1180px;
             margin: auto;
         }
 
         .card {
             position: relative;
-            display: flex;
-            min-height: 330px;
+            display: block;
+            min-height: 410px;
             overflow: hidden;
-            padding: 30px;
             border: 1px solid rgba(114, 0, 11, 0.10);
+            border-radius: 7px;
             background: #d8d1cd;
-            color: var(--text);
+            color: #fffaf7;
             text-decoration: none;
             isolation: isolate;
             transition:
-                transform 0.38s ease,
-                box-shadow 0.38s ease,
-                border-color 0.38s ease;
+                transform 0.45s ease,
+                box-shadow 0.45s ease,
+                border-color 0.45s ease;
         }
 
         .card::before {
@@ -173,11 +173,15 @@
             z-index: -2;
             background: var(--card-image) center / cover no-repeat;
             content: "";
-            filter: grayscale(1) saturate(0.2) contrast(0.92) brightness(1.06);
-            transform: scale(1.01);
+            filter:
+                grayscale(1)
+                saturate(0.12)
+                contrast(0.92)
+                brightness(0.92);
+            transform: scale(1.015);
             transition:
-                filter 0.6s ease,
-                transform 0.7s ease;
+                filter 0.75s ease,
+                transform 0.85s ease;
         }
 
         .card::after {
@@ -187,123 +191,118 @@
             background:
                 linear-gradient(
                     180deg,
-                    rgba(255, 255, 255, 0.80) 0%,
-                    rgba(248, 245, 243, 0.72) 48%,
-                    rgba(248, 245, 243, 0.90) 100%
-                );
+                    rgba(42, 31, 29, 0.50) 0%,
+                    rgba(42, 31, 29, 0.14) 42%,
+                    rgba(42, 31, 29, 0.10) 62%,
+                    rgba(42, 31, 29, 0.52) 100%
+                ),
+                rgba(228, 216, 208, 0.18);
             content: "";
-            transition: background 0.55s ease;
+            transition: background 0.65s ease;
         }
 
         .card:hover {
             z-index: 2;
-            border-color: rgba(114, 0, 11, 0.30);
-            box-shadow: 0 22px 50px rgba(65, 43, 38, 0.16);
+            border-color: rgba(114, 0, 11, 0.34);
+            box-shadow: 0 24px 55px rgba(52, 35, 31, 0.22);
             transform: translateY(-7px);
         }
 
         .card:hover::before {
-            filter: grayscale(0) saturate(0.82) contrast(0.98) brightness(0.95);
-            transform: scale(1.055);
+            filter:
+                grayscale(0)
+                saturate(1.18)
+                contrast(1.04)
+                brightness(1.01);
+            transform: scale(1.06);
         }
 
         .card:hover::after {
             background:
                 linear-gradient(
                     180deg,
-                    rgba(255, 255, 255, 0.42) 0%,
-                    rgba(248, 245, 243, 0.50) 48%,
-                    rgba(248, 245, 243, 0.78) 100%
+                    rgba(32, 23, 21, 0.34) 0%,
+                    rgba(32, 23, 21, 0.04) 45%,
+                    rgba(32, 23, 21, 0.02) 64%,
+                    rgba(32, 23, 21, 0.36) 100%
                 );
         }
 
         .card-inner {
+            position: absolute;
+            inset: 0;
             display: flex;
             flex-direction: column;
-            width: 100%;
+            align-items: center;
+            padding: 31px 32px 28px;
+        }
+
+        .card-title {
+            text-align: center;
+            text-shadow: 0 2px 18px rgba(0, 0, 0, 0.45);
+            transition: transform 0.45s ease;
+        }
+
+        .card:hover .card-title {
+            transform: translateY(-4px);
         }
 
         .chapter-number {
-            margin-bottom: auto;
-            color: rgba(64, 57, 54, 0.62);
+            display: block;
+            margin-bottom: 9px;
+            color: rgba(255, 250, 247, 0.78);
             font-family: Arial, Helvetica, sans-serif;
-            font-size: 11px;
-            letter-spacing: 2px;
+            font-size: 10px;
+            letter-spacing: 3px;
         }
 
         .card h3 {
-            margin-top: 76px;
-            color: var(--bordeaux);
-            font-size: 1.7rem;
+            color: #fffaf7;
+            font-size: clamp(1.55rem, 2.4vw, 2.05rem);
             font-weight: normal;
-            line-height: 1.25;
+            line-height: 1.18;
         }
 
-        .card p {
-            max-width: 310px;
-            margin-top: 11px;
-            color: #645a56;
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 13px;
-            line-height: 1.65;
+        .card h3::after {
+            display: block;
+            width: 0;
+            height: 1px;
+            margin: 13px auto 0;
+            background: rgba(255, 250, 247, 0.90);
+            content: "";
+            transition: width 0.45s ease;
+        }
+
+        .card:hover h3::after {
+            width: 42px;
         }
 
         .card-arrow {
             display: inline-flex;
             align-items: center;
+            align-self: flex-end;
             gap: 8px;
-            margin-top: 25px;
-            color: var(--bordeaux);
+            margin-top: auto;
+            color: #fffaf7;
             font-family: Arial, Helvetica, sans-serif;
-            font-size: 11px;
-            letter-spacing: 1.2px;
+            font-size: 10px;
+            letter-spacing: 1.6px;
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.48);
             text-transform: uppercase;
         }
 
         .card-arrow::after {
-            font-size: 16px;
+            font-size: 17px;
             content: "→";
-            transition: transform 0.25s ease;
+            transition: transform 0.3s ease;
         }
 
         .card:hover .card-arrow::after {
-            transform: translateX(4px);
+            transform: translateX(5px);
         }
 
         .featured {
-            grid-column: auto;
-            min-height: 330px;
-            border-color: rgba(114, 0, 11, 0.10);
-            background: #d8d1cd;
-            color: var(--text);
-        }
-
-        .featured .chapter-number {
-            color: rgba(64, 57, 54, 0.62);
-        }
-
-        .featured h3,
-        .featured .card-arrow {
-            color: var(--bordeaux);
-        }
-
-        .featured .card-inner {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .featured .chapter-number {
-            margin-bottom: auto;
-        }
-
-        .featured h3 {
-            margin-top: 76px;
-            font-size: 1.7rem;
-        }
-
-        .featured p {
-            max-width: 310px;
-            color: #645a56;
+            grid-column: 1 / -1;
         }
 
         /* =========================
@@ -336,13 +335,16 @@
 
         @media (max-width: 900px) {
             .menu {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 18px;
             }
 
+            .card {
+                min-height: 360px;
+            }
         }
 
         @media (max-width: 650px) {
-.hero {
+            .hero {
                 padding: 54px 20px 62px;
             }
 
@@ -358,48 +360,57 @@
 
             .date::before,
             .date::after {
-                width: 26px;
-            }
-
-            .intro {
-                font-size: 15px;
-                line-height: 1.8;
-            }
-
-            .intro strong {
-                font-size: 1.35rem;
+                width: 34px;
             }
 
             .chapters-section {
-                padding: 60px 16px 75px;
+                padding: 62px 16px 72px;
+            }
+
+            .section-heading {
+                margin-bottom: 30px;
             }
 
             .menu {
                 grid-template-columns: 1fr;
-                gap: 14px;
+                gap: 16px;
             }
 
             .card,
             .featured {
                 grid-column: span 1;
-                min-height: 285px;
-                padding: 24px;
+                min-height: 330px;
             }
 
-            .card h3,
-            .featured h3 {
-                margin-top: 62px;
+            .card-inner {
+                padding: 26px 24px 23px;
+            }
+
+            .card h3 {
+                font-size: 1.7rem;
             }
         }
 
-        @media (prefers-reduced-motion: reduce) {
-            *,
-            *::before,
-            *::after {
-                scroll-behavior: auto !important;
-                transition-duration: 0.01ms !important;
+        @media (hover: none) {
+            .card::before {
+                filter:
+                    grayscale(0.35)
+                    saturate(0.72)
+                    contrast(0.98)
+                    brightness(0.96);
+            }
+
+            .card::after {
+                background:
+                    linear-gradient(
+                        180deg,
+                        rgba(38, 27, 25, 0.42) 0%,
+                        rgba(38, 27, 25, 0.08) 48%,
+                        rgba(38, 27, 25, 0.40) 100%
+                    );
             }
         }
+
     </style>
 </head>
 
@@ -436,72 +447,80 @@
             <div class="menu">
                 <a href="invitation/" class="card" style="--card-image: url('images/vignettes/vignette_invitation.jpg');">
                     <div class="card-inner">
-                        <span class="chapter-number">01</span>
-                        <h3>L’invitation</h3>
-                        <p>Les faire-part qui annonçaient cette journée si particulière.</p>
+                        <div class="card-title">
+                            <span class="chapter-number">01</span>
+                            <h3>L’invitation</h3>
+                        </div>
                         <span class="card-arrow">Découvrir</span>
                     </div>
                 </a>
 
                 <a href="preparatifs/" class="card" style="--card-image: url('images/vignettes/vignette_preparatifs.jpg');">
                     <div class="card-inner">
-                        <span class="chapter-number">02</span>
-                        <h3>Les préparatifs</h3>
-                        <p>Les derniers instants avant de nous retrouver.</p>
+                        <div class="card-title">
+                            <span class="chapter-number">02</span>
+                            <h3>Les préparatifs</h3>
+                        </div>
                         <span class="card-arrow">Découvrir</span>
                     </div>
                 </a>
 
                 <a href="first-look/" class="card" style="--card-image: url('images/vignettes/vignette_first-look.jpg');">
                     <div class="card-inner">
-                        <span class="chapter-number">03</span>
-                        <h3>Le First Look</h3>
-                        <p>Le moment où nous nous sommes découverts.</p>
+                        <div class="card-title">
+                            <span class="chapter-number">03</span>
+                            <h3>Le First Look</h3>
+                        </div>
                         <span class="card-arrow">Découvrir</span>
                     </div>
                 </a>
 
                 <a href="mairie/" class="card" style="--card-image: url('images/vignettes/vignette_mairie.jpg');">
                     <div class="card-inner">
-                        <span class="chapter-number">04</span>
-                        <h3>La mairie</h3>
-                        <p>Nous nous disons OUI.</p>
+                        <div class="card-title">
+                            <span class="chapter-number">04</span>
+                            <h3>La mairie</h3>
+                        </div>
                         <span class="card-arrow">Découvrir</span>
                     </div>
                 </a>
 
                 <a href="eglise/" class="card" style="--card-image: url('images/vignettes/vignette_eglise.jpg');">
                     <div class="card-inner">
-                        <span class="chapter-number">05</span>
-                        <h3>L’église</h3>
-                        <p>La cérémonie, les émotions et l'échange des alliances.</p>
+                        <div class="card-title">
+                            <span class="chapter-number">05</span>
+                            <h3>L’église</h3>
+                        </div>
                         <span class="card-arrow">Découvrir</span>
                     </div>
                 </a>
 
                 <a href="vin_d_honneur/" class="card" style="--card-image: url('images/vignettes/vignette_vin_d_honneur.jpg');">
                     <div class="card-inner">
-                        <span class="chapter-number">06</span>
-                        <h3>Le vin d’honneur</h3>
-                        <p>Les retrouvailles, les sourires et les verres levés.</p>
+                        <div class="card-title">
+                            <span class="chapter-number">06</span>
+                            <h3>Le vin d’honneur</h3>
+                        </div>
                         <span class="card-arrow">Découvrir</span>
                     </div>
                 </a>
 
                 <a href="soiree/" class="card" style="--card-image: url('images/vignettes/vignette_soiree.jpg');">
                     <div class="card-inner">
-                        <span class="chapter-number">07</span>
-                        <h3>La soirée</h3>
-                        <p>Le repas, les surprises, les discours et la fête.</p>
+                        <div class="card-title">
+                            <span class="chapter-number">07</span>
+                            <h3>La soirée</h3>
+                        </div>
                         <span class="card-arrow">Découvrir</span>
                     </div>
                 </a>
 
                 <a href="videos/" class="card" style="--card-image: url('images/vignettes/vignette_videos.jpg');">
                     <div class="card-inner">
-                        <span class="chapter-number">08</span>
-                        <h3>Les vidéos</h3>
-                        <p>Notre journée en mouvement, à regarder encore une fois.</p>
+                        <div class="card-title">
+                            <span class="chapter-number">08</span>
+                            <h3>Les vidéos</h3>
+                        </div>
                         <span class="card-arrow">Découvrir</span>
                     </div>
                 </a>
@@ -510,28 +529,29 @@
 
                 <a href="photoscouple/" class="card" style="--card-image: url('images/vignettes/vignette_photoscouple.jpg');">
                     <div class="card-inner">
-                        <span class="chapter-number">09</span>
-                        <h3>Les photos de couple</h3>
-                        <p>Nos portraits à deux, entre émotion, douceur et complicité.</p>
+                        <div class="card-title">
+                            <span class="chapter-number">09</span>
+                            <h3>Les photos de couple</h3>
+                        </div>
                         <span class="card-arrow">Découvrir</span>
                     </div>
                 </a>
 
                 <a href="photosgroupe/" class="card" style="--card-image: url('images/vignettes/vignette_photosgroupe.jpg');">
                     <div class="card-inner">
-                        <span class="chapter-number">10</span>
-                        <h3>Les photos de groupe</h3>
-                        <p>Nos familles, nos amis et tous ceux qui ont partagé cette journée.</p>
+                        <div class="card-title">
+                            <span class="chapter-number">10</span>
+                            <h3>Les photos de groupe</h3>
+                        </div>
                         <span class="card-arrow">Découvrir</span>
                     </div>
                 </a>
 
                 <a href="photobooth/" class="card featured" style="--card-image: url('images/vignettes/vignette_photobooth.jpg');">
                     <div class="card-inner">
-                        <span class="chapter-number">11</span>
-                        <div>
+                        <div class="card-title">
+                            <span class="chapter-number">11</span>
                             <h3>Le photobooth</h3>
-                            <p>Des sourires, des accessoires et beaucoup de spontanéité jusqu’au bout de la nuit.</p>
                         </div>
                         <span class="card-arrow">Découvrir</span>
                     </div>
