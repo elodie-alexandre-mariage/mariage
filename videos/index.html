@@ -324,85 +324,12 @@
             transform: translateY(-2px);
         }
 
-
         /* =========================
-           MOMENTS À LA UNE
-        ========================= */
-
-        .featured-videos-section {
-            padding: 76px 25px 105px;
-            border-top: 1px solid var(--line);
-            background: var(--white);
-        }
-
-        .featured-videos-container {
-            max-width: 1200px;
-            margin: auto;
-        }
-
-        .featured-videos-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 26px;
-        }
-
-        .featured-video-card {
-            min-width: 0;
-        }
-
-        .featured-video-card.wide {
-            grid-column: 1 / -1;
-        }
-
-        .featured-video-frame {
-            position: relative;
-            overflow: hidden;
-            aspect-ratio: 16 / 9;
-            border: 1px solid rgba(114, 0, 11, 0.10);
-            background: #111111;
-            box-shadow: 0 16px 42px rgba(56, 39, 34, 0.12);
-        }
-
-        .featured-video-frame iframe {
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
-
-        .featured-video-caption {
-            padding: 22px 2px 0;
-        }
-
-        .featured-video-kicker {
-            margin-bottom: 8px;
-            color: var(--bordeaux);
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 10px;
-            letter-spacing: 2.2px;
-            text-transform: uppercase;
-        }
-
-        .featured-video-caption h3 {
-            color: var(--text);
-            font-size: clamp(1.55rem, 3vw, 2.15rem);
-            font-weight: normal;
-            line-height: 1.25;
-        }
-
-        .featured-video-caption p:last-child {
-            margin-top: 10px;
-            color: var(--muted);
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 13px;
-            line-height: 1.7;
-        }
-
-        /* =========================
-           VIDÉOS SOUVENIRS
+           AUTRES VIDÉOS
         ========================= */
 
         .memories-section {
-            padding: 76px 25px 105px;
+            padding: 76px 25px 110px;
             border-top: 1px solid var(--line);
             background: var(--white);
         }
@@ -413,70 +340,92 @@
         }
 
         .memories-intro {
-            margin-bottom: 46px;
+            max-width: 760px;
+            margin: 0 auto 54px;
+            text-align: center;
         }
 
-        .videos-grid {
-            display: grid;
-            grid-template-columns: repeat(6, minmax(0, 1fr));
-            gap: 34px 18px;
-            align-items: start;
-        }
-
-        .video-card {
-            grid-column: span 2;
-            min-width: 0;
-        }
-
-        .video-card.landscape {
-            grid-column: span 3;
-        }
-
-        .video-frame {
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(114, 0, 11, 0.08);
-            background: #111111;
-            box-shadow: 0 10px 28px rgba(46, 30, 28, 0.09);
-        }
-
-        .video-card.vertical .video-frame {
-            aspect-ratio: 9 / 16;
-        }
-
-        .video-card.landscape .video-frame {
-            aspect-ratio: 16 / 9;
-        }
-
-        .video-frame iframe {
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
-
-        .video-information {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-            padding-top: 12px;
-        }
-
-        .video-number,
-        .video-format {
+        .memories-intro .small-title {
+            margin-bottom: 12px;
+            color: var(--bordeaux);
             font-family: Arial, Helvetica, sans-serif;
-            font-size: 10px;
+            font-size: 11px;
+            letter-spacing: 3.2px;
             text-transform: uppercase;
         }
 
-        .video-number {
-            color: var(--bordeaux);
-            letter-spacing: 1.8px;
+        .memories-intro h2 {
+            color: var(--text);
+            font-size: clamp(1.9rem, 5vw, 2.8rem);
+            font-weight: normal;
+            line-height: 1.25;
         }
 
-        .video-format {
-            color: #978d88;
-            letter-spacing: 1px;
+        .memories-intro > p:last-child {
+            max-width: 680px;
+            margin: 18px auto 0;
+            color: var(--muted);
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .video-list {
+            display: flex;
+            flex-direction: column;
+            gap: 76px;
+        }
+
+        .video-feature + .video-feature {
+            padding-top: 76px;
+            border-top: 1px solid var(--line);
+        }
+
+        .video-feature-heading {
+            max-width: 760px;
+            margin: 0 auto 28px;
+            text-align: center;
+        }
+
+        .video-feature-heading .small-title {
+            margin-bottom: 10px;
+            color: var(--bordeaux);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 10px;
+            letter-spacing: 2.8px;
+            text-transform: uppercase;
+        }
+
+        .video-feature-heading h3 {
+            color: var(--text);
+            font-size: clamp(1.8rem, 4vw, 2.55rem);
+            font-weight: normal;
+            line-height: 1.25;
+        }
+
+        .video-feature-heading p:last-child {
+            margin-top: 12px;
+            color: var(--muted);
+            font-size: 15px;
+            font-style: italic;
+            line-height: 1.75;
+        }
+
+        .video-feature-frame {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            border: 1px solid rgba(114, 0, 11, 0.08);
+            background: #111111;
+            box-shadow: 0 16px 42px rgba(56, 39, 34, 0.12);
+        }
+
+        .video-feature-frame iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
         }
 
         /* =========================
@@ -534,24 +483,6 @@
         }
 
         /* =========================
-           TABLETTE
-        ========================= */
-
-        @media (max-width: 950px) {
-            .videos-grid {
-                grid-template-columns: repeat(4, minmax(0, 1fr));
-            }
-
-            .video-card {
-                grid-column: span 2;
-            }
-
-            .video-card.landscape {
-                grid-column: span 4;
-            }
-        }
-
-        /* =========================
            MOBILE
         ========================= */
 
@@ -593,14 +524,8 @@
             }
 
             .main-film-section,
-            .featured-videos-section,
             .memories-section {
                 padding: 58px 10px 75px;
-            }
-
-            .featured-videos-grid {
-                grid-template-columns: 1fr;
-                gap: 42px;
             }
 
             .section-heading,
@@ -624,21 +549,21 @@
                 justify-self: start;
             }
 
-            .videos-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-                gap: 28px 8px;
+            .video-list {
+                gap: 54px;
             }
 
-            .video-card,
-            .video-card.landscape {
-                grid-column: span 2;
-                width: 100%;
-                max-width: 520px;
-                margin: auto;
+            .video-feature + .video-feature {
+                padding-top: 54px;
             }
 
-            .video-card.vertical {
-                width: min(100%, 330px);
+            .video-feature-heading {
+                padding: 0 10px;
+                margin-bottom: 22px;
+            }
+
+            .video-feature-heading p:last-child {
+                font-size: 14px;
             }
 
             .thanks-section {
@@ -766,7 +691,7 @@
                 <p class="intro">
                     Parce que certaines émotions ne se racontent pas seulement
                     en photo, retrouvez ici le film de notre mariage ainsi que
-                    quelques instants capturés sur le vif pendant la soirée.
+                    quelques moments forts de cette journée.
                 </p>
 
             </div>
@@ -854,106 +779,7 @@
         </section>
 
 
-        <!-- MOMENTS À LA UNE -->
-
-        <section
-            class="featured-videos-section"
-            aria-labelledby="featured-videos-title"
-        >
-
-            <div class="featured-videos-container">
-
-                <div class="section-heading">
-
-                    <p class="small-title">
-                        Deux moments à revivre
-                    </p>
-
-                    <h2 id="featured-videos-title">
-                        Nos souvenirs à la une
-                    </h2>
-
-                    <p>
-                        Notre sortie de l’église, notre première danse et le diaporama :
-                        trois souvenirs que nous tenions particulièrement à mettre en avant.
-                    </p>
-
-                </div>
-
-                <div class="featured-videos-grid">
-
-                    <article class="featured-video-card wide">
-                        <div class="featured-video-frame">
-                            <iframe
-                                src="https://www.youtube-nocookie.com/embed/bl3qUXs8ZHM?rel=0"
-                                title="Sortie de l’église d’Élodie et Alexandre"
-                                loading="lazy"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                referrerpolicy="strict-origin-when-cross-origin"
-                                allowfullscreen
-                            ></iframe>
-                        </div>
-                        <div class="featured-video-caption">
-                            <p class="featured-video-kicker">Moment fort</p>
-                            <h3>Notre sortie de l’église</h3>
-                            <p>Un instant de joie, entourés de tous ceux qui comptent pour nous.</p>
-                        </div>
-                    </article>
-
-                    <article class="featured-video-card">
-
-                        <div class="featured-video-frame">
-
-                            <iframe
-                                src="https://www.youtube-nocookie.com/embed/lOvfN0R6szo?rel=0"
-                                title="Première danse d’Élodie et Alexandre"
-                                loading="lazy"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                referrerpolicy="strict-origin-when-cross-origin"
-                                allowfullscreen
-                            ></iframe>
-
-                        </div>
-
-                        <div class="featured-video-caption">
-                            <p class="featured-video-kicker">Moment fort</p>
-                            <h3>Notre première danse</h3>
-                            <p>Quelques minutes suspendues, rien que tous les deux.</p>
-                        </div>
-
-                    </article>
-
-                    <article class="featured-video-card">
-
-                        <div class="featured-video-frame">
-
-                            <iframe
-                                src="https://player.vimeo.com/video/1213000834?dnt=1&amp;title=0&amp;byline=0&amp;portrait=0"
-                                title="Diaporama du mariage d’Élodie et Alexandre"
-                                loading="lazy"
-                                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-                                referrerpolicy="strict-origin-when-cross-origin"
-                                allowfullscreen
-                            ></iframe>
-
-                        </div>
-
-                        <div class="featured-video-caption">
-                            <p class="featured-video-kicker">Souvenir en images</p>
-                            <h3>Le diaporama</h3>
-                            <p>Une sélection d’images pour revivre les moments les plus précieux.</p>
-                        </div>
-
-                    </article>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- VIDÉOS PRISCA -->
+        <!-- AUTRES VIDÉOS -->
 
         <section
             class="memories-section"
@@ -964,329 +790,62 @@
 
                 <div class="memories-intro">
 
-                    <p class="small-title">
-                        Les vidéos de la soirée
-                    </p>
+                    <p class="small-title">Nos souvenirs en vidéo</p>
 
-                    <h2 id="memories-title">
-                        Quelques instants pris sur le vif
-                    </h2>
+                    <h2 id="memories-title">Quelques instants à revivre</h2>
 
                     <p>
-                        Des vidéos plus spontanées, capturées et partagées
-                        par Prisca, pour retrouver l’ambiance de la soirée,
-                        les surprises et les derniers pas de danse.
+                        Après le film de notre mariage, retrouvez quelques moments
+                        particuliers de cette journée.
                     </p>
 
                 </div>
 
+                <div class="video-list">
 
-                <div class="videos-grid">
-
-                    <!-- VIDÉO 1 -->
-
-                    <article class="video-card vertical">
-
-                        <div class="video-frame">
-
-                            <iframe
-                                src="https://www.youtube-nocookie.com/embed/uJYcYoHqMZw?rel=0"
-                                title="Vidéo souvenir 1 du mariage"
-                                loading="lazy"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                referrerpolicy="strict-origin-when-cross-origin"
-                                allowfullscreen
-                            ></iframe>
-
+                    <article class="video-feature">
+                        <div class="video-feature-heading">
+                            <h3>Notre sortie de l’église</h3>
+                            <p>Le premier instant après nous être dit oui.</p>
                         </div>
-
-                        <div class="video-information">
-                            <span class="video-number">Jardin</span>
-                                                    </div>
-
+                        <div class="video-feature-frame">
+                            <iframe src="https://www.youtube-nocookie.com/embed/3tyj9DGd_ds?rel=0" title="Sortie de l’église d’Élodie et Alexandre" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        </div>
                     </article>
 
-
-                    <!-- VIDÉO 2 -->
-
-                    <article class="video-card vertical">
-
-                        <div class="video-frame">
-
-                            <iframe
-                                src="https://www.youtube-nocookie.com/embed/yHMruNQA1HY?rel=0"
-                                title="Vidéo souvenir 2 du mariage"
-                                loading="lazy"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                referrerpolicy="strict-origin-when-cross-origin"
-                                allowfullscreen
-                            ></iframe>
-
+                    <article class="video-feature">
+                        <div class="video-feature-heading">
+                           <h3>Vin d’honneur &amp; soirée</h3>
+                            <p>Quelques instants de bonheur partagés avec nos proches.</p>
                         </div>
-
-                        <div class="video-information">
-                            <span class="video-number">Salle</span>
-                                                   </div>
-
+                        <div class="video-feature-frame">
+                            <iframe src="https://www.youtube-nocookie.com/embed/ZawHLM3upsY?rel=0" title="Vin d’honneur et soirée du mariage" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        </div>
                     </article>
 
-
-                    <!-- VIDÉO 3 -->
-
-                    <article class="video-card vertical">
-
-                        <div class="video-frame">
-
-                            <iframe
-                                src="https://www.youtube-nocookie.com/embed/RfZ1WlOI60c?rel=0"
-                                title="Vidéo souvenir 3 du mariage"
-                                loading="lazy"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                referrerpolicy="strict-origin-when-cross-origin"
-                                allowfullscreen
-                            ></iframe>
-
+                    <article class="video-feature">
+                        <div class="video-feature-heading">
+                         <h3>Notre première danse</h3>
+                            <p>Notre ouverture de bal sur « The Night We Met » et « September ».</p>
                         </div>
-
-                        <div class="video-information">
-                            <span class="video-number">Vin d'honneur</span>
-                                                    </div>
-
+                        <div class="video-feature-frame">
+                            <iframe src="https://www.youtube-nocookie.com/embed/EPVzARFt7pE?rel=0" title="Première danse d’Élodie et Alexandre" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        </div>
                     </article>
 
-
-                  <!-- VIDÉO 6 -->
-
-                    <article class="video-card vertical">
-
-                        <div class="video-frame">
-
-                            <iframe
-                                src="https://www.youtube-nocookie.com/embed/M8iVyyu-bxE?rel=0"
-                                title="Vidéo souvenir 6 du mariage"
-                                loading="lazy"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                referrerpolicy="strict-origin-when-cross-origin"
-                                allowfullscreen
-                            ></iframe>
-
+                    <article class="video-feature">
+                        <div class="video-feature-heading">
+                            <h3>Le discours d’Aurélien</h3>
+                            <p>Quelques mots d'Aurélien qui resteront gravés.</p>
                         </div>
-
-                        <div class="video-information">
-                            <span class="video-number">Salle 02</span>
-                                                    </div>
-
-                    </article>
-
-
-                    <!-- VIDÉO 7 -->
-
-                    <article class="video-card vertical">
-
-                        <div class="video-frame">
-
-                            <iframe
-                                src="https://www.youtube-nocookie.com/embed/5_tkYsMPiWI?rel=0"
-                                title="Vidéo souvenir 7 du mariage"
-                                loading="lazy"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                referrerpolicy="strict-origin-when-cross-origin"
-                                allowfullscreen
-                            ></iframe>
-
-                        </div>
-
-                        <div class="video-information">
-                            <span class="video-number">Salle 03</span>
-                                                   </div>
-
-                    </article>
-
-
-                    <!-- VIDÉO 8 -->
-
-                    <article class="video-card vertical">
-
-                        <div class="video-frame">
-
-                            <iframe
-                                src="https://www.youtube-nocookie.com/embed/uhpeCdw-C70?rel=0"
-                                title="Vidéo souvenir 8 du mariage"
-                                loading="lazy"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                referrerpolicy="strict-origin-when-cross-origin"
-                                allowfullscreen
-                            ></iframe>
-
-                        </div>
-
-                        <div class="video-information">
-                            <span class="video-number">Entrée des mariés</span>
-                                                    </div>
-
-                    </article>
-<!-- VIDÉO 10 -->
-
-                    <article class="video-card vertical">
-
-                        <div class="video-frame">
-
-                            <iframe
-                                src="https://www.youtube-nocookie.com/embed/rkFKtVcf1oo?rel=0"
-                                title="Vidéo souvenir 10 du mariage"
-                                loading="lazy"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                referrerpolicy="strict-origin-when-cross-origin"
-                                allowfullscreen
-                            ></iframe>
-
-                        </div>
-
-                        <div class="video-information">
-                            <span class="video-number">Soirée 01</span>
-                                                    </div>
-
-                    </article>
-
-
-                    
-
-
-                    <!-- VIDÉO 12 -->
-
-                    <article class="video-card vertical">
-
-                        <div class="video-frame">
-
-                            <iframe
-                                src="https://www.youtube-nocookie.com/embed/_TWSIWjd1Zk?rel=0"
-                                title="Vidéo souvenir 12 du mariage"
-                                loading="lazy"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                referrerpolicy="strict-origin-when-cross-origin"
-                                allowfullscreen
-                            ></iframe>
-
-                        </div>
-
-                        <div class="video-information">
-                            <span class="video-number">Soirée 02</span>
-                            <span class="video-format">Vidéo verticale</span>
-                        </div>
-
-                    </article>
-
-
-                    <!-- VIDÉO 13 -->
-
-                    <article class="video-card vertical">
-
-                        <div class="video-frame">
-
-                            <iframe
-                                src="https://www.youtube-nocookie.com/embed/qwjY9SkTujU?rel=0"
-                                title="Vidéo souvenir 13 du mariage"
-                                loading="lazy"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                referrerpolicy="strict-origin-when-cross-origin"
-                                allowfullscreen
-                            ></iframe>
-
-                        </div>
-
-                        <div class="video-information">
-                            <span class="video-number">Soirée 03</span>
-                                                    </div>
-
-                    </article>
-
-
-                    <!-- VIDÉO 14 -->
-
-                    <article class="video-card vertical">
-
-                        <div class="video-frame">
-
-                            <iframe
-                                src="https://www.youtube-nocookie.com/embed/qLKDuwBP1gs?rel=0"
-                                title="Vidéo souvenir 14 du mariage"
-                                loading="lazy"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                referrerpolicy="strict-origin-when-cross-origin"
-                                allowfullscreen
-                            ></iframe>
-
-                        </div>
-
-                        <div class="video-information">
-                            <span class="video-number">Soirée 04</span>
-                                                    </div>
-
-                    </article>
-
-
-                    
-
-
-                    <!-- VIDÉO 16 -->
-
-                    <article class="video-card vertical">
-
-                        <div class="video-frame">
-
-                            <iframe
-                                src="https://www.youtube-nocookie.com/embed/xpmDFPvUSLw?rel=0"
-                                title="Vidéo souvenir 16 du mariage"
-                                loading="lazy"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                referrerpolicy="strict-origin-when-cross-origin"
-                                allowfullscreen
-                            ></iframe>
-
-                        </div>
-
-                        <div class="video-information">
-                            <span class="video-number">Soirée 06</span>
-                                                   </div>
-
-                    </article>
-</div>
-
-            
-
-                    <!-- JEU DU RUBAN -->
-                    <article class="video-card landscape">
-                        <div class="video-frame">
-                            <iframe src="https://www.youtube-nocookie.com/embed/QWUAMUaXnM0?rel=0" title="Jeu du ruban du mariage" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                        </div>
-                        <div class="video-information"><span class="video-number">Jeu du ruban</span></div>
-                    </article>
-
-                    <!-- ENTRÉE DES MARIÉS DANS LA SALLE -->
-                    <article class="video-card vertical">
-                        <div class="video-frame">
-                            <iframe src="https://www.youtube-nocookie.com/embed/aJCD1M1Mbuo?rel=0" title="Entrée des mariés dans la salle" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                        </div>
-                        <div class="video-information"><span class="video-number">Entrée des mariés dans la salle</span></div>
-                    </article>
-
-                    <!-- PREMIÈRE DANSE — VIDÉO COURTE -->
-                    <article class="video-card vertical">
-                        <div class="video-frame">
-                            <iframe src="https://www.youtube-nocookie.com/embed/TVqPdusiMmY?rel=0" title="Vidéo courte de la première danse" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                        </div>
-                        <div class="video-information"><span class="video-number">Première danse — extrait</span></div>
-                    </article>
-
-                    <!-- DISCOURS D’AURÉLIEN -->
-                    <article class="video-card landscape">
-                        <div class="video-frame">
+                        <div class="video-feature-frame">
                             <iframe src="https://www.youtube-nocookie.com/embed/Kz70HdsxVq0?rel=0" title="Discours d’Aurélien au mariage" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
-                        <div class="video-information"><span class="video-number">Discours d’Aurélien</span></div>
                     </article>
 
                 </div>
+
+            </div>
 
         </section>
 
@@ -1297,8 +856,8 @@
 
             <p>
                 Merci à <strong>Julie</strong> d’avoir raconté cette journée
-                à travers notre film, et à <strong>Prisca</strong> d’avoir
-                capturé et partagé tous ces instants spontanés de la soirée.
+                à travers notre film, et merci à tous ceux qui ont capturé
+                ces souvenirs qui nous permettent aujourd’hui de la revivre.
             </p>
 
         </section>
