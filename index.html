@@ -26,7 +26,7 @@
             --muted: #746b67;
             --line: #e8dfda;
             --soft: #f8f5f3;
-            --paper: #fbf8f5;
+            --paper: #ffffff;
             --white: #ffffff;
             --sidebar-width: 255px;
         }
@@ -37,7 +37,7 @@
 
         body {
             min-height: 100vh;
-            background: var(--paper);
+            background: var(--white);
             color: var(--text);
             font-family: Georgia, "Times New Roman", serif;
         }
@@ -64,7 +64,7 @@
             width: var(--sidebar-width);
             overflow-y: auto;
             border-right: 1px solid var(--line);
-            background: rgba(251, 248, 245, 0.96);
+            background: rgba(255, 255, 255, 0.97);
             -webkit-backdrop-filter: blur(14px);
             backdrop-filter: blur(14px);
             scrollbar-width: thin;
@@ -129,37 +129,27 @@
             position: relative;
             z-index: 1;
             display: grid;
-            width: 29px;
-            height: 29px;
+            width: 28px;
+            height: 28px;
             place-items: center;
-            border: 1px solid #cdbbb2;
+            border: 1px solid #d8cdc7;
             border-radius: 50%;
-            background: var(--paper);
-            color: #a39289;
+            background: var(--white);
+            color: #b4a8a2;
             font-size: 9px;
             transition:
-                border-color 0.2s ease,
-                background 0.2s ease,
-                color 0.2s ease,
-                transform 0.2s ease;
+                border-color 0.25s ease,
+                background 0.25s ease,
+                color 0.25s ease,
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
         }
 
         .page-label {
             line-height: 1.25;
         }
 
-        .page-link.is-current {
-            color: var(--bordeaux);
-            font-weight: 600;
-        }
-
-        .page-link.is-current .page-dot {
-            border-color: var(--bordeaux);
-            background: var(--bordeaux);
-            color: var(--white);
-            transform: scale(1.08);
-        }
-
+        /* Pages déjà visitées */
         .page-link.is-visited {
             color: var(--bordeaux);
         }
@@ -168,6 +158,26 @@
             border-color: var(--bordeaux);
             background: var(--bordeaux);
             color: var(--white);
+        }
+
+        /* Page actuelle */
+        .page-link.is-current {
+            color: var(--bordeaux);
+            font-weight: 700;
+        }
+
+        .page-link.is-current .page-label {
+            font-weight: 700;
+        }
+
+        .page-link.is-current .page-dot {
+            border-color: var(--bordeaux);
+            background: var(--bordeaux);
+            color: var(--white);
+            transform: scale(1.18);
+            box-shadow:
+                0 0 0 3px rgba(114, 0, 11, 0.12),
+                0 0 10px rgba(114, 0, 11, 0.10);
         }
 
         /* =========================
@@ -181,10 +191,8 @@
 
         .cover {
             min-height: 100vh;
-            padding: 70px 42px 110px;
-            background:
-                radial-gradient(circle at 50% 10%, rgba(255, 255, 255, 0.95), transparent 38%),
-                linear-gradient(180deg, #fbf8f5 0%, #f7f1ed 100%);
+            padding: 82px 42px 120px;
+            background: var(--white);
         }
 
         .cover-content {
@@ -217,7 +225,7 @@
 
         .cover-text {
             max-width: 690px;
-            margin: 0 auto 44px;
+            margin: 0 auto 68px;
             color: #655c58;
             font-size: 17px;
             line-height: 1.9;
@@ -239,8 +247,8 @@
             margin: 0 auto;
             border: 1px solid rgba(114, 0, 11, 0.11);
             border-radius: 8px;
-            background: #d9d0ca;
-            box-shadow: 0 24px 60px rgba(67, 45, 40, 0.16);
+            background: var(--white);
+            box-shadow: 0 22px 54px rgba(67, 45, 40, 0.13);
         }
 
         .premium-photo-wrap::after {
@@ -283,7 +291,7 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            margin-top: 34px;
+            margin-top: 42px;
             color: var(--bordeaux);
             font-family: Arial, Helvetica, sans-serif;
             font-size: 11px;
@@ -317,7 +325,7 @@
             padding: 11px 17px;
             border: 1px solid rgba(114, 0, 11, 0.22);
             border-radius: 999px;
-            background: rgba(251, 248, 245, 0.92);
+            background: rgba(255, 255, 255, 0.96);
             -webkit-backdrop-filter: blur(12px);
             backdrop-filter: blur(12px);
             color: var(--bordeaux);
@@ -397,7 +405,7 @@
                 place-items: center;
                 border: 1px solid rgba(114, 0, 11, 0.20);
                 border-radius: 50%;
-                background: rgba(251, 248, 245, 0.94);
+                background: rgba(255, 255, 255, 0.97);
                 color: var(--bordeaux);
                 font-size: 19px;
                 box-shadow: 0 8px 24px rgba(53, 36, 31, 0.10);
