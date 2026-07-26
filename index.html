@@ -28,7 +28,7 @@
             --soft: #f8f5f3;
             --paper: #fefefe;
             --white: #ffffff;
-            --background: #fefefe;
+            --background: var(--background);
             --sidebar-width: 255px;
         }
 
@@ -52,7 +52,7 @@
             color: inherit;
         }
 
-        /* =========================
+       /* =========================
            NAVIGATION LATÉRALE
         ========================= */
 
@@ -211,26 +211,8 @@
 
         .cover {
             min-height: 100vh;
-            padding: 26px 42px 96px;
+            padding: 0;
             background: var(--background);
-        }
-
-        .cover-content {
-            width: min(1120px, 100%);
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .premium-photo-wrap {
-            position: relative;
-            overflow: hidden;
-            width: 100%;
-            max-width: 1180px;
-            margin: 0 auto;
-            border: 1px solid rgba(99, 9, 9, 0.11);
-            border-radius: 8px;
-            background: var(--background);
-            box-shadow: 0 22px 54px rgba(67, 45, 40, 0.13);
         }
 
         .premium-photo-wrap::after {
@@ -247,14 +229,43 @@
             content: "";
         }
 
-        .premium-photo {
-            width: 100%;
-            height: min(72vh, 780px);
-            min-height: 460px;
-            object-fit: cover;
-            object-position: center;
+
+
+        .cover-page {
+            min-height: 100vh;
+            background: var(--background);
         }
 
+        .cover-content {
+            width: 100%;
+            max-width: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .premium-photo-wrap {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            min-height: 620px;
+            margin: 0;
+            overflow: hidden;
+            border: 0;
+            border-radius: 0;
+            box-shadow: none;
+            background: transparent;
+        }
+
+        .premium-photo {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            border: 0;
+            border-radius: 0;
+            box-shadow: none;
+        }
 
         .cover-invitation {
             max-width: 660px;
@@ -328,10 +339,6 @@
             transform: translateY(-2px);
         }
 
-        .page-turn.next {
-            right: 22px;
-        }
-
         .page-turn.disabled {
             cursor: default;
             opacity: 0.45;
@@ -351,7 +358,137 @@
             display: none;
         }
 
-        @media (max-width: 900px) {
+        
+        .page-list {
+            position: relative;
+            list-style: none;
+            margin: 0;
+            padding: 0 0 0 8px;
+        }
+
+        .page-list::before {
+            content: "";
+            position: absolute;
+            top: 18px;
+            bottom: 18px;
+            left: 24px;
+            width: 1px;
+            background: linear-gradient(
+                to bottom,
+                rgba(99, 9, 9, 0.78),
+                rgba(99, 9, 9, 0.34) 55%,
+                rgba(99, 9, 9, 0.12)
+            );
+        }
+
+        .page-item {
+            position: relative;
+            margin: 0;
+            padding: 0;
+        }
+
+        .page-link {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 34px 1fr;
+            align-items: center;
+            min-height: 39px;
+            padding: 3px 4px;
+            color: #7a7471;
+            font-size: 12px;
+            text-decoration: none;
+        }
+
+        .page-dot {
+            position: relative;
+            z-index: 2;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            color: #9c9591;
+            font-family: Georgia, serif;
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+            background: #fefefe;
+            border: 1px solid rgba(99, 9, 9, 0.18);
+            border-radius: 50%;
+            box-shadow: 0 0 0 5px #fefefe;
+            transition:
+                color 0.2s ease,
+                border-color 0.2s ease,
+                background 0.2s ease,
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+        .page-label {
+            padding-left: 8px;
+            color: inherit;
+            font-size: 12px;
+            line-height: 1.2;
+            letter-spacing: 0.015em;
+            transition: color 0.2s ease, font-weight 0.2s ease;
+        }
+
+        .page-link.is-visited .page-dot {
+            color: #ffffff;
+            background: #630909;
+            border-color: #630909;
+        }
+
+        .page-link.is-current .page-dot {
+            color: #ffffff;
+            font-weight: 700;
+            background: #630909;
+            border-color: #630909;
+            transform: scale(1.09);
+            box-shadow:
+                0 0 0 5px #fefefe,
+                0 0 0 6px rgba(99, 9, 9, 0.28),
+                0 0 16px rgba(99, 9, 9, 0.18);
+        }
+
+        .page-link.is-current .page-label {
+            color: #630909;
+            font-weight: 700;
+        }
+
+        .page-link:hover .page-dot {
+            border-color: rgba(99, 9, 9, 0.55);
+            transform: scale(1.05);
+        }
+
+        .page-link:hover .page-label {
+            color: #630909;
+        }
+
+@media (max-width: 900px) {
+
+            .cover-page,
+            .premium-photo-wrap {
+                min-height: 100svh;
+                height: 100svh;
+            }
+
+            .premium-photo {
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .cover-invitation {
+                bottom: 22px;
+                width: calc(100% - 24px);
+                padding: 28px 18px 20px;
+            }
+
+            .cover-invitation p {
+                font-size: 15px;
+            }
+
             :root {
                 --sidebar-width: 220px;
             }
@@ -408,19 +545,9 @@
                 padding: 58px 16px 96px;
             }
 
-
-            .cover-invitation {
-                margin-top: 18px;
-                padding: 0 10px;
-            }
-
-            .cover-invitation p {
-                font-size: 14px;
-            }
-
             .premium-photo {
-                height: 72vh;
-                min-height: 460px;
+                height: 68vh;
+                min-height: 420px;
             }
 
             .page-turn {
@@ -605,8 +732,6 @@
                         class="premium-photo"
                     >
 
-                </figure>
-
                 <div class="cover-invitation">
                     <p>Replongez avec nous dans les souvenirs de cette journée inoubliable.</p>
 
@@ -615,6 +740,8 @@
                     </a>
                 </div>
 
+                </figure>
+
             </div>
 
         </section>
@@ -622,15 +749,6 @@
     </main>
         <span class="page-turn-text">Page précédente</span>
     </span>
-
-    <a
-        href="sommaire/"
-        class="page-turn next"
-        aria-label="Aller à la page suivante : Sommaire"
-    >
-        <span class="page-turn-text">Page suivante</span>
-        <span class="page-turn-icon">→</span>
-    </a>
 
     <script>
         const currentPage = "bienvenue";
