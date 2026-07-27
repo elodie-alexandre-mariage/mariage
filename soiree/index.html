@@ -1701,6 +1701,347 @@
             }
         }
 
+    
+
+        /* =========================================================
+           MENU LATÉRAL FINAL — FORMAT STRICTEMENT IDENTIQUE
+           À LA PAGE DE RÉFÉRENCE, SEULES LES COULEURS CHANGENT
+        ========================================================= */
+
+        .book-sidebar {
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            width: var(--sidebar-width);
+            overflow-x: hidden;
+            overflow-y: auto;
+            border-right: 1px solid rgba(226, 193, 129, 0.17);
+            background: #070707;
+            -webkit-backdrop-filter: blur(14px);
+            backdrop-filter: blur(14px);
+            scrollbar-width: thin;
+            scrollbar-color: #c9a35f transparent;
+            isolation: isolate;
+        }
+
+        /* Noir absolu sur toute la zone du logo. Le dégradé commence
+           uniquement sous celui-ci, sans modifier aucune dimension. */
+        .book-sidebar::before {
+            position: absolute;
+            z-index: -2;
+            top: 142px;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            content: "";
+            pointer-events: none;
+            background:
+                radial-gradient(circle at 24% 34%, rgba(230, 179, 91, 0.14), transparent 27%),
+                radial-gradient(circle at 85% 55%, rgba(57, 78, 184, 0.12), transparent 31%),
+                radial-gradient(circle at 30% 80%, rgba(175, 36, 112, 0.08), transparent 29%),
+                linear-gradient(180deg, #070707 0%, #0c090a 23%, #120b10 58%, #080708 100%);
+            animation: sidebarAmbientGlow 18s ease-in-out infinite alternate;
+        }
+
+        .book-sidebar::after {
+            position: absolute;
+            z-index: -1;
+            top: 142px;
+            right: -30%;
+            bottom: 0;
+            left: -30%;
+            content: "";
+            pointer-events: none;
+            opacity: 0;
+            background: linear-gradient(
+                110deg,
+                transparent 42%,
+                rgba(255,255,255,0.02) 46%,
+                rgba(75,100,220,0.08) 49%,
+                rgba(190,42,122,0.06) 52%,
+                transparent 57%
+            );
+            mix-blend-mode: screen;
+            animation: sidebarLightSweep 14s ease-in-out infinite;
+        }
+
+        .book-sidebar::-webkit-scrollbar { width: 7px; }
+        .book-sidebar::-webkit-scrollbar-track { background: transparent; }
+        .book-sidebar::-webkit-scrollbar-thumb {
+            border-radius: 999px;
+            background: #c9a35f;
+        }
+        .book-sidebar::-webkit-scrollbar-thumb:hover { background: #e1c07a; }
+
+        .sidebar-inner {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            min-height: 100%;
+            flex-direction: column;
+            padding: 18px 25px 27px;
+        }
+
+        .wedding-logo {
+            width: 110px;
+            height: auto;
+            margin: 0 auto 18px;
+            filter: none;
+            animation: none;
+        }
+
+        .page-list {
+            position: relative;
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            min-height: 0;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .page-list::before {
+            position: absolute;
+            z-index: 0;
+            top: 17px;
+            bottom: 17px;
+            left: 16px;
+            width: 1px;
+            background: linear-gradient(
+                180deg,
+                rgba(224, 194, 137, 0.34),
+                rgba(78, 98, 191, 0.30) 51%,
+                rgba(219, 177, 101, 0.35)
+            );
+            content: "";
+        }
+
+        .page-list::after { display: none; }
+
+        .page-item { position: relative; }
+        .page-item:not(.page-item-separated) { margin-bottom: 8px; }
+
+        .menu-annexe {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-top: auto;
+            padding: 20px 5px 8px;
+        }
+
+        .menu-annexe-line {
+            width: 100%;
+            height: 1px;
+            margin-bottom: 16px;
+            background: rgba(224, 194, 137, 0.22);
+        }
+
+        .menu-annexe-line::after { display: none; }
+
+        .menu-annexe-title {
+            padding-left: 49px;
+            color: rgba(225, 195, 137, 0.72);
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+        }
+
+        .page-item-separated {
+            margin-top: 0;
+            padding-top: 4px;
+        }
+
+        .page-link {
+            position: relative;
+            display: grid;
+            grid-template-columns: 35px 1fr;
+            gap: 16px;
+            align-items: center;
+            min-height: 46px;
+            padding: 2px 5px;
+            background: transparent;
+            color: rgba(235, 226, 214, 0.70);
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
+            font-size: 14px;
+            font-weight: 300;
+            line-height: 1.35;
+            letter-spacing: 0.015em;
+            text-decoration: none;
+            text-shadow: none;
+            transform: none;
+            transition: color 0.35s ease, transform 0.35s ease;
+        }
+
+        .page-link::before,
+        .page-link::after { display: none; }
+
+        .page-link:hover {
+            background: transparent;
+            color: #e3c47f;
+            text-shadow: 0 0 8px rgba(220, 178, 97, 0.25);
+            transform: translateX(2px);
+        }
+
+        .page-dot {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            width: 33px;
+            height: 33px;
+            place-items: center;
+            overflow: hidden;
+            border: 1px solid rgba(214, 181, 116, 0.42);
+            border-radius: 50%;
+            background: #111011;
+            color: rgba(232, 214, 181, 0.72);
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
+            font-size: 10.5px;
+            font-weight: 400;
+            box-shadow: 0 0 0 1px rgba(0,0,0,0.45);
+            transform: none;
+            transition: all 0.35s ease;
+        }
+
+        .page-dot::after { display: none; }
+
+        .page-link:hover .page-dot {
+            border-color: rgba(232, 198, 132, 0.78);
+            background: #171315;
+            color: #f1d69c;
+            box-shadow: 0 0 12px rgba(218, 174, 91, 0.16);
+            transform: none;
+        }
+
+        .page-link.is-visited {
+            color: rgba(218, 188, 130, 0.74);
+        }
+
+        .page-link.is-visited .page-dot {
+            border-color: rgba(209, 169, 94, 0.70);
+            background: #111011;
+            color: #d9b66f;
+            box-shadow: inset 0 0 0 3px rgba(211, 173, 101, 0.06);
+        }
+
+        .page-link.is-current {
+            color: #f0d392;
+            font-weight: 700;
+        }
+
+        .page-link.is-current .page-label {
+            position: static;
+            justify-self: center;
+            width: 100%;
+            padding-right: 8px;
+            font-family: "Segoe Script", "Lucida Handwriting", "Brush Script MT", "Snell Roundhand", cursive;
+            font-size: 17px;
+            font-weight: 400;
+            line-height: 1.1;
+            text-align: center;
+        }
+
+        .page-link.is-current .page-label::after { display: none; }
+
+        .page-link.is-current .page-dot {
+            border-color: #d8b467;
+            background: linear-gradient(145deg, #f0d89f, #c99f52);
+            color: #080708;
+            transform: scale(1.18);
+            box-shadow:
+                0 0 0 3px rgba(214, 180, 119, 0.12),
+                0 0 10px rgba(214, 180, 119, 0.18),
+                0 0 22px rgba(74, 96, 204, 0.08);
+            animation: activeDotBreath 3.2s ease-in-out infinite;
+        }
+
+        @keyframes sidebarAmbientGlow {
+            0% { opacity: 0.74; transform: translate3d(-1%, 0, 0) scale(1); }
+            50% { opacity: 1; transform: translate3d(1.5%, 1%, 0) scale(1.035); }
+            100% { opacity: 0.82; transform: translate3d(-0.5%, 1.5%, 0) scale(1.01); }
+        }
+
+        @keyframes sidebarLightSweep {
+            0%, 72%, 100% { opacity: 0; transform: translateX(-22%); }
+            77% { opacity: 0.18; }
+            83% { opacity: 0.07; transform: translateX(18%); }
+            86% { opacity: 0; }
+        }
+
+        @keyframes activeDotBreath {
+            0%, 100% {
+                box-shadow:
+                    0 0 0 3px rgba(214, 180, 119, 0.10),
+                    0 0 12px rgba(214, 180, 119, 0.18),
+                    0 0 0 rgba(75, 98, 214, 0);
+            }
+            50% {
+                box-shadow:
+                    0 0 0 3px rgba(214, 180, 119, 0.14),
+                    0 0 22px rgba(214, 180, 119, 0.31),
+                    0 0 17px rgba(75, 98, 214, 0.09);
+            }
+        }
+
+        @media (min-width: 721px) and (max-height: 820px) {
+            .sidebar-inner {
+                padding-top: 10px;
+                padding-bottom: 16px;
+            }
+            .wedding-logo {
+                width: 88px;
+                margin-bottom: 8px;
+            }
+            .book-sidebar::before,
+            .book-sidebar::after { top: 106px; }
+            .page-item:not(.page-item-separated) { margin-bottom: 2px; }
+            .page-link {
+                min-height: 37px;
+                font-size: 12.5px;
+            }
+            .page-dot {
+                width: 28px;
+                height: 28px;
+                font-size: 9.5px;
+            }
+            .page-list::before { left: 13px; }
+            .menu-annexe { padding-top: 10px; }
+            .menu-annexe-line { margin-bottom: 10px; }
+            .menu-annexe-title {
+                padding-left: 44px;
+                font-size: 8px;
+            }
+        }
+
+        @media (max-width: 1020px) {
+            .sidebar-inner {
+                padding-right: 18px;
+                padding-left: 18px;
+            }
+        }
+
+        @media (max-width: 720px) {
+            .mobile-menu-button {
+                border: 1px solid rgba(220, 184, 112, 0.35);
+                background: rgba(10, 8, 9, 0.96);
+                color: #e2c27d;
+                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+            }
+            .book-sidebar { width: min(88vw, 330px); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .book-sidebar::before,
+            .book-sidebar::after,
+            .page-link.is-current .page-dot {
+                animation: none !important;
+            }
+        }
+
     </style>
 </head>
 
