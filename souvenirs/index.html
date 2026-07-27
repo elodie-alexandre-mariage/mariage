@@ -278,19 +278,6 @@
             text-align: center;
         }
 
-        .souvenirs-name {
-            width: min(420px, 72vw);
-            height: auto;
-            margin: 0 auto 22px;
-        }
-
-        .souvenirs-date {
-            width: 150px;
-            max-width: 28vw;
-            height: auto;
-            margin: 0 auto 54px;
-        }
-
         .souvenirs-title {
             margin: 0 auto;
             color: var(--bordeaux);
@@ -525,6 +512,211 @@
             transform: translateX(5px);
         }
 
+
+        /* =========================
+           PLANCHE-CONTACT & EFFETS PHOTO
+        ========================= */
+
+        .memories-grid {
+            grid-template-columns: 0.92fr 1.08fr;
+            grid-template-areas:
+                "heading heading"
+                "couple groupe"
+                "photobooth video";
+        }
+
+        .section-heading {
+            grid-area: heading;
+        }
+
+        .memory-card--couple {
+            grid-area: couple;
+            min-height: 470px;
+        }
+
+        .memory-card--group {
+            grid-area: groupe;
+            min-height: 470px;
+        }
+
+        .memory-card--photobooth {
+            grid-area: photobooth;
+            min-height: 360px;
+        }
+
+        .memory-card--video {
+            grid-area: video;
+            min-height: 520px;
+            margin-top: -110px;
+        }
+
+        .memory-card::marker {
+            content: "";
+        }
+
+        .frame-index {
+            position: absolute;
+            z-index: 4;
+            top: 18px;
+            right: 20px;
+            color: rgba(255, 250, 247, 0.86);
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
+            font-size: 9px;
+            font-weight: 500;
+            letter-spacing: 0.20em;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.40);
+            text-transform: uppercase;
+        }
+
+        .frame-index::before {
+            display: inline-block;
+            width: 22px;
+            height: 1px;
+            margin-right: 8px;
+            vertical-align: middle;
+            background: rgba(255, 250, 247, 0.72);
+            content: "";
+        }
+
+        .camera-flash {
+            position: fixed;
+            z-index: 3000;
+            inset: 0;
+            background:
+                radial-gradient(
+                    circle at var(--flash-x, 50%) var(--flash-y, 50%),
+                    rgba(255, 255, 255, 0.96) 0%,
+                    rgba(255, 255, 255, 0.72) 16%,
+                    rgba(255, 255, 255, 0.24) 38%,
+                    rgba(255, 255, 255, 0) 68%
+                ),
+                rgba(255, 255, 255, 0.28);
+            opacity: 0;
+            pointer-events: none;
+            mix-blend-mode: screen;
+        }
+
+        .camera-flash.is-active {
+            animation: cameraFlash 520ms ease-out;
+        }
+
+        @keyframes cameraFlash {
+            0%   { opacity: 0; }
+            7%   { opacity: 0.82; }
+            18%  { opacity: 0.48; }
+            34%  { opacity: 0.68; }
+            100% { opacity: 0; }
+        }
+
+        .lens-reflection {
+            position: fixed;
+            z-index: 40;
+            top: 10%;
+            left: 18%;
+            width: 42vw;
+            height: 42vw;
+            max-width: 620px;
+            max-height: 620px;
+            border-radius: 50%;
+            background:
+                radial-gradient(circle at 48% 48%,
+                    rgba(255, 255, 255, 0.00) 0 29%,
+                    rgba(255, 255, 255, 0.10) 31%,
+                    rgba(255, 255, 255, 0.00) 34% 47%,
+                    rgba(99, 9, 9, 0.045) 50%,
+                    rgba(255, 255, 255, 0.00) 56%),
+                radial-gradient(circle at 64% 34%,
+                    rgba(255, 255, 255, 0.16),
+                    rgba(255, 255, 255, 0.00) 18%);
+            opacity: 0.48;
+            filter: blur(0.2px);
+            pointer-events: none;
+            transform: translate3d(-8vw, 2vh, 0);
+            animation: lensDrift 16s ease-in-out infinite alternate;
+        }
+
+        .lens-reflection::before,
+        .lens-reflection::after {
+            position: absolute;
+            border-radius: 50%;
+            content: "";
+        }
+
+        .lens-reflection::before {
+            top: 54%;
+            left: 76%;
+            width: 18%;
+            height: 18%;
+            border: 1px solid rgba(99, 9, 9, 0.10);
+            box-shadow:
+                0 0 24px rgba(255, 255, 255, 0.28),
+                inset 0 0 18px rgba(255, 255, 255, 0.18);
+        }
+
+        .lens-reflection::after {
+            top: 70%;
+            left: 92%;
+            width: 8%;
+            height: 8%;
+            background: rgba(255, 255, 255, 0.16);
+            box-shadow: 0 0 28px rgba(255, 255, 255, 0.26);
+        }
+
+        @keyframes lensDrift {
+            0% {
+                transform: translate3d(-10vw, 0, 0) scale(0.98);
+                opacity: 0.32;
+            }
+            50% {
+                opacity: 0.50;
+            }
+            100% {
+                transform: translate3d(34vw, 9vh, 0) scale(1.04);
+                opacity: 0.38;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .memories-grid {
+                grid-template-columns: 1fr;
+                grid-template-areas:
+                    "heading"
+                    "couple"
+                    "groupe"
+                    "photobooth"
+                    "video";
+            }
+
+            .memory-card--video {
+                margin-top: 0;
+                min-height: 420px;
+            }
+
+            .memory-card--photobooth {
+                min-height: 360px;
+            }
+
+            .lens-reflection {
+                width: 70vw;
+                height: 70vw;
+                opacity: 0.30;
+            }
+        }
+
+        @media (max-width: 720px) {
+            .memory-card--couple,
+            .memory-card--group,
+            .memory-card--photobooth,
+            .memory-card--video {
+                min-height: 350px;
+            }
+
+            .frame-index {
+                top: 15px;
+                right: 16px;
+            }
+        }
+
         /* =========================
            PIED DE PAGE
         ========================= */
@@ -658,16 +850,6 @@
                 padding: 78px 20px 58px;
             }
 
-            .souvenirs-name {
-                width: min(340px, 82vw);
-            }
-
-            .souvenirs-date {
-                width: 135px;
-                max-width: 42vw;
-                margin-bottom: 42px;
-            }
-
             .memories-section {
                 padding: 48px 16px 72px;
             }
@@ -731,6 +913,9 @@
 </head>
 
 <body>
+
+    <div class="camera-flash" aria-hidden="true"></div>
+    <div class="lens-reflection" aria-hidden="true"></div>
 
     <button
         class="mobile-menu-button"
@@ -850,18 +1035,6 @@
 
             <header class="souvenirs-intro">
 
-                <img
-                    src="../images/style/nomsansfond.jpg"
-                    alt="Élodie et Alexandre"
-                    class="souvenirs-name"
-                >
-
-                <img
-                    src="../images/style/datesansfond.jpg"
-                    alt="23 mai 2026"
-                    class="souvenirs-date"
-                >
-
                 <h1 class="souvenirs-title">Souvenirs</h1>
 
                 <p class="souvenirs-subtitle">
@@ -881,9 +1054,13 @@
 
                     <a
                         href="../photoscouple/"
-                        class="memory-card"
+                        class="memory-card memory-card--couple"
                         style="--card-image: url('../images/vignettes/vignette_photoscouple.jpg');"
                     >
+                        <span class="frame-index">Frame 01</span>
+                        <span class="frame-index">Frame 02</span>
+                        <span class="frame-index">Frame 03</span>
+                        <span class="frame-index">Frame 04</span>
                         <div class="memory-card-inner">
                             <div class="memory-card-title">
                                 <span class="memory-kicker">Nos plus beaux instants</span>
@@ -895,7 +1072,7 @@
 
                     <a
                         href="../photosgroupe/"
-                        class="memory-card"
+                        class="memory-card memory-card--group"
                         style="--card-image: url('../images/vignettes/vignette_photosgroupe.jpg');"
                     >
                         <div class="memory-card-inner">
@@ -909,7 +1086,7 @@
 
                     <a
                         href="../photobooth/"
-                        class="memory-card"
+                        class="memory-card memory-card--photobooth"
                         style="--card-image: url('../images/vignettes/vignette_photobooth.jpg');"
                     >
                         <div class="memory-card-inner">
@@ -923,7 +1100,7 @@
 
                     <a
                         href="../videos/"
-                        class="memory-card"
+                        class="memory-card memory-card--video"
                         style="--card-image: url('../images/vignettes/vignette_videos.jpg');"
                     >
                         <div class="memory-card-inner">
@@ -1019,6 +1196,39 @@
         const prefersReducedMotion = window.matchMedia(
             "(prefers-reduced-motion: reduce)"
         ).matches;
+
+
+        const cameraFlash = document.querySelector(".camera-flash");
+
+        function triggerCameraFlash() {
+            const x = 18 + Math.random() * 64;
+            const y = 12 + Math.random() * 58;
+
+            cameraFlash.style.setProperty("--flash-x", `${x}%`);
+            cameraFlash.style.setProperty("--flash-y", `${y}%`);
+
+            cameraFlash.classList.remove("is-active");
+            void cameraFlash.offsetWidth;
+            cameraFlash.classList.add("is-active");
+        }
+
+        function scheduleNextFlash() {
+            const delay = 4000 + Math.random() * 1000;
+
+            window.setTimeout(() => {
+                if (!document.hidden) {
+                    triggerCameraFlash();
+                }
+                scheduleNextFlash();
+            }, delay);
+        }
+
+        if (!prefersReducedMotion) {
+            window.setTimeout(() => {
+                triggerCameraFlash();
+                scheduleNextFlash();
+            }, 1800);
+        }
 
         document.querySelectorAll('a[href]').forEach((link) => {
             link.addEventListener("click", (event) => {
