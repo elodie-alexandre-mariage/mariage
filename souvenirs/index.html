@@ -518,40 +518,94 @@
         ========================= */
 
         .memories-grid {
-            grid-template-columns: 0.92fr 1.08fr;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
             grid-template-areas:
                 "heading heading"
                 "couple groupe"
                 "photobooth video";
+            gap: 0;
+            max-width: 1180px;
+            margin: 0 auto;
+            overflow: hidden;
+            border: 1px solid rgba(99, 9, 9, 0.12);
+            border-radius: 5px;
+            background: #d8d1cd;
+            box-shadow: 0 22px 55px rgba(52, 35, 31, 0.12);
         }
 
         .section-heading {
             grid-area: heading;
+            margin: 0;
+            padding: 24px 28px;
+            border-bottom: 1px solid rgba(99, 9, 9, 0.16);
+            background: var(--soft);
+        }
+
+        .memory-card {
+            min-height: 420px;
+            border: 0;
+            border-radius: 0;
+            box-shadow: none;
         }
 
         .memory-card--couple {
             grid-area: couple;
-            min-height: 470px;
+            border-right: 1px solid rgba(255, 255, 255, 0.34);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.34);
         }
 
         .memory-card--group {
             grid-area: groupe;
-            min-height: 470px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.34);
         }
 
         .memory-card--photobooth {
             grid-area: photobooth;
-            min-height: 360px;
+            border-right: 1px solid rgba(255, 255, 255, 0.34);
         }
 
         .memory-card--video {
             grid-area: video;
-            min-height: 520px;
-            margin-top: -110px;
+            margin-top: 0;
         }
 
-        .memory-card::marker {
-            content: "";
+        .memory-card:hover {
+            z-index: 2;
+            border-color: transparent;
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.42);
+            transform: none;
+        }
+
+        .memory-card-inner {
+            justify-content: flex-end;
+            padding: 34px 36px;
+        }
+
+        .memory-card-title {
+            position: relative;
+            z-index: 3;
+            max-width: 92%;
+            opacity: 1;
+            transform: none !important;
+        }
+
+        .memory-kicker,
+        .memory-card h2,
+        .memory-arrow {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .memory-arrow {
+            position: relative;
+            z-index: 3;
+            align-self: flex-start;
+            margin-top: 18px;
+        }
+
+        .memory-card h2::after {
+            width: 38px;
         }
 
         .frame-index {
@@ -687,13 +741,15 @@
                     "video";
             }
 
-            .memory-card--video {
-                margin-top: 0;
-                min-height: 420px;
+            .memory-card--couple,
+            .memory-card--group,
+            .memory-card--photobooth {
+                border-right: 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.34);
             }
 
-            .memory-card--photobooth {
-                min-height: 360px;
+            .memory-card--video {
+                border-bottom: 0;
             }
 
             .lens-reflection {
@@ -704,11 +760,12 @@
         }
 
         @media (max-width: 720px) {
-            .memory-card--couple,
-            .memory-card--group,
-            .memory-card--photobooth,
-            .memory-card--video {
+            .memory-card {
                 min-height: 350px;
+            }
+
+            .memory-card-inner {
+                padding: 28px 26px;
             }
 
             .frame-index {
