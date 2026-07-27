@@ -1,1 +1,842 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Les photos et les vidéos du mariage d’Élodie et Alexandre, célébré le 23 mai 2026.">
+    <title>Souvenirs — Élodie & Alexandre</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bordeaux: #630909;
+            --bordeaux-dark: #4f0707;
+            --text: #403936;
+            --muted: #746b67;
+            --line: #e8dfda;
+            --soft: #f8f5f3;
+            --paper: #fefefe;
+            --white: #ffffff;
+            --background: #fefefe;
+            --sidebar-width: 290px;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            min-height: 100vh;
+            background: var(--background);
+            color: var(--text);
+            font-family: Georgia, "Times New Roman", serif;
+        }
+
+        img { display: block; max-width: 100%; }
+        a { color: inherit; }
+        button { font: inherit; }
+
+        /* =========================
+           NAVIGATION LATÉRALE
+        ========================= */
+
+        .mobile-menu-button { display: none; }
+
+        .book-sidebar {
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            width: var(--sidebar-width);
+            overflow-y: auto;
+            border-right: 1px solid var(--line);
+            background: rgba(254, 254, 254, 0.98);
+            -webkit-backdrop-filter: blur(14px);
+            backdrop-filter: blur(14px);
+            scrollbar-width: thin;
+            scrollbar-color: var(--bordeaux) transparent;
+        }
+
+        .book-sidebar::-webkit-scrollbar { width: 7px; }
+        .book-sidebar::-webkit-scrollbar-track { background: transparent; }
+        .book-sidebar::-webkit-scrollbar-thumb {
+            border-radius: 999px;
+            background: var(--bordeaux);
+        }
+
+        .sidebar-inner {
+            display: flex;
+            min-height: 100%;
+            flex-direction: column;
+            padding: 18px 25px 27px;
+        }
+
+        .wedding-logo {
+            width: 110px;
+            height: auto;
+            margin: 0 auto 18px;
+        }
+
+        .page-list {
+            position: relative;
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            min-height: 0;
+            list-style: none;
+        }
+
+        .page-list::before {
+            position: absolute;
+            top: 17px;
+            bottom: 17px;
+            left: 16px;
+            width: 1px;
+            background: #d9cbc4;
+            content: "";
+        }
+
+        .page-item { position: relative; }
+        .page-item:not(.page-item-separated) { margin-bottom: 8px; }
+
+        .menu-annexe {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-top: auto;
+            padding: 20px 5px 8px;
+        }
+
+        .menu-annexe-line {
+            width: 100%;
+            height: 1px;
+            margin-bottom: 16px;
+            background: rgba(99, 9, 9, 0.16);
+        }
+
+        .menu-annexe-title {
+            padding-left: 49px;
+            color: rgba(99, 9, 9, 0.68);
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+        }
+
+        .page-item-separated { padding-top: 4px; }
+
+        .page-link {
+            position: relative;
+            display: grid;
+            grid-template-columns: 35px 1fr;
+            gap: 16px;
+            align-items: center;
+            min-height: 46px;
+            padding: 2px 5px;
+            color: #766c68;
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
+            font-size: 14px;
+            font-weight: 300;
+            line-height: 1.35;
+            letter-spacing: 0.015em;
+            text-decoration: none;
+            transition: color 0.35s ease, transform 0.35s ease;
+        }
+
+        .page-link:hover {
+            color: var(--bordeaux);
+            transform: translateX(2px);
+        }
+
+        .page-dot {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            width: 33px;
+            height: 33px;
+            place-items: center;
+            border: 1px solid rgba(99, 9, 9, 0.24);
+            border-radius: 50%;
+            background: #fefefe;
+            color: #a99c96;
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
+            font-size: 10.5px;
+        }
+
+        .page-link.is-visited { color: rgba(99, 9, 9, 0.70); }
+
+        .page-link.is-visited .page-dot {
+            border-color: rgba(99, 9, 9, 0.72);
+            color: var(--bordeaux);
+            box-shadow: inset 0 0 0 3px rgba(99, 9, 9, 0.06);
+        }
+
+        .page-link.is-current {
+            color: var(--bordeaux);
+            font-weight: 700;
+        }
+
+        .page-link.is-current .page-label {
+            justify-self: center;
+            width: 100%;
+            padding-right: 8px;
+            font-family: "Segoe Script", "Lucida Handwriting", "Brush Script MT", "Snell Roundhand", cursive;
+            font-size: 17px;
+            font-weight: 400;
+            line-height: 1.1;
+            text-align: center;
+        }
+
+        .page-link.is-current .page-dot {
+            border-color: var(--bordeaux);
+            background: var(--bordeaux);
+            color: var(--white);
+            transform: scale(1.18);
+            box-shadow: 0 0 0 3px rgba(99, 9, 9, 0.12);
+        }
+
+        /* =========================
+           STRUCTURE DE PAGE
+        ========================= */
+
+        .page-shell {
+            min-height: 100vh;
+            margin-left: var(--sidebar-width);
+            opacity: 1;
+            transform: translateX(0);
+            transition: transform 400ms cubic-bezier(0.22, 1, 0.36, 1), opacity 400ms ease;
+        }
+
+        body.page-leaving .page-shell {
+            opacity: 0;
+            transform: translateX(-34px);
+        }
+
+        .hero {
+            position: relative;
+            overflow: hidden;
+            padding: 92px 30px 84px;
+            background:
+                radial-gradient(circle at 15% 20%, rgba(99, 9, 9, 0.055), transparent 34%),
+                radial-gradient(circle at 88% 25%, rgba(99, 9, 9, 0.045), transparent 32%),
+                linear-gradient(180deg, #fff 0%, #fbf8f6 100%);
+            text-align: center;
+        }
+
+        .hero::before,
+        .hero::after {
+            position: absolute;
+            width: 260px;
+            height: 260px;
+            border: 1px solid rgba(99, 9, 9, 0.06);
+            border-radius: 50%;
+            content: "";
+        }
+
+        .hero::before { top: -170px; left: -70px; }
+        .hero::after { right: -100px; bottom: -180px; }
+
+        .eyebrow {
+            margin-bottom: 14px;
+            color: rgba(99, 9, 9, 0.72);
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.30em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            color: var(--bordeaux);
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
+            font-size: clamp(30px, 3.6vw, 48px);
+            font-weight: 300;
+            line-height: 1.3;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        h1::after {
+            display: block;
+            width: 88px;
+            height: 1px;
+            margin: 22px auto 0;
+            background: rgba(99, 9, 9, 0.48);
+            content: "";
+        }
+
+        .intro {
+            max-width: 760px;
+            margin: 27px auto 0;
+            color: var(--muted);
+            font-size: 17px;
+            line-height: 1.85;
+        }
+
+        .memories-section {
+            padding: 86px 34px 104px;
+            background: var(--white);
+        }
+
+        .memories-inner {
+            width: min(1180px, 100%);
+            margin: 0 auto;
+        }
+
+        .section-heading {
+            max-width: 760px;
+            margin: 0 auto 54px;
+            text-align: center;
+        }
+
+        .section-kicker {
+            margin-bottom: 12px;
+            color: rgba(99, 9, 9, 0.70);
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.30em;
+            text-transform: uppercase;
+        }
+
+        .section-heading h2 {
+            color: var(--text);
+            font-size: clamp(30px, 4vw, 48px);
+            font-weight: normal;
+            line-height: 1.22;
+        }
+
+        .section-heading p:last-child {
+            max-width: 680px;
+            margin: 18px auto 0;
+            color: var(--muted);
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        /* =========================
+           CARTES SOUVENIRS
+        ========================= */
+
+        .memories-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 28px;
+        }
+
+        .memory-card {
+            position: relative;
+            min-height: 520px;
+            overflow: hidden;
+            background: #2a2220;
+            box-shadow: 0 24px 64px rgba(62, 42, 35, 0.13);
+            text-decoration: none;
+            isolation: isolate;
+        }
+
+        .memory-card img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 850ms cubic-bezier(0.22, 1, 0.36, 1), filter 500ms ease;
+        }
+
+        .memory-card::before {
+            position: absolute;
+            z-index: 1;
+            inset: 0;
+            background:
+                linear-gradient(180deg, rgba(16, 10, 9, 0.02) 12%, rgba(16, 10, 9, 0.16) 48%, rgba(16, 10, 9, 0.82) 100%);
+            content: "";
+            transition: background 400ms ease;
+        }
+
+        .memory-card::after {
+            position: absolute;
+            z-index: 2;
+            inset: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.38);
+            content: "";
+            pointer-events: none;
+            transition: inset 400ms ease, border-color 400ms ease;
+        }
+
+        .memory-card-content {
+            position: absolute;
+            z-index: 3;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            padding: 42px 42px 40px;
+            color: var(--white);
+        }
+
+        .memory-number {
+            display: block;
+            margin-bottom: 12px;
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.34em;
+            text-transform: uppercase;
+            opacity: 0.78;
+        }
+
+        .memory-card h3 {
+            max-width: 430px;
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
+            font-size: clamp(25px, 2.6vw, 36px);
+            font-weight: 300;
+            line-height: 1.2;
+            letter-spacing: 0.035em;
+        }
+
+        .memory-card p {
+            max-width: 480px;
+            margin-top: 13px;
+            font-size: 15.5px;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.84);
+        }
+
+        .memory-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 24px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.62);
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+        }
+
+        .memory-link span {
+            font-size: 18px;
+            line-height: 1;
+            transition: transform 350ms ease;
+        }
+
+        .memory-card:hover img,
+        .memory-card:focus-visible img {
+            filter: brightness(0.92);
+            transform: scale(1.045);
+        }
+
+        .memory-card:hover::after,
+        .memory-card:focus-visible::after {
+            inset: 22px;
+            border-color: rgba(255, 255, 255, 0.72);
+        }
+
+        .memory-card:hover .memory-link span,
+        .memory-card:focus-visible .memory-link span {
+            transform: translateX(6px);
+        }
+
+        .memory-card:focus-visible {
+            outline: 3px solid var(--bordeaux);
+            outline-offset: 5px;
+        }
+
+        .memory-card.video-card {
+            grid-column: 1 / -1;
+            min-height: 590px;
+        }
+
+        .video-card::before {
+            background:
+                linear-gradient(90deg, rgba(15, 9, 8, 0.80) 0%, rgba(15, 9, 8, 0.46) 44%, rgba(15, 9, 8, 0.08) 78%),
+                linear-gradient(180deg, transparent 55%, rgba(15, 9, 8, 0.58) 100%);
+        }
+
+        .video-card .memory-card-content {
+            top: 50%;
+            right: auto;
+            bottom: auto;
+            width: min(560px, 72%);
+            padding: 48px 58px;
+            transform: translateY(-50%);
+        }
+
+        .play-mark {
+            display: grid;
+            width: 62px;
+            height: 62px;
+            margin-bottom: 24px;
+            place-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.72);
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 21px;
+            text-indent: 4px;
+            transition: background 350ms ease, transform 350ms ease;
+        }
+
+        .video-card:hover .play-mark {
+            background: var(--bordeaux);
+            transform: scale(1.06);
+        }
+
+        /* =========================
+           CONCLUSION
+        ========================= */
+
+        .closing {
+            padding: 92px 30px;
+            border-top: 1px solid var(--line);
+            background: var(--soft);
+            text-align: center;
+        }
+
+        .closing-inner {
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        .closing-label {
+            margin-bottom: 16px;
+            color: rgba(99, 9, 9, 0.68);
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.32em;
+            text-transform: uppercase;
+        }
+
+        .closing h2 {
+            color: var(--bordeaux);
+            font-size: clamp(28px, 4vw, 46px);
+            font-weight: normal;
+            line-height: 1.3;
+        }
+
+        .closing p:last-child {
+            max-width: 610px;
+            margin: 22px auto 0;
+            color: var(--muted);
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        /* =========================
+           PIED DE PAGE
+        ========================= */
+
+        .footer {
+            padding: 56px 20px 62px;
+            background: var(--white);
+            text-align: center;
+        }
+
+        .footer-name-logo {
+            width: min(245px, 70vw);
+            margin: 0 auto 13px;
+        }
+
+        .footer-date-logo {
+            width: min(145px, 45vw);
+            margin: 0 auto;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 1020px) {
+            :root { --sidebar-width: 250px; }
+            .sidebar-inner { padding-right: 18px; padding-left: 18px; }
+            .memories-grid { grid-template-columns: 1fr; }
+            .memory-card,
+            .memory-card.video-card { grid-column: auto; min-height: 520px; }
+        }
+
+        @media (max-width: 720px) {
+            :root { --sidebar-width: 0px; }
+
+            .mobile-menu-button {
+                position: fixed;
+                z-index: 1400;
+                top: 14px;
+                left: 14px;
+                display: inline-grid;
+                width: 44px;
+                height: 44px;
+                place-items: center;
+                border: 1px solid rgba(99, 9, 9, 0.20);
+                border-radius: 50%;
+                background: rgba(254, 254, 254, 0.98);
+                color: var(--bordeaux);
+                font-size: 19px;
+                box-shadow: 0 8px 24px rgba(53, 36, 31, 0.10);
+            }
+
+            .book-sidebar {
+                width: min(88vw, 330px);
+                transform: translateX(-105%);
+                transition: transform 0.3s ease;
+            }
+
+            .book-sidebar.is-open { transform: translateX(0); }
+            .page-shell { margin-left: 0; }
+            .hero { padding: 78px 22px 64px; }
+            .memories-section { padding: 66px 16px 78px; }
+            .section-heading { margin-bottom: 38px; }
+
+            .memory-card,
+            .memory-card.video-card {
+                min-height: 450px;
+            }
+
+            .memory-card-content {
+                padding: 34px 28px 31px;
+            }
+
+            .video-card::before {
+                background: linear-gradient(180deg, rgba(15, 9, 8, 0.10) 22%, rgba(15, 9, 8, 0.84) 100%);
+            }
+
+            .video-card .memory-card-content {
+                top: auto;
+                right: 0;
+                bottom: 0;
+                width: 100%;
+                padding: 34px 28px 31px;
+                transform: none;
+            }
+
+            .memory-card::after { inset: 11px; }
+            .memory-card:hover::after { inset: 15px; }
+            .closing { padding: 74px 22px; }
+        }
+
+        @media (max-width: 440px) {
+            .intro { font-size: 15.5px; }
+            .memory-card,
+            .memory-card.video-card { min-height: 410px; }
+            .memory-card p { font-size: 14.5px; }
+            .play-mark { width: 54px; height: 54px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <button class="mobile-menu-button" type="button" aria-label="Ouvrir le menu" aria-expanded="false">☰</button>
+
+    <aside class="book-sidebar" id="book-sidebar" aria-label="Pages de l’album">
+        <div class="sidebar-inner">
+            <img src="../images/style/logosansfond.jpg" alt="Logo du mariage d’Élodie et Alexandre" class="wedding-logo">
+
+            <nav aria-label="Navigation principale">
+                <ol class="page-list">
+                    <li class="page-item"><a href="../" class="page-link" data-page="bienvenue"><span class="page-dot">1</span><span class="page-label">Bienvenue</span></a></li>
+                    <li class="page-item"><a href="../sommaire/" class="page-link" data-page="sommaire"><span class="page-dot">2</span><span class="page-label">Sommaire</span></a></li>
+                    <li class="page-item"><a href="../invitation/" class="page-link" data-page="invitation"><span class="page-dot">3</span><span class="page-label">Invitation</span></a></li>
+                    <li class="page-item"><a href="../preparatifs/" class="page-link" data-page="preparatifs"><span class="page-dot">4</span><span class="page-label">Préparatifs</span></a></li>
+                    <li class="page-item"><a href="../first-look/" class="page-link" data-page="first-look"><span class="page-dot">5</span><span class="page-label">First Look</span></a></li>
+                    <li class="page-item"><a href="../mairie/" class="page-link" data-page="mairie"><span class="page-dot">6</span><span class="page-label">Mairie</span></a></li>
+                    <li class="page-item"><a href="../eglise/" class="page-link" data-page="eglise"><span class="page-dot">7</span><span class="page-label">Église</span></a></li>
+                    <li class="page-item"><a href="../vin_d_honneur/" class="page-link" data-page="vin-d-honneur"><span class="page-dot">8</span><span class="page-label">Vin d’honneur</span></a></li>
+                    <li class="page-item"><a href="../soiree/" class="page-link" data-page="soiree"><span class="page-dot">9</span><span class="page-label">Soirée</span></a></li>
+                    <li class="page-item"><a href="../remerciements/" class="page-link" data-page="remerciements"><span class="page-dot">10</span><span class="page-label">Remerciements</span></a></li>
+
+                    <li class="menu-annexe" aria-hidden="true"><span class="menu-annexe-line"></span><span class="menu-annexe-title">À revivre</span></li>
+
+                    <li class="page-item page-item-separated"><a href="./" class="page-link" data-page="souvenirs"><span class="page-dot">11</span><span class="page-label">Souvenirs</span></a></li>
+                </ol>
+            </nav>
+        </div>
+    </aside>
+
+    <main class="page-shell">
+        <section class="hero">
+            <p class="eyebrow">Le dernier chapitre de notre album</p>
+            <h1>Souvenirs</h1>
+            <p class="intro">
+                Le 23 mai 2026 est passé bien trop vite. Nous avons rassemblé ici les photos
+                et les vidéos qui nous permettent de revivre cette journée, encore et encore.
+            </p>
+        </section>
+
+        <section class="memories-section">
+            <div class="memories-inner">
+                <header class="section-heading">
+                    <p class="section-kicker">Choisissez un souvenir</p>
+                    <h2>Revivre chaque instant</h2>
+                    <p>
+                        Des moments vécus à deux aux éclats de rire du photobooth,
+                        découvrez les images et les films qui racontent notre mariage.
+                    </p>
+                </header>
+
+                <div class="memories-grid">
+                    <a class="memory-card" href="../photoscouple/" aria-label="Découvrir les photos de couple">
+                        <img src="../images/vignettes/vignette_photoscouple.jpg" alt="Élodie et Alexandre pendant leur séance de photos de couple">
+                        <div class="memory-card-content">
+                            <span class="memory-number">01 — Nous deux</span>
+                            <h3>Nos photos de couple</h3>
+                            <p>
+                                Quelques instants rien qu’à deux, au milieu d’une journée vécue
+                                entourés de toutes les personnes que nous aimons.
+                            </p>
+                            <span class="memory-link">Découvrir les photos <span aria-hidden="true">→</span></span>
+                        </div>
+                    </a>
+
+                    <a class="memory-card" href="../photosgroupe/" aria-label="Découvrir les photos de groupe">
+                        <img src="../images/vignettes/vignette_photosgroupe.jpg" alt="Les mariés entourés de leurs proches">
+                        <div class="memory-card-content">
+                            <span class="memory-number">02 — Tous réunis</span>
+                            <h3>Nos photos de groupe</h3>
+                            <p>
+                                Nos familles, nos témoins et nos proches réunis autour de nous
+                                pour garder une trace précieuse de cette journée.
+                            </p>
+                            <span class="memory-link">Découvrir les photos <span aria-hidden="true">→</span></span>
+                        </div>
+                    </a>
+
+                    <a class="memory-card" href="../photobooth/" aria-label="Découvrir les photos du photobooth">
+                        <img src="../images/vignettes/vignette_photobooth.jpg" alt="Des invités devant le photobooth du mariage">
+                        <div class="memory-card-content">
+                            <span class="memory-number">03 — Les plus spontanées</span>
+                            <h3>Le photobooth</h3>
+                            <p>
+                                Des accessoires, des grimaces, beaucoup de sourires
+                                et quelques dossiers que nous garderons précieusement.
+                            </p>
+                            <span class="memory-link">Voir le photobooth <span aria-hidden="true">→</span></span>
+                        </div>
+                    </a>
+
+                    <a class="memory-card video-card" href="../videos/" aria-label="Voir les vidéos du mariage">
+                        <img src="../images/vignettes/vignette_videos.jpg" alt="Extrait du film du mariage d’Élodie et Alexandre">
+                        <div class="memory-card-content">
+                            <span class="play-mark" aria-hidden="true">▶</span>
+                            <span class="memory-number">04 — En mouvement</span>
+                            <h3>Le film et les vidéos</h3>
+                            <p>
+                                Onze minutes pour revivre cette journée, retrouver les émotions,
+                                les regards, les rires et tous les moments qui ont marqué notre mariage.
+                            </p>
+                            <span class="memory-link">Voir les vidéos <span aria-hidden="true">→</span></span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="closing">
+            <div class="closing-inner">
+                <p class="closing-label">Une journée qui continue de vivre</p>
+                <h2>Les images passent,<br>les souvenirs restent.</h2>
+                <p>
+                    Grâce à toutes ces photos et à ces vidéos, nous pourrons continuer
+                    à revivre cette journée et à en partager les plus beaux instants.
+                </p>
+            </div>
+        </section>
+
+        <footer class="footer" aria-label="Signature de l’album">
+            <img src="../images/style/nomsansfond.jpg" alt="Élodie et Alexandre" class="footer-name-logo">
+            <img src="../images/style/datesansfond.jpg" alt="23 mai 2026" class="footer-date-logo">
+        </footer>
+    </main>
+
+    <script>
+        const currentPage = "souvenirs";
+        const pageOrder = [
+            "bienvenue", "sommaire", "invitation", "preparatifs", "first-look",
+            "mairie", "eglise", "vin-d-honneur", "soiree", "remerciements", "souvenirs"
+        ];
+
+        const currentIndex = pageOrder.indexOf(currentPage);
+
+        document.querySelectorAll(".page-link").forEach((link) => {
+            const pageName = link.dataset.page;
+            const pageIndex = pageOrder.indexOf(pageName);
+
+            link.classList.remove("is-current", "is-visited");
+            link.removeAttribute("aria-current");
+
+            if (pageIndex < currentIndex) link.classList.add("is-visited");
+
+            if (pageName === currentPage) {
+                link.classList.add("is-current");
+                link.setAttribute("aria-current", "page");
+            }
+        });
+
+        const menuButton = document.querySelector(".mobile-menu-button");
+        const sidebar = document.querySelector(".book-sidebar");
+
+        menuButton.addEventListener("click", () => {
+            const isOpen = sidebar.classList.toggle("is-open");
+            menuButton.setAttribute("aria-expanded", String(isOpen));
+            menuButton.textContent = isOpen ? "×" : "☰";
+        });
+
+        document.addEventListener("click", (event) => {
+            const clickedInsideSidebar = sidebar.contains(event.target);
+            const clickedMenuButton = menuButton.contains(event.target);
+
+            if (
+                window.innerWidth <= 720 &&
+                sidebar.classList.contains("is-open") &&
+                !clickedInsideSidebar &&
+                !clickedMenuButton
+            ) {
+                sidebar.classList.remove("is-open");
+                menuButton.setAttribute("aria-expanded", "false");
+                menuButton.textContent = "☰";
+            }
+        });
+
+        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        document.querySelectorAll('a[href]').forEach((link) => {
+            link.addEventListener("click", (event) => {
+                const href = link.getAttribute("href");
+
+                if (
+                    prefersReducedMotion ||
+                    !href ||
+                    href.startsWith("#") ||
+                    link.target === "_blank" ||
+                    event.ctrlKey ||
+                    event.metaKey ||
+                    event.shiftKey ||
+                    event.altKey
+                ) return;
+
+                const destination = new URL(link.href, window.location.href);
+                if (destination.origin !== window.location.origin) return;
+
+                event.preventDefault();
+                document.body.classList.add("page-leaving");
+
+                window.setTimeout(() => {
+                    window.location.href = destination.href;
+                }, 400);
+            });
+        });
+    </script>
+</body>
+</html>
