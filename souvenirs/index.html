@@ -1,17 +1,27 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Les photos et les vidéos du mariage d’Élodie et Alexandre, célébré le 23 mai 2026.">
+
+    <meta
+        name="description"
+        content="Les photos et les vidéos du mariage d’Élodie et Alexandre, célébré le 23 mai 2026."
+    >
+
     <title>Souvenirs — Élodie & Alexandre</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
         :root {
             --bordeaux: #630909;
@@ -26,7 +36,9 @@
             --sidebar-width: 290px;
         }
 
-        html { scroll-behavior: smooth; }
+        html {
+            scroll-behavior: smooth;
+        }
 
         body {
             min-height: 100vh;
@@ -35,15 +47,18 @@
             font-family: Georgia, "Times New Roman", serif;
         }
 
-        img { display: block; max-width: 100%; }
-        a { color: inherit; }
-        button { font: inherit; }
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        a {
+            color: inherit;
+        }
 
         /* =========================
            NAVIGATION LATÉRALE
         ========================= */
-
-        .mobile-menu-button { display: none; }
 
         .book-sidebar {
             position: fixed;
@@ -61,11 +76,21 @@
             scrollbar-color: var(--bordeaux) transparent;
         }
 
-        .book-sidebar::-webkit-scrollbar { width: 7px; }
-        .book-sidebar::-webkit-scrollbar-track { background: transparent; }
+        .book-sidebar::-webkit-scrollbar {
+            width: 7px;
+        }
+
+        .book-sidebar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
         .book-sidebar::-webkit-scrollbar-thumb {
             border-radius: 999px;
             background: var(--bordeaux);
+        }
+
+        .book-sidebar::-webkit-scrollbar-thumb:hover {
+            background: var(--bordeaux-dark);
         }
 
         .sidebar-inner {
@@ -87,6 +112,8 @@
             flex: 1;
             flex-direction: column;
             min-height: 0;
+            margin: 0;
+            padding: 0;
             list-style: none;
         }
 
@@ -100,8 +127,13 @@
             content: "";
         }
 
-        .page-item { position: relative; }
-        .page-item:not(.page-item-separated) { margin-bottom: 8px; }
+        .page-item {
+            position: relative;
+        }
+
+        .page-item:not(.page-item-separated) {
+            margin-bottom: 8px;
+        }
 
         .menu-annexe {
             display: flex;
@@ -128,7 +160,11 @@
             text-transform: uppercase;
         }
 
-        .page-item-separated { padding-top: 4px; }
+        .page-item-separated {
+            margin-top: 0;
+            padding-top: 4px;
+            border-top: 0;
+        }
 
         .page-link {
             position: relative;
@@ -160,18 +196,28 @@
             width: 33px;
             height: 33px;
             place-items: center;
+            flex: 0 0 auto;
             border: 1px solid rgba(99, 9, 9, 0.24);
             border-radius: 50%;
             background: #fefefe;
             color: #a99c96;
             font-family: "Montserrat", Arial, Helvetica, sans-serif;
             font-size: 10.5px;
+            font-weight: 400;
+            transition: all 0.35s ease;
         }
 
-        .page-link.is-visited { color: rgba(99, 9, 9, 0.70); }
+        .page-label {
+            line-height: 1.35;
+        }
+
+        .page-link.is-visited {
+            color: rgba(99, 9, 9, 0.70);
+        }
 
         .page-link.is-visited .page-dot {
             border-color: rgba(99, 9, 9, 0.72);
+            background: var(--background);
             color: var(--bordeaux);
             box-shadow: inset 0 0 0 3px rgba(99, 9, 9, 0.06);
         }
@@ -197,11 +243,13 @@
             background: var(--bordeaux);
             color: var(--white);
             transform: scale(1.18);
-            box-shadow: 0 0 0 3px rgba(99, 9, 9, 0.12);
+            box-shadow:
+                0 0 0 3px rgba(99, 9, 9, 0.12),
+                0 0 10px rgba(99, 9, 9, 0.10);
         }
 
         /* =========================
-           STRUCTURE DE PAGE
+           PAGE SOUVENIRS
         ========================= */
 
         .page-shell {
@@ -209,7 +257,10 @@
             margin-left: var(--sidebar-width);
             opacity: 1;
             transform: translateX(0);
-            transition: transform 400ms cubic-bezier(0.22, 1, 0.36, 1), opacity 400ms ease;
+            transition:
+                transform 400ms cubic-bezier(0.22, 1, 0.36, 1),
+                opacity 400ms ease;
+            will-change: transform, opacity;
         }
 
         body.page-leaving .page-shell {
@@ -217,51 +268,41 @@
             transform: translateX(-34px);
         }
 
-        .hero {
-            position: relative;
-            overflow: hidden;
-            padding: 92px 30px 84px;
-            background:
-                radial-gradient(circle at 15% 20%, rgba(99, 9, 9, 0.055), transparent 34%),
-                radial-gradient(circle at 88% 25%, rgba(99, 9, 9, 0.045), transparent 32%),
-                linear-gradient(180deg, #fff 0%, #fbf8f6 100%);
+        .souvenirs-page {
+            min-height: 100vh;
+            background: var(--background);
+        }
+
+        .souvenirs-intro {
+            padding: 82px 30px 70px;
             text-align: center;
         }
 
-        .hero::before,
-        .hero::after {
-            position: absolute;
-            width: 260px;
-            height: 260px;
-            border: 1px solid rgba(99, 9, 9, 0.06);
-            border-radius: 50%;
-            content: "";
+        .souvenirs-name {
+            width: min(420px, 72vw);
+            height: auto;
+            margin: 0 auto 22px;
         }
 
-        .hero::before { top: -170px; left: -70px; }
-        .hero::after { right: -100px; bottom: -180px; }
-
-        .eyebrow {
-            margin-bottom: 14px;
-            color: rgba(99, 9, 9, 0.72);
-            font-family: "Montserrat", Arial, Helvetica, sans-serif;
-            font-size: 11px;
-            font-weight: 500;
-            letter-spacing: 0.30em;
-            text-transform: uppercase;
+        .souvenirs-date {
+            width: 150px;
+            max-width: 28vw;
+            height: auto;
+            margin: 0 auto 54px;
         }
 
-        h1 {
+        .souvenirs-title {
+            margin: 0 auto;
             color: var(--bordeaux);
             font-family: "Montserrat", Arial, Helvetica, sans-serif;
-            font-size: clamp(30px, 3.6vw, 48px);
+            font-size: clamp(26px, 2.2vw, 30px);
             font-weight: 300;
-            line-height: 1.3;
+            line-height: 1.35;
             letter-spacing: 0.12em;
             text-transform: uppercase;
         }
 
-        h1::after {
+        .souvenirs-title::after {
             display: block;
             width: 88px;
             height: 1px;
@@ -270,263 +311,218 @@
             content: "";
         }
 
-        .intro {
-            max-width: 760px;
-            margin: 27px auto 0;
+        .souvenirs-subtitle {
+            max-width: 620px;
+            margin: 25px auto 0;
             color: var(--muted);
-            font-size: 17px;
-            line-height: 1.85;
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
+            font-size: 14px;
+            font-weight: 300;
+            line-height: 1.75;
+            letter-spacing: 0.04em;
         }
 
         .memories-section {
-            padding: 86px 34px 104px;
-            background: var(--white);
+            padding: 72px 40px 105px;
+            border-top: 1px solid var(--line);
+            background: var(--soft);
         }
-
-        .memories-inner {
-            width: min(1180px, 100%);
-            margin: 0 auto;
-        }
-
-        .section-heading {
-            max-width: 760px;
-            margin: 0 auto 54px;
-            text-align: center;
-        }
-
-        .section-kicker {
-            margin-bottom: 12px;
-            color: rgba(99, 9, 9, 0.70);
-            font-family: "Montserrat", Arial, Helvetica, sans-serif;
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 0.30em;
-            text-transform: uppercase;
-        }
-
-        .section-heading h2 {
-            color: var(--text);
-            font-size: clamp(30px, 4vw, 48px);
-            font-weight: normal;
-            line-height: 1.22;
-        }
-
-        .section-heading p:last-child {
-            max-width: 680px;
-            margin: 18px auto 0;
-            color: var(--muted);
-            font-size: 16px;
-            line-height: 1.8;
-        }
-
-        /* =========================
-           CARTES SOUVENIRS
-        ========================= */
 
         .memories-grid {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 28px;
+            gap: 30px;
+            max-width: 1180px;
+            margin: 0 auto;
         }
+
+        .section-heading {
+            grid-column: 1 / -1;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 30px;
+            margin: 0 0 10px;
+            padding-bottom: 22px;
+            border-bottom: 1px solid rgba(99, 9, 9, 0.16);
+        }
+
+        .section-heading span {
+            color: var(--bordeaux);
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+
+        .section-heading p {
+            max-width: 500px;
+            color: var(--muted);
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
+            font-size: 14px;
+            font-weight: 300;
+            line-height: 1.65;
+            text-align: right;
+        }
+
+        /* =========================
+           CARTES
+        ========================= */
 
         .memory-card {
             position: relative;
-            min-height: 520px;
+            display: block;
+            min-height: 460px;
             overflow: hidden;
-            background: #2a2220;
-            box-shadow: 0 24px 64px rgba(62, 42, 35, 0.13);
+            border: 1px solid rgba(99, 9, 9, 0.10);
+            border-radius: 5px;
+            background: #d8d1cd;
+            color: #fffaf7;
             text-decoration: none;
             isolation: isolate;
-        }
-
-        .memory-card img {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 850ms cubic-bezier(0.22, 1, 0.36, 1), filter 500ms ease;
+            transition:
+                transform 0.45s ease,
+                box-shadow 0.45s ease,
+                border-color 0.45s ease;
         }
 
         .memory-card::before {
             position: absolute;
-            z-index: 1;
             inset: 0;
-            background:
-                linear-gradient(180deg, rgba(16, 10, 9, 0.02) 12%, rgba(16, 10, 9, 0.16) 48%, rgba(16, 10, 9, 0.82) 100%);
+            z-index: -2;
+            background: var(--card-image) center / cover no-repeat;
             content: "";
-            transition: background 400ms ease;
+            filter:
+                grayscale(1)
+                saturate(0.12)
+                contrast(0.92)
+                brightness(0.92);
+            transform: scale(1.015);
+            transition:
+                filter 0.75s ease,
+                transform 0.85s ease;
         }
 
         .memory-card::after {
             position: absolute;
-            z-index: 2;
-            inset: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.38);
-            content: "";
-            pointer-events: none;
-            transition: inset 400ms ease, border-color 400ms ease;
-        }
-
-        .memory-card-content {
-            position: absolute;
-            z-index: 3;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            padding: 42px 42px 40px;
-            color: var(--white);
-        }
-
-        .memory-number {
-            display: block;
-            margin-bottom: 12px;
-            font-family: "Montserrat", Arial, Helvetica, sans-serif;
-            font-size: 10px;
-            font-weight: 600;
-            letter-spacing: 0.34em;
-            text-transform: uppercase;
-            opacity: 0.78;
-        }
-
-        .memory-card h3 {
-            max-width: 430px;
-            font-family: "Montserrat", Arial, Helvetica, sans-serif;
-            font-size: clamp(25px, 2.6vw, 36px);
-            font-weight: 300;
-            line-height: 1.2;
-            letter-spacing: 0.035em;
-        }
-
-        .memory-card p {
-            max-width: 480px;
-            margin-top: 13px;
-            font-size: 15.5px;
-            line-height: 1.7;
-            color: rgba(255, 255, 255, 0.84);
-        }
-
-        .memory-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 24px;
-            padding-bottom: 6px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.62);
-            font-family: "Montserrat", Arial, Helvetica, sans-serif;
-            font-size: 11px;
-            font-weight: 500;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-        }
-
-        .memory-link span {
-            font-size: 18px;
-            line-height: 1;
-            transition: transform 350ms ease;
-        }
-
-        .memory-card:hover img,
-        .memory-card:focus-visible img {
-            filter: brightness(0.92);
-            transform: scale(1.045);
-        }
-
-        .memory-card:hover::after,
-        .memory-card:focus-visible::after {
-            inset: 22px;
-            border-color: rgba(255, 255, 255, 0.72);
-        }
-
-        .memory-card:hover .memory-link span,
-        .memory-card:focus-visible .memory-link span {
-            transform: translateX(6px);
-        }
-
-        .memory-card:focus-visible {
-            outline: 3px solid var(--bordeaux);
-            outline-offset: 5px;
-        }
-
-        .memory-card.video-card {
-            grid-column: 1 / -1;
-            min-height: 590px;
-        }
-
-        .video-card::before {
+            inset: 0;
+            z-index: -1;
             background:
-                linear-gradient(90deg, rgba(15, 9, 8, 0.80) 0%, rgba(15, 9, 8, 0.46) 44%, rgba(15, 9, 8, 0.08) 78%),
-                linear-gradient(180deg, transparent 55%, rgba(15, 9, 8, 0.58) 100%);
+                linear-gradient(
+                    180deg,
+                    rgba(42, 31, 29, 0.28) 0%,
+                    rgba(42, 31, 29, 0.05) 45%,
+                    rgba(42, 31, 29, 0.08) 66%,
+                    rgba(42, 31, 29, 0.62) 100%
+                ),
+                rgba(228, 216, 208, 0.18);
+            content: "";
+            transition: background 0.65s ease;
         }
 
-        .video-card .memory-card-content {
-            top: 50%;
-            right: auto;
-            bottom: auto;
-            width: min(560px, 72%);
-            padding: 48px 58px;
-            transform: translateY(-50%);
+        .memory-card:hover {
+            z-index: 2;
+            border-color: rgba(99, 9, 9, 0.34);
+            box-shadow: 0 24px 55px rgba(52, 35, 31, 0.22);
+            transform: translateY(-7px);
         }
 
-        .play-mark {
-            display: grid;
-            width: 62px;
-            height: 62px;
-            margin-bottom: 24px;
-            place-items: center;
-            border: 1px solid rgba(255, 255, 255, 0.72);
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.08);
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 21px;
-            text-indent: 4px;
-            transition: background 350ms ease, transform 350ms ease;
-        }
-
-        .video-card:hover .play-mark {
-            background: var(--bordeaux);
+        .memory-card:hover::before {
+            filter:
+                grayscale(0)
+                saturate(1.18)
+                contrast(1.04)
+                brightness(1.01);
             transform: scale(1.06);
         }
 
-        /* =========================
-           CONCLUSION
-        ========================= */
-
-        .closing {
-            padding: 92px 30px;
-            border-top: 1px solid var(--line);
-            background: var(--soft);
-            text-align: center;
+        .memory-card:hover::after {
+            background:
+                linear-gradient(
+                    180deg,
+                    rgba(32, 23, 21, 0.34) 0%,
+                    rgba(32, 23, 21, 0.04) 45%,
+                    rgba(32, 23, 21, 0.02) 64%,
+                    rgba(32, 23, 21, 0.36) 100%
+                );
         }
 
-        .closing-inner {
-            max-width: 720px;
-            margin: 0 auto;
+        .memory-card-inner {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: flex-start;
+            padding: 38px 40px;
         }
 
-        .closing-label {
-            margin-bottom: 16px;
-            color: rgba(99, 9, 9, 0.68);
+        .memory-card-title {
+            max-width: 86%;
+            text-align: left;
+            text-shadow: 0 2px 18px rgba(0, 0, 0, 0.48);
+            transition: transform 0.6s ease;
+        }
+
+        .memory-card:hover .memory-card-title {
+            transform: translateY(-6px);
+        }
+
+        .memory-kicker {
+            display: block;
+            margin-bottom: 10px;
             font-family: "Montserrat", Arial, Helvetica, sans-serif;
-            font-size: 10px;
-            font-weight: 600;
-            letter-spacing: 0.32em;
+            font-size: 9px;
+            font-weight: 500;
+            letter-spacing: 0.22em;
             text-transform: uppercase;
         }
 
-        .closing h2 {
-            color: var(--bordeaux);
-            font-size: clamp(28px, 4vw, 46px);
+        .memory-card h2 {
+            color: #fffaf7;
+            font-size: clamp(1.65rem, 2.5vw, 2.25rem);
             font-weight: normal;
-            line-height: 1.3;
+            line-height: 1.18;
         }
 
-        .closing p:last-child {
-            max-width: 610px;
-            margin: 22px auto 0;
-            color: var(--muted);
-            font-size: 16px;
-            line-height: 1.8;
+        .memory-card h2::after {
+            display: block;
+            width: 0;
+            height: 1px;
+            margin: 15px 0 0;
+            background: rgba(255, 250, 247, 0.90);
+            content: "";
+            transition: width 0.45s ease;
+        }
+
+        .memory-card:hover h2::after {
+            width: 42px;
+        }
+
+        .memory-arrow {
+            display: inline-flex;
+            align-items: center;
+            align-self: flex-end;
+            gap: 8px;
+            margin-top: auto;
+            color: #fffaf7;
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
+            font-size: 9px;
+            font-weight: 500;
+            letter-spacing: 1.8px;
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.48);
+            text-transform: uppercase;
+        }
+
+        .memory-arrow::after {
+            font-size: 17px;
+            content: "→";
+            transition: transform 0.3s ease;
+        }
+
+        .memory-card:hover .memory-arrow::after {
+            transform: translateX(5px);
         }
 
         /* =========================
@@ -534,18 +530,20 @@
         ========================= */
 
         .footer {
-            padding: 56px 20px 62px;
+            padding: 54px 20px 60px;
             background: var(--white);
             text-align: center;
         }
 
-        .footer-name-logo {
-            width: min(245px, 70vw);
-            margin: 0 auto 13px;
+        .footer-name {
+            width: min(250px, 65vw);
+            height: auto;
+            margin: 0 auto 12px;
         }
 
-        .footer-date-logo {
-            width: min(145px, 45vw);
+        .footer-date {
+            width: min(145px, 40vw);
+            height: auto;
             margin: 0 auto;
         }
 
@@ -553,16 +551,77 @@
            RESPONSIVE
         ========================= */
 
-        @media (max-width: 1020px) {
-            :root { --sidebar-width: 250px; }
-            .sidebar-inner { padding-right: 18px; padding-left: 18px; }
-            .memories-grid { grid-template-columns: 1fr; }
-            .memory-card,
-            .memory-card.video-card { grid-column: auto; min-height: 520px; }
+        @media (min-width: 721px) and (max-height: 820px) {
+            .sidebar-inner {
+                padding-top: 10px;
+                padding-bottom: 16px;
+            }
+
+            .wedding-logo {
+                width: 88px;
+                margin-bottom: 8px;
+            }
+
+            .page-item:not(.page-item-separated) {
+                margin-bottom: 2px;
+            }
+
+            .page-link {
+                min-height: 37px;
+                font-size: 12.5px;
+            }
+
+            .page-dot {
+                width: 28px;
+                height: 28px;
+                font-size: 9.5px;
+            }
+
+            .page-list::before {
+                left: 13px;
+            }
+
+            .menu-annexe {
+                padding-top: 10px;
+            }
+
+            .menu-annexe-line {
+                margin-bottom: 10px;
+            }
+
+            .menu-annexe-title {
+                padding-left: 44px;
+                font-size: 8px;
+            }
+        }
+
+        .mobile-menu-button {
+            display: none;
+        }
+
+        @media (max-width: 900px) {
+            :root {
+                --sidebar-width: 250px;
+            }
+
+            .sidebar-inner {
+                padding-right: 18px;
+                padding-left: 18px;
+            }
+
+            .memories-grid {
+                gap: 18px;
+            }
+
+            .memory-card {
+                min-height: 360px;
+            }
         }
 
         @media (max-width: 720px) {
-            :root { --sidebar-width: 0px; }
+            :root {
+                --sidebar-width: 0px;
+            }
 
             .mobile-menu-button {
                 position: fixed;
@@ -587,49 +646,83 @@
                 transition: transform 0.3s ease;
             }
 
-            .book-sidebar.is-open { transform: translateX(0); }
-            .page-shell { margin-left: 0; }
-            .hero { padding: 78px 22px 64px; }
-            .memories-section { padding: 66px 16px 78px; }
-            .section-heading { margin-bottom: 38px; }
-
-            .memory-card,
-            .memory-card.video-card {
-                min-height: 450px;
+            .book-sidebar.is-open {
+                transform: translateX(0);
             }
 
-            .memory-card-content {
-                padding: 34px 28px 31px;
+            .page-shell {
+                margin-left: 0;
             }
 
-            .video-card::before {
-                background: linear-gradient(180deg, rgba(15, 9, 8, 0.10) 22%, rgba(15, 9, 8, 0.84) 100%);
+            .souvenirs-intro {
+                padding: 78px 20px 58px;
             }
 
-            .video-card .memory-card-content {
-                top: auto;
-                right: 0;
-                bottom: 0;
-                width: 100%;
-                padding: 34px 28px 31px;
-                transform: none;
+            .souvenirs-name {
+                width: min(340px, 82vw);
             }
 
-            .memory-card::after { inset: 11px; }
-            .memory-card:hover::after { inset: 15px; }
-            .closing { padding: 74px 22px; }
+            .souvenirs-date {
+                width: 135px;
+                max-width: 42vw;
+                margin-bottom: 42px;
+            }
+
+            .memories-section {
+                padding: 48px 16px 72px;
+            }
+
+            .memories-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .section-heading {
+                display: block;
+            }
+
+            .section-heading p {
+                margin-top: 9px;
+                text-align: left;
+            }
+
+            .memory-card {
+                min-height: 350px;
+            }
+
+            .memory-card-inner {
+                padding: 28px 26px;
+            }
+
+            .memory-card h2 {
+                font-size: 1.7rem;
+            }
         }
 
-        @media (max-width: 440px) {
-            .intro { font-size: 15.5px; }
-            .memory-card,
-            .memory-card.video-card { min-height: 410px; }
-            .memory-card p { font-size: 14.5px; }
-            .play-mark { width: 54px; height: 54px; }
+        @media (hover: none) {
+            .memory-card::before {
+                filter:
+                    grayscale(0.35)
+                    saturate(0.72)
+                    contrast(0.98)
+                    brightness(0.96);
+            }
+
+            .memory-card::after {
+                background:
+                    linear-gradient(
+                        180deg,
+                        rgba(38, 27, 25, 0.42) 0%,
+                        rgba(38, 27, 25, 0.08) 48%,
+                        rgba(38, 27, 25, 0.40) 100%
+                    );
+            }
         }
 
         @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
+            *,
+            *::before,
+            *::after {
                 scroll-behavior: auto !important;
                 transition-duration: 0.01ms !important;
             }
@@ -638,133 +731,245 @@
 </head>
 
 <body>
-    <button class="mobile-menu-button" type="button" aria-label="Ouvrir le menu" aria-expanded="false">☰</button>
 
-    <aside class="book-sidebar" id="book-sidebar" aria-label="Pages de l’album">
+    <button
+        class="mobile-menu-button"
+        type="button"
+        aria-label="Ouvrir le sommaire"
+        aria-controls="book-sidebar"
+        aria-expanded="false"
+    >
+        ☰
+    </button>
+
+    <aside
+        class="book-sidebar"
+        id="book-sidebar"
+        aria-label="Pages de l’album"
+    >
         <div class="sidebar-inner">
-            <img src="../images/style/logosansfond.jpg" alt="Logo du mariage d’Élodie et Alexandre" class="wedding-logo">
+
+            <img
+                src="../images/style/logosansfond.jpg"
+                alt="Logo du mariage d’Élodie et Alexandre"
+                class="wedding-logo"
+            >
 
             <nav aria-label="Navigation principale">
                 <ol class="page-list">
-                    <li class="page-item"><a href="../" class="page-link" data-page="bienvenue"><span class="page-dot">1</span><span class="page-label">Bienvenue</span></a></li>
-                    <li class="page-item"><a href="../sommaire/" class="page-link" data-page="sommaire"><span class="page-dot">2</span><span class="page-label">Sommaire</span></a></li>
-                    <li class="page-item"><a href="../invitation/" class="page-link" data-page="invitation"><span class="page-dot">3</span><span class="page-label">Invitation</span></a></li>
-                    <li class="page-item"><a href="../preparatifs/" class="page-link" data-page="preparatifs"><span class="page-dot">4</span><span class="page-label">Préparatifs</span></a></li>
-                    <li class="page-item"><a href="../first-look/" class="page-link" data-page="first-look"><span class="page-dot">5</span><span class="page-label">First Look</span></a></li>
-                    <li class="page-item"><a href="../mairie/" class="page-link" data-page="mairie"><span class="page-dot">6</span><span class="page-label">Mairie</span></a></li>
-                    <li class="page-item"><a href="../eglise/" class="page-link" data-page="eglise"><span class="page-dot">7</span><span class="page-label">Église</span></a></li>
-                    <li class="page-item"><a href="../vin_d_honneur/" class="page-link" data-page="vin-d-honneur"><span class="page-dot">8</span><span class="page-label">Vin d’honneur</span></a></li>
-                    <li class="page-item"><a href="../soiree/" class="page-link" data-page="soiree"><span class="page-dot">9</span><span class="page-label">Soirée</span></a></li>
-                    <li class="page-item"><a href="../remerciements/" class="page-link" data-page="remerciements"><span class="page-dot">10</span><span class="page-label">Remerciements</span></a></li>
 
-                    <li class="menu-annexe" aria-hidden="true"><span class="menu-annexe-line"></span><span class="menu-annexe-title">À revivre</span></li>
+                    <li class="page-item">
+                        <a href="../" class="page-link" data-page="bienvenue">
+                            <span class="page-dot">1</span>
+                            <span class="page-label">Bienvenue</span>
+                        </a>
+                    </li>
 
-                    <li class="page-item page-item-separated"><a href="./" class="page-link" data-page="souvenirs"><span class="page-dot">11</span><span class="page-label">Souvenirs</span></a></li>
+                    <li class="page-item">
+                        <a href="../sommaire/" class="page-link" data-page="sommaire">
+                            <span class="page-dot">2</span>
+                            <span class="page-label">Sommaire</span>
+                        </a>
+                    </li>
+
+                    <li class="page-item">
+                        <a href="../invitation/" class="page-link" data-page="invitation">
+                            <span class="page-dot">3</span>
+                            <span class="page-label">Invitation</span>
+                        </a>
+                    </li>
+
+                    <li class="page-item">
+                        <a href="../preparatifs/" class="page-link" data-page="preparatifs">
+                            <span class="page-dot">4</span>
+                            <span class="page-label">Préparatifs</span>
+                        </a>
+                    </li>
+
+                    <li class="page-item">
+                        <a href="../first-look/" class="page-link" data-page="first-look">
+                            <span class="page-dot">5</span>
+                            <span class="page-label">First Look</span>
+                        </a>
+                    </li>
+
+                    <li class="page-item">
+                        <a href="../mairie/" class="page-link" data-page="mairie">
+                            <span class="page-dot">6</span>
+                            <span class="page-label">Mairie</span>
+                        </a>
+                    </li>
+
+                    <li class="page-item">
+                        <a href="../eglise/" class="page-link" data-page="eglise">
+                            <span class="page-dot">7</span>
+                            <span class="page-label">Église</span>
+                        </a>
+                    </li>
+
+                    <li class="page-item">
+                        <a href="../vin_d_honneur/" class="page-link" data-page="vin-d-honneur">
+                            <span class="page-dot">8</span>
+                            <span class="page-label">Vin d’honneur</span>
+                        </a>
+                    </li>
+
+                    <li class="page-item">
+                        <a href="../soiree/" class="page-link" data-page="soiree">
+                            <span class="page-dot">9</span>
+                            <span class="page-label">Soirée</span>
+                        </a>
+                    </li>
+
+                    <li class="page-item">
+                        <a href="../remerciements/" class="page-link" data-page="remerciements">
+                            <span class="page-dot">10</span>
+                            <span class="page-label">Remerciements</span>
+                        </a>
+                    </li>
+
+                    <li class="menu-annexe" aria-hidden="true">
+                        <span class="menu-annexe-line"></span>
+                        <span class="menu-annexe-title">À revivre</span>
+                    </li>
+
+                    <li class="page-item page-item-separated">
+                        <a href="./" class="page-link" data-page="souvenirs">
+                            <span class="page-dot">11</span>
+                            <span class="page-label">Souvenirs</span>
+                        </a>
+                    </li>
+
                 </ol>
             </nav>
         </div>
     </aside>
 
     <main class="page-shell">
-        <section class="hero">
-            <p class="eyebrow">Le dernier chapitre de notre album</p>
-            <h1>Souvenirs</h1>
-            <p class="intro">
-                Le 23 mai 2026 est passé bien trop vite. Nous avons rassemblé ici les photos
-                et les vidéos qui nous permettent de revivre cette journée, encore et encore.
-            </p>
-        </section>
+        <section class="souvenirs-page">
 
-        <section class="memories-section">
-            <div class="memories-inner">
-                <header class="section-heading">
-                    <p class="section-kicker">Choisissez un souvenir</p>
-                    <h2>Revivre chaque instant</h2>
-                    <p>
-                        Des moments vécus à deux aux éclats de rire du photobooth,
-                        découvrez les images et les films qui racontent notre mariage.
-                    </p>
-                </header>
+            <header class="souvenirs-intro">
 
-                <div class="memories-grid">
-                    <a class="memory-card" href="../photoscouple/" aria-label="Découvrir les photos de couple">
-                        <img src="../images/vignettes/vignette_photoscouple.jpg" alt="Élodie et Alexandre pendant leur séance de photos de couple">
-                        <div class="memory-card-content">
-                            <span class="memory-number">01 — Nous deux</span>
-                            <h3>Nos photos de couple</h3>
-                            <p>
-                                Quelques instants rien qu’à deux, au milieu d’une journée vécue
-                                entourés de toutes les personnes que nous aimons.
-                            </p>
-                            <span class="memory-link">Découvrir les photos <span aria-hidden="true">→</span></span>
-                        </div>
-                    </a>
+                <img
+                    src="../images/style/nomsansfond.jpg"
+                    alt="Élodie et Alexandre"
+                    class="souvenirs-name"
+                >
 
-                    <a class="memory-card" href="../photosgroupe/" aria-label="Découvrir les photos de groupe">
-                        <img src="../images/vignettes/vignette_photosgroupe.jpg" alt="Les mariés entourés de leurs proches">
-                        <div class="memory-card-content">
-                            <span class="memory-number">02 — Tous réunis</span>
-                            <h3>Nos photos de groupe</h3>
-                            <p>
-                                Nos familles, nos témoins et nos proches réunis autour de nous
-                                pour garder une trace précieuse de cette journée.
-                            </p>
-                            <span class="memory-link">Découvrir les photos <span aria-hidden="true">→</span></span>
-                        </div>
-                    </a>
+                <img
+                    src="../images/style/datesansfond.jpg"
+                    alt="23 mai 2026"
+                    class="souvenirs-date"
+                >
 
-                    <a class="memory-card" href="../photobooth/" aria-label="Découvrir les photos du photobooth">
-                        <img src="../images/vignettes/vignette_photobooth.jpg" alt="Des invités devant le photobooth du mariage">
-                        <div class="memory-card-content">
-                            <span class="memory-number">03 — Les plus spontanées</span>
-                            <h3>Le photobooth</h3>
-                            <p>
-                                Des accessoires, des grimaces, beaucoup de sourires
-                                et quelques dossiers que nous garderons précieusement.
-                            </p>
-                            <span class="memory-link">Voir le photobooth <span aria-hidden="true">→</span></span>
-                        </div>
-                    </a>
+                <h1 class="souvenirs-title">Souvenirs</h1>
 
-                    <a class="memory-card video-card" href="../videos/" aria-label="Voir les vidéos du mariage">
-                        <img src="../images/vignettes/vignette_videos.jpg" alt="Extrait du film du mariage d’Élodie et Alexandre">
-                        <div class="memory-card-content">
-                            <span class="play-mark" aria-hidden="true">▶</span>
-                            <span class="memory-number">04 — En mouvement</span>
-                            <h3>Le film et les vidéos</h3>
-                            <p>
-                                Onze minutes pour revivre cette journée, retrouver les émotions,
-                                les regards, les rires et tous les moments qui ont marqué notre mariage.
-                            </p>
-                            <span class="memory-link">Voir les vidéos <span aria-hidden="true">→</span></span>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <section class="closing">
-            <div class="closing-inner">
-                <p class="closing-label">Une journée qui continue de vivre</p>
-                <h2>Les images passent,<br>les souvenirs restent.</h2>
-                <p>
-                    Grâce à toutes ces photos et à ces vidéos, nous pourrons continuer
-                    à revivre cette journée et à en partager les plus beaux instants.
+                <p class="souvenirs-subtitle">
+                    Les photos et les vidéos qui prolongent notre histoire
+                    et nous permettent de revivre cette journée.
                 </p>
-            </div>
-        </section>
 
-        <footer class="footer" aria-label="Signature de l’album">
-            <img src="../images/style/nomsansfond.jpg" alt="Élodie et Alexandre" class="footer-name-logo">
-            <img src="../images/style/datesansfond.jpg" alt="23 mai 2026" class="footer-date-logo">
-        </footer>
+            </header>
+
+            <section class="memories-section" aria-label="Photos et vidéos du mariage">
+                <div class="memories-grid">
+
+                    <div class="section-heading">
+                        <span>À revivre</span>
+                        <p>Choisissez une galerie ou replongez dans le film de notre mariage.</p>
+                    </div>
+
+                    <a
+                        href="../photoscouple/"
+                        class="memory-card"
+                        style="--card-image: url('../images/vignettes/vignette_photoscouple.jpg');"
+                    >
+                        <div class="memory-card-inner">
+                            <div class="memory-card-title">
+                                <span class="memory-kicker">Nos plus beaux instants</span>
+                                <h2>Photos de couple</h2>
+                            </div>
+                            <span class="memory-arrow">Découvrir</span>
+                        </div>
+                    </a>
+
+                    <a
+                        href="../photosgroupe/"
+                        class="memory-card"
+                        style="--card-image: url('../images/vignettes/vignette_photosgroupe.jpg');"
+                    >
+                        <div class="memory-card-inner">
+                            <div class="memory-card-title">
+                                <span class="memory-kicker">Tous réunis</span>
+                                <h2>Photos de groupe</h2>
+                            </div>
+                            <span class="memory-arrow">Découvrir</span>
+                        </div>
+                    </a>
+
+                    <a
+                        href="../photobooth/"
+                        class="memory-card"
+                        style="--card-image: url('../images/vignettes/vignette_photobooth.jpg');"
+                    >
+                        <div class="memory-card-inner">
+                            <div class="memory-card-title">
+                                <span class="memory-kicker">Les plus spontanées</span>
+                                <h2>Photobooth</h2>
+                            </div>
+                            <span class="memory-arrow">Découvrir</span>
+                        </div>
+                    </a>
+
+                    <a
+                        href="../videos/"
+                        class="memory-card"
+                        style="--card-image: url('../images/vignettes/vignette_videos.jpg');"
+                    >
+                        <div class="memory-card-inner">
+                            <div class="memory-card-title">
+                                <span class="memory-kicker">Revivre cette journée</span>
+                                <h2>Film &amp; vidéos</h2>
+                            </div>
+                            <span class="memory-arrow">Découvrir</span>
+                        </div>
+                    </a>
+
+                </div>
+            </section>
+
+            <footer class="footer">
+                <img
+                    src="../images/style/nomsansfond.jpg"
+                    alt="Élodie et Alexandre"
+                    class="footer-name"
+                >
+
+                <img
+                    src="../images/style/datesansfond.jpg"
+                    alt="23 mai 2026"
+                    class="footer-date"
+                >
+            </footer>
+
+        </section>
     </main>
 
     <script>
         const currentPage = "souvenirs";
+
         const pageOrder = [
-            "bienvenue", "sommaire", "invitation", "preparatifs", "first-look",
-            "mairie", "eglise", "vin-d-honneur", "soiree", "remerciements", "souvenirs"
+            "bienvenue",
+            "sommaire",
+            "invitation",
+            "preparatifs",
+            "first-look",
+            "mairie",
+            "eglise",
+            "vin-d-honneur",
+            "soiree",
+            "remerciements",
+            "souvenirs"
         ];
 
         const currentIndex = pageOrder.indexOf(currentPage);
@@ -776,7 +981,9 @@
             link.classList.remove("is-current", "is-visited");
             link.removeAttribute("aria-current");
 
-            if (pageIndex < currentIndex) link.classList.add("is-visited");
+            if (pageIndex < currentIndex) {
+                link.classList.add("is-visited");
+            }
 
             if (pageName === currentPage) {
                 link.classList.add("is-current");
@@ -809,7 +1016,9 @@
             }
         });
 
-        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const prefersReducedMotion = window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches;
 
         document.querySelectorAll('a[href]').forEach((link) => {
             link.addEventListener("click", (event) => {
@@ -824,10 +1033,15 @@
                     event.metaKey ||
                     event.shiftKey ||
                     event.altKey
-                ) return;
+                ) {
+                    return;
+                }
 
                 const destination = new URL(link.href, window.location.href);
-                if (destination.origin !== window.location.origin) return;
+
+                if (destination.origin !== window.location.origin) {
+                    return;
+                }
 
                 event.preventDefault();
                 document.body.classList.add("page-leaving");
@@ -838,5 +1052,6 @@
             });
         });
     </script>
+
 </body>
 </html>
