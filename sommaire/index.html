@@ -226,56 +226,56 @@
         }
 
         .summary-intro {
-            padding: 58px 30px 48px;
+            padding: 82px 30px 70px;
             text-align: center;
         }
 
         .summary-name {
-            width: min(410px, 72vw);
+            width: min(420px, 72vw);
             height: auto;
-            margin: 0 auto 15px;
+            margin: 0 auto 22px;
         }
 
         .summary-date {
             width: 150px;
             max-width: 28vw;
             height: auto;
-            margin: 0 auto 32px;
+            margin: 0 auto 54px;
         }
 
         .summary-title {
             margin: 0 auto;
             color: var(--bordeaux);
             font-family: "Montserrat", Arial, Helvetica, sans-serif;
-            font-size: clamp(17px, 1.5vw, 22px);
+            font-size: clamp(20px, 1.9vw, 28px);
             font-weight: 300;
-            line-height: 1.5;
-            letter-spacing: 0.05em;
+            line-height: 1.35;
+            letter-spacing: 0.12em;
             text-transform: uppercase;
         }
 
         .summary-title::after {
             display: block;
-            width: 120px;
+            width: 88px;
             height: 1px;
-            margin: 14px auto 0;
-            background: rgba(99, 9, 9, 0.45);
+            margin: 22px auto 0;
+            background: rgba(99, 9, 9, 0.48);
             content: "";
         }
 
         .summary-subtitle {
             max-width: 620px;
-            margin: 16px auto 0;
+            margin: 25px auto 0;
             color: var(--muted);
             font-family: "Montserrat", Arial, Helvetica, sans-serif;
             font-size: 12px;
             font-weight: 300;
-            line-height: 1.7;
+            line-height: 1.8;
             letter-spacing: 0.04em;
         }
 
         .chapters-section {
-            padding: 45px 34px 80px;
+            padding: 72px 40px 105px;
             border-top: 1px solid var(--line);
             background: var(--soft);
         }
@@ -283,7 +283,7 @@
         .chapters-grid {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 24px;
+            gap: 30px;
             max-width: 1180px;
             margin: 0 auto;
         }
@@ -291,7 +291,7 @@
         .chapter-card {
             position: relative;
             display: block;
-            min-height: 410px;
+            min-height: 460px;
             overflow: hidden;
             border: 1px solid rgba(99, 9, 9, 0.10);
             border-radius: 5px;
@@ -329,10 +329,10 @@
             background:
                 linear-gradient(
                     180deg,
-                    rgba(42, 31, 29, 0.50) 0%,
-                    rgba(42, 31, 29, 0.14) 42%,
-                    rgba(42, 31, 29, 0.10) 62%,
-                    rgba(42, 31, 29, 0.52) 100%
+                    rgba(42, 31, 29, 0.28) 0%,
+                    rgba(42, 31, 29, 0.05) 45%,
+                    rgba(42, 31, 29, 0.08) 66%,
+                    rgba(42, 31, 29, 0.62) 100%
                 ),
                 rgba(228, 216, 208, 0.18);
             content: "";
@@ -371,23 +371,25 @@
             inset: 0;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            padding: 31px 32px 28px;
+            justify-content: flex-end;
+            align-items: flex-start;
+            padding: 38px 40px;
         }
 
         .chapter-card-title {
-            text-align: center;
-            text-shadow: 0 2px 18px rgba(0, 0, 0, 0.45);
-            transition: transform 0.45s ease;
+            max-width: 82%;
+            text-align: left;
+            text-shadow: 0 2px 18px rgba(0, 0, 0, 0.48);
+            transition: transform 0.6s ease;
         }
 
         .chapter-card:hover .chapter-card-title {
-            transform: translateY(-4px);
+            transform: translateY(-6px);
         }
 
         .chapter-card h2 {
             color: #fffaf7;
-            font-size: clamp(1.55rem, 2.4vw, 2.05rem);
+            font-size: clamp(1.65rem, 2.5vw, 2.25rem);
             font-weight: normal;
             line-height: 1.18;
         }
@@ -396,7 +398,7 @@
             display: block;
             width: 0;
             height: 1px;
-            margin: 13px auto 0;
+            margin: 15px 0 0;
             background: rgba(255, 250, 247, 0.90);
             content: "";
             transition: width 0.45s ease;
@@ -429,6 +431,22 @@
 
         .chapter-card:hover .chapter-arrow::after {
             transform: translateX(5px);
+        }
+
+
+        /* Transition entre les chapitres : effet de page qui glisse */
+        .page-shell {
+            opacity: 1;
+            transform: translateX(0);
+            transition:
+                transform 400ms cubic-bezier(0.22, 1, 0.36, 1),
+                opacity 400ms ease;
+            will-change: transform, opacity;
+        }
+
+        body.page-leaving .page-shell {
+            opacity: 0;
+            transform: translateX(-34px);
         }
 
         /* =========================
@@ -495,7 +513,7 @@
             }
 
             .summary-intro {
-                padding: 68px 20px 42px;
+                padding: 78px 20px 58px;
             }
 
             .summary-name {
@@ -505,11 +523,11 @@
             .summary-date {
                 width: 135px;
                 max-width: 42vw;
-                margin-bottom: 26px;
+                margin-bottom: 42px;
             }
 
             .chapters-section {
-                padding: 38px 16px 60px;
+                padding: 48px 16px 72px;
             }
 
             .chapters-grid {
@@ -519,11 +537,11 @@
 
             .chapter-card {
                 grid-column: span 1;
-                min-height: 330px;
+                min-height: 350px;
             }
 
             .chapter-card-inner {
-                padding: 26px 24px 23px;
+                padding: 28px 26px;
             }
 
             .chapter-card h2 {
@@ -726,7 +744,6 @@
                             <div class="chapter-card-title">
                                 <h2>Invitation</h2>
                             </div>
-                            <span class="chapter-arrow">Découvrir</span>
                         </div>
                     </a>
 
@@ -735,7 +752,6 @@
                             <div class="chapter-card-title">
                                 <h2>Préparatifs</h2>
                             </div>
-                            <span class="chapter-arrow">Découvrir</span>
                         </div>
                     </a>
 
@@ -744,7 +760,6 @@
                             <div class="chapter-card-title">
                                 <h2>First Look</h2>
                             </div>
-                            <span class="chapter-arrow">Découvrir</span>
                         </div>
                     </a>
 
@@ -753,7 +768,6 @@
                             <div class="chapter-card-title">
                                 <h2>Mairie</h2>
                             </div>
-                            <span class="chapter-arrow">Découvrir</span>
                         </div>
                     </a>
 
@@ -762,7 +776,6 @@
                             <div class="chapter-card-title">
                                 <h2>Église</h2>
                             </div>
-                            <span class="chapter-arrow">Découvrir</span>
                         </div>
                     </a>
 
@@ -771,7 +784,6 @@
                             <div class="chapter-card-title">
                                 <h2>Vin d’honneur</h2>
                             </div>
-                            <span class="chapter-arrow">Découvrir</span>
                         </div>
                     </a>
 
@@ -780,7 +792,6 @@
                             <div class="chapter-card-title">
                                 <h2>Soirée</h2>
                             </div>
-                            <span class="chapter-arrow">Découvrir</span>
                         </div>
                     </a>
 
@@ -789,25 +800,22 @@
                             <div class="chapter-card-title">
                                 <h2>Vidéos</h2>
                             </div>
-                            <span class="chapter-arrow">Découvrir</span>
                         </div>
                     </a>
 
                     <a href="../photoscouple/" class="chapter-card" style="--card-image: url('../images/vignettes/vignette_photoscouple.jpg');">
                         <div class="chapter-card-inner">
                             <div class="chapter-card-title">
-                                <h2>Photos de couple</h2>
+                                <h2>Couple</h2>
                             </div>
-                            <span class="chapter-arrow">Découvrir</span>
                         </div>
                     </a>
 
                     <a href="../photosgroupe/" class="chapter-card" style="--card-image: url('../images/vignettes/vignette_photosgroupe.jpg');">
                         <div class="chapter-card-inner">
                             <div class="chapter-card-title">
-                                <h2>Photos de groupe</h2>
+                                <h2>Groupes</h2>
                             </div>
-                            <span class="chapter-arrow">Découvrir</span>
                         </div>
                     </a>
 
@@ -816,7 +824,6 @@
                             <div class="chapter-card-title">
                                 <h2>Photobooth</h2>
                             </div>
-                            <span class="chapter-arrow">Découvrir</span>
                         </div>
                     </a>
 
@@ -825,7 +832,6 @@
                             <div class="chapter-card-title">
                                 <h2>Remerciements</h2>
                             </div>
-                            <span class="chapter-arrow">Découvrir</span>
                         </div>
                     </a>
 
@@ -897,6 +903,42 @@
                 menuButton.setAttribute("aria-expanded", "false");
                 menuButton.textContent = "☰";
             }
+        });
+
+        const prefersReducedMotion = window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches;
+
+        document.querySelectorAll('a[href]').forEach((link) => {
+            link.addEventListener("click", (event) => {
+                const href = link.getAttribute("href");
+
+                if (
+                    prefersReducedMotion ||
+                    !href ||
+                    href.startsWith("#") ||
+                    link.target === "_blank" ||
+                    event.ctrlKey ||
+                    event.metaKey ||
+                    event.shiftKey ||
+                    event.altKey
+                ) {
+                    return;
+                }
+
+                const destination = new URL(link.href, window.location.href);
+
+                if (destination.origin !== window.location.origin) {
+                    return;
+                }
+
+                event.preventDefault();
+                document.body.classList.add("page-leaving");
+
+                window.setTimeout(() => {
+                    window.location.href = destination.href;
+                }, 400);
+            });
         });
     </script>
 
