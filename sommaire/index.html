@@ -431,10 +431,6 @@
             transform: translateX(5px);
         }
 
-        .chapter-card.featured {
-            grid-column: 1 / -1;
-        }
-
         /* =========================
            TABLETTE ET MOBILE
         ========================= */
@@ -521,8 +517,7 @@
                 gap: 16px;
             }
 
-            .chapter-card,
-            .chapter-card.featured {
+            .chapter-card {
                 grid-column: span 1;
                 min-height: 330px;
             }
@@ -816,10 +811,19 @@
                         </div>
                     </a>
 
-                    <a href="../photobooth/" class="chapter-card featured" style="--card-image: url('../images/vignettes/vignette_photobooth.jpg');">
+                    <a href="../photobooth/" class="chapter-card" style="--card-image: url('../images/vignettes/vignette_photobooth.jpg');">
                         <div class="chapter-card-inner">
                             <div class="chapter-card-title">
                                 <h2>Photobooth</h2>
+                            </div>
+                            <span class="chapter-arrow">Découvrir</span>
+                        </div>
+                    </a>
+
+                    <a href="../remerciements/" class="chapter-card" style="--card-image: url('../images/vignettes/vignette_remerciements.jpg');">
+                        <div class="chapter-card-inner">
+                            <div class="chapter-card-title">
+                                <h2>Remerciements</h2>
                             </div>
                             <span class="chapter-arrow">Découvrir</span>
                         </div>
