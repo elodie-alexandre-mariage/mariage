@@ -33,7 +33,7 @@
             --paper: #fefefe;
             --white: #ffffff;
             --background: #fefefe;
-            --sidebar-width: 255px;
+            --sidebar-width: 290px;
         }
 
         html {
@@ -94,29 +94,34 @@
         }
 
         .sidebar-inner {
+            display: flex;
             min-height: 100%;
-            padding: 14px 20px 24px;
+            flex-direction: column;
+            padding: 18px 25px 27px;
         }
 
         .wedding-logo {
-            width: 75px;
+            width: 84px;
             height: auto;
-            margin: 0 auto;
+            margin: 0 auto 10px;
         }
 
         .page-list {
             position: relative;
             display: flex;
+            flex: 1;
             flex-direction: column;
-            gap: 0;
+            justify-content: space-between;
+            gap: 5px;
+            min-height: 0;
             list-style: none;
         }
 
         .page-list::before {
             position: absolute;
-            top: 15px;
-            bottom: 15px;
-            left: 12px;
+            top: 17px;
+            bottom: 17px;
+            left: 15px;
             width: 1px;
             background: #d9cbc4;
             content: "";
@@ -128,22 +133,24 @@
 
 
         .page-item-separated {
-            margin-top: 16px;
-            padding-top: 17px;
-            border-top: 1px solid rgba(99, 9, 9, 0.16);
+            margin-top: 12px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(99, 9, 9, 0.18);
         }
 
         .page-link {
             position: relative;
             display: grid;
-            grid-template-columns: 27px 1fr;
-            gap: 12px;
+            grid-template-columns: 33px 1fr;
+            gap: 15px;
             align-items: center;
-            min-height: 35px;
-            padding: 1px 4px;
+            min-height: 44px;
+            padding: 2px 5px;
             color: #766c68;
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 11px;
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
+            font-size: 13.5px;
+            font-weight: 300;
+            letter-spacing: 0.015em;
             text-decoration: none;
             transition:
                 color 0.2s ease,
@@ -159,14 +166,16 @@
             position: relative;
             z-index: 1;
             display: grid;
-            width: 25px;
-            height: 25px;
+            width: 31px;
+            height: 31px;
             place-items: center;
             border: 1px solid #d8cdc7;
             border-radius: 50%;
             background: var(--background);
-            color: #b4a8a2;
-            font-size: 9px;
+            color: #a99c96;
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
+            font-size: 10.5px;
+            font-weight: 400;
             transition:
                 border-color 0.25s ease,
                 background 0.25s ease,
@@ -176,7 +185,7 @@
         }
 
         .page-label {
-            line-height: 1.25;
+            line-height: 1.35;
         }
 
         /* Page déjà visitée : discrète, élégante et différente de la page active */
@@ -202,7 +211,7 @@
             width: 100%;
             padding-right: 8px;
             font-family: "Segoe Script", "Lucida Handwriting", "Brush Script MT", "Snell Roundhand", cursive;
-            font-size: 15px;
+            font-size: 17px;
             font-weight: 400;
             line-height: 1.1;
             text-align: center;
@@ -581,6 +590,43 @@
             transform: translateX(-34px);
         }
 
+
+        @media (min-width: 721px) and (max-height: 790px) {
+            .sidebar-inner {
+                padding-top: 12px;
+                padding-bottom: 18px;
+            }
+
+            .wedding-logo {
+                width: 70px;
+                margin-bottom: 4px;
+            }
+
+            .page-list {
+                gap: 1px;
+            }
+
+            .page-link {
+                min-height: 37px;
+                font-size: 12.5px;
+            }
+
+            .page-dot {
+                width: 27px;
+                height: 27px;
+                font-size: 9.5px;
+            }
+
+            .page-list::before {
+                left: 13px;
+            }
+
+            .page-item-separated {
+                margin-top: 7px;
+                padding-top: 12px;
+            }
+        }
+
         /* =========================
            TABLETTE ET MOBILE
         ========================= */
@@ -591,7 +637,7 @@
 
         @media (max-width: 900px) {
             :root {
-                --sidebar-width: 220px;
+                --sidebar-width: 250px;
             }
 
             .sidebar-inner {
@@ -649,7 +695,7 @@
             }
 
             .book-sidebar {
-                width: min(82vw, 300px);
+                width: min(88vw, 330px);
                 transform: translateX(-105%);
                 transition: transform 0.3s ease;
             }
@@ -860,7 +906,7 @@
                 <h1 class="summary-title">Sommaire</h1>
 
                 <p class="summary-subtitle">
-                    Parcourez le récit de notre journée, puis retrouvez tous les souvenirs en images.
+                    Parcourez les chapitres de notre mariage, puis découvrez les images qui prolongent son histoire.
                 </p>
 
             </header>
@@ -869,8 +915,8 @@
                 <div class="chapters-grid">
 
                     <div class="section-heading">
-                        <span>Le récit</span>
-                        <p>Du premier préparatif aux derniers instants de la soirée.</p>
+                        <span>Notre mariage</span>
+                        <p>De l’invitation aux derniers éclats de rire.</p>
                     </div>
 
                     <a href="../invitation/" class="chapter-card" style="--card-image: url('../images/vignettes/vignette_invitation.jpg');">
@@ -923,7 +969,7 @@
 
                     <div class="section-heading memories-heading">
                         <span>Les souvenirs</span>
-                        <p>Le film, les portraits, les photos de groupe et le photobooth.</p>
+                        <p>Le film et les galeries qui complètent notre histoire.</p>
                     </div>
 
                     <a href="../souvenirs/" class="memories-card" aria-label="Découvrir tous les souvenirs">
@@ -935,8 +981,8 @@
                         <span class="memories-overlay"></span>
 
                         <span class="memories-content">
-                            <span class="memories-kicker">Film & galeries</span>
-                            <strong>Souvenirs</strong>
+                            <span class="memories-kicker">Films &amp; galeries</span>
+                            <strong>Au-delà du récit</strong>
                             <span class="memories-line"></span>
                         </span>
                     </a>
