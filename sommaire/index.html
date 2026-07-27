@@ -184,13 +184,6 @@
             box-shadow: inset 0 0 0 3px rgba(99, 9, 9, 0.06);
         }
 
-        .page-link.is-visited .page-label::after {
-            margin-left: 7px;
-            color: rgba(99, 9, 9, 0.55);
-            font-size: 9px;
-            content: "✓";
-        }
-
         /* Page actuelle */
         .page-link.is-current {
             color: var(--bordeaux);
@@ -289,7 +282,7 @@
 
         .chapters-grid {
             display: grid;
-            grid-template-columns: 1fr;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 24px;
             max-width: 1180px;
             margin: 0 auto;
@@ -298,7 +291,7 @@
         .chapter-card {
             position: relative;
             display: block;
-            min-height: 290px;
+            min-height: 410px;
             overflow: hidden;
             border: 1px solid rgba(99, 9, 9, 0.10);
             border-radius: 5px;
@@ -392,15 +385,6 @@
             transform: translateY(-4px);
         }
 
-        .chapter-number {
-            display: block;
-            margin-bottom: 9px;
-            color: rgba(255, 250, 247, 0.78);
-            font-family: "Montserrat", Arial, Helvetica, sans-serif;
-            font-size: 10px;
-            letter-spacing: 3px;
-        }
-
         .chapter-card h2 {
             color: #fffaf7;
             font-size: clamp(1.55rem, 2.4vw, 2.05rem);
@@ -448,7 +432,7 @@
         }
 
         .chapter-card.featured {
-            grid-column: span 1;
+            grid-column: 1 / -1;
         }
 
         /* =========================
@@ -474,7 +458,7 @@
             }
 
             .chapter-card {
-                min-height: 270px;
+                min-height: 360px;
             }
         }
 
@@ -540,7 +524,7 @@
             .chapter-card,
             .chapter-card.featured {
                 grid-column: span 1;
-                min-height: 235px;
+                min-height: 330px;
             }
 
             .chapter-card-inner {
