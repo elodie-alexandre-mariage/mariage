@@ -247,57 +247,79 @@
             object-position: center top;
         }
 
-        .cover-overlay {
+      .cover-overlay {
     position: absolute;
+    z-index: 1;
     inset: 0;
+    pointer-events: none;
+
     background:
+
+        /* Léger halo blanc centré derrière les textes */
+        radial-gradient(
+            ellipse 90% 45% at 50% 100%,
+            rgba(255, 255, 255, 0.40) 0%,
+            rgba(255, 255, 255, 0.24) 34%,
+            rgba(255, 255, 255, 0.09) 58%,
+            rgba(255, 255, 255, 0) 78%
+        ),
+
+        /* Dégradé blanc principal */
         linear-gradient(
             to bottom,
-            rgba(254,254,254,0) 38%,
-            rgba(254,254,254,0.03) 50%,
-            rgba(254,254,254,0.10) 60%,
-            rgba(254,254,254,0.25) 70%,
-            rgba(254,254,254,0.55) 82%,
-            rgba(254,254,254,0.90) 94%,
-            rgba(254,254,254,1) 100%
+            rgba(255, 255, 255, 0) 24%,
+            rgba(255, 255, 255, 0.02) 40%,
+            rgba(255, 255, 255, 0.08) 52%,
+            rgba(255, 255, 255, 0.18) 63%,
+            rgba(255, 255, 255, 0.38) 73%,
+            rgba(255, 255, 255, 0.68) 84%,
+            rgba(255, 255, 255, 0.92) 94%,
+            rgba(255, 255, 255, 1) 100%
         );
 }
 
-        .cover-invitation {
-            position: absolute;
-            z-index: 2;
-            right: 28px;
-            bottom: 12px;
-            left: 28px;
-            color: var(--bordeaux);
-            text-align: center;
-        }
+.cover-invitation p {
+    max-width: 620px;
+    margin: 0 auto 12px;
 
-        .cover-invitation p {
-            max-width: 720px;
-            margin: 0 auto 7px;
-            color: var(--bordeaux);
-            font-family: "Montserrat", Arial, Helvetica, sans-serif;
-            font-size: clamp(15px, 1.35vw, 20px);
-            font-weight: 300;
-            line-height: 1.45;
-            letter-spacing: 0.01em;
-            text-shadow: none;
-        }
+    color: #630909;
 
-        .open-album {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--bordeaux);
-            font-family: "Montserrat", Arial, Helvetica, sans-serif;
-            font-size: 10px;
-            font-weight: 500;
-            letter-spacing: 2.1px;
-            text-decoration: none;
-            text-transform: uppercase;
-            text-shadow: none;
-        }
+    font-family: "Montserrat", Arial, Helvetica, sans-serif;
+    font-size: clamp(15px, 1.25vw, 19px);
+    font-weight: 300;
+    line-height: 1.55;
+    letter-spacing: 0.02em;
+
+    text-shadow: none;
+}
+
+        .cover-invitation p::after {
+    display: block;
+    width: 120px;
+    height: 1px;
+    margin: 12px auto 0;
+
+    background: rgba(99, 9, 9, 0.45);
+
+    content: "";
+}
+        
+.open-album {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    color: #630909;
+
+    font-family: "Montserrat", Arial, Helvetica, sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 2.6px;
+
+    text-decoration: none;
+    text-transform: uppercase;
+    text-shadow: none;
+}
 
         .open-album::after {
             font-size: 14px;
@@ -549,27 +571,25 @@
 
             <div class="cover-content">
 
-                <figure class="premium-photo-wrap">
+                <figure class="cover">
 
-                    <img
-                        src="images/vignettes/PAGEACCUEIL.jpg"
-                        alt="Couverture de l’album du mariage d’Élodie et Alexandre"
-                        class="premium-photo"
-                    >
+    <img src="images/vignettes/PAGEACCUEIL.jpg" alt="Élodie & Alexandre">
 
-                    <div class="cover-overlay" aria-hidden="true"></div>
+    <div class="cover-overlay"></div>
 
-                    <figcaption class="cover-invitation">
-                        <p>
-                            Replongez avec nous dans les souvenirs de cette journée inoubliable.
-                        </p>
+    <figcaption class="cover-invitation">
 
-                        <a href="sommaire/" class="open-album">
-                            Découvrir l’album
-                        </a>
-                    </figcaption>
+        <p>
+            Replongez avec nous dans les souvenirs de cette journée inoubliable.
+        </p>
 
-                </figure>
+        <a href="sommaire/" class="open-album">
+            Découvrir l’album
+        </a>
+
+    </figcaption>
+
+</figure>
 
             </div>
 
