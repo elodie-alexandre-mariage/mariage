@@ -1,1 +1,916 @@
+<!DOCTYPE html>
+<html lang="fr">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="Sommaire de l’album du mariage d’Élodie et Alexandre, célébré le 23 mai 2026."
+    >
+
+    <title>Sommaire — Élodie & Alexandre</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bordeaux: #630909;
+            --bordeaux-dark: #4f0707;
+            --text: #403936;
+            --muted: #746b67;
+            --line: #e8dfda;
+            --soft: #f8f5f3;
+            --paper: #fefefe;
+            --white: #ffffff;
+            --background: #fefefe;
+            --sidebar-width: 255px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            background: var(--background);
+            color: var(--text);
+            font-family: Georgia, "Times New Roman", serif;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        /* =========================
+           NAVIGATION LATÉRALE
+        ========================= */
+
+        .book-sidebar {
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            width: var(--sidebar-width);
+            overflow-y: auto;
+            border-right: 1px solid var(--line);
+            background: rgba(254, 254, 254, 0.98);
+            -webkit-backdrop-filter: blur(14px);
+            backdrop-filter: blur(14px);
+            scrollbar-width: thin;
+            scrollbar-color: var(--bordeaux) transparent;
+        }
+
+        .book-sidebar::-webkit-scrollbar {
+            width: 7px;
+        }
+
+        .book-sidebar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .book-sidebar::-webkit-scrollbar-thumb {
+            border-radius: 999px;
+            background: var(--bordeaux);
+        }
+
+        .book-sidebar::-webkit-scrollbar-thumb:hover {
+            background: var(--bordeaux-dark);
+        }
+
+        .sidebar-inner {
+            min-height: 100%;
+            padding: 14px 20px 24px;
+        }
+
+        .wedding-logo {
+            width: 75px;
+            height: auto;
+            margin: 0 auto;
+        }
+
+        .page-list {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            list-style: none;
+        }
+
+        .page-list::before {
+            position: absolute;
+            top: 15px;
+            bottom: 15px;
+            left: 12px;
+            width: 1px;
+            background: #d9cbc4;
+            content: "";
+        }
+
+        .page-item {
+            position: relative;
+        }
+
+        .page-link {
+            position: relative;
+            display: grid;
+            grid-template-columns: 27px 1fr;
+            gap: 12px;
+            align-items: center;
+            min-height: 35px;
+            padding: 1px 4px;
+            color: #766c68;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 11px;
+            text-decoration: none;
+            transition:
+                color 0.2s ease,
+                transform 0.2s ease;
+        }
+
+        .page-link:hover {
+            color: var(--bordeaux);
+            transform: translateX(2px);
+        }
+
+        .page-dot {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            width: 25px;
+            height: 25px;
+            place-items: center;
+            border: 1px solid #d8cdc7;
+            border-radius: 50%;
+            background: var(--background);
+            color: #b4a8a2;
+            font-size: 9px;
+            transition:
+                border-color 0.25s ease,
+                background 0.25s ease,
+                color 0.25s ease,
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
+        }
+
+        .page-label {
+            line-height: 1.25;
+        }
+
+        /* Page déjà visitée : discrète, élégante et différente de la page active */
+        .page-link.is-visited {
+            color: rgba(99, 9, 9, 0.70);
+        }
+
+        .page-link.is-visited .page-dot {
+            border-color: rgba(99, 9, 9, 0.72);
+            background: var(--background);
+            color: var(--bordeaux);
+            box-shadow: inset 0 0 0 3px rgba(99, 9, 9, 0.06);
+        }
+
+        .page-link.is-visited .page-label::after {
+            margin-left: 7px;
+            color: rgba(99, 9, 9, 0.55);
+            font-size: 9px;
+            content: "✓";
+        }
+
+        /* Page actuelle */
+        .page-link.is-current {
+            color: var(--bordeaux);
+            font-weight: 700;
+        }
+
+        .page-link.is-current .page-label {
+            justify-self: center;
+            width: 100%;
+            padding-right: 8px;
+            font-family: "Segoe Script", "Lucida Handwriting", "Brush Script MT", "Snell Roundhand", cursive;
+            font-size: 15px;
+            font-weight: 400;
+            line-height: 1.1;
+            text-align: center;
+        }
+
+        .page-link.is-current .page-dot {
+            border-color: var(--bordeaux);
+            background: var(--bordeaux);
+            color: var(--white);
+            transform: scale(1.18);
+            box-shadow:
+                0 0 0 3px rgba(99, 9, 9, 0.12),
+                0 0 10px rgba(99, 9, 9, 0.10);
+        }
+
+        /* =========================
+           PAGE SOMMAIRE
+        ========================= */
+
+        .page-shell {
+            min-height: 100vh;
+            margin-left: var(--sidebar-width);
+        }
+
+        .summary-page {
+            min-height: 100vh;
+            background: var(--background);
+        }
+
+        .summary-intro {
+            padding: 58px 30px 48px;
+            text-align: center;
+        }
+
+        .summary-name {
+            width: min(410px, 72vw);
+            height: auto;
+            margin: 0 auto 15px;
+        }
+
+        .summary-date {
+            width: 150px;
+            max-width: 28vw;
+            height: auto;
+            margin: 0 auto 32px;
+        }
+
+        .summary-title {
+            margin: 0 auto;
+            color: var(--bordeaux);
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
+            font-size: clamp(17px, 1.5vw, 22px);
+            font-weight: 300;
+            line-height: 1.5;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .summary-title::after {
+            display: block;
+            width: 120px;
+            height: 1px;
+            margin: 14px auto 0;
+            background: rgba(99, 9, 9, 0.45);
+            content: "";
+        }
+
+        .summary-subtitle {
+            max-width: 620px;
+            margin: 16px auto 0;
+            color: var(--muted);
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
+            font-size: 12px;
+            font-weight: 300;
+            line-height: 1.7;
+            letter-spacing: 0.04em;
+        }
+
+        .chapters-section {
+            padding: 45px 34px 80px;
+            border-top: 1px solid var(--line);
+            background: var(--soft);
+        }
+
+        .chapters-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            max-width: 1180px;
+            margin: 0 auto;
+        }
+
+        .chapter-card {
+            position: relative;
+            display: block;
+            min-height: 290px;
+            overflow: hidden;
+            border: 1px solid rgba(99, 9, 9, 0.10);
+            border-radius: 5px;
+            background: #d8d1cd;
+            color: #fffaf7;
+            text-decoration: none;
+            isolation: isolate;
+            transition:
+                transform 0.45s ease,
+                box-shadow 0.45s ease,
+                border-color 0.45s ease;
+        }
+
+        .chapter-card::before {
+            position: absolute;
+            inset: 0;
+            z-index: -2;
+            background: var(--card-image) center / cover no-repeat;
+            content: "";
+            filter:
+                grayscale(1)
+                saturate(0.12)
+                contrast(0.92)
+                brightness(0.92);
+            transform: scale(1.015);
+            transition:
+                filter 0.75s ease,
+                transform 0.85s ease;
+        }
+
+        .chapter-card::after {
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background:
+                linear-gradient(
+                    180deg,
+                    rgba(42, 31, 29, 0.50) 0%,
+                    rgba(42, 31, 29, 0.14) 42%,
+                    rgba(42, 31, 29, 0.10) 62%,
+                    rgba(42, 31, 29, 0.52) 100%
+                ),
+                rgba(228, 216, 208, 0.18);
+            content: "";
+            transition: background 0.65s ease;
+        }
+
+        .chapter-card:hover {
+            z-index: 2;
+            border-color: rgba(99, 9, 9, 0.34);
+            box-shadow: 0 24px 55px rgba(52, 35, 31, 0.22);
+            transform: translateY(-7px);
+        }
+
+        .chapter-card:hover::before {
+            filter:
+                grayscale(0)
+                saturate(1.18)
+                contrast(1.04)
+                brightness(1.01);
+            transform: scale(1.06);
+        }
+
+        .chapter-card:hover::after {
+            background:
+                linear-gradient(
+                    180deg,
+                    rgba(32, 23, 21, 0.34) 0%,
+                    rgba(32, 23, 21, 0.04) 45%,
+                    rgba(32, 23, 21, 0.02) 64%,
+                    rgba(32, 23, 21, 0.36) 100%
+                );
+        }
+
+        .chapter-card-inner {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 31px 32px 28px;
+        }
+
+        .chapter-card-title {
+            text-align: center;
+            text-shadow: 0 2px 18px rgba(0, 0, 0, 0.45);
+            transition: transform 0.45s ease;
+        }
+
+        .chapter-card:hover .chapter-card-title {
+            transform: translateY(-4px);
+        }
+
+        .chapter-number {
+            display: block;
+            margin-bottom: 9px;
+            color: rgba(255, 250, 247, 0.78);
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
+            font-size: 10px;
+            letter-spacing: 3px;
+        }
+
+        .chapter-card h2 {
+            color: #fffaf7;
+            font-size: clamp(1.55rem, 2.4vw, 2.05rem);
+            font-weight: normal;
+            line-height: 1.18;
+        }
+
+        .chapter-card h2::after {
+            display: block;
+            width: 0;
+            height: 1px;
+            margin: 13px auto 0;
+            background: rgba(255, 250, 247, 0.90);
+            content: "";
+            transition: width 0.45s ease;
+        }
+
+        .chapter-card:hover h2::after {
+            width: 42px;
+        }
+
+        .chapter-arrow {
+            display: inline-flex;
+            align-items: center;
+            align-self: flex-end;
+            gap: 8px;
+            margin-top: auto;
+            color: #fffaf7;
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
+            font-size: 9px;
+            font-weight: 500;
+            letter-spacing: 1.8px;
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.48);
+            text-transform: uppercase;
+        }
+
+        .chapter-arrow::after {
+            font-size: 17px;
+            content: "→";
+            transition: transform 0.3s ease;
+        }
+
+        .chapter-card:hover .chapter-arrow::after {
+            transform: translateX(5px);
+        }
+
+        .chapter-card.featured {
+            grid-column: span 1;
+        }
+
+        /* =========================
+           TABLETTE ET MOBILE
+        ========================= */
+
+        .mobile-menu-button {
+            display: none;
+        }
+
+        @media (max-width: 900px) {
+            :root {
+                --sidebar-width: 220px;
+            }
+
+            .sidebar-inner {
+                padding-right: 18px;
+                padding-left: 18px;
+            }
+
+            .chapters-grid {
+                gap: 18px;
+            }
+
+            .chapter-card {
+                min-height: 270px;
+            }
+        }
+
+        @media (max-width: 720px) {
+            :root {
+                --sidebar-width: 0px;
+            }
+
+            .mobile-menu-button {
+                position: fixed;
+                z-index: 1400;
+                top: 14px;
+                left: 14px;
+                display: inline-grid;
+                width: 44px;
+                height: 44px;
+                place-items: center;
+                border: 1px solid rgba(99, 9, 9, 0.20);
+                border-radius: 50%;
+                background: rgba(254, 254, 254, 0.98);
+                color: var(--bordeaux);
+                font-size: 19px;
+                box-shadow: 0 8px 24px rgba(53, 36, 31, 0.10);
+            }
+
+            .book-sidebar {
+                width: min(82vw, 300px);
+                transform: translateX(-105%);
+                transition: transform 0.3s ease;
+            }
+
+            .book-sidebar.is-open {
+                transform: translateX(0);
+            }
+
+            .page-shell {
+                margin-left: 0;
+            }
+
+            .summary-intro {
+                padding: 68px 20px 42px;
+            }
+
+            .summary-name {
+                width: min(340px, 82vw);
+            }
+
+            .summary-date {
+                width: 135px;
+                max-width: 42vw;
+                margin-bottom: 26px;
+            }
+
+            .chapters-section {
+                padding: 38px 16px 60px;
+            }
+
+            .chapters-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .chapter-card,
+            .chapter-card.featured {
+                grid-column: span 1;
+                min-height: 235px;
+            }
+
+            .chapter-card-inner {
+                padding: 26px 24px 23px;
+            }
+
+            .chapter-card h2 {
+                font-size: 1.7rem;
+            }
+        }
+
+        @media (hover: none) {
+            .chapter-card::before {
+                filter:
+                    grayscale(0.35)
+                    saturate(0.72)
+                    contrast(0.98)
+                    brightness(0.96);
+            }
+
+            .chapter-card::after {
+                background:
+                    linear-gradient(
+                        180deg,
+                        rgba(38, 27, 25, 0.42) 0%,
+                        rgba(38, 27, 25, 0.08) 48%,
+                        rgba(38, 27, 25, 0.40) 100%
+                    );
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <button
+        class="mobile-menu-button"
+        type="button"
+        aria-label="Ouvrir le sommaire"
+        aria-controls="book-sidebar"
+        aria-expanded="false"
+    >
+        ☰
+    </button>
+
+    <aside
+        class="book-sidebar"
+        id="book-sidebar"
+        aria-label="Pages de l’album"
+    >
+        <div class="sidebar-inner">
+
+            <img
+                src="../images/style/logosansfond.jpg"
+                alt="Logo du mariage d’Élodie et Alexandre"
+                class="wedding-logo"
+            >
+
+            <nav aria-label="Navigation principale">
+                <ol class="page-list">
+
+                    <li class="page-item">
+                        <a href="../" class="page-link" data-page="bienvenue">
+                            <span class="page-dot">1</span>
+                            <span class="page-label">Bienvenue</span>
+                        </a>
+                    </li>
+
+                    <li class="page-item">
+                        <a href="./" class="page-link" data-page="sommaire">
+                            <span class="page-dot">2</span>
+                            <span class="page-label">Sommaire</span>
+                        </a>
+                    </li>
+
+                    <li class="page-item">
+                        <a href="../invitation/" class="page-link" data-page="invitation">
+                            <span class="page-dot">3</span>
+                            <span class="page-label">Invitation</span>
+                        </a>
+                    </li>
+
+                    <li class="page-item">
+                        <a href="../preparatifs/" class="page-link" data-page="preparatifs">
+                            <span class="page-dot">4</span>
+                            <span class="page-label">Préparatifs</span>
+                        </a>
+                    </li>
+
+                    <li class="page-item">
+                        <a href="../first-look/" class="page-link" data-page="first-look">
+                            <span class="page-dot">5</span>
+                            <span class="page-label">First Look</span>
+                        </a>
+                    </li>
+
+                    <li class="page-item">
+                        <a href="../mairie/" class="page-link" data-page="mairie">
+                            <span class="page-dot">6</span>
+                            <span class="page-label">Mairie</span>
+                        </a>
+                    </li>
+
+                    <li class="page-item">
+                        <a href="../eglise/" class="page-link" data-page="eglise">
+                            <span class="page-dot">7</span>
+                            <span class="page-label">Église</span>
+                        </a>
+                    </li>
+
+                    <li class="page-item">
+                        <a href="../vin_d_honneur/" class="page-link" data-page="vin-d-honneur">
+                            <span class="page-dot">8</span>
+                            <span class="page-label">Vin d’honneur</span>
+                        </a>
+                    </li>
+
+                    <li class="page-item">
+                        <a href="../soiree/" class="page-link" data-page="soiree">
+                            <span class="page-dot">9</span>
+                            <span class="page-label">Soirée</span>
+                        </a>
+                    </li>
+
+                    <li class="page-item">
+                        <a href="../videos/" class="page-link" data-page="videos">
+                            <span class="page-dot">10</span>
+                            <span class="page-label">Vidéos</span>
+                        </a>
+                    </li>
+
+                    <li class="page-item">
+                        <a href="../photoscouple/" class="page-link" data-page="photos-couple">
+                            <span class="page-dot">11</span>
+                            <span class="page-label">Photos de couple</span>
+                        </a>
+                    </li>
+
+                    <li class="page-item">
+                        <a href="../photosgroupe/" class="page-link" data-page="photos-groupe">
+                            <span class="page-dot">12</span>
+                            <span class="page-label">Photos de groupe</span>
+                        </a>
+                    </li>
+
+                    <li class="page-item">
+                        <a href="../photobooth/" class="page-link" data-page="photobooth">
+                            <span class="page-dot">13</span>
+                            <span class="page-label">Photobooth</span>
+                        </a>
+                    </li>
+
+                    <li class="page-item">
+                        <a href="../remerciements/" class="page-link" data-page="remerciements">
+                            <span class="page-dot">14</span>
+                            <span class="page-label">Remerciements</span>
+                        </a>
+                    </li>
+
+                </ol>
+            </nav>
+        </div>
+    </aside>
+
+    <main class="page-shell">
+        <section class="summary-page">
+
+            <header class="summary-intro">
+
+                <img
+                    src="../images/style/nomsansfond.jpg"
+                    alt="Élodie et Alexandre"
+                    class="summary-name"
+                >
+
+                <img
+                    src="../images/style/datesansfond.jpg"
+                    alt="23 mai 2026"
+                    class="summary-date"
+                >
+
+                <h1 class="summary-title">Sommaire</h1>
+
+                <p class="summary-subtitle">
+                    Choisissez un chapitre pour revivre les moments de cette journée inoubliable.
+                </p>
+
+            </header>
+
+            <section class="chapters-section" aria-label="Chapitres de l’album">
+                <div class="chapters-grid">
+
+                    <a href="../invitation/" class="chapter-card" style="--card-image: url('../images/vignettes/vignette_invitation.jpg');">
+                        <div class="chapter-card-inner">
+                            <div class="chapter-card-title">
+                                <h2>Invitation</h2>
+                            </div>
+                            <span class="chapter-arrow">Découvrir</span>
+                        </div>
+                    </a>
+
+                    <a href="../preparatifs/" class="chapter-card" style="--card-image: url('../images/vignettes/vignette_preparatifs.jpg');">
+                        <div class="chapter-card-inner">
+                            <div class="chapter-card-title">
+                                <h2>Préparatifs</h2>
+                            </div>
+                            <span class="chapter-arrow">Découvrir</span>
+                        </div>
+                    </a>
+
+                    <a href="../first-look/" class="chapter-card" style="--card-image: url('../images/vignettes/vignette_first-look.jpg');">
+                        <div class="chapter-card-inner">
+                            <div class="chapter-card-title">
+                                <h2>First Look</h2>
+                            </div>
+                            <span class="chapter-arrow">Découvrir</span>
+                        </div>
+                    </a>
+
+                    <a href="../mairie/" class="chapter-card" style="--card-image: url('../images/vignettes/vignette_mairie.jpg');">
+                        <div class="chapter-card-inner">
+                            <div class="chapter-card-title">
+                                <h2>Mairie</h2>
+                            </div>
+                            <span class="chapter-arrow">Découvrir</span>
+                        </div>
+                    </a>
+
+                    <a href="../eglise/" class="chapter-card" style="--card-image: url('../images/vignettes/vignette_eglise.jpg');">
+                        <div class="chapter-card-inner">
+                            <div class="chapter-card-title">
+                                <h2>Église</h2>
+                            </div>
+                            <span class="chapter-arrow">Découvrir</span>
+                        </div>
+                    </a>
+
+                    <a href="../vin_d_honneur/" class="chapter-card" style="--card-image: url('../images/vignettes/vignette_vin_d_honneur.jpg');">
+                        <div class="chapter-card-inner">
+                            <div class="chapter-card-title">
+                                <h2>Vin d’honneur</h2>
+                            </div>
+                            <span class="chapter-arrow">Découvrir</span>
+                        </div>
+                    </a>
+
+                    <a href="../soiree/" class="chapter-card" style="--card-image: url('../images/vignettes/vignette_soiree.jpg');">
+                        <div class="chapter-card-inner">
+                            <div class="chapter-card-title">
+                                <h2>Soirée</h2>
+                            </div>
+                            <span class="chapter-arrow">Découvrir</span>
+                        </div>
+                    </a>
+
+                    <a href="../videos/" class="chapter-card" style="--card-image: url('../images/vignettes/vignette_videos.jpg');">
+                        <div class="chapter-card-inner">
+                            <div class="chapter-card-title">
+                                <h2>Vidéos</h2>
+                            </div>
+                            <span class="chapter-arrow">Découvrir</span>
+                        </div>
+                    </a>
+
+                    <a href="../photoscouple/" class="chapter-card" style="--card-image: url('../images/vignettes/vignette_photoscouple.jpg');">
+                        <div class="chapter-card-inner">
+                            <div class="chapter-card-title">
+                                <h2>Photos de couple</h2>
+                            </div>
+                            <span class="chapter-arrow">Découvrir</span>
+                        </div>
+                    </a>
+
+                    <a href="../photosgroupe/" class="chapter-card" style="--card-image: url('../images/vignettes/vignette_photosgroupe.jpg');">
+                        <div class="chapter-card-inner">
+                            <div class="chapter-card-title">
+                                <h2>Photos de groupe</h2>
+                            </div>
+                            <span class="chapter-arrow">Découvrir</span>
+                        </div>
+                    </a>
+
+                    <a href="../photobooth/" class="chapter-card featured" style="--card-image: url('../images/vignettes/vignette_photobooth.jpg');">
+                        <div class="chapter-card-inner">
+                            <div class="chapter-card-title">
+                                <h2>Photobooth</h2>
+                            </div>
+                            <span class="chapter-arrow">Découvrir</span>
+                        </div>
+                    </a>
+
+                </div>
+            </section>
+
+        </section>
+    </main>
+
+    <script>
+        const currentPage = "sommaire";
+
+        const pageOrder = [
+            "bienvenue",
+            "sommaire",
+            "invitation",
+            "preparatifs",
+            "first-look",
+            "mairie",
+            "eglise",
+            "vin-d-honneur",
+            "soiree",
+            "videos",
+            "photos-couple",
+            "photos-groupe",
+            "photobooth",
+            "remerciements"
+        ];
+
+        const currentIndex = pageOrder.indexOf(currentPage);
+
+        document.querySelectorAll(".page-link").forEach((link) => {
+            const pageName = link.dataset.page;
+            const pageIndex = pageOrder.indexOf(pageName);
+
+            link.classList.remove("is-current", "is-visited");
+            link.removeAttribute("aria-current");
+
+            if (pageIndex < currentIndex) {
+                link.classList.add("is-visited");
+            }
+
+            if (pageName === currentPage) {
+                link.classList.add("is-current");
+                link.setAttribute("aria-current", "page");
+            }
+        });
+
+        const menuButton = document.querySelector(".mobile-menu-button");
+        const sidebar = document.querySelector(".book-sidebar");
+
+        menuButton.addEventListener("click", () => {
+            const isOpen = sidebar.classList.toggle("is-open");
+            menuButton.setAttribute("aria-expanded", String(isOpen));
+            menuButton.textContent = isOpen ? "×" : "☰";
+        });
+
+        document.addEventListener("click", (event) => {
+            const clickedInsideSidebar = sidebar.contains(event.target);
+            const clickedMenuButton = menuButton.contains(event.target);
+
+            if (
+                window.innerWidth <= 720 &&
+                sidebar.classList.contains("is-open") &&
+                !clickedInsideSidebar &&
+                !clickedMenuButton
+            ) {
+                sidebar.classList.remove("is-open");
+                menuButton.setAttribute("aria-expanded", "false");
+                menuButton.textContent = "☰";
+            }
+        });
+    </script>
+
+</body>
+</html>
