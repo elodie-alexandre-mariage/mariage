@@ -187,7 +187,14 @@
         }
 
         .page-link.is-current .page-label {
-            font-weight: 700;
+            justify-self: center;
+            width: 100%;
+            padding-right: 8px;
+            font-family: "Segoe Script", "Lucida Handwriting", "Brush Script MT", "Snell Roundhand", cursive;
+            font-size: 15px;
+            font-weight: 400;
+            line-height: 1.1;
+            text-align: center;
         }
 
         .page-link.is-current .page-dot {
@@ -223,7 +230,7 @@
         .premium-photo-wrap {
             position: relative;
             width: 100%;
-            height: 579px;
+            height: 100vh;
             margin: 0;
             overflow: hidden;
             background: var(--background);
@@ -243,9 +250,11 @@
             background:
                 linear-gradient(
                     to bottom,
-                    rgba(15, 10, 10, 0) 52%,
-                    rgba(15, 10, 10, 0.10) 69%,
-                    rgba(15, 10, 10, 0.52) 100%
+                    rgba(254, 254, 254, 0) 48%,
+                    rgba(254, 254, 254, 0.08) 62%,
+                    rgba(254, 254, 254, 0.42) 78%,
+                    rgba(254, 254, 254, 0.88) 93%,
+                    rgba(254, 254, 254, 1) 100%
                 );
             pointer-events: none;
         }
@@ -254,32 +263,35 @@
             position: absolute;
             z-index: 2;
             right: 28px;
-            bottom: 34px;
+            bottom: clamp(22px, 4vh, 46px);
             left: 28px;
-            color: var(--white);
+            color: var(--bordeaux);
             text-align: center;
         }
 
         .cover-invitation p {
-            max-width: 720px;
-            margin: 0 auto 14px;
-            font-size: 17px;
-            font-style: italic;
-            line-height: 1.6;
-            text-shadow: 0 2px 16px rgba(0, 0, 0, 0.42);
+            max-width: 760px;
+            margin: 0 auto 12px;
+            color: var(--bordeaux);
+            font-family: "Segoe Script", "Lucida Handwriting", "Brush Script MT", "Snell Roundhand", cursive;
+            font-size: clamp(22px, 2.25vw, 34px);
+            font-weight: 400;
+            line-height: 1.25;
+            letter-spacing: 0.01em;
+            text-shadow: none;
         }
 
         .open-album {
             display: inline-flex;
             align-items: center;
             gap: 9px;
-            color: var(--white);
+            color: var(--bordeaux);
             font-family: Arial, Helvetica, sans-serif;
             font-size: 11px;
             letter-spacing: 2px;
             text-decoration: none;
             text-transform: uppercase;
-            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.38);
+            text-shadow: none;
         }
 
         .open-album::after {
@@ -312,7 +324,7 @@
             }
 
             .premium-photo-wrap {
-                height: 579px;
+                height: 100vh;
             }
         }
 
@@ -353,7 +365,7 @@
             }
 
             .premium-photo-wrap {
-                height: clamp(500px, 70vh, 660px);
+                height: 100svh;
             }
 
             .cover-invitation {
@@ -363,8 +375,8 @@
             }
 
             .cover-invitation p {
-                margin-bottom: 12px;
-                font-size: 15px;
+                margin-bottom: 10px;
+                font-size: clamp(21px, 7vw, 29px);
             }
         }
 
