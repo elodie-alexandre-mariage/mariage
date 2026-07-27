@@ -272,21 +272,8 @@
         }
 
         .hero {
-            padding: 82px 30px 70px;
+            padding: 96px 30px 76px;
             text-align: center;
-        }
-
-        .hero-name {
-            width: min(420px, 72vw);
-            height: auto;
-            margin: 0 auto 22px;
-        }
-
-        .hero-date {
-            width: 150px;
-            max-width: 28vw;
-            height: auto;
-            margin: 0 auto 52px;
         }
 
         .eyebrow {
@@ -517,19 +504,18 @@
             text-align: center;
         }
 
-        .footer-mark {
-            color: var(--bordeaux);
-            font-size: 1.3rem;
+        .footer-name-logo {
+            width: 165px;
+            max-width: 48vw;
+            height: auto;
+            margin: 0 auto;
         }
 
-        .footer-date {
-            margin-top: 10px;
-            color: #918681;
-            font-family: "Montserrat", Arial, Helvetica, sans-serif;
-            font-size: 10px;
-            font-weight: 400;
-            letter-spacing: 2.6px;
-            text-transform: uppercase;
+        .footer-date-logo {
+            width: 92px;
+            max-width: 28vw;
+            height: auto;
+            margin: 11px auto 0;
         }
 
         /* Écrans peu hauts */
@@ -637,17 +623,7 @@
             }
 
             .hero {
-                padding: 78px 20px 58px;
-            }
-
-            .hero-name {
-                width: min(340px, 82vw);
-            }
-
-            .hero-date {
-                width: 135px;
-                max-width: 42vw;
-                margin-bottom: 42px;
+                padding: 82px 20px 60px;
             }
 
             .choices-section {
@@ -819,18 +795,6 @@
 
             <header class="hero">
 
-                <img
-                    src="../images/style/nomsansfond.jpg"
-                    alt="Élodie et Alexandre"
-                    class="hero-name"
-                >
-
-                <img
-                    src="../images/style/datesansfond.jpg"
-                    alt="23 mai 2026"
-                    class="hero-date"
-                >
-
                 <p class="eyebrow">Avant la cérémonie</p>
 
                 <h1>Les préparatifs</h1>
@@ -881,9 +845,20 @@
         </section>
     </main>
 
-    <footer class="footer">
-        <p class="footer-mark">Élodie &amp; Alexandre</p>
-        <p class="footer-date">23 mai 2026</p>
+    <footer class="footer" aria-label="Signature de l’album">
+
+        <img
+            src="../images/style/nomsansfond.jpg"
+            alt="Élodie et Alexandre"
+            class="footer-name-logo"
+        >
+
+        <img
+            src="../images/style/datesansfond.jpg"
+            alt="23 mai 2026"
+            class="footer-date-logo"
+        >
+
     </footer>
 
     <script>
