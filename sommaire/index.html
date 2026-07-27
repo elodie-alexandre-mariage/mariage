@@ -126,6 +126,13 @@
             position: relative;
         }
 
+
+        .page-item-separated {
+            margin-top: 16px;
+            padding-top: 17px;
+            border-top: 1px solid rgba(99, 9, 9, 0.16);
+        }
+
         .page-link {
             position: relative;
             display: grid;
@@ -434,6 +441,131 @@
         }
 
 
+
+        .section-heading {
+            grid-column: 1 / -1;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 30px;
+            margin: 0 0 4px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid rgba(99, 9, 9, 0.16);
+        }
+
+        .section-heading span {
+            color: var(--bordeaux);
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+
+        .section-heading p {
+            max-width: 460px;
+            color: var(--muted);
+            font-size: 11px;
+            font-weight: 300;
+            line-height: 1.7;
+            text-align: right;
+        }
+
+        .memories-heading {
+            margin-top: 46px;
+        }
+
+        .memories-card {
+            position: relative;
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            min-height: 360px;
+            overflow: hidden;
+            color: var(--white);
+            text-decoration: none;
+            background: #201817;
+            box-shadow: 0 18px 46px rgba(39, 27, 24, 0.10);
+            transition:
+                transform 600ms cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 600ms ease;
+        }
+
+        .memory-panel {
+            position: relative;
+            min-width: 0;
+            background-image: var(--memory-image);
+            background-position: center;
+            background-size: cover;
+            filter: grayscale(100%);
+            transform: scale(1.02);
+            transition:
+                filter 700ms ease,
+                transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .memories-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background:
+                linear-gradient(90deg, rgba(18, 11, 10, 0.56), rgba(18, 11, 10, 0.20) 50%, rgba(18, 11, 10, 0.56)),
+                linear-gradient(0deg, rgba(18, 11, 10, 0.35), rgba(18, 11, 10, 0.08));
+            transition: background 700ms ease;
+        }
+
+        .memories-content {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            text-shadow: 0 3px 22px rgba(0, 0, 0, 0.42);
+            transition: transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .memories-kicker {
+            margin-bottom: 13px;
+            font-size: 10px;
+            font-weight: 400;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+        }
+
+        .memories-content strong {
+            font-size: clamp(2rem, 4vw, 3.35rem);
+            font-weight: 300;
+            letter-spacing: 0.04em;
+        }
+
+        .memories-line {
+            width: 46px;
+            height: 1px;
+            margin-top: 19px;
+            background: rgba(255, 255, 255, 0.80);
+            transition: width 600ms cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .memories-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 26px 60px rgba(39, 27, 24, 0.18);
+        }
+
+        .memories-card:hover .memory-panel {
+            filter: grayscale(0%);
+            transform: scale(1.07);
+        }
+
+        .memories-card:hover .memories-content {
+            transform: translateY(-4px);
+        }
+
+        .memories-card:hover .memories-line {
+            width: 78px;
+        }
+
         /* Transition entre les chapitres : effet de page qui glisse */
         .page-shell {
             opacity: 1;
@@ -477,6 +609,24 @@
         }
 
         @media (max-width: 720px) {
+
+            .section-heading {
+                display: block;
+            }
+
+            .section-heading p {
+                margin-top: 9px;
+                text-align: left;
+            }
+
+            .memories-heading {
+                margin-top: 30px;
+            }
+
+            .memories-card {
+                grid-template-columns: repeat(2, 1fr);
+                min-height: 430px;
+            }
             :root {
                 --sidebar-width: 0px;
             }
@@ -672,37 +822,16 @@
                     </li>
 
                     <li class="page-item">
-                        <a href="../videos/" class="page-link" data-page="videos">
-                            <span class="page-dot">10</span>
-                            <span class="page-label">Vidéos</span>
-                        </a>
-                    </li>
-
-                    <li class="page-item">
-                        <a href="../photoscouple/" class="page-link" data-page="photos-couple">
-                            <span class="page-dot">11</span>
-                            <span class="page-label">Photos de couple</span>
-                        </a>
-                    </li>
-
-                    <li class="page-item">
-                        <a href="../photosgroupe/" class="page-link" data-page="photos-groupe">
-                            <span class="page-dot">12</span>
-                            <span class="page-label">Photos de groupe</span>
-                        </a>
-                    </li>
-
-                    <li class="page-item">
-                        <a href="../photobooth/" class="page-link" data-page="photobooth">
-                            <span class="page-dot">13</span>
-                            <span class="page-label">Photobooth</span>
-                        </a>
-                    </li>
-
-                    <li class="page-item">
                         <a href="../remerciements/" class="page-link" data-page="remerciements">
-                            <span class="page-dot">14</span>
+                            <span class="page-dot">10</span>
                             <span class="page-label">Remerciements</span>
+                        </a>
+                    </li>
+
+                    <li class="page-item page-item-separated">
+                        <a href="../souvenirs/" class="page-link" data-page="souvenirs">
+                            <span class="page-dot">11</span>
+                            <span class="page-label">Souvenirs</span>
                         </a>
                     </li>
 
@@ -731,7 +860,7 @@
                 <h1 class="summary-title">Sommaire</h1>
 
                 <p class="summary-subtitle">
-                    Choisissez un chapitre pour revivre les moments de cette journée inoubliable.
+                    Parcourez le récit de notre journée, puis retrouvez tous les souvenirs en images.
                 </p>
 
             </header>
@@ -739,100 +868,77 @@
             <section class="chapters-section" aria-label="Chapitres de l’album">
                 <div class="chapters-grid">
 
+                    <div class="section-heading">
+                        <span>Le récit</span>
+                        <p>Du premier préparatif aux derniers instants de la soirée.</p>
+                    </div>
+
                     <a href="../invitation/" class="chapter-card" style="--card-image: url('../images/vignettes/vignette_invitation.jpg');">
                         <div class="chapter-card-inner">
-                            <div class="chapter-card-title">
-                                <h2>Invitation</h2>
-                            </div>
+                            <div class="chapter-card-title"><h2>Invitation</h2></div>
                         </div>
                     </a>
 
                     <a href="../preparatifs/" class="chapter-card" style="--card-image: url('../images/vignettes/vignette_preparatifs.jpg');">
                         <div class="chapter-card-inner">
-                            <div class="chapter-card-title">
-                                <h2>Préparatifs</h2>
-                            </div>
+                            <div class="chapter-card-title"><h2>Préparatifs</h2></div>
                         </div>
                     </a>
 
                     <a href="../first-look/" class="chapter-card" style="--card-image: url('../images/vignettes/vignette_first-look.jpg');">
                         <div class="chapter-card-inner">
-                            <div class="chapter-card-title">
-                                <h2>First Look</h2>
-                            </div>
+                            <div class="chapter-card-title"><h2>First Look</h2></div>
                         </div>
                     </a>
 
                     <a href="../mairie/" class="chapter-card" style="--card-image: url('../images/vignettes/vignette_mairie.jpg');">
                         <div class="chapter-card-inner">
-                            <div class="chapter-card-title">
-                                <h2>Mairie</h2>
-                            </div>
+                            <div class="chapter-card-title"><h2>Mairie</h2></div>
                         </div>
                     </a>
 
                     <a href="../eglise/" class="chapter-card" style="--card-image: url('../images/vignettes/vignette_eglise.jpg');">
                         <div class="chapter-card-inner">
-                            <div class="chapter-card-title">
-                                <h2>Église</h2>
-                            </div>
+                            <div class="chapter-card-title"><h2>Église</h2></div>
                         </div>
                     </a>
 
                     <a href="../vin_d_honneur/" class="chapter-card" style="--card-image: url('../images/vignettes/vignette_vin_d_honneur.jpg');">
                         <div class="chapter-card-inner">
-                            <div class="chapter-card-title">
-                                <h2>Vin d’honneur</h2>
-                            </div>
+                            <div class="chapter-card-title"><h2>Vin d’honneur</h2></div>
                         </div>
                     </a>
 
                     <a href="../soiree/" class="chapter-card" style="--card-image: url('../images/vignettes/vignette_soiree.jpg');">
                         <div class="chapter-card-inner">
-                            <div class="chapter-card-title">
-                                <h2>Soirée</h2>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="../videos/" class="chapter-card" style="--card-image: url('../images/vignettes/vignette_videos.jpg');">
-                        <div class="chapter-card-inner">
-                            <div class="chapter-card-title">
-                                <h2>Vidéos</h2>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="../photoscouple/" class="chapter-card" style="--card-image: url('../images/vignettes/vignette_photoscouple.jpg');">
-                        <div class="chapter-card-inner">
-                            <div class="chapter-card-title">
-                                <h2>Couple</h2>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="../photosgroupe/" class="chapter-card" style="--card-image: url('../images/vignettes/vignette_photosgroupe.jpg');">
-                        <div class="chapter-card-inner">
-                            <div class="chapter-card-title">
-                                <h2>Groupes</h2>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="../photobooth/" class="chapter-card" style="--card-image: url('../images/vignettes/vignette_photobooth.jpg');">
-                        <div class="chapter-card-inner">
-                            <div class="chapter-card-title">
-                                <h2>Photobooth</h2>
-                            </div>
+                            <div class="chapter-card-title"><h2>Soirée</h2></div>
                         </div>
                     </a>
 
                     <a href="../remerciements/" class="chapter-card" style="--card-image: url('../images/vignettes/vignette_remerciements.jpg');">
                         <div class="chapter-card-inner">
-                            <div class="chapter-card-title">
-                                <h2>Remerciements</h2>
-                            </div>
+                            <div class="chapter-card-title"><h2>Remerciements</h2></div>
                         </div>
+                    </a>
+
+                    <div class="section-heading memories-heading">
+                        <span>Les souvenirs</span>
+                        <p>Le film, les portraits, les photos de groupe et le photobooth.</p>
+                    </div>
+
+                    <a href="../souvenirs/" class="memories-card" aria-label="Découvrir tous les souvenirs">
+                        <span class="memory-panel" style="--memory-image: url('../images/vignettes/vignette_videos.jpg');"></span>
+                        <span class="memory-panel" style="--memory-image: url('../images/vignettes/vignette_photoscouple.jpg');"></span>
+                        <span class="memory-panel" style="--memory-image: url('../images/vignettes/vignette_photosgroupe.jpg');"></span>
+                        <span class="memory-panel" style="--memory-image: url('../images/vignettes/vignette_photobooth.jpg');"></span>
+
+                        <span class="memories-overlay"></span>
+
+                        <span class="memories-content">
+                            <span class="memories-kicker">Film & galeries</span>
+                            <strong>Souvenirs</strong>
+                            <span class="memories-line"></span>
+                        </span>
                     </a>
 
                 </div>
@@ -854,11 +960,8 @@
             "eglise",
             "vin-d-honneur",
             "soiree",
-            "videos",
-            "photos-couple",
-            "photos-groupe",
-            "photobooth",
-            "remerciements"
+            "remerciements",
+            "souvenirs"
         ];
 
         const currentIndex = pageOrder.indexOf(currentPage);
