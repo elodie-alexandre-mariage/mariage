@@ -684,6 +684,352 @@
                 transition-duration: 0.01ms !important;
             }
         }
+    
+        /* =========================
+           REMERCIEMENTS — VERSION ÉDITORIALE
+        ========================= */
+
+        .hero {
+            padding-top: 86px;
+            padding-bottom: 82px;
+        }
+
+        .hero .intro {
+            max-width: 820px;
+        }
+
+        .guest-feature {
+            overflow: hidden;
+            border: 1px solid rgba(99, 9, 9, 0.10);
+            border-radius: 3px;
+            background: #fff;
+            box-shadow: 0 24px 60px rgba(69, 45, 39, 0.10);
+        }
+
+        .guest-feature-photo {
+            min-height: 520px;
+        }
+
+        .guest-feature-photo img {
+            width: 100%;
+            height: 100%;
+            min-height: 520px;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .guest-feature-copy {
+            padding: 54px 56px 58px;
+            text-align: center;
+        }
+
+        .guest-feature-copy h3 {
+            margin-bottom: 22px;
+            color: var(--bordeaux);
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
+            font-size: clamp(24px, 2.7vw, 36px);
+            font-weight: 300;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .guest-feature-copy p {
+            max-width: 850px;
+            margin: 0 auto;
+            color: var(--muted);
+            font-size: 18px;
+            line-height: 1.9;
+        }
+
+        .closest-section {
+            background:
+                linear-gradient(180deg, #fff 0%, #fcfaf8 46%, #fff 100%);
+        }
+
+        .closest-intro {
+            max-width: 780px;
+            margin: 0 auto 68px;
+            text-align: center;
+        }
+
+        .closest-intro .section-lead {
+            margin-bottom: 0;
+        }
+
+        .tribute-list {
+            display: flex;
+            flex-direction: column;
+            gap: 88px;
+        }
+
+        .tribute-row {
+            position: relative;
+            display: grid;
+            grid-template-columns: minmax(0, 1.28fr) minmax(320px, 0.72fr);
+            gap: 66px;
+            align-items: center;
+        }
+
+        .tribute-row:nth-child(even) {
+            grid-template-columns: minmax(320px, 0.72fr) minmax(0, 1.28fr);
+        }
+
+        .tribute-row:nth-child(even) .tribute-photo {
+            order: 2;
+        }
+
+        .tribute-row:nth-child(even) .tribute-copy {
+            order: 1;
+        }
+
+        .tribute-photo {
+            position: relative;
+            min-width: 0;
+        }
+
+        .tribute-photo::before {
+            position: absolute;
+            z-index: 0;
+            top: 22px;
+            right: -22px;
+            bottom: -22px;
+            left: 22px;
+            border: 1px solid rgba(99, 9, 9, 0.18);
+            content: "";
+        }
+
+        .tribute-row:nth-child(even) .tribute-photo::before {
+            right: 22px;
+            left: -22px;
+        }
+
+        .tribute-photo img {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            height: clamp(430px, 42vw, 590px);
+            border-radius: 2px;
+            object-fit: cover;
+            object-position: center;
+            box-shadow: 0 25px 60px rgba(57, 40, 34, 0.14);
+            transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+                        box-shadow 0.55s ease;
+        }
+
+        .tribute-photo:hover img {
+            transform: translateY(-5px) scale(1.008);
+            box-shadow: 0 32px 76px rgba(57, 40, 34, 0.18);
+        }
+
+        .tribute-copy {
+            position: relative;
+            padding: 34px 0 34px 42px;
+        }
+
+        .tribute-row:nth-child(even) .tribute-copy {
+            padding: 34px 42px 34px 0;
+            text-align: right;
+        }
+
+        .tribute-copy::before {
+            position: absolute;
+            top: 28px;
+            bottom: 28px;
+            left: 0;
+            width: 1px;
+            background: linear-gradient(
+                180deg,
+                transparent,
+                rgba(99, 9, 9, 0.52) 18%,
+                rgba(99, 9, 9, 0.52) 82%,
+                transparent
+            );
+            content: "";
+        }
+
+        .tribute-row:nth-child(even) .tribute-copy::before {
+            right: 0;
+            left: auto;
+        }
+
+        .tribute-number {
+            display: block;
+            margin-bottom: 14px;
+            color: rgba(99, 9, 9, 0.52);
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.30em;
+            text-transform: uppercase;
+        }
+
+        .tribute-copy h3 {
+            margin-bottom: 20px;
+            color: var(--bordeaux);
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
+            font-size: clamp(28px, 3.2vw, 44px);
+            font-weight: 300;
+            line-height: 1.18;
+            letter-spacing: 0.06em;
+        }
+
+        .tribute-quote {
+            margin-bottom: 20px;
+            color: #4d403b;
+            font-size: clamp(18px, 1.7vw, 23px);
+            font-style: italic;
+            line-height: 1.6;
+        }
+
+        .tribute-copy p:last-child {
+            color: var(--muted);
+            font-size: 17px;
+            line-height: 1.85;
+        }
+
+        .vendors-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 22px;
+        }
+
+        .vendor-card {
+            min-height: 154px;
+            padding: 25px 28px;
+            border: 1px solid rgba(99, 9, 9, 0.09);
+            border-radius: 2px;
+            background: #fff;
+            box-shadow: 0 14px 38px rgba(66, 47, 41, 0.07);
+            transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+                        box-shadow 0.4s ease,
+                        border-color 0.4s ease;
+        }
+
+        .vendor-card:hover {
+            border-color: rgba(99, 9, 9, 0.24);
+            transform: translateY(-5px);
+            box-shadow: 0 22px 50px rgba(66, 47, 41, 0.11);
+        }
+
+        .vendor-photo {
+            flex: 0 0 102px;
+            width: 102px;
+            height: 102px;
+            border: 5px solid #f5efeb;
+            border-radius: 50%;
+            box-shadow: 0 8px 22px rgba(63, 42, 36, 0.12);
+        }
+
+        .vendor-photo img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .vendor-name {
+            font-size: 21px;
+        }
+
+        .vendor-note {
+            margin-top: 7px;
+            line-height: 1.55;
+        }
+
+        @media (max-width: 1050px) {
+            .tribute-row,
+            .tribute-row:nth-child(even) {
+                grid-template-columns: 1fr;
+                gap: 34px;
+            }
+
+            .tribute-row:nth-child(even) .tribute-photo,
+            .tribute-row:nth-child(even) .tribute-copy {
+                order: initial;
+            }
+
+            .tribute-row:nth-child(even) .tribute-copy {
+                padding: 32px 0 18px 38px;
+                text-align: left;
+            }
+
+            .tribute-row:nth-child(even) .tribute-copy::before {
+                right: auto;
+                left: 0;
+            }
+
+            .tribute-row:nth-child(even) .tribute-photo::before {
+                right: -18px;
+                left: 18px;
+            }
+
+            .tribute-photo img {
+                height: min(66vw, 590px);
+            }
+        }
+
+        @media (max-width: 840px) {
+            .vendors-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .guest-feature-photo,
+            .guest-feature-photo img {
+                min-height: 390px;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .guest-feature-photo,
+            .guest-feature-photo img {
+                min-height: 300px;
+            }
+
+            .guest-feature-copy {
+                padding: 38px 24px 42px;
+            }
+
+            .guest-feature-copy p {
+                font-size: 16px;
+            }
+
+            .tribute-list {
+                gap: 68px;
+            }
+
+            .tribute-photo::before,
+            .tribute-row:nth-child(even) .tribute-photo::before {
+                top: 12px;
+                right: -10px;
+                bottom: -12px;
+                left: 10px;
+            }
+
+            .tribute-photo img {
+                height: 112vw;
+                max-height: 510px;
+            }
+
+            .tribute-copy,
+            .tribute-row:nth-child(even) .tribute-copy {
+                padding: 24px 0 10px 25px;
+            }
+
+            .tribute-copy p:last-child {
+                font-size: 16px;
+            }
+
+            .vendor-card {
+                align-items: flex-start;
+                padding: 21px;
+            }
+
+            .vendor-photo {
+                flex-basis: 82px;
+                width: 82px;
+                height: 82px;
+            }
+        }
+
     </style>
 </head>
 
@@ -715,67 +1061,102 @@
         </div>
     </aside>
 
+
     <main class="page-shell">
         <section class="hero">
-            <p class="eyebrow">À toutes les personnes qui nous ont entourés</p>
+            <p class="eyebrow">À toutes les personnes qui ont rendu cette journée possible</p>
             <h1>Remerciements</h1>
             <p class="intro">
-                Parce qu’un mariage ne se construit jamais à deux seulement… Merci à nos familles, nos témoins,
-                nos proches, nos amis et à toutes les personnes passionnées qui ont contribué à rendre cette journée
-                aussi belle que nous l’avions rêvée.
+                Parce qu’un mariage ne se construit jamais à deux seulement… Cette page est dédiée à toutes
+                celles et ceux qui nous ont entourés, soutenus, accompagnés et qui ont fait du 23 mai 2026
+                une journée que nous n’oublierons jamais.
             </p>
         </section>
 
         <section class="section section-soft">
             <div class="section-inner">
-                <p class="section-kicker">À tous ceux qui étaient là</p>
-                <h2 class="section-title">Merci d’avoir partagé cette journée avec nous</h2>
+                <p class="section-kicker">À vous tous</p>
+                <h2 class="section-title">Merci à l’ensemble de nos invités</h2>
                 <p class="section-lead">
-                    Votre présence, vos sourires, vos attentions, vos rires et votre bonne humeur ont fait de notre mariage
-                    un souvenir inoubliable.
+                    Vous avez été les premiers artisans de l’atmosphère de cette journée. Vos sourires, vos rires,
+                    votre émotion et votre présence ont donné vie à tous les instants que nous avions imaginés.
                 </p>
 
                 <article class="guest-feature">
                     <div class="guest-feature-photo">
-                        <img src="../images/remerciements/invites.jpg" alt="Les invités du mariage d’Élodie et Alexandre">
+                        <img src="../images/remerciements/invites.jpg" alt="L’ensemble des invités du mariage d’Élodie et Alexandre">
                     </div>
                     <div class="guest-feature-copy">
-                        <h3>À tous nos invités</h3>
+                        <h3>Merci d’avoir été là</h3>
                         <p>
-                            Merci d’avoir été présents pour l’un des plus beaux jours de notre vie. Chacun de vos sourires,
-                            chaque mot, chaque attention et chaque éclat de rire ont participé à rendre cette journée unique.
-                            Nous espérons que vous avez pris autant de plaisir à la vivre que nous en avons eu à la partager avec vous.
+                            Merci d’avoir partagé avec nous l’un des plus beaux jours de notre vie. Chaque présence,
+                            chaque regard, chaque mot et chaque attention ont participé à rendre notre mariage unique.
+                            Nous garderons longtemps en mémoire cette journée vécue entourés de toutes les personnes
+                            qui comptent pour nous.
                         </p>
                     </div>
                 </article>
             </div>
         </section>
 
-        <section class="section">
+        <section class="section closest-section">
             <div class="section-inner">
-                <p class="section-kicker">À nos côtés depuis le début</p>
-                <h2 class="section-title">Nos proches</h2>
-                <p class="section-lead">
-                    Merci pour votre amour, votre aide, votre patience et votre présence durant tous ces mois de préparation.
-                </p>
+                <div class="closest-intro">
+                    <p class="section-kicker">Ceux qui ont tenu une place essentielle</p>
+                    <h2 class="section-title">À nos côtés, bien au-delà de cette journée</h2>
+                    <p class="section-lead">
+                        Certains visages racontent à eux seuls une grande partie de notre histoire.
+                        Nous voulions leur accorder ici une place particulière, à la hauteur de ce qu’ils représentent pour nous.
+                    </p>
+                </div>
 
-                <div class="people-grid">
-                    <article class="people-card">
-                        <div class="people-photo"><img src="../images/remerciements/parents.jpg" alt="Les parents d’Élodie et Alexandre"></div>
-                        <h3>Nos parents</h3>
-                        <p>Merci pour votre amour, votre soutien et tout ce que vous avez fait pour nous accompagner jusqu’à cette journée.</p>
+                <div class="tribute-list">
+                    <article class="tribute-row">
+                        <div class="tribute-photo">
+                            <img src="../images/remerciements/parents.jpg" alt="Les parents d’Élodie et Alexandre">
+                        </div>
+                        <div class="tribute-copy">
+                            <span class="tribute-number">01 — Nos piliers</span>
+                            <h3>Nos parents</h3>
+                            <p class="tribute-quote">« Votre amour, votre présence et votre soutien nous accompagnent bien au-delà de cette journée. »</p>
+                            <p>
+                                Merci pour tout ce que vous nous avez transmis, pour votre aide pendant les préparatifs,
+                                pour votre confiance et pour l’émotion partagée à nos côtés. Une partie de cette journée
+                                vous appartient aussi.
+                            </p>
+                        </div>
                     </article>
 
-                    <article class="people-card">
-                        <div class="people-photo"><img src="../images/remerciements/temoins.jpg" alt="Les témoins d’Élodie et Alexandre"></div>
-                        <h3>Nos témoins</h3>
-                        <p>Merci d’avoir été à nos côtés, de nous avoir soutenus et d’avoir partagé chaque étape de cette belle aventure.</p>
+                    <article class="tribute-row">
+                        <div class="tribute-photo">
+                            <img src="../images/remerciements/temoins.jpg" alt="Les témoins d’Élodie et Alexandre">
+                        </div>
+                        <div class="tribute-copy">
+                            <span class="tribute-number">02 — Nos complices</span>
+                            <h3>Nos témoins</h3>
+                            <p class="tribute-quote">« Vous n’avez pas seulement signé à nos côtés : vous avez vécu chaque étape avec nous. »</p>
+                            <p>
+                                Merci pour votre disponibilité, vos conseils, votre énergie et tous les moments partagés.
+                                Vous avez été présents dans les préparatifs comme dans les émotions du grand jour,
+                                et nous n’aurions pas pu rêver meilleurs témoins.
+                            </p>
+                        </div>
                     </article>
 
-                    <article class="people-card">
-                        <div class="people-photo"><img src="../images/remerciements/demoiselles.jpg" alt="Les demoiselles d’honneur"></div>
-                        <h3>Nos demoiselles d’honneur</h3>
-                        <p>Merci pour votre présence, votre énergie et toutes les petites attentions qui ont rendu cette journée encore plus belle.</p>
+                    <article class="tribute-row">
+                        <div class="tribute-photo">
+                            <img src="../images/remerciements/demoiselles.jpg" alt="Les demoiselles d’honneur d’Élodie">
+                        </div>
+                        <div class="tribute-copy">
+                            <span class="tribute-number">03 — Une présence précieuse</span>
+                            <h3>Nos demoiselles d’honneur</h3>
+                            <p class="tribute-quote">« Merci d’avoir entouré Élodie avec autant de douceur, de joie et de bienveillance. »</p>
+                            <p>
+                                Votre présence, vos attentions et votre bonne humeur ont accompagné les préparatifs
+                                et rendu cette journée encore plus belle. Nous garderons un souvenir précieux
+                                de tous ces instants vécus ensemble.
+                            </p>
+                        </div>
                     </article>
                 </div>
             </div>
@@ -786,14 +1167,14 @@
                 <p class="section-kicker">Les artisans de cette journée</p>
                 <h2 class="section-title">Merci à nos prestataires</h2>
                 <p class="section-lead">
-                    Derrière chaque instant se cachent des personnes talentueuses et passionnées. Merci à chacun d’avoir donné vie à nos idées
-                    et d’avoir contribué à créer une journée qui nous ressemble.
+                    Derrière chaque détail se cachent des personnes passionnées et talentueuses.
+                    Merci à chacune d’avoir donné vie à nos idées et d’avoir contribué à créer une journée qui nous ressemble.
                 </p>
 
                 <div class="vendors-grid">
                     <article class="vendor-card">
                         <div class="vendor-photo"><img src="../images/remerciements/laura.jpg" alt="Laura, wedding planner"></div>
-                        <div><p class="vendor-role">Wedding planner</p><h3 class="vendor-name">Laura</h3><p class="vendor-note">Pour l’accompagnement, l’organisation et la sérénité apportée tout au long des préparatifs.</p></div>
+                        <div><p class="vendor-role">Wedding planner</p><h3 class="vendor-name">Laura</h3><p class="vendor-note">Pour son accompagnement, son organisation et la sérénité apportée tout au long des préparatifs.</p></div>
                     </article>
 
                     <article class="vendor-card">
@@ -812,13 +1193,13 @@
                     </article>
 
                     <article class="vendor-card">
-                        <div class="vendor-photo"><img src="../images/remerciements/metsdelices.jpg" alt="Mets Délices, traiteur"></div>
-                        <div><p class="vendor-role">Traiteur</p><h3 class="vendor-name">Mets Délices</h3><p class="vendor-note">Pour les saveurs, la qualité du service et tout le soin apporté à notre réception.</p></div>
+                        <div class="vendor-photo"><img src="../images/remerciements/gatelet.jpg" alt="Château Le Gatelet, lieu de réception"></div>
+                        <div><p class="vendor-role">Lieu de réception</p><h3 class="vendor-name">Château Le Gatelet</h3><p class="vendor-note">Pour nous avoir accueillis dans un cadre magnifique et avoir offert un écrin à notre célébration.</p></div>
                     </article>
 
                     <article class="vendor-card">
-                        <div class="vendor-photo"><img src="../images/remerciements/fleuriste.jpg" alt="La Cour Dei Fiori, fleuriste"></div>
-                        <div><p class="vendor-role">Fleuriste</p><h3 class="vendor-name">La Cour Dei Fiori</h3><p class="vendor-note">Pour avoir fleuri notre journée avec élégance et donné vie à l’atmosphère dont nous rêvions.</p></div>
+                        <div class="vendor-photo"><img src="../images/remerciements/metsdelices.jpg" alt="Mets Délices, traiteur"></div>
+                        <div><p class="vendor-role">Traiteur</p><h3 class="vendor-name">Mets Délices</h3><p class="vendor-note">Pour les saveurs, la qualité du service et tout le soin apporté à notre réception.</p></div>
                     </article>
 
                     <article class="vendor-card">
@@ -827,18 +1208,18 @@
                     </article>
 
                     <article class="vendor-card">
-                        <div class="vendor-photo"><img src="../images/remerciements/gaspard.jpg" alt="Monsieur Gaspard, costume du marié"></div>
-                        <div><p class="vendor-role">Costume du marié</p><h3 class="vendor-name">Monsieur Gaspard</h3><p class="vendor-note">Pour l’élégance, les conseils et la création d’une tenue parfaitement à l’image de cette journée.</p></div>
+                        <div class="vendor-photo"><img src="../images/remerciements/fleuriste.jpg" alt="La Cour Dei Fiori, fleuriste"></div>
+                        <div><p class="vendor-role">Fleuriste</p><h3 class="vendor-name">La Cour Dei Fiori</h3><p class="vendor-note">Pour avoir fleuri notre journée avec élégance et donné vie à l’atmosphère dont nous rêvions.</p></div>
                     </article>
 
                     <article class="vendor-card">
                         <div class="vendor-photo"><img src="../images/remerciements/lunapaige.jpg" alt="Luna Paige, robe de mariée"></div>
-                        <div><p class="vendor-role">Robe de mariée</p><h3 class="vendor-name">Luna Paige</h3><p class="vendor-note">Pour la robe, les détails et l’émotion d’une tenue choisie pour un jour unique.</p></div>
+                        <div><p class="vendor-role">Robe de mariée</p><h3 class="vendor-name">Luna Paige</h3><p class="vendor-note">Pour la robe, ses détails et l’émotion d’une tenue choisie pour un jour unique.</p></div>
                     </article>
 
                     <article class="vendor-card">
-                        <div class="vendor-photo"><img src="../images/remerciements/gatelet.jpg" alt="Château Le Gatelet, lieu de réception"></div>
-                        <div><p class="vendor-role">Lieu de réception</p><h3 class="vendor-name">Château Le Gatelet</h3><p class="vendor-note">Pour nous avoir accueillis dans un cadre magnifique et avoir offert un écrin à notre célébration.</p></div>
+                        <div class="vendor-photo"><img src="../images/remerciements/gaspard.jpg" alt="Monsieur Gaspard, costume du marié"></div>
+                        <div><p class="vendor-role">Costume du marié</p><h3 class="vendor-name">Monsieur Gaspard</h3><p class="vendor-note">Pour l’élégance, les conseils et la création d’une tenue parfaitement à l’image de cette journée.</p></div>
                     </article>
                 </div>
             </div>
@@ -849,7 +1230,8 @@
                 <p class="closing-label">La suite de notre histoire</p>
                 <h2>La journée s’achève…<br>mais les souvenirs continuent.</h2>
                 <p>
-                    Merci d’avoir partagé avec nous cette journée si précieuse. Grâce à vous, elle restera à jamais gravée dans nos mémoires.
+                    Merci d’avoir partagé avec nous cette journée si précieuse.
+                    Grâce à vous, elle restera à jamais gravée dans nos mémoires.
                 </p>
                 <a class="souvenirs-link" href="../souvenirs/">Découvrir nos souvenirs <span aria-hidden="true">→</span></a>
             </div>
