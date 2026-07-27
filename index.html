@@ -33,7 +33,7 @@
             --paper: #fefefe;
             --white: #ffffff;
             --background: #fefefe;
-            --sidebar-width: 255px;
+            --sidebar-width: 290px;
         }
 
         html {
@@ -76,126 +76,129 @@
             scrollbar-color: var(--bordeaux) transparent;
         }
 
-
-        .book-sidebar::-webkit-scrollbar {
-            width: 7px;
-        }
-
-        .book-sidebar::-webkit-scrollbar-track {
-            background: transparent;
-        }
-
-        .book-sidebar::-webkit-scrollbar-thumb {
-            border-radius: 999px;
-            background: var(--bordeaux);
-        }
-
-        .book-sidebar::-webkit-scrollbar-thumb:hover {
-            background: var(--bordeaux-dark);
-        }
+        .book-sidebar::-webkit-scrollbar { width: 7px; }
+        .book-sidebar::-webkit-scrollbar-track { background: transparent; }
+        .book-sidebar::-webkit-scrollbar-thumb { border-radius: 999px; background: var(--bordeaux); }
+        .book-sidebar::-webkit-scrollbar-thumb:hover { background: var(--bordeaux-dark); }
 
         .sidebar-inner {
+            display: flex;
             min-height: 100%;
-            padding: 14px 20px 24px;
+            flex-direction: column;
+            padding: 18px 25px 27px;
         }
 
         .wedding-logo {
-            width: 75px;
+            width: 110px;
             height: auto;
-            margin: 0 auto 0;
+            margin: 0 auto 18px;
         }
 
         .page-list {
             position: relative;
             display: flex;
+            flex: 1;
             flex-direction: column;
-            gap: 0;
+            min-height: 0;
+            margin: 0;
+            padding: 0;
             list-style: none;
         }
 
         .page-list::before {
             position: absolute;
-            top: 15px;
-            bottom: 15px;
-            left: 12px;
+            top: 17px;
+            bottom: 17px;
+            left: 16px;
             width: 1px;
             background: #d9cbc4;
             content: "";
         }
 
-        .page-item {
-            position: relative;
+        .page-item { position: relative; }
+        .page-item:not(.page-item-separated) { margin-bottom: 8px; }
+
+        .menu-annexe {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-top: auto;
+            padding: 20px 5px 8px;
         }
+
+        .menu-annexe-line {
+            width: 100%;
+            height: 1px;
+            margin-bottom: 16px;
+            background: rgba(99, 9, 9, 0.16);
+        }
+
+        .menu-annexe-title {
+            padding-left: 49px;
+            color: rgba(99, 9, 9, 0.68);
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+        }
+
+        .page-item-separated { margin-top: 0; padding-top: 4px; border-top: 0; }
 
         .page-link {
             position: relative;
             display: grid;
-            grid-template-columns: 27px 1fr;
-            gap: 12px;
+            grid-template-columns: 35px 1fr;
+            gap: 16px;
             align-items: center;
-            min-height: 35px;
-            padding: 1px 4px;
+            min-height: 46px;
+            padding: 2px 5px;
             color: #766c68;
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 11px;
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
+            font-size: 14px;
+            font-weight: 300;
+            line-height: 1.35;
+            letter-spacing: 0.015em;
             text-decoration: none;
-            transition:
-                color 0.2s ease,
-                transform 0.2s ease;
+            transition: color 0.35s ease, transform 0.35s ease;
         }
 
-        .page-link:hover {
-            color: var(--bordeaux);
-            transform: translateX(2px);
-        }
+        .page-link:hover { color: var(--bordeaux); transform: translateX(2px); }
 
         .page-dot {
             position: relative;
             z-index: 1;
             display: grid;
-            width: 25px;
-            height: 25px;
+            width: 33px;
+            height: 33px;
             place-items: center;
-            border: 1px solid #d8cdc7;
+            flex: 0 0 auto;
+            border: 1px solid rgba(99, 9, 9, 0.24);
             border-radius: 50%;
-            background: var(--background);
-            color: #b4a8a2;
-            font-size: 9px;
-            transition:
-                border-color 0.25s ease,
-                background 0.25s ease,
-                color 0.25s ease,
-                transform 0.25s ease,
-                box-shadow 0.25s ease;
+            background: #fefefe;
+            color: #a99c96;
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
+            font-size: 10.5px;
+            font-weight: 400;
+            transition: all 0.35s ease;
         }
 
-        .page-label {
-            line-height: 1.25;
-        }
-
-        /* Pages déjà visitées */
-        .page-link.is-visited {
-            color: var(--bordeaux);
-        }
-
+        .page-label { line-height: 1.35; }
+        .page-link.is-visited { color: rgba(99, 9, 9, 0.70); }
         .page-link.is-visited .page-dot {
-            border-color: var(--bordeaux);
-            background: var(--bordeaux);
-            color: var(--white);
-        }
-
-        /* Page actuelle */
-        .page-link.is-current {
+            border-color: rgba(99, 9, 9, 0.72);
+            background: var(--background);
             color: var(--bordeaux);
-            font-weight: 700;
+            box-shadow: inset 0 0 0 3px rgba(99, 9, 9, 0.06);
         }
 
+        .page-link.is-current { color: var(--bordeaux); font-weight: 700; }
         .page-link.is-current .page-label {
             justify-self: center;
             width: 100%;
             padding-right: 8px;
             font-family: "Segoe Script", "Lucida Handwriting", "Brush Script MT", "Snell Roundhand", cursive;
-            font-size: 15px;
+            font-size: 17px;
             font-weight: 400;
             line-height: 1.1;
             text-align: center;
@@ -206,9 +209,7 @@
             background: var(--bordeaux);
             color: var(--white);
             transform: scale(1.18);
-            box-shadow:
-                0 0 0 3px rgba(99, 9, 9, 0.12),
-                0 0 10px rgba(99, 9, 9, 0.10);
+            box-shadow: 0 0 0 3px rgba(99, 9, 9, 0.12), 0 0 10px rgba(99, 9, 9, 0.10);
         }
 
         /* =========================
@@ -328,6 +329,30 @@
             transform: translateX(5px);
         }
 
+        .page-shell {
+            opacity: 1;
+            transform: translateX(0);
+            transition: transform 400ms cubic-bezier(0.22, 1, 0.36, 1), opacity 400ms ease;
+            will-change: transform, opacity;
+        }
+
+        body.page-leaving .page-shell {
+            opacity: 0;
+            transform: translateX(-34px);
+        }
+
+        @media (min-width: 721px) and (max-height: 820px) {
+            .sidebar-inner { padding-top: 10px; padding-bottom: 16px; }
+            .wedding-logo { width: 88px; margin-bottom: 8px; }
+            .page-item:not(.page-item-separated) { margin-bottom: 2px; }
+            .page-link { min-height: 37px; font-size: 12.5px; }
+            .page-dot { width: 28px; height: 28px; font-size: 9.5px; }
+            .page-list::before { left: 13px; }
+            .menu-annexe { padding-top: 10px; }
+            .menu-annexe-line { margin-bottom: 10px; }
+            .menu-annexe-title { padding-left: 44px; font-size: 8px; }
+        }
+
         /* =========================
            TABLETTE ET MOBILE
         ========================= */
@@ -338,7 +363,7 @@
 
         @media (max-width: 900px) {
             :root {
-                --sidebar-width: 220px;
+                --sidebar-width: 250px;
             }
 
     
@@ -375,7 +400,7 @@
             }
 
             .book-sidebar {
-                width: min(82vw, 300px);
+                width: min(88vw, 330px);
                 transform: translateX(-105%);
                 transition: transform 0.3s ease;
             }
@@ -452,105 +477,73 @@
                 <ol class="page-list">
 
                     <li class="page-item">
-                        <a
-                            href="./"
-                            class="page-link is-current"
-                            data-page="bienvenue"
-                            aria-current="page"
-                        >
+                        <a href="./" class="page-link" data-page="bienvenue">
                             <span class="page-dot">1</span>
                             <span class="page-label">Bienvenue</span>
                         </a>
                     </li>
-
                     <li class="page-item">
                         <a href="sommaire/" class="page-link" data-page="sommaire">
                             <span class="page-dot">2</span>
                             <span class="page-label">Sommaire</span>
                         </a>
                     </li>
-
                     <li class="page-item">
                         <a href="invitation/" class="page-link" data-page="invitation">
                             <span class="page-dot">3</span>
                             <span class="page-label">Invitation</span>
                         </a>
                     </li>
-
                     <li class="page-item">
                         <a href="preparatifs/" class="page-link" data-page="preparatifs">
                             <span class="page-dot">4</span>
                             <span class="page-label">Préparatifs</span>
                         </a>
                     </li>
-
                     <li class="page-item">
                         <a href="first-look/" class="page-link" data-page="first-look">
                             <span class="page-dot">5</span>
                             <span class="page-label">First Look</span>
                         </a>
                     </li>
-
                     <li class="page-item">
                         <a href="mairie/" class="page-link" data-page="mairie">
                             <span class="page-dot">6</span>
                             <span class="page-label">Mairie</span>
                         </a>
                     </li>
-
                     <li class="page-item">
                         <a href="eglise/" class="page-link" data-page="eglise">
                             <span class="page-dot">7</span>
                             <span class="page-label">Église</span>
                         </a>
                     </li>
-
                     <li class="page-item">
                         <a href="vin_d_honneur/" class="page-link" data-page="vin-d-honneur">
                             <span class="page-dot">8</span>
                             <span class="page-label">Vin d’honneur</span>
                         </a>
                     </li>
-
                     <li class="page-item">
                         <a href="soiree/" class="page-link" data-page="soiree">
                             <span class="page-dot">9</span>
                             <span class="page-label">Soirée</span>
                         </a>
                     </li>
-
-                    <li class="page-item">
-                        <a href="videos/" class="page-link" data-page="videos">
-                            <span class="page-dot">10</span>
-                            <span class="page-label">Vidéos</span>
-                        </a>
-                    </li>
-
-                    <li class="page-item">
-                        <a href="photoscouple/" class="page-link" data-page="photos-couple">
-                            <span class="page-dot">11</span>
-                            <span class="page-label">Photos de couple</span>
-                        </a>
-                    </li>
-
-                    <li class="page-item">
-                        <a href="photosgroupe/" class="page-link" data-page="photos-groupe">
-                            <span class="page-dot">12</span>
-                            <span class="page-label">Photos de groupe</span>
-                        </a>
-                    </li>
-
-                    <li class="page-item">
-                        <a href="photobooth/" class="page-link" data-page="photobooth">
-                            <span class="page-dot">13</span>
-                            <span class="page-label">Photobooth</span>
-                        </a>
-                    </li>
-
                     <li class="page-item">
                         <a href="remerciements/" class="page-link" data-page="remerciements">
-                            <span class="page-dot">14</span>
+                            <span class="page-dot">10</span>
                             <span class="page-label">Remerciements</span>
+                        </a>
+                    </li>
+                    <li class="menu-annexe" aria-hidden="true">
+                        <span class="menu-annexe-line"></span>
+                        <span class="menu-annexe-title">À revivre</span>
+                    </li>
+                    <li class="page-item page-item-separated">
+                        <a href="souvenirs/" class="page-link" data-page="souvenirs">
+                            <span class="page-dot">11</span>
+                            <span class="page-label">Souvenirs</span>
                         </a>
                     </li>
 
@@ -609,11 +602,8 @@
             "eglise",
             "vin-d-honneur",
             "soiree",
-            "videos",
-            "photos-couple",
-            "photos-groupe",
-            "photobooth",
-            "remerciements"
+            "remerciements",
+            "souvenirs"
         ];
 
         const currentIndex = pageOrder.indexOf(currentPage);
@@ -659,6 +649,21 @@
                 menuButton.textContent = "☰";
             }
         });
+
+        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        document.querySelectorAll('a[href]').forEach((link) => {
+            link.addEventListener("click", (event) => {
+                const href = link.getAttribute("href");
+                if (prefersReducedMotion || !href || href.startsWith("#") || link.target === "_blank" || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+                const destination = new URL(link.href, window.location.href);
+                if (destination.origin !== window.location.origin) return;
+                event.preventDefault();
+                document.body.classList.add("page-leaving");
+                window.setTimeout(() => { window.location.href = destination.href; }, 400);
+            });
+        });
+
     </script>
 
 </body>
