@@ -1417,10 +1417,29 @@
            sur les règles précédentes.
         ========================================================= */
 
-        /* Le haut du menu reste totalement noir jusqu'au bas du logo. */
+        /* Le haut du menu reste totalement noir jusqu'au bas du logo.
+           Le menu est verrouillé sur la hauteur de l'écran : il ne défile jamais. */
         .book-sidebar {
+            top: 0;
+            bottom: auto;
+            height: 100vh;
+            height: 100dvh;
+            max-height: 100vh;
+            max-height: 100dvh;
             background: #050505;
             isolation: isolate;
+            overflow: hidden;
+            overscroll-behavior: none;
+            scrollbar-width: none;
+        }
+
+        .book-sidebar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .sidebar-inner {
+            height: 100%;
+            min-height: 0;
             overflow: hidden;
         }
 
@@ -2218,9 +2237,6 @@
 
                 <p>La fête</p>
 
-                <h2 id="gallery-title">
-                    Des bougies aux lumières de la piste
-                </h2>
 
             </div>
 
