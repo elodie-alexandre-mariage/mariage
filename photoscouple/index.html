@@ -733,7 +733,14 @@
                 transition-duration: 0.01ms !important;
             }
         }
-    </style>
+    
+.souvenir-nav{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:12px;padding:28px 42px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#fff}
+.souvenir-nav a{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 20px;border:1px solid rgba(99,9,9,.28);border-radius:999px;background:#fff;color:var(--bordeaux);font-family:Montserrat,Arial,sans-serif;font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;transition:.22s}
+.souvenir-nav a:hover{background:var(--bordeaux);color:#fff;border-color:var(--bordeaux);transform:translateY(-2px);box-shadow:0 9px 20px rgba(99,9,9,.14)}
+.souvenir-nav-pages{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+@media(max-width:720px){.souvenir-nav{padding:22px 16px}.souvenir-nav>a:first-child,.souvenir-nav-pages,.souvenir-nav-pages a{width:100%}.souvenir-nav-pages{display:flex;flex-direction:column}}
+
+</style>
 </head>
 
 <body>
@@ -866,6 +873,16 @@
             </p>
 
         </section>
+
+
+<nav class="souvenir-nav" aria-label="Navigation souvenirs">
+<a href="../souvenirs/">← Retour aux souvenirs</a>
+<div class="souvenir-nav-pages">
+<a href="../videos/">← Vidéos</a>
+<a href="../photosgroupe/">Photos de groupe →</a>
+</div>
+</nav>
+
 
         <section
             class="gallery-section"
