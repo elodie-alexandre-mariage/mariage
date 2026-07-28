@@ -338,82 +338,71 @@
         ========================= */
 
         .souvenir-nav {
-            display: grid;
-            grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             align-items: center;
-            gap: 28px;
-            padding: 22px 42px;
+            gap: 12px;
+            padding: 28px 42px;
             border-top: 1px solid var(--line);
             border-bottom: 1px solid var(--line);
-            background: rgba(255, 255, 255, 0.92);
+            background: rgba(255, 255, 255, 0.96);
         }
 
         .souvenir-nav-back,
         .souvenir-nav-link {
             display: inline-flex;
+            min-height: 42px;
             align-items: center;
-            gap: 9px;
-            color: var(--muted);
+            justify-content: center;
+            gap: 8px;
+            padding: 11px 20px;
+            border: 1px solid rgba(99, 9, 9, 0.28);
+            border-radius: 999px;
+            background: transparent;
+            color: var(--bordeaux);
             font-family: "Montserrat", Arial, Helvetica, sans-serif;
             font-size: 10px;
             font-weight: 500;
-            letter-spacing: 0.16em;
-            line-height: 1.4;
+            line-height: 1.3;
+            letter-spacing: 0.14em;
             text-decoration: none;
             text-transform: uppercase;
             transition:
-                color 180ms ease,
-                transform 180ms ease;
-        }
-
-        .souvenir-nav-back {
-            justify-self: start;
+                background-color 220ms ease,
+                border-color 220ms ease,
+                color 220ms ease,
+                transform 220ms ease,
+                box-shadow 220ms ease;
         }
 
         .souvenir-nav-back:hover,
         .souvenir-nav-link:hover {
-            color: var(--bordeaux);
+            border-color: var(--bordeaux);
+            background: var(--bordeaux);
+            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 9px 20px rgba(99, 9, 9, 0.14);
         }
 
-        .souvenir-nav-back:hover {
-            transform: translateX(-3px);
-        }
-
-        .souvenir-nav-link.is-next:hover {
-            transform: translateX(3px);
-        }
-
-        .souvenir-nav-separator {
-            width: 1px;
-            height: 28px;
-            background: rgba(99, 9, 9, 0.22);
+        .souvenir-nav-back:focus-visible,
+        .souvenir-nav-link:focus-visible {
+            outline: 2px solid rgba(99, 9, 9, 0.36);
+            outline-offset: 3px;
         }
 
         .souvenir-nav-pages {
             display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             align-items: center;
-            justify-self: end;
-            gap: 22px;
-        }
-
-        .souvenir-nav-pages::before {
-            width: 34px;
-            height: 1px;
-            background: rgba(99, 9, 9, 0.18);
-            content: "";
-        }
-
-        .souvenir-nav-link.is-previous {
-            color: #8a817d;
-        }
-
-        .souvenir-nav-link.is-next {
-            color: var(--bordeaux);
+            gap: 12px;
         }
 
         .souvenir-nav-arrow {
             font-size: 14px;
             font-weight: 300;
+            line-height: 1;
             letter-spacing: 0;
         }
 
@@ -585,18 +574,7 @@
         }
 
         .moment-caption {
-            display: grid;
-            grid-template-columns: 38px 1fr;
-            gap: 14px;
             padding: 21px 22px 23px;
-        }
-
-        .moment-number {
-            color: rgba(99, 9, 9, 0.52);
-            font-family: "Montserrat", Arial, Helvetica, sans-serif;
-            font-size: 10px;
-            font-weight: 600;
-            letter-spacing: 0.12em;
         }
 
         .moment-caption h3 {
@@ -614,25 +592,6 @@
             font-size: 12px;
             font-weight: 300;
             line-height: 1.65;
-        }
-
-        .moment-card-wide {
-            grid-column: 1 / -1;
-            display: grid;
-            grid-template-columns: minmax(0, 1.25fr) minmax(260px, 0.75fr);
-            align-items: stretch;
-        }
-
-        .moment-card-wide .video-frame {
-            height: 100%;
-            min-height: 330px;
-            aspect-ratio: auto;
-        }
-
-        .moment-card-wide .moment-caption {
-            align-content: center;
-            padding: 34px;
-            background: var(--soft);
         }
 
         .thanks-section {
@@ -894,20 +853,24 @@
                 grid-template-columns: 1fr;
             }
 
-            .moment-card-wide {
-                grid-column: auto;
-                display: block;
-            }
-
-            .moment-card-wide .video-frame {
-                min-height: 0;
-                aspect-ratio: 16 / 9;
-            }
         }
 
         @media (max-width: 720px) {
             .hero {
                 padding: 66px 20px 48px;
+            }
+
+            .souvenir-nav {
+                gap: 10px;
+                padding: 22px 14px;
+            }
+
+            .souvenir-nav-back,
+            .souvenir-nav-link {
+                min-height: 40px;
+                padding: 10px 15px;
+                font-size: 9px;
+                letter-spacing: 0.10em;
             }
 
             h1 {
@@ -933,7 +896,6 @@
             }
 
             .moment-caption {
-                grid-template-columns: 30px 1fr;
                 padding: 18px 16px 20px;
             }
 
@@ -1093,7 +1055,6 @@
                 <span>Retour aux souvenirs</span>
             </a>
 
-            <span class="souvenir-nav-separator" aria-hidden="true"></span>
 
             <div class="souvenir-nav-pages">
                 <a class="souvenir-nav-link is-previous" href="../photobooth/">
@@ -1161,7 +1122,6 @@
                         <iframe src="https://www.youtube-nocookie.com/embed/3tyj9DGd_ds?rel=0" title="Sortie de l’église d’Élodie et Alexandre" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     </div>
                     <div class="moment-caption">
-                        <span class="moment-number">01</span>
                         <div>
                             <h3>Notre sortie de l’église</h3>
                             <p>Le premier instant après nous être dit oui.</p>
@@ -1174,7 +1134,6 @@
                         <iframe src="https://www.youtube-nocookie.com/embed/ZawHLM3upsY?rel=0" title="Vin d’honneur et soirée du mariage" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     </div>
                     <div class="moment-caption">
-                        <span class="moment-number">02</span>
                         <div>
                             <h3>Vin d’honneur &amp; soirée</h3>
                             <p>Quelques instants de bonheur partagés avec nos proches.</p>
@@ -1187,7 +1146,6 @@
                         <iframe src="https://www.youtube-nocookie.com/embed/EPVzARFt7pE?rel=0" title="Première danse d’Élodie et Alexandre" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     </div>
                     <div class="moment-caption">
-                        <span class="moment-number">03</span>
                         <div>
                             <h3>Notre première danse</h3>
                             <p>Notre ouverture de bal sur « The Night We Met » et « September ».</p>
@@ -1200,7 +1158,6 @@
                         <iframe src="https://www.youtube-nocookie.com/embed/Kz70HdsxVq0?rel=0" title="Discours d’Aurélien au mariage" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     </div>
                     <div class="moment-caption">
-                        <span class="moment-number">04</span>
                         <div>
                             <h3>Le discours d’Aurélien</h3>
                             <p>Quelques mots qui resteront gravés.</p>
@@ -1208,12 +1165,11 @@
                     </div>
                 </article>
 
-                <article class="moment-card moment-card-wide">
+                <article class="moment-card">
                     <div class="video-frame">
                         <iframe src="https://player.vimeo.com/video/1213000834?h=8243387f8e" title="Diaporama du mariage" loading="lazy" allow="autoplay; fullscreen; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     </div>
                     <div class="moment-caption">
-                        <span class="moment-number">05</span>
                         <div>
                             <h3>Le diaporama</h3>
                             <p>Quelques images préparées avec tendresse par la famille d’Alexandre.</p>
