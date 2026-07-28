@@ -331,6 +331,92 @@
             letter-spacing: 0.035em;
         }
 
+
+
+        /* =========================
+           NAVIGATION SOUVENIRS
+        ========================= */
+
+        .souvenir-nav {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+            align-items: center;
+            gap: 28px;
+            padding: 22px 42px;
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.92);
+        }
+
+        .souvenir-nav-back,
+        .souvenir-nav-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            color: var(--muted);
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 0.16em;
+            line-height: 1.4;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition:
+                color 180ms ease,
+                transform 180ms ease;
+        }
+
+        .souvenir-nav-back {
+            justify-self: start;
+        }
+
+        .souvenir-nav-back:hover,
+        .souvenir-nav-link:hover {
+            color: var(--bordeaux);
+        }
+
+        .souvenir-nav-back:hover {
+            transform: translateX(-3px);
+        }
+
+        .souvenir-nav-link.is-next:hover {
+            transform: translateX(3px);
+        }
+
+        .souvenir-nav-separator {
+            width: 1px;
+            height: 28px;
+            background: rgba(99, 9, 9, 0.22);
+        }
+
+        .souvenir-nav-pages {
+            display: flex;
+            align-items: center;
+            justify-self: end;
+            gap: 22px;
+        }
+
+        .souvenir-nav-pages::before {
+            width: 34px;
+            height: 1px;
+            background: rgba(99, 9, 9, 0.18);
+            content: "";
+        }
+
+        .souvenir-nav-link.is-previous {
+            color: #8a817d;
+        }
+
+        .souvenir-nav-link.is-next {
+            color: var(--bordeaux);
+        }
+
+        .souvenir-nav-arrow {
+            font-size: 14px;
+            font-weight: 300;
+            letter-spacing: 0;
+        }
+
         .film-section {
             padding: 70px 42px 86px;
             border-top: 1px solid var(--line);
@@ -1000,6 +1086,27 @@
                 retrouvez ici le film de notre mariage et quelques instants qui ont marqué cette journée.
             </p>
         </section>
+
+        <nav class="souvenir-nav" aria-label="Navigation entre les souvenirs">
+            <a class="souvenir-nav-back" href="../souvenirs/">
+                <span class="souvenir-nav-arrow" aria-hidden="true">←</span>
+                <span>Retour aux souvenirs</span>
+            </a>
+
+            <span class="souvenir-nav-separator" aria-hidden="true"></span>
+
+            <div class="souvenir-nav-pages">
+                <a class="souvenir-nav-link is-previous" href="../photobooth/">
+                    <span class="souvenir-nav-arrow" aria-hidden="true">←</span>
+                    <span>Photobooth</span>
+                </a>
+
+                <a class="souvenir-nav-link is-next" href="../photoscouple/">
+                    <span>Photos de couple</span>
+                    <span class="souvenir-nav-arrow" aria-hidden="true">→</span>
+                </a>
+            </div>
+        </nav>
 
         <section class="film-section" aria-labelledby="film-title">
             <div class="feature-film">
