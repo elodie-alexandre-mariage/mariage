@@ -1337,6 +1337,112 @@ button {
         .close, .fullscreen-close { z-index: 2400; }
         .arrow { z-index: 2350; }
         body.viewer-open .mobile-menu-button { visibility: hidden; }
+
+        /* =========================
+           NAVIGATION SOUVENIRS
+        ========================= */
+
+        .souvenir-nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            padding: 28px 42px;
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.96);
+        }
+
+        .souvenir-nav-back,
+        .souvenir-nav-link {
+            display: inline-flex;
+            min-height: 42px;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 11px 20px;
+            border: 1px solid rgba(99, 9, 9, 0.28);
+            border-radius: 999px;
+            background: transparent;
+            color: var(--bordeaux);
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
+            font-size: 10px;
+            font-weight: 500;
+            line-height: 1.3;
+            letter-spacing: 0.14em;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition:
+                background-color 220ms ease,
+                border-color 220ms ease,
+                color 220ms ease,
+                transform 220ms ease,
+                box-shadow 220ms ease;
+        }
+
+        .souvenir-nav-back:hover,
+        .souvenir-nav-link:hover {
+            border-color: var(--bordeaux);
+            background: var(--bordeaux);
+            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 9px 20px rgba(99, 9, 9, 0.14);
+        }
+
+        .souvenir-nav-back:focus-visible,
+        .souvenir-nav-link:focus-visible {
+            outline: 2px solid rgba(99, 9, 9, 0.36);
+            outline-offset: 3px;
+        }
+
+        .souvenir-nav-pages {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .souvenir-nav-arrow {
+            font-size: 14px;
+            font-weight: 300;
+            line-height: 1;
+            letter-spacing: 0;
+        }
+
+        @media (max-width: 720px) {
+            .souvenir-nav {
+                padding: 22px 16px;
+            }
+
+            .souvenir-nav-back {
+                width: 100%;
+                max-width: 330px;
+            }
+
+            .souvenir-nav-pages {
+                width: 100%;
+            }
+
+            .souvenir-nav-link {
+                flex: 1 1 145px;
+                padding-right: 14px;
+                padding-left: 14px;
+            }
+        }
+
+        @media (max-width: 430px) {
+            .souvenir-nav-pages {
+                flex-direction: column;
+            }
+
+            .souvenir-nav-link {
+                width: 100%;
+                max-width: 330px;
+            }
+        }
+
 </style>
 </head>
 
@@ -1475,6 +1581,26 @@ button {
         </p>
 
     </section>
+
+
+    <nav class="souvenir-nav" aria-label="Navigation entre les souvenirs">
+        <a class="souvenir-nav-back" href="../souvenirs/">
+            <span class="souvenir-nav-arrow" aria-hidden="true">←</span>
+            <span>Retour aux souvenirs</span>
+        </a>
+
+        <div class="souvenir-nav-pages">
+            <a class="souvenir-nav-link is-previous" href="../photosgroupe/">
+                <span class="souvenir-nav-arrow" aria-hidden="true">←</span>
+                <span>Photos de groupe</span>
+            </a>
+
+            <a class="souvenir-nav-link is-next" href="../videos/">
+                <span>Vidéos</span>
+                <span class="souvenir-nav-arrow" aria-hidden="true">→</span>
+            </a>
+        </div>
+    </nav>
 
     <section class="gallery-section" aria-labelledby="gallery-title">
 
