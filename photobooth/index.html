@@ -1443,6 +1443,321 @@ button {
             }
         }
 
+
+        /* =========================================================
+           HARMONISATION FINALE — DIRECTION ARTISTIQUE DE L’ALBUM
+           Ces règles finales priment sur l’ancien style du photobooth.
+        ========================================================= */
+
+        body {
+            min-height: 100vh;
+            background: var(--background);
+            color: var(--text);
+            font-family: Georgia, "Times New Roman", serif;
+        }
+
+        .page-shell {
+            min-height: 100vh;
+            margin-left: var(--sidebar-width);
+        }
+
+        /* En-tête identique aux autres galeries */
+        .hero {
+            padding: 58px 30px 52px;
+            background: var(--background);
+            text-align: center;
+        }
+
+        .hero .eyebrow {
+            margin-bottom: 14px;
+            color: rgba(99, 9, 9, 0.72);
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
+            font-size: 11px;
+            font-weight: 500;
+            line-height: 1.4;
+            letter-spacing: 0.30em;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            color: var(--bordeaux);
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
+            font-size: clamp(26px, 2.2vw, 30px);
+            font-weight: 300;
+            line-height: 1.35;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .hero h1::after {
+            display: block;
+            width: 88px;
+            height: 1px;
+            margin: 18px auto 0;
+            background: rgba(99, 9, 9, 0.48);
+            content: "";
+        }
+
+        .title-line {
+            display: none;
+        }
+
+        .hero .intro {
+            max-width: 650px;
+            margin: 18px auto 0;
+            color: var(--muted);
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
+            font-size: 14px;
+            font-weight: 300;
+            line-height: 1.75;
+            letter-spacing: 0.04em;
+        }
+
+        /* Navigation cohérente avec les autres pages Souvenirs */
+        .souvenir-nav {
+            background: var(--white);
+        }
+
+        .souvenir-nav-back,
+        .souvenir-nav-link {
+            background: var(--white);
+        }
+
+        /* Galerie éditoriale */
+        .gallery-section {
+            padding: 48px 40px 72px;
+            border-top: 1px solid var(--line);
+            background: var(--soft);
+        }
+
+        .gallery-heading {
+            display: flex;
+            max-width: 1180px;
+            margin: 0 auto 26px;
+            padding-bottom: 16px;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 30px;
+            border-bottom: 1px solid rgba(99, 9, 9, 0.16);
+            text-align: initial;
+        }
+
+        .gallery-heading p {
+            margin: 0;
+            color: var(--bordeaux);
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 1.4;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+
+        .gallery-heading h2 {
+            max-width: 540px;
+            margin: 0;
+            color: var(--muted);
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
+            font-size: 14px;
+            font-weight: 300;
+            line-height: 1.65;
+            text-align: right;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 11px;
+            max-width: 1180px;
+            margin: auto;
+        }
+
+        /* Cartes photo identiques aux galeries de l’album */
+        .photo {
+            position: relative;
+            display: block;
+            overflow: hidden;
+            aspect-ratio: 1 / 1;
+            padding: 0;
+            border: 0;
+            border-radius: 3px;
+            background: #e9e3df;
+            cursor: zoom-in;
+        }
+
+        .photo::after {
+            position: absolute;
+            inset: 0;
+            border: 1px solid rgba(255, 255, 255, 0.26);
+            content: "";
+            pointer-events: none;
+        }
+
+        .photo img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: saturate(0.86) contrast(0.98);
+            transition:
+                transform 0.65s ease,
+                filter 0.45s ease;
+        }
+
+        .photo:hover img {
+            filter: saturate(1.03) contrast(1.01);
+            transform: scale(1.045);
+        }
+
+        .photo:focus-visible {
+            outline: 2px solid var(--bordeaux);
+            outline-offset: 4px;
+        }
+
+        /* Le compteur reste discret et cohérent avec la DA */
+        .photo-count {
+            top: 9px;
+            right: 9px;
+            min-width: 40px;
+            height: 28px;
+            padding: 0 9px 0 29px;
+            border: 1px solid rgba(255, 255, 255, 0.72);
+            background: rgba(45, 34, 31, 0.68);
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.14);
+        }
+
+        .photo-count::before,
+        .photo-count::after {
+            width: 11px;
+            height: 9px;
+        }
+
+        .photo-count::before {
+            top: 7px;
+            left: 11px;
+        }
+
+        .photo-count::after {
+            top: 10px;
+            left: 14px;
+            background: rgba(45, 34, 31, 0.68);
+        }
+
+        /* Visionneuse harmonisée */
+        .viewer,
+        .fullscreen {
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
+        }
+
+        .main-photo {
+            box-shadow: 0 15px 55px rgba(0, 0, 0, 0.35);
+        }
+
+        .close,
+        .fullscreen-close,
+        .arrow {
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
+            font-weight: 200;
+            transition:
+                background 0.2s ease,
+                transform 0.2s ease;
+        }
+
+        .close:hover,
+        .fullscreen-close:hover {
+            background: rgba(255, 255, 255, 0.17);
+            transform: rotate(4deg);
+        }
+
+        .arrow-left:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-3px, -50%);
+        }
+
+        .arrow-right:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(3px, -50%);
+        }
+
+        .counter {
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
+            font-size: 11px;
+            letter-spacing: 2px;
+        }
+
+        /* Footer validé du site */
+        .footer {
+            margin-left: var(--sidebar-width);
+            padding: 12px 20px 16px;
+            background: var(--background);
+            text-align: center;
+        }
+
+        .footer-name-logo {
+            width: 145px;
+            max-width: 48vw;
+            height: auto;
+            margin: 0 auto;
+        }
+
+        .footer-date-logo {
+            width: 110px;
+            max-width: 28vw;
+            height: auto;
+            margin: 5px auto 0;
+        }
+
+        @media (max-width: 1020px) {
+            .gallery {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 720px) {
+            .page-shell,
+            .footer {
+                margin-left: 0;
+            }
+
+            .hero {
+                padding: 72px 20px 48px;
+            }
+
+            .gallery-section {
+                padding: 42px 10px 56px;
+            }
+
+            .gallery-heading {
+                display: block;
+                margin-bottom: 22px;
+                padding: 0 10px 14px;
+            }
+
+            .gallery-heading h2 {
+                margin-top: 9px;
+                text-align: left;
+            }
+
+            .gallery {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 7px;
+            }
+
+            .photo-count {
+                top: 6px;
+                right: 6px;
+            }
+
+            .arrow-left:hover,
+            .arrow-right:hover {
+                transform: none;
+            }
+        }
+
 </style>
 </head>
 
