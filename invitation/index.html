@@ -1013,109 +1013,222 @@
             }
         }
 
+
+        /* =========================
+           VERSION MINIMALISTE ET ÉLÉGANTE
+           Inspirée d’un sommaire éditorial
+        ========================= */
+
+        .page-link {
+            grid-template-columns: 36px 1fr;
+            gap: 13px;
+            min-height: 46px;
+        }
+
+        .page-list::before {
+            left: 17px;
+        }
+
+        .page-dot {
+            width: 35px;
+            height: 35px;
+        }
+
+        .page-icon {
+            width: 21px;
+            height: 21px;
+            stroke-width: 1.65;
+            transition:
+                transform 0.28s ease,
+                stroke-width 0.28s ease;
+        }
+
+        .page-dot-initials {
+            padding: 4px;
+        }
+
+        .page-initials-logo {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transform: scale(1.06);
+            mix-blend-mode: multiply;
+        }
+
+        .page-link.is-current .page-dot {
+            transform: scale(1.13);
+            box-shadow: 0 0 0 3px rgba(99, 9, 9, 0.08);
+        }
+
+        .page-link.is-current .page-icon {
+            transform: scale(1.08);
+            stroke-width: 1.8;
+        }
+
+        .page-link.is-current .page-initials-logo {
+            transform: scale(1.08);
+            filter: brightness(0) invert(1);
+            mix-blend-mode: normal;
+        }
+
+        @media (min-width: 721px) and (max-height: 900px) {
+            .page-link {
+                grid-template-columns: 33px 1fr;
+                gap: 12px;
+                min-height: 40px;
+            }
+
+            .page-list::before {
+                left: 15px;
+            }
+
+            .page-dot {
+                width: 31px;
+                height: 31px;
+            }
+
+            .page-icon {
+                width: 18.5px;
+                height: 18.5px;
+                stroke-width: 1.65;
+            }
+
+            .page-link.is-current .page-dot {
+                transform: scale(1.11);
+            }
+        }
+
+        @media (min-width: 721px) and (max-height: 760px) {
+            .page-link {
+                grid-template-columns: 29px 1fr;
+                gap: 11px;
+                min-height: 35px;
+            }
+
+            .page-list::before {
+                left: 13px;
+            }
+
+            .page-dot {
+                width: 27px;
+                height: 27px;
+            }
+
+            .page-icon {
+                width: 16px;
+                height: 16px;
+                stroke-width: 1.7;
+            }
+
+            .page-link.is-current .page-dot {
+                transform: scale(1.09);
+            }
+        }
+
+        @media (max-width: 720px) {
+            .page-link {
+                grid-template-columns: 36px 1fr;
+                gap: 13px;
+                min-height: 46px;
+            }
+
+            .page-list::before {
+                left: 17px;
+            }
+
+            .page-dot {
+                width: 35px;
+                height: 35px;
+            }
+
+            .page-icon {
+                width: 21px;
+                height: 21px;
+            }
+
+            .page-link.is-current .page-dot {
+                transform: scale(1.12);
+            }
+        }
+
 </style>
 </head>
 
 <body>
 
 
+
 <svg class="menu-icon-sprite" aria-hidden="true" focusable="false" width="0" height="0">
     <defs>
-        <!-- Sommaire : livre ouvert -->
-        <symbol id="menu-icon-summary" viewBox="0 0 36 36">
-            <path d="M5.5 8.5c4.6-.4 8.3.6 12.5 3.5v16c-4.2-2.9-7.9-3.9-12.5-3.5z"/>
-            <path d="M30.5 8.5c-4.6-.4-8.3.6-12.5 3.5v16c4.2-2.9 7.9-3.9 12.5-3.5z"/>
-            <path d="M18 12v16"/>
+        <!-- Sommaire : livre ouvert minimaliste -->
+        <symbol id="menu-icon-summary" viewBox="0 0 32 32">
+            <path d="M5.5 8.5c4-.2 7.3.8 10.5 3.2v12.8c-3.2-2.4-6.5-3.4-10.5-3.2z"/>
+            <path d="M26.5 8.5c-4-.2-7.3.8-10.5 3.2v12.8c3.2-2.4 6.5-3.4 10.5-3.2z"/>
         </symbol>
 
-        <!-- Invitation : enveloppe avec cœur -->
-        <symbol id="menu-icon-invitation" viewBox="0 0 36 36">
-            <rect x="5.5" y="8.5" width="25" height="19" rx="2.3"/>
-            <path d="m7.2 10.5 10.8 8 10.8-8"/>
-            <path d="m6.8 25.5 7.4-7"/>
-            <path d="m29.2 25.5-7.4-7"/>
-            <path d="M14.1 13.4c0-1.4 1-2.4 2.4-2.4.7 0 1.3.3 1.7.9.4-.6 1-.9 1.7-.9 1.4 0 2.4 1 2.4 2.4 0 2.7-4.1 4.8-4.1 4.8s-4.1-2.1-4.1-4.8z"/>
+        <!-- Invitation : enveloppe -->
+        <symbol id="menu-icon-invitation" viewBox="0 0 32 32">
+            <rect x="5.5" y="8.5" width="21" height="15" rx="1.8"/>
+            <path d="m7 10 9 7 9-7"/>
         </symbol>
 
-        <!-- Préparatifs : robe sur cintre -->
-        <symbol id="menu-icon-preparations" viewBox="0 0 36 36">
-            <path d="M18 7.2c0-1.8 1.2-3 3-3 1.6 0 2.8 1 2.8 2.5 0 2.6-3.1 3.1-5.8 5"/>
-            <path d="m18 11.7-12 7.8h24z"/>
-            <path d="M12.2 19.5c.8 2.9.8 5.7-.2 9.3h12c-1-3.6-1-6.4-.2-9.3"/>
-            <path d="M15.1 19.5c.1 2.5-.3 5.7-1.3 9.3"/>
-            <path d="M20.9 19.5c-.1 2.5.3 5.7 1.3 9.3"/>
+        <!-- Préparatifs : cintre -->
+        <symbol id="menu-icon-preparations" viewBox="0 0 32 32">
+            <path d="M16 8c0-1.7 1.2-2.8 2.8-2.8 1.5 0 2.6 1 2.6 2.4 0 2.1-2.4 2.8-5.4 4.8"/>
+            <path d="m16 12.4-10 6.8h20z"/>
         </symbol>
 
-        <!-- First Look : deux profils et cœur -->
-        <symbol id="menu-icon-firstlook" viewBox="0 0 36 36">
-            <path d="M12.3 6.5c-3.6 1.1-5.7 4.4-5.7 8.2 0 3.2 1.6 5.8 4.4 7.3"/>
-            <path d="M12.3 6.5c2.6.5 4.6 2.1 5.4 4.6"/>
-            <path d="M11 22c1.6.9 2.6 2.3 2.6 4.2v2.2"/>
-            <path d="M23.7 6.5c3.6 1.1 5.7 4.4 5.7 8.2 0 3.2-1.6 5.8-4.4 7.3"/>
-            <path d="M23.7 6.5c-2.6.5-4.6 2.1-5.4 4.6"/>
-            <path d="M25 22c-1.6.9-2.6 2.3-2.6 4.2v2.2"/>
-            <path d="M14.2 16.2c0-1.2.9-2.1 2.1-2.1.7 0 1.3.4 1.7 1 .4-.6 1-1 1.7-1 1.2 0 2.1.9 2.1 2.1 0 2.4-3.8 4.3-3.8 4.3s-3.8-1.9-3.8-4.3z"/>
-            <path d="M7.2 29c2-2 4.5-3.2 7.2-3.4"/>
-            <path d="M28.8 29c-2-2-4.5-3.2-7.2-3.4"/>
+        <!-- First Look : œil -->
+        <symbol id="menu-icon-firstlook" viewBox="0 0 32 32">
+            <path d="M4.5 16s4.4-6.8 11.5-6.8S27.5 16 27.5 16 23.1 22.8 16 22.8 4.5 16 4.5 16z"/>
+            <circle cx="16" cy="16" r="3.1"/>
         </symbol>
 
-        <!-- Mairie : bâtiment officiel -->
-        <symbol id="menu-icon-townhall" viewBox="0 0 36 36">
-            <path d="M5 30h26"/>
-            <path d="M7 15h22"/>
-            <path d="m9 15 9-7 9 7"/>
-            <path d="M10 18v9"/>
-            <path d="M15 18v9"/>
-            <path d="M21 18v9"/>
-            <path d="M26 18v9"/>
-            <path d="M8 27h20"/>
-            <circle cx="18" cy="12" r="1.2"/>
+        <!-- Mairie : bâtiment -->
+        <symbol id="menu-icon-townhall" viewBox="0 0 32 32">
+            <path d="M5.5 25.5h21"/>
+            <path d="M7.5 12.5h17"/>
+            <path d="m9 12.5 7-5.5 7 5.5"/>
+            <path d="M10 15.5v7"/>
+            <path d="M15.8 15.5v7"/>
+            <path d="M22 15.5v7"/>
         </symbol>
 
-        <!-- Église : alliances, dont une avec solitaire -->
-        <symbol id="menu-icon-rings" viewBox="0 0 36 36">
-            <circle cx="13.2" cy="20.5" r="7.2"/>
-            <circle cx="22.8" cy="20.5" r="7.2"/>
-            <path d="m18.8 11.4 4-4 4 4-4 3.4z"/>
-            <path d="M19.6 11.4h6.4"/>
-            <path d="m20.4 8.9 2.4 5.9 2.4-5.9"/>
+        <!-- Église : alliances avec solitaire -->
+        <symbol id="menu-icon-rings" viewBox="0 0 32 32">
+            <circle cx="12.2" cy="18.2" r="6"/>
+            <circle cx="20.1" cy="18.2" r="6"/>
+            <path d="m18 9.4 3.1-3.1 3.1 3.1-3.1 2.8z"/>
         </symbol>
 
-        <!-- Vin d’honneur : deux flûtes -->
-        <symbol id="menu-icon-toast" viewBox="0 0 36 36">
-            <path d="M7.5 6.5h8.8l-1.2 9.8c-.3 3-1.8 4.7-4.2 4.7s-3.9-1.7-4.2-4.7z"/>
-            <path d="M10.9 21v8"/>
-            <path d="M6.8 29h8.2"/>
-            <path d="M19.7 6.5h8.8l.8 9.8c.3 3-1.2 4.7-3.6 4.7s-3.9-1.7-4.2-4.7z"/>
-            <path d="M25.7 21v8"/>
-            <path d="M21.6 29h8.2"/>
-            <path d="m15.2 10.3 5.6 5.4"/>
-            <path d="M17.2 5.2v2.6"/>
-            <path d="m13.8 6.2-1.5-2"/>
-            <path d="m20.6 6.2 1.5-2"/>
+        <!-- Vin d’honneur : deux coupes -->
+        <symbol id="menu-icon-toast" viewBox="0 0 32 32">
+            <path d="M7.5 7h7l-1 8.5c-.3 2.5-1.5 3.8-3.5 3.8s-3.2-1.3-3.5-3.8z"/>
+            <path d="M10 19.3v6.2"/>
+            <path d="M6.8 25.5h6.4"/>
+            <path d="M17.5 7h7l1 8.5c.3 2.5-.9 3.8-2.9 3.8s-3.2-1.3-3.5-3.8z"/>
+            <path d="M22.6 19.3v6.2"/>
+            <path d="M19.4 25.5h6.4"/>
         </symbol>
 
-        <!-- Soirée : lune et étoiles -->
-        <symbol id="menu-icon-evening" viewBox="0 0 36 36">
-            <path d="M24.8 5.7c-5.7 1.2-9.6 6.5-8.6 12.2 1 5.8 6.3 9.8 12.1 9-2.4 2.3-5.7 3.7-9.2 3.7-7.1 0-12.9-5.8-12.9-12.9S12 4.8 19.1 4.8c2 0 3.9.3 5.7.9z"/>
-            <path d="M28.5 8c.3 2 1.3 3 3.3 3.3-2 .3-3 1.3-3.3 3.3-.3-2-1.3-3-3.3-3.3 2-.3 3-1.3 3.3-3.3z"/>
-            <path d="M25 17.5c.2 1.3.9 2 2.2 2.2-1.3.2-2 .9-2.2 2.2-.2-1.3-.9-2-2.2-2.2 1.3-.2 2-.9 2.2-2.2z"/>
+        <!-- Soirée : lune -->
+        <symbol id="menu-icon-evening" viewBox="0 0 32 32">
+            <path d="M22.8 6.6c-4.8 1.1-8 5.6-7.2 10.4.8 4.9 5.1 8.2 10 7.7-2 1.9-4.7 3-7.5 3-6 0-10.8-4.8-10.8-10.8S12.1 6.1 18.1 6.1c1.6 0 3.2.2 4.7.5z"/>
         </symbol>
 
-        <!-- Remerciements : cœur simple et généreux -->
-        <symbol id="menu-icon-thanks" viewBox="0 0 36 36">
-            <path d="M18 29.2S6.3 22.7 6.3 13.9c0-4.1 2.8-7 6.7-7 2.3 0 4.1 1.2 5 3 1-1.8 2.7-3 5-3 3.9 0 6.7 2.9 6.7 7 0 8.8-11.7 15.3-11.7 15.3z"/>
+        <!-- Remerciements : cœur -->
+        <symbol id="menu-icon-thanks" viewBox="0 0 32 32">
+            <path d="M16 25.2S6.8 20 6.8 13.1c0-3.2 2.3-5.5 5.3-5.5 1.8 0 3.2.9 3.9 2.4.7-1.5 2.1-2.4 3.9-2.4 3 0 5.3 2.3 5.3 5.5 0 6.9-9.2 12.1-9.2 12.1z"/>
         </symbol>
 
         <!-- Souvenirs : appareil photo -->
-        <symbol id="menu-icon-camera" viewBox="0 0 36 36">
-            <path d="M5.5 12.5h6.2l2.2-3.5h8.2l2.2 3.5h6.2v16H5.5z"/>
-            <circle cx="18" cy="20.5" r="6"/>
-            <circle cx="18" cy="20.5" r="2.4"/>
-            <path d="M26.4 16h.1"/>
+        <symbol id="menu-icon-camera" viewBox="0 0 32 32">
+            <path d="M5.5 11.5h5l1.8-2.8h7.4l1.8 2.8h5v13h-21z"/>
+            <circle cx="16" cy="18" r="4.5"/>
         </symbol>
     </defs>
 </svg>
+
 
 
 
