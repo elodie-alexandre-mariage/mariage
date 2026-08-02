@@ -818,6 +818,100 @@
                 transition-duration: 0.01ms !important;
             }
         }
+
+        /* ==================================================
+   MIX DÉFINITIF :
+   nouvelle identité + proportions de l’ancien menu
+================================================== */
+
+@media (min-width: 721px) and (min-height: 821px) {
+
+    /* Largeur légèrement réduite pour laisser
+       davantage de place à la page principale */
+    :root {
+        --sidebar-width: 285px;
+    }
+
+    /* On conserve le grand logo et son animation */
+    .wedding-logo-link {
+        margin: 0 auto 28px;
+        transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .wedding-logo-link:hover {
+        opacity: 1;
+        transform: scale(1.045);
+    }
+
+    .wedding-logo {
+        width: 205px;
+    }
+
+    /* Titres de sections conservés et centrés */
+    .menu-section-title {
+        margin: 0 5px 14px;
+        font-size: 15px;
+        text-align: center;
+    }
+
+    /* Rythme vertical identique à l’ancien menu :
+       46 px de lien + 8 px d’espace = 54 px */
+    .album-page-list {
+        display: grid;
+        flex: 0 0 auto;
+        grid-template-rows: repeat(10, 54px);
+    }
+
+    .page-item {
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .page-link {
+        grid-template-columns: 35px 1fr;
+        gap: 16px;
+        min-height: 46px;
+        padding: 2px 5px;
+        font-size: 14px;
+    }
+
+    /* Cercle et numéro identiques à l’ancien menu */
+    .page-dot {
+        width: 33px;
+        height: 33px;
+        font-size: 10.5px;
+    }
+
+    /* Ligne partant du centre du 01
+       et s’arrêtant en haut de la ligne 10 */
+    .album-page-list::before {
+        top: 17px;
+        bottom: 54px;
+        left: 16px;
+    }
+
+    /* Séparateur et rubrique annexe */
+    .menu-annexe {
+        padding: 12px 5px 0;
+    }
+
+    .menu-annexe-line {
+        margin-bottom: 14px;
+    }
+
+    .menu-annexe .menu-section-title {
+        margin: 0 0 8px;
+        text-align: center;
+    }
+
+    /* Même aspect visuel pour l’onglet 11,
+       sans prolonger la ligne verticale */
+    .annexe-page-list .page-link {
+        min-height: 46px;
+        font-size: 14px;
+    }
+}
+        
     </style>
 </head>
 
