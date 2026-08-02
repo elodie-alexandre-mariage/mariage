@@ -7,17 +7,14 @@
 
     <meta
         name="description"
-        content="Le First Look d’Élodie et Alexandre, quelques instants avant la cérémonie., célébré le 23 mai 2026."
+        content="Les préparatifs du mariage d’Élodie et Alexandre, célébré le 23 mai 2026."
     >
 
-    <title>Le First Look — Élodie & Alexandre</title>
+    <title>Les préparatifs — Élodie & Alexandre</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap"
-        rel="stylesheet"
-    >
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <style>
         * {
@@ -27,8 +24,8 @@
         }
 
         :root {
-            --bordeaux: #630909;
-            --bordeaux-dark: #4f0707;
+            --bordeaux: #7B030F;
+            --bordeaux-dark: #5f020b;
             --text: #403936;
             --muted: #746b67;
             --line: #e8dfda;
@@ -36,7 +33,7 @@
             --paper: #fefefe;
             --white: #ffffff;
             --background: #fefefe;
-            --sidebar-width: 290px;
+            --sidebar-width: 285px;
         }
 
         html {
@@ -50,10 +47,6 @@
             font-family: Georgia, "Times New Roman", serif;
         }
 
-        body.lightbox-open {
-            overflow: hidden;
-        }
-
         img {
             display: block;
             max-width: 100%;
@@ -63,75 +56,90 @@
             color: inherit;
         }
 
-        button {
-            font: inherit;
-        }
-
         /* =========================
-           NAVIGATION LATÉRALE
+           MENU FIXE — VERSION 2
         ========================= */
 
         .book-sidebar {
             position: fixed;
             z-index: 1000;
-            top: 0;
-            bottom: 0;
-            left: 0;
+            inset: 0 auto 0 0;
             width: var(--sidebar-width);
-            overflow-y: auto;
             border-right: 1px solid var(--line);
-            background: rgba(254, 254, 254, 0.98);
-            -webkit-backdrop-filter: blur(14px);
-            backdrop-filter: blur(14px);
-            scrollbar-width: thin;
-            scrollbar-color: var(--bordeaux) transparent;
-        }
-
-        .book-sidebar::-webkit-scrollbar {
-            width: 7px;
-        }
-
-        .book-sidebar::-webkit-scrollbar-track {
-            background: transparent;
-        }
-
-        .book-sidebar::-webkit-scrollbar-thumb {
-            border-radius: 999px;
-            background: var(--bordeaux);
-        }
-
-        .book-sidebar::-webkit-scrollbar-thumb:hover {
-            background: var(--bordeaux-dark);
+            background: var(--background);
         }
 
         .sidebar-inner {
             display: flex;
-            min-height: 100%;
+            height: 100%;
+            min-height: 0;
             flex-direction: column;
-            padding: 18px 25px 27px;
+            padding: 18px 22px 24px;
+        }
+
+        .wedding-logo-link {
+            display: block;
+            width: fit-content;
+            margin: 0 auto 26px;
+            text-decoration: none;
+        }
+
+        .wedding-logo-link:hover .wedding-logo {
+            transform: scale(1.045);
+        }
+
+        .wedding-logo-link:focus-visible {
+            outline: 1px solid rgba(123, 3, 15, 0.55);
+            outline-offset: 5px;
         }
 
         .wedding-logo {
-            width: 110px;
+            width: 205px;
             height: auto;
-            margin: 0 auto 18px;
+            margin: 0 auto;
+            transform: scale(1);
+            transform-origin: center;
+            transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .menu-section-title {
+            width: 100%;
+            margin: 0 0 14px;
+            color: var(--bordeaux);
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
+            font-size: 15px;
+            font-weight: 300;
+            line-height: 1.35;
+            letter-spacing: 0.12em;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .book-navigation {
+            display: flex;
+            min-height: 0;
+            flex: 1;
+            flex-direction: column;
         }
 
         .page-list {
-            position: relative;
-            display: flex;
-            flex: 1;
-            flex-direction: column;
-            min-height: 0;
             margin: 0;
             padding: 0;
             list-style: none;
         }
 
-        .page-list::before {
+        .album-page-list {
+            position: relative;
+            display: grid;
+            flex: 0 0 auto;
+            grid-template-rows: repeat(10, 54px);
+        }
+
+        .album-page-list::before {
             position: absolute;
+            z-index: 0;
             top: 17px;
-            bottom: 17px;
+            bottom: 54px;
             left: 16px;
             width: 1px;
             background: #d9cbc4;
@@ -140,45 +148,14 @@
 
         .page-item {
             position: relative;
-        }
-
-        .page-item:not(.page-item-separated) {
-            margin-bottom: 8px;
-        }
-
-        .menu-annexe {
             display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            margin-top: auto;
-            padding: 20px 5px 8px;
-        }
-
-        .menu-annexe-line {
-            width: 100%;
-            height: 1px;
-            margin-bottom: 16px;
-            background: rgba(99, 9, 9, 0.16);
-        }
-
-        .menu-annexe-title {
-            padding-left: 49px;
-            color: rgba(99, 9, 9, 0.68);
-            font-family: "Montserrat", Arial, Helvetica, sans-serif;
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 0.35em;
-            text-transform: uppercase;
-        }
-
-        .page-item-separated {
-            margin-top: 0;
-            padding-top: 4px;
+            align-items: center;
         }
 
         .page-link {
             position: relative;
             display: grid;
+            width: 100%;
             grid-template-columns: 35px 1fr;
             gap: 16px;
             align-items: center;
@@ -206,9 +183,9 @@
             width: 33px;
             height: 33px;
             place-items: center;
-            border: 1px solid rgba(99, 9, 9, 0.24);
+            border: 1px solid rgba(123, 3, 15, 0.24);
             border-radius: 50%;
-            background: #fefefe;
+            background: var(--background);
             color: #a99c96;
             font-family: "Montserrat", Arial, Helvetica, sans-serif;
             font-size: 10.5px;
@@ -216,17 +193,22 @@
             transition: all 0.35s ease;
         }
 
+        .page-label {
+            line-height: 1.35;
+        }
+
         .page-link.is-visited {
-            color: rgba(99, 9, 9, 0.70);
+            color: rgba(123, 3, 15, 0.70);
         }
 
         .page-link.is-visited .page-dot {
-            border-color: rgba(99, 9, 9, 0.72);
+            border-color: rgba(123, 3, 15, 0.72);
             background: var(--background);
             color: var(--bordeaux);
-            box-shadow: inset 0 0 0 3px rgba(99, 9, 9, 0.06);
+            box-shadow: inset 0 0 0 3px rgba(123, 3, 15, 0.06);
         }
 
+        /* ÉTAT ACTIF — COPIE STRICTE DU CODE D’ORIGINE */
         .page-link.is-current {
             color: var(--bordeaux);
             font-weight: 700;
@@ -253,13 +235,35 @@
                 0 0 10px rgba(99, 9, 9, 0.10);
         }
 
+        .menu-annexe {
+            flex: 0 0 auto;
+            padding: 15px 5px 0;
+        }
+
+        .menu-annexe-line {
+            width: 100%;
+            height: 1px;
+            margin-bottom: 10px;
+            background: rgba(123, 3, 15, 0.16);
+        }
+
+        .menu-annexe .menu-section-title {
+            margin: 0 0 2px;
+        }
+
+        .annexe-page-list .page-link {
+            min-height: 46px;
+        }
+
         /* =========================
-           CONTENU
+           PAGE PRÉPARATIFS
         ========================= */
 
         .page-shell {
+            display: flex;
             min-height: 100vh;
             margin-left: var(--sidebar-width);
+            flex-direction: column;
             opacity: 1;
             transform: translateX(0);
             transition:
@@ -273,9 +277,15 @@
             transform: translateX(-34px);
         }
 
-        .hero {
-            padding: 58px 30px 52px;
+        .preparatifs-page {
+            display: flex;
+            flex: 1;
+            flex-direction: column;
             background: var(--background);
+        }
+
+        .hero {
+            padding: 48px 30px 38px;
             text-align: center;
         }
 
@@ -313,37 +323,34 @@
             margin: 18px auto 0;
             color: var(--muted);
             font-family: "Montserrat", Arial, Helvetica, sans-serif;
-            font-size: 14px;
+            font-size: 14.5px;
             font-weight: 300;
             line-height: 1.75;
             letter-spacing: 0.04em;
         }
 
-
-
-
-        /* =========================
-           GALERIE ÉDITORIALE
-        ========================= */
-
-        .gallery-section {
-            padding: 48px 40px 72px;
+        .choices-section {
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            justify-content: center;
+            padding: 24px 40px 28px;
             border-top: 1px solid var(--line);
             background: var(--soft);
         }
 
-        .gallery-heading {
+        .choices-heading {
             display: flex;
             align-items: flex-end;
             justify-content: space-between;
             gap: 30px;
             max-width: 1180px;
-            margin: 0 auto 26px;
+            margin: 0 auto 22px;
             padding-bottom: 16px;
             border-bottom: 1px solid rgba(99, 9, 9, 0.16);
         }
 
-        .gallery-heading p {
+        .choices-heading p {
             color: var(--bordeaux);
             font-family: "Montserrat", Arial, Helvetica, sans-serif;
             font-size: 16px;
@@ -352,69 +359,164 @@
             text-transform: uppercase;
         }
 
-        .gallery-heading h2 {
+        .choices-heading h2 {
             max-width: 540px;
             color: var(--muted);
             font-family: "Montserrat", Arial, Helvetica, sans-serif;
-            font-size: 14px;
+            font-size: 14.5px;
             font-weight: 300;
             line-height: 1.65;
             text-align: right;
         }
 
-        .gallery {
+        .choices {
             display: grid;
-            grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 11px;
-            max-width: 1180px;
-            margin: auto;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 26px;
+            width: min(100%, 940px);
+            margin: 0 auto;
         }
 
-        .gallery-item {
+        .choice {
             position: relative;
             display: block;
+            height: clamp(275px, 40vh, 390px);
             overflow: hidden;
-            padding: 0;
-            border: 0;
-            border-radius: 3px;
-            background: #e9e3df;
-            cursor: zoom-in;
+            border: 1px solid rgba(99, 9, 9, 0.10);
+            border-radius: 5px;
+            background: #d8d1cd;
+            color: #fffaf7;
+            text-decoration: none;
+            isolation: isolate;
+            transition:
+                transform 0.45s ease,
+                box-shadow 0.45s ease,
+                border-color 0.45s ease;
         }
 
-        .gallery-item::after {
+        .choice::before {
             position: absolute;
             inset: 0;
-            border: 1px solid rgba(255, 255, 255, 0.26);
+            z-index: -2;
+            background: var(--choice-image) center / cover no-repeat;
             content: "";
-            pointer-events: none;
-        }
-
-        .gallery-item img {
-            display: block;
-            width: 100%;
-            aspect-ratio: 1 / 1;
-            object-fit: cover;
-            filter: saturate(0.86) contrast(0.98);
+            filter:
+                grayscale(1)
+                saturate(0.12)
+                contrast(0.92)
+                brightness(0.92);
+            transform: scale(1.015);
             transition:
-                transform 0.65s ease,
-                filter 0.45s ease;
+                filter 0.75s ease,
+                transform 0.85s ease;
         }
 
-        .gallery-item:hover img {
-            filter: saturate(1.03) contrast(1.01);
-            transform: scale(1.045);
+        .choice::after {
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background:
+                linear-gradient(
+                    180deg,
+                    rgba(42, 31, 29, 0.22) 0%,
+                    rgba(42, 31, 29, 0.03) 48%,
+                    rgba(42, 31, 29, 0.09) 67%,
+                    rgba(42, 31, 29, 0.66) 100%
+                );
+            content: "";
+            transition: background 0.65s ease;
         }
 
-        .gallery-item:focus-visible {
-            outline: 2px solid var(--bordeaux);
-            outline-offset: 4px;
+        .choice:hover {
+            z-index: 2;
+            border-color: rgba(99, 9, 9, 0.34);
+            box-shadow: 0 24px 55px rgba(52, 35, 31, 0.22);
+            transform: translateY(-7px);
         }
 
-        /* =========================
-           PIED DE PAGE VALIDÉ
-        ========================= */
+        .choice:hover::before {
+            filter:
+                grayscale(0)
+                saturate(1.12)
+                contrast(1.03)
+                brightness(1.01);
+            transform: scale(1.06);
+        }
+
+        .choice-inner {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: flex-start;
+            padding: 31px 34px;
+        }
+
+        .choice-kicker {
+            margin-bottom: 12px;
+            color: rgba(255, 250, 247, 0.90);
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 0.24em;
+            text-transform: uppercase;
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
+        }
+
+        .choice h3 {
+            color: #fffaf7;
+            font-size: clamp(1.9rem, 3vw, 2.55rem);
+            font-weight: normal;
+            line-height: 1.15;
+            text-shadow: 0 2px 18px rgba(0, 0, 0, 0.48);
+            transition: transform 0.6s ease;
+        }
+
+        .choice h3::after {
+            display: block;
+            width: 0;
+            height: 1px;
+            margin: 15px 0 0;
+            background: rgba(255, 250, 247, 0.90);
+            content: "";
+            transition: width 0.45s ease;
+        }
+
+        .choice-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 18px;
+            color: #fffaf7;
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
+            font-size: 9px;
+            font-weight: 500;
+            letter-spacing: 1.8px;
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.48);
+            text-transform: uppercase;
+        }
+
+        .choice-link::after {
+            font-size: 17px;
+            content: "→";
+            transition: transform 0.3s ease;
+        }
+
+        .choice:hover h3 {
+            transform: translateY(-5px);
+        }
+
+        .choice:hover h3::after {
+            width: 42px;
+        }
+
+        .choice:hover .choice-link::after {
+            transform: translateX(5px);
+        }
 
         .footer {
+            flex: 0 0 auto;
             padding: 12px 20px 16px;
             background: var(--background);
             text-align: center;
@@ -434,176 +536,125 @@
             margin: 5px auto 0;
         }
 
-        /* =========================
-           LIGHTBOX
-        ========================= */
+        /* Mise en page compacte pour conserver l’affichage sur un seul écran */
+        @media (min-width: 721px) and (max-height: 760px) {
+            .hero {
+                padding-top: 27px;
+                padding-bottom: 23px;
+            }
 
-        .lightbox {
-            position: fixed;
-            inset: 0;
-            z-index: 2000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 34px 95px;
-            background: rgba(15, 12, 11, 0.96);
-            opacity: 0;
-            visibility: hidden;
-            transition:
-                opacity 0.25s ease,
-                visibility 0.25s ease;
+            .eyebrow {
+                margin-bottom: 9px;
+            }
+
+            h1::after {
+                margin-top: 12px;
+            }
+
+            .intro {
+                margin-top: 12px;
+                line-height: 1.6;
+            }
+
+            .choices-section {
+                padding-top: 16px;
+                padding-bottom: 17px;
+            }
+
+            .choices-heading {
+                margin-bottom: 13px;
+                padding-bottom: 10px;
+            }
+
+            .choices {
+                max-width: 900px;
+            }
+
+            .choice {
+                height: clamp(235px, 36vh, 315px);
+            }
+
+            .choice-inner {
+                padding: 24px 28px;
+            }
+
+            .footer {
+                padding-top: 6px;
+                padding-bottom: 8px;
+            }
+
+            .footer-name-logo {
+                width: 122px;
+            }
+
+            .footer-date-logo {
+                width: 68px;
+                margin-top: 2px;
+            }
         }
 
-        .lightbox.open {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .lightbox-image {
-            display: block;
-            max-width: 90vw;
-            max-height: 86vh;
-            object-fit: contain;
-            box-shadow: 0 15px 55px rgba(0, 0, 0, 0.35);
-            transform: scale(0.985);
-            transition: transform 0.25s ease;
-        }
-
-        .lightbox.open .lightbox-image {
-            transform: scale(1);
-        }
-
-        .lightbox-close,
-        .lightbox-arrow {
-            border: 1px solid rgba(255, 255, 255, 0.35);
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.08);
-            color: var(--white);
-            cursor: pointer;
-            transition:
-                background 0.2s ease,
-                transform 0.2s ease;
-        }
-
-        .lightbox-close {
-            position: fixed;
-            top: 22px;
-            right: 28px;
-            z-index: 2002;
-            display: flex;
-            width: 46px;
-            height: 46px;
-            align-items: center;
-            justify-content: center;
-            font-family: "Montserrat", Arial, Helvetica, sans-serif;
-            font-size: 29px;
-            font-weight: 200;
-            line-height: 1;
-        }
-
-        .lightbox-close:hover {
-            background: rgba(255, 255, 255, 0.17);
-            transform: rotate(4deg);
-        }
-
-        .lightbox-arrow {
-            position: fixed;
-            top: 50%;
-            z-index: 2001;
-            display: flex;
-            width: 52px;
-            height: 52px;
-            align-items: center;
-            justify-content: center;
-            font-family: "Montserrat", Arial, Helvetica, sans-serif;
-            font-size: 31px;
-            font-weight: 200;
-            transform: translateY(-50%);
-        }
-
-        .lightbox-arrow:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .previous {
-            left: 28px;
-        }
-
-        .previous:hover {
-            transform: translate(-3px, -50%);
-        }
-
-        .next {
-            right: 28px;
-        }
-
-        .next:hover {
-            transform: translate(3px, -50%);
-        }
-
-        .photo-counter {
-            position: fixed;
-            bottom: 22px;
-            left: 50%;
-            z-index: 2002;
-            color: rgba(255, 255, 255, 0.76);
-            font-family: "Montserrat", Arial, Helvetica, sans-serif;
-            font-size: 11px;
-            letter-spacing: 2px;
-            transform: translateX(-50%);
-        }
-
-        .mobile-menu-button {
-            display: none;
-        }
-
+        /* Écrans peu hauts : menu compact sans perdre sa hiérarchie */
         @media (min-width: 721px) and (max-height: 820px) {
             .sidebar-inner {
-                padding-top: 10px;
-                padding-bottom: 16px;
+                padding-top: 8px;
+                padding-bottom: 10px;
             }
 
             .wedding-logo {
-                width: 88px;
-                margin-bottom: 8px;
+                width: 150px;
             }
 
-            .page-item:not(.page-item-separated) {
-                margin-bottom: 2px;
+            .menu-section-title {
+                margin-top: 3px;
+                margin-bottom: 4px;
+                font-size: 11px;
             }
 
-            .page-link {
-                min-height: 37px;
+            .album-page-list {
+                grid-template-rows: repeat(10, 32px);
+            }
+
+            .album-page-list::before {
+                top: 14px;
+                bottom: 30px;
+                left: 13px;
+            }
+
+            .page-link,
+            .annexe-page-list .page-link {
+                grid-template-columns: 29px 1fr;
+                gap: 12px;
+                min-height: 32px;
                 font-size: 12.5px;
             }
 
             .page-dot {
                 width: 28px;
                 height: 28px;
-                font-size: 9.5px;
+                font-size: 8.5px;
             }
 
-            .page-list::before {
-                left: 13px;
-            }
 
             .menu-annexe {
-                padding-top: 10px;
+                padding-top: 4px;
             }
 
             .menu-annexe-line {
-                margin-bottom: 10px;
+                margin-bottom: 5px;
             }
 
-            .menu-annexe-title {
-                padding-left: 44px;
-                font-size: 8px;
+            .menu-annexe .menu-section-title {
+                margin-bottom: 1px;
             }
         }
 
-        @media (max-width: 1020px) {
+        .mobile-menu-button {
+            display: none;
+        }
+
+        @media (max-width: 900px) {
             :root {
-                --sidebar-width: 250px;
+                --sidebar-width: 270px;
             }
 
             .sidebar-inner {
@@ -611,8 +662,12 @@
                 padding-left: 18px;
             }
 
-            .gallery {
-                grid-template-columns: repeat(3, minmax(0, 1fr));
+            .choices {
+                gap: 18px;
+            }
+
+            .choice {
+                height: clamp(265px, 39vh, 360px);
             }
         }
 
@@ -640,6 +695,7 @@
 
             .book-sidebar {
                 width: min(88vw, 330px);
+                overflow-y: auto;
                 transform: translateX(-105%);
                 transition: transform 0.3s ease;
             }
@@ -653,75 +709,45 @@
             }
 
             .hero {
-                padding: 72px 20px 48px;
+                padding: 68px 20px 48px;
             }
 
-            .subpage-nav {
-                flex-wrap: wrap;
+            .choices-section {
+                justify-content: flex-start;
+                padding: 42px 16px 56px;
             }
 
-            .gallery-section {
-                padding: 42px 10px 56px;
-            }
-
-            .gallery-heading {
+            .choices-heading {
                 display: block;
                 margin-bottom: 22px;
-                padding: 0 10px 14px;
             }
 
-            .gallery-heading h2 {
+            .choices-heading h2 {
                 margin-top: 9px;
                 text-align: left;
             }
 
-            .gallery {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-                gap: 7px;
+            .choices {
+                grid-template-columns: 1fr;
+                gap: 16px;
             }
 
-            .lightbox {
-                padding: 70px 12px 65px;
+            .choice {
+                height: 390px;
             }
 
-            .lightbox-image {
-                max-width: 96vw;
-                max-height: 79vh;
+            .choice-inner {
+                padding: 28px 26px;
             }
+        }
 
-            .lightbox-close {
-                top: 14px;
-                right: 14px;
-                width: 42px;
-                height: 42px;
-            }
-
-            .lightbox-arrow {
-                top: auto;
-                bottom: 14px;
-                width: 44px;
-                height: 44px;
-                transform: none;
-            }
-
-            .previous {
-                left: 15px;
-            }
-
-            .next {
-                right: 15px;
-            }
-
-            .previous:hover {
-                transform: translateX(-2px);
-            }
-
-            .next:hover {
-                transform: translateX(2px);
-            }
-
-            .photo-counter {
-                bottom: 29px;
+        @media (hover: none) {
+            .choice::before {
+                filter:
+                    grayscale(0.35)
+                    saturate(0.72)
+                    contrast(0.98)
+                    brightness(0.96);
             }
         }
 
@@ -755,75 +781,83 @@
     >
         <div class="sidebar-inner">
 
-            <img
-                src="../images/style/logosansfond.jpg"
-                alt="Logo du mariage d’Élodie et Alexandre"
-                class="wedding-logo"
+            <a
+                href="../sommaire/"
+                class="wedding-logo-link"
+                aria-label="Retourner au sommaire"
             >
+                <img
+                    src="../images/style/logo_couleur.png"
+                    alt=""
+                    class="wedding-logo"
+                >
+            </a>
 
-            <nav aria-label="Navigation principale">
-                <ol class="page-list">
+            <p class="menu-section-title">Pages de l’album</p>
 
+            <nav class="book-navigation" aria-label="Navigation principale">
+
+                <ol class="page-list album-page-list">
                     <li class="page-item">
                         <a href="../" class="page-link" data-page="bienvenue">
-                            <span class="page-dot">1</span>
+                            <span class="page-dot">01</span>
                             <span class="page-label">Bienvenue</span>
                         </a>
                     </li>
 
                     <li class="page-item">
                         <a href="../sommaire/" class="page-link" data-page="sommaire">
-                            <span class="page-dot">2</span>
+                            <span class="page-dot">02</span>
                             <span class="page-label">Sommaire</span>
                         </a>
                     </li>
 
                     <li class="page-item">
                         <a href="../invitation/" class="page-link" data-page="invitation">
-                            <span class="page-dot">3</span>
-                            <span class="page-label">Invitation</span>
+                            <span class="page-dot">03</span>
+                            <span class="page-label">L’invitation</span>
                         </a>
                     </li>
 
                     <li class="page-item">
-                        <a href="../preparatifs/" class="page-link" data-page="preparatifs">
-                            <span class="page-dot">4</span>
-                            <span class="page-label">Préparatifs</span>
+                        <a href="./" class="page-link" data-page="preparatifs">
+                            <span class="page-dot">04</span>
+                            <span class="page-label">Les préparatifs</span>
                         </a>
                     </li>
 
                     <li class="page-item">
-                        <a href="./" class="page-link" data-page="first-look">
-                            <span class="page-dot">5</span>
-                            <span class="page-label">First Look</span>
+                        <a href="../first-look/" class="page-link" data-page="first-look">
+                            <span class="page-dot">05</span>
+                            <span class="page-label">Le First Look</span>
                         </a>
                     </li>
 
                     <li class="page-item">
                         <a href="../mairie/" class="page-link" data-page="mairie">
-                            <span class="page-dot">6</span>
-                            <span class="page-label">Mairie</span>
+                            <span class="page-dot">06</span>
+                            <span class="page-label">La mairie</span>
                         </a>
                     </li>
 
                     <li class="page-item">
                         <a href="../eglise/" class="page-link" data-page="eglise">
-                            <span class="page-dot">7</span>
-                            <span class="page-label">Église</span>
+                            <span class="page-dot">07</span>
+                            <span class="page-label">L’église</span>
                         </a>
                     </li>
 
                     <li class="page-item">
                         <a href="../vin_d_honneur/" class="page-link" data-page="vin-d-honneur">
-                            <span class="page-dot">8</span>
-                            <span class="page-label">Vin d’honneur</span>
+                            <span class="page-dot">08</span>
+                            <span class="page-label">Le vin d’honneur</span>
                         </a>
                     </li>
 
                     <li class="page-item">
                         <a href="../soiree/" class="page-link" data-page="soiree">
-                            <span class="page-dot">9</span>
-                            <span class="page-label">Soirée</span>
+                            <span class="page-dot">09</span>
+                            <span class="page-label">La soirée</span>
                         </a>
                     </li>
 
@@ -833,55 +867,77 @@
                             <span class="page-label">Remerciements</span>
                         </a>
                     </li>
-
-                    <li class="menu-annexe" aria-hidden="true">
-                        <span class="menu-annexe-line"></span>
-                        <span class="menu-annexe-title">À revivre</span>
-                    </li>
-
-                    <li class="page-item page-item-separated">
-                        <a href="../souvenirs/" class="page-link" data-page="souvenirs">
-                            <span class="page-dot">11</span>
-                            <span class="page-label">Souvenirs</span>
-                        </a>
-                    </li>
-
                 </ol>
+
+                <div class="menu-annexe">
+                    <div class="menu-annexe-line" aria-hidden="true"></div>
+                    <p class="menu-section-title">À revivre</p>
+
+                    <ol class="page-list annexe-page-list" start="11">
+                        <li class="page-item">
+                            <a href="../souvenirs/" class="page-link" data-page="souvenirs">
+                                <span class="page-dot">11</span>
+                                <span class="page-label">Films et souvenirs</span>
+                            </a>
+                        </li>
+                    </ol>
+                </div>
+
             </nav>
         </div>
     </aside>
 
     <main class="page-shell">
+        <section class="preparatifs-page">
 
-        <section class="hero">
+            <header class="hero">
 
-            <p class="eyebrow">Avant la cérémonie</p>
+                <p class="eyebrow">Avant la cérémonie</p>
 
-            <h1>Le First Look</h1>
+                <h1>Les préparatifs</h1>
 
-            <p class="intro">
-                Le moment où nous nous sommes retrouvés,
-                quelques instants avant de nous dire « oui ».
-            </p>
+                <p class="intro">
+                    Avant de nous retrouver, chacun de notre côté,
+                    nous nous sommes préparés entourés de nos proches.
+                </p>
 
-        </section>
+            </header>
 
-        <section
-            class="gallery-section"
-            aria-labelledby="gallery-title"
-        >
+            <section class="choices-section" aria-label="Choisir les préparatifs à découvrir">
 
-            <div class="gallery-heading">
-                <p>Notre rencontre</p>
-                <h2 id="gallery-title">
-                    Un instant rien qu’à nous
-                </h2>
-            </div>
+                <div class="choices-heading">
+                    <p>Deux histoires</p>
+                    <h2>Découvrez ces derniers instants avant de nous retrouver.</h2>
+                </div>
 
-            <div
-                class="gallery"
-                id="gallery"
-            ></div>
+                <div class="choices">
+
+                    <a
+                        href="elodie/"
+                        class="choice"
+                        style="--choice-image: url('../images/preparatifs-elodie/Pre%CC%81paratifs%20%20-%20Elodie%20%26%20Alexandre-10.jpg');"
+                    >
+                        <div class="choice-inner">
+                            <span class="choice-kicker">Ses préparatifs</span>
+                            <h3>Élodie</h3>
+                            <span class="choice-link">Découvrir</span>
+                        </div>
+                    </a>
+
+                    <a
+                        href="alexandre/"
+                        class="choice"
+                        style="--choice-image: url('../images/preparatifs-alexandre/Pre%CC%81paratifs%20%20-%20Elodie%20%26%20Alexandre-86.jpg');"
+                    >
+                        <div class="choice-inner">
+                            <span class="choice-kicker">Ses préparatifs</span>
+                            <h3>Alexandre</h3>
+                            <span class="choice-link">Découvrir</span>
+                        </div>
+                    </a>
+
+                </div>
+            </section>
 
         </section>
 
@@ -903,234 +959,8 @@
 
     </main>
 
-    <div
-        class="lightbox"
-        id="lightbox"
-        role="dialog"
-        aria-modal="true"
-        aria-label="Agrandissement de la photographie"
-        aria-hidden="true"
-    >
-
-        <button
-            type="button"
-            class="lightbox-close"
-            id="closeButton"
-            aria-label="Fermer la photographie"
-        >
-            ×
-        </button>
-
-        <button
-            type="button"
-            class="lightbox-arrow previous"
-            id="previousButton"
-            aria-label="Photographie précédente"
-        >
-            ‹
-        </button>
-
-        <img
-            class="lightbox-image"
-            id="lightboxImage"
-            src=""
-            alt="First Look d’Élodie et Alexandre"
-        >
-
-        <button
-            type="button"
-            class="lightbox-arrow next"
-            id="nextButton"
-            aria-label="Photographie suivante"
-        >
-            ›
-        </button>
-
-        <p
-            class="photo-counter"
-            id="photoCounter"
-            aria-live="polite"
-        ></p>
-
-    </div>
-
     <script>
-const firstPhotoNumber = 274;
-        const lastPhotoNumber = 342;
-
-        const photoNumbers = [];
-
-        for (
-            let number = firstPhotoNumber;
-            number <= lastPhotoNumber;
-            number++
-        ) {
-            photoNumbers.push(number);
-        }
-
-        const gallery = document.getElementById("gallery");
-
-        const lightbox = document.getElementById("lightbox");
-        const lightboxImage = document.getElementById("lightboxImage");
-        const photoCounter = document.getElementById("photoCounter");
-
-        const closeButton = document.getElementById("closeButton");
-        const previousButton = document.getElementById("previousButton");
-        const nextButton = document.getElementById("nextButton");
-
-        let currentImage = 0;
-        let previousFocusedElement = null;
-
-        const photos = photoNumbers.map(function(number, index) {
-
-            const fileName =
-                "Pre%CC%81paratifs%20%20-%20Elodie%20%26%20Alexandre-" +
-                number +
-                ".jpg";
-
-            const path =
-                "../images/first-look/" +
-                fileName;
-
-            const button = document.createElement("button");
-
-            button.type = "button";
-            button.className = "gallery-item";
-
-            button.setAttribute(
-                "aria-label",
-                "Agrandir la photographie " +
-                (index + 1) +
-                " sur " +
-                photoNumbers.length
-            );
-
-            const image = document.createElement("img");
-
-            image.src = path;
-
-            image.alt =
-                "First Look d’Élodie et Alexandre — photographie " +
-                (index + 1);
-
-            image.loading = "lazy";
-            image.decoding = "async";
-
-            button.appendChild(image);
-
-            button.addEventListener("click", function() {
-                openLightbox(index);
-            });
-
-            gallery.appendChild(button);
-
-            return path;
-
-        });
-
-        function updateLightbox() {
-
-            lightboxImage.src = photos[currentImage];
-
-            lightboxImage.alt =
-                "First Look d’Élodie et Alexandre — photographie " +
-                (currentImage + 1) +
-                " sur " +
-                photos.length;
-
-            photoCounter.textContent =
-                (currentImage + 1) +
-                " / " +
-                photos.length;
-
-        }
-
-        function openLightbox(index) {
-
-            previousFocusedElement = document.activeElement;
-            currentImage = index;
-
-            updateLightbox();
-
-            lightbox.classList.add("open");
-            lightbox.setAttribute("aria-hidden", "false");
-
-            document.body.classList.add("lightbox-open");
-
-            closeButton.focus();
-
-        }
-
-        function closeLightbox() {
-
-            lightbox.classList.remove("open");
-            lightbox.setAttribute("aria-hidden", "true");
-
-            document.body.classList.remove("lightbox-open");
-
-            lightboxImage.src = "";
-
-            if (previousFocusedElement) {
-                previousFocusedElement.focus();
-            }
-
-        }
-
-        function changeImage(direction) {
-
-            currentImage += direction;
-
-            if (currentImage < 0) {
-                currentImage = photos.length - 1;
-            }
-
-            if (currentImage >= photos.length) {
-                currentImage = 0;
-            }
-
-            updateLightbox();
-
-        }
-
-        closeButton.addEventListener("click", closeLightbox);
-
-        previousButton.addEventListener("click", function() {
-            changeImage(-1);
-        });
-
-        nextButton.addEventListener("click", function() {
-            changeImage(1);
-        });
-
-        lightbox.addEventListener("click", function(event) {
-
-            if (event.target === lightbox) {
-                closeLightbox();
-            }
-
-        });
-
-        document.addEventListener("keydown", function(event) {
-
-            if (!lightbox.classList.contains("open")) {
-                return;
-            }
-
-            if (event.key === "Escape") {
-                closeLightbox();
-            }
-
-            if (event.key === "ArrowLeft") {
-                changeImage(-1);
-            }
-
-            if (event.key === "ArrowRight") {
-                changeImage(1);
-            }
-
-        });
-
-        const currentPage = "first-look";
+        const currentPage = "preparatifs";
 
         const pageOrder = [
             "bienvenue",
@@ -1225,7 +1055,6 @@ const firstPhotoNumber = 274;
                 }, 400);
             });
         });
-    
     </script>
 
 </body>
