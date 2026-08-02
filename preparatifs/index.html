@@ -33,7 +33,7 @@
             --paper: #fefefe;
             --white: #ffffff;
             --background: #fefefe;
-            --sidebar-width: 315px;
+            --sidebar-width: 285px;
         }
 
         html {
@@ -74,19 +74,18 @@
             height: 100%;
             min-height: 0;
             flex-direction: column;
-            padding: 20px 28px 24px;
+            padding: 18px 22px 24px;
         }
 
         .wedding-logo-link {
             display: block;
             width: fit-content;
-            margin: 0 auto;
+            margin: 0 auto 26px;
             text-decoration: none;
-            transition: opacity 0.3s ease;
         }
 
-        .wedding-logo-link:hover {
-            opacity: 0.82;
+        .wedding-logo-link:hover .wedding-logo {
+            transform: scale(1.045);
         }
 
         .wedding-logo-link:focus-visible {
@@ -98,16 +97,21 @@
             width: 205px;
             height: auto;
             margin: 0 auto;
+            transform: scale(1);
+            transform-origin: center;
+            transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
         .menu-section-title {
-            margin: 10px 5px 11px;
+            width: 100%;
+            margin: 0 0 14px;
             color: var(--bordeaux);
             font-family: "Montserrat", Arial, Helvetica, sans-serif;
             font-size: 15px;
             font-weight: 300;
             line-height: 1.35;
             letter-spacing: 0.12em;
+            text-align: center;
             text-transform: uppercase;
         }
 
@@ -127,9 +131,8 @@
         .album-page-list {
             position: relative;
             display: grid;
-            min-height: 0;
-            flex: 1;
-            grid-template-rows: repeat(10, minmax(43px, 1fr));
+            flex: 0 0 auto;
+            grid-template-rows: repeat(10, 39px);
         }
 
         .album-page-list::before {
@@ -156,7 +159,7 @@
             grid-template-columns: 35px 1fr;
             gap: 16px;
             align-items: center;
-            min-height: 43px;
+            min-height: 39px;
             padding: 2px 5px;
             color: #766c68;
             font-family: "Montserrat", Arial, Helvetica, sans-serif;
@@ -234,7 +237,7 @@
 
         .menu-annexe {
             flex: 0 0 auto;
-            padding: 10px 5px 0;
+            padding: 15px 5px 0;
         }
 
         .menu-annexe-line {
@@ -245,11 +248,11 @@
         }
 
         .menu-annexe .menu-section-title {
-            margin: 0 0 4px;
+            margin: 0 0 2px;
         }
 
         .annexe-page-list .page-link {
-            min-height: 39px;
+            min-height: 37px;
         }
 
         /* =========================
@@ -607,11 +610,11 @@
             }
 
             .album-page-list {
-                grid-template-rows: repeat(10, minmax(39px, 1fr));
+                grid-template-rows: repeat(10, 36px);
             }
 
             .page-link {
-                min-height: 39px;
+                min-height: 36px;
                 font-size: 13.5px;
             }
 
@@ -623,7 +626,7 @@
 
             .album-page-list::before {
                 top: 16px;
-                bottom: 37px;
+                bottom: 34px;
                 left: 15px;
             }
 
@@ -645,7 +648,7 @@
             }
 
             .annexe-page-list .page-link {
-                min-height: 36px;
+                min-height: 32px;
             }
         }
 
@@ -667,12 +670,12 @@
             }
 
             .album-page-list {
-                grid-template-rows: repeat(10, minmax(35px, 1fr));
+                grid-template-rows: repeat(10, 32px);
             }
 
             .album-page-list::before {
                 top: 14px;
-                bottom: 33px;
+                bottom: 30px;
                 left: 13px;
             }
 
@@ -680,7 +683,7 @@
             .annexe-page-list .page-link {
                 grid-template-columns: 29px 1fr;
                 gap: 12px;
-                min-height: 34px;
+                min-height: 32px;
                 font-size: 12.5px;
             }
 
@@ -710,7 +713,7 @@
 
         @media (max-width: 900px) {
             :root {
-                --sidebar-width: 285px;
+                --sidebar-width: 270px;
             }
 
             .sidebar-inner {
