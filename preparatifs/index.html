@@ -24,8 +24,8 @@
         }
 
         :root {
-            --bordeaux: #630909;
-            --bordeaux-dark: #4f0707;
+            --bordeaux: #7B030F;
+            --bordeaux-dark: #5f020b;
             --text: #403936;
             --muted: #746b67;
             --line: #e8dfda;
@@ -57,70 +57,86 @@
         }
 
         /* =========================
-           NAVIGATION LATÉRALE
+           MENU FIXE — VERSION 2
         ========================= */
 
         .book-sidebar {
             position: fixed;
             z-index: 1000;
-            top: 0;
-            bottom: 0;
-            left: 0;
+            inset: 0 auto 0 0;
             width: var(--sidebar-width);
-            overflow-y: auto;
             border-right: 1px solid var(--line);
-            background: rgba(254, 254, 254, 0.98);
-            -webkit-backdrop-filter: blur(14px);
-            backdrop-filter: blur(14px);
-            scrollbar-width: thin;
-            scrollbar-color: var(--bordeaux) transparent;
-        }
-
-        .book-sidebar::-webkit-scrollbar {
-            width: 7px;
-        }
-
-        .book-sidebar::-webkit-scrollbar-track {
-            background: transparent;
-        }
-
-        .book-sidebar::-webkit-scrollbar-thumb {
-            border-radius: 999px;
-            background: var(--bordeaux);
-        }
-
-        .book-sidebar::-webkit-scrollbar-thumb:hover {
-            background: var(--bordeaux-dark);
+            background: var(--background);
         }
 
         .sidebar-inner {
             display: flex;
-            min-height: 100%;
+            height: 100%;
+            min-height: 0;
             flex-direction: column;
-            padding: 18px 25px 27px;
+            padding: 18px 25px 24px;
+        }
+
+        .wedding-logo-link {
+            display: block;
+            width: fit-content;
+            margin: 0 auto;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .wedding-logo-link:hover {
+            opacity: 0.82;
+        }
+
+        .wedding-logo-link:focus-visible {
+            outline: 1px solid rgba(123, 3, 15, 0.55);
+            outline-offset: 5px;
         }
 
         .wedding-logo {
-            width: 110px;
+            width: 112px;
             height: auto;
-            margin: 0 auto 18px;
+            margin: 0 auto;
+        }
+
+        .menu-section-title {
+            margin: 17px 5px 12px;
+            color: var(--bordeaux);
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
+            font-size: 15px;
+            font-weight: 300;
+            line-height: 1.35;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .book-navigation {
+            display: flex;
+            min-height: 0;
+            flex: 1;
+            flex-direction: column;
         }
 
         .page-list {
-            position: relative;
-            display: flex;
-            flex: 1;
-            flex-direction: column;
-            min-height: 0;
             margin: 0;
             padding: 0;
             list-style: none;
         }
 
-        .page-list::before {
+        .album-page-list {
+            position: relative;
+            display: grid;
+            min-height: 0;
+            flex: 1;
+            grid-template-rows: repeat(10, minmax(40px, 1fr));
+        }
+
+        .album-page-list::before {
             position: absolute;
+            z-index: 0;
             top: 17px;
-            bottom: 17px;
+            bottom: 39px;
             left: 16px;
             width: 1px;
             background: #d9cbc4;
@@ -129,49 +145,18 @@
 
         .page-item {
             position: relative;
-        }
-
-        .page-item:not(.page-item-separated) {
-            margin-bottom: 8px;
-        }
-
-        .menu-annexe {
             display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            margin-top: auto;
-            padding: 20px 5px 8px;
-        }
-
-        .menu-annexe-line {
-            width: 100%;
-            height: 1px;
-            margin-bottom: 16px;
-            background: rgba(99, 9, 9, 0.16);
-        }
-
-        .menu-annexe-title {
-            padding-left: 49px;
-            color: rgba(99, 9, 9, 0.68);
-            font-family: "Montserrat", Arial, Helvetica, sans-serif;
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 0.35em;
-            text-transform: uppercase;
-        }
-
-        .page-item-separated {
-            margin-top: 0;
-            padding-top: 4px;
+            align-items: center;
         }
 
         .page-link {
             position: relative;
             display: grid;
+            width: 100%;
             grid-template-columns: 35px 1fr;
             gap: 16px;
             align-items: center;
-            min-height: 46px;
+            min-height: 40px;
             padding: 2px 5px;
             color: #766c68;
             font-family: "Montserrat", Arial, Helvetica, sans-serif;
@@ -195,12 +180,12 @@
             width: 33px;
             height: 33px;
             place-items: center;
-            border: 1px solid rgba(99, 9, 9, 0.24);
+            border: 1px solid rgba(123, 3, 15, 0.24);
             border-radius: 50%;
-            background: #fefefe;
+            background: var(--background);
             color: #a99c96;
             font-family: "Montserrat", Arial, Helvetica, sans-serif;
-            font-size: 10.5px;
+            font-size: 9.5px;
             font-weight: 400;
             transition: all 0.35s ease;
         }
@@ -210,16 +195,17 @@
         }
 
         .page-link.is-visited {
-            color: rgba(99, 9, 9, 0.70);
+            color: rgba(123, 3, 15, 0.70);
         }
 
         .page-link.is-visited .page-dot {
-            border-color: rgba(99, 9, 9, 0.72);
+            border-color: rgba(123, 3, 15, 0.72);
             background: var(--background);
             color: var(--bordeaux);
-            box-shadow: inset 0 0 0 3px rgba(99, 9, 9, 0.06);
+            box-shadow: inset 0 0 0 3px rgba(123, 3, 15, 0.06);
         }
 
+        /* État actif conservé comme dans le code d’origine */
         .page-link.is-current {
             color: var(--bordeaux);
             font-weight: 700;
@@ -242,8 +228,28 @@
             color: var(--white);
             transform: scale(1.18);
             box-shadow:
-                0 0 0 3px rgba(99, 9, 9, 0.12),
-                0 0 10px rgba(99, 9, 9, 0.10);
+                0 0 0 3px rgba(123, 3, 15, 0.12),
+                0 0 10px rgba(123, 3, 15, 0.10);
+        }
+
+        .menu-annexe {
+            flex: 0 0 auto;
+            padding: 14px 5px 0;
+        }
+
+        .menu-annexe-line {
+            width: 100%;
+            height: 1px;
+            margin-bottom: 15px;
+            background: rgba(123, 3, 15, 0.16);
+        }
+
+        .menu-annexe .menu-section-title {
+            margin: 0 0 10px;
+        }
+
+        .annexe-page-list .page-link {
+            min-height: 40px;
         }
 
         /* =========================
@@ -583,48 +589,61 @@
                 margin-top: 2px;
             }
         }
-        /* Écrans peu hauts */
+        /* Écrans peu hauts : menu compact sans perdre sa hiérarchie */
         @media (min-width: 721px) and (max-height: 820px) {
             .sidebar-inner {
-                padding-top: 10px;
-                padding-bottom: 16px;
+                padding-top: 9px;
+                padding-bottom: 12px;
             }
 
             .wedding-logo {
-                width: 88px;
-                margin-bottom: 8px;
+                width: 86px;
             }
 
-            .page-item:not(.page-item-separated) {
-                margin-bottom: 2px;
+            .menu-section-title {
+                margin-top: 8px;
+                margin-bottom: 5px;
+                font-size: 11px;
             }
 
-            .page-link {
-                min-height: 37px;
+            .album-page-list {
+                grid-template-rows: repeat(10, minmax(34px, 1fr));
+            }
+
+            .album-page-list::before {
+                top: 14px;
+                bottom: 33px;
+                left: 13px;
+            }
+
+            .page-link,
+            .annexe-page-list .page-link {
+                grid-template-columns: 29px 1fr;
+                gap: 12px;
+                min-height: 34px;
                 font-size: 12.5px;
             }
 
             .page-dot {
                 width: 28px;
                 height: 28px;
-                font-size: 9.5px;
+                font-size: 8.5px;
             }
 
-            .page-list::before {
-                left: 13px;
+            .page-link.is-current .page-label {
+                font-size: 15px;
             }
 
             .menu-annexe {
-                padding-top: 10px;
+                padding-top: 7px;
             }
 
             .menu-annexe-line {
-                margin-bottom: 10px;
+                margin-bottom: 7px;
             }
 
-            .menu-annexe-title {
-                padding-left: 44px;
-                font-size: 8px;
+            .menu-annexe .menu-section-title {
+                margin-bottom: 3px;
             }
         }
 
@@ -675,6 +694,7 @@
 
             .book-sidebar {
                 width: min(88vw, 330px);
+                overflow-y: auto;
                 transform: translateX(-105%);
                 transition: transform 0.3s ease;
             }
@@ -760,75 +780,83 @@
     >
         <div class="sidebar-inner">
 
-            <img
-                src="../images/style/logosansfond.jpg"
-                alt="Logo du mariage d’Élodie et Alexandre"
-                class="wedding-logo"
+            <a
+                href="../sommaire/"
+                class="wedding-logo-link"
+                aria-label="Retourner au sommaire"
             >
+                <img
+                    src="../images/style/logo_couleur.png"
+                    alt=""
+                    class="wedding-logo"
+                >
+            </a>
 
-            <nav aria-label="Navigation principale">
-                <ol class="page-list">
+            <p class="menu-section-title">Pages de l’album</p>
 
+            <nav class="book-navigation" aria-label="Navigation principale">
+
+                <ol class="page-list album-page-list">
                     <li class="page-item">
                         <a href="../" class="page-link" data-page="bienvenue">
-                            <span class="page-dot">1</span>
+                            <span class="page-dot">01</span>
                             <span class="page-label">Bienvenue</span>
                         </a>
                     </li>
 
                     <li class="page-item">
                         <a href="../sommaire/" class="page-link" data-page="sommaire">
-                            <span class="page-dot">2</span>
+                            <span class="page-dot">02</span>
                             <span class="page-label">Sommaire</span>
                         </a>
                     </li>
 
                     <li class="page-item">
                         <a href="../invitation/" class="page-link" data-page="invitation">
-                            <span class="page-dot">3</span>
-                            <span class="page-label">Invitation</span>
+                            <span class="page-dot">03</span>
+                            <span class="page-label">L’invitation</span>
                         </a>
                     </li>
 
                     <li class="page-item">
                         <a href="./" class="page-link" data-page="preparatifs">
-                            <span class="page-dot">4</span>
-                            <span class="page-label">Préparatifs</span>
+                            <span class="page-dot">04</span>
+                            <span class="page-label">Les préparatifs</span>
                         </a>
                     </li>
 
                     <li class="page-item">
                         <a href="../first-look/" class="page-link" data-page="first-look">
-                            <span class="page-dot">5</span>
-                            <span class="page-label">First Look</span>
+                            <span class="page-dot">05</span>
+                            <span class="page-label">Le First Look</span>
                         </a>
                     </li>
 
                     <li class="page-item">
                         <a href="../mairie/" class="page-link" data-page="mairie">
-                            <span class="page-dot">6</span>
-                            <span class="page-label">Mairie</span>
+                            <span class="page-dot">06</span>
+                            <span class="page-label">La mairie</span>
                         </a>
                     </li>
 
                     <li class="page-item">
                         <a href="../eglise/" class="page-link" data-page="eglise">
-                            <span class="page-dot">7</span>
-                            <span class="page-label">Église</span>
+                            <span class="page-dot">07</span>
+                            <span class="page-label">L’église</span>
                         </a>
                     </li>
 
                     <li class="page-item">
                         <a href="../vin_d_honneur/" class="page-link" data-page="vin-d-honneur">
-                            <span class="page-dot">8</span>
-                            <span class="page-label">Vin d’honneur</span>
+                            <span class="page-dot">08</span>
+                            <span class="page-label">Le vin d’honneur</span>
                         </a>
                     </li>
 
                     <li class="page-item">
                         <a href="../soiree/" class="page-link" data-page="soiree">
-                            <span class="page-dot">9</span>
-                            <span class="page-label">Soirée</span>
+                            <span class="page-dot">09</span>
+                            <span class="page-label">La soirée</span>
                         </a>
                     </li>
 
@@ -838,20 +866,22 @@
                             <span class="page-label">Remerciements</span>
                         </a>
                     </li>
-
-                    <li class="menu-annexe" aria-hidden="true">
-                        <span class="menu-annexe-line"></span>
-                        <span class="menu-annexe-title">À revivre</span>
-                    </li>
-
-                    <li class="page-item page-item-separated">
-                        <a href="../souvenirs/" class="page-link" data-page="souvenirs">
-                            <span class="page-dot">11</span>
-                            <span class="page-label">Souvenirs</span>
-                        </a>
-                    </li>
-
                 </ol>
+
+                <div class="menu-annexe">
+                    <div class="menu-annexe-line" aria-hidden="true"></div>
+                    <p class="menu-section-title">À revivre</p>
+
+                    <ol class="page-list annexe-page-list" start="11">
+                        <li class="page-item">
+                            <a href="../souvenirs/" class="page-link" data-page="souvenirs">
+                                <span class="page-dot">11</span>
+                                <span class="page-label">Films et souvenirs</span>
+                            </a>
+                        </li>
+                    </ol>
+                </div>
+
             </nav>
         </div>
     </aside>
