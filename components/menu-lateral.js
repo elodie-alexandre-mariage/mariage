@@ -1,89 +1,32 @@
 /* =====================================================
    MENU LATÉRAL COMMUN — ÉLODIE & ALEXANDRE
 
-   Ce fichier génère automatiquement :
-   - le bouton du menu mobile ;
-   - le menu latéral ;
-   - le logo cliquable ;
-   - la liste des pages ;
-   - la page actuellement affichée ;
-   - les pages précédentes en bordeaux.
+   Le HTML du menu se trouve dans :
+   /mariage/components/menu-lateral.html
 
-   Ne pas charger ce fichier sur les pages Soirée
-   et Souvenirs si elles conservent leur propre menu.
+   Ce fichier :
+   - charge le menu ;
+   - détecte la page actuelle ;
+   - colore les pages précédentes ;
+   - active le menu mobile ;
+   - gère la transition entre les pages.
 ===================================================== */
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
     const siteRoot = "/mariage/";
 
-    const pages = [
-        {
-            number: "1",
-            name: "Bienvenue",
-            slug: "bienvenue",
-            href: siteRoot
-        },
-        {
-            number: "2",
-            name: "Sommaire",
-            slug: "sommaire",
-            href: `${siteRoot}sommaire/`
-        },
-        {
-            number: "3",
-            name: "Invitation",
-            slug: "invitation",
-            href: `${siteRoot}invitation/`
-        },
-        {
-            number: "4",
-            name: "Préparatifs",
-            slug: "preparatifs",
-            href: `${siteRoot}preparatifs/`
-        },
-        {
-            number: "5",
-            name: "First Look",
-            slug: "first-look",
-            href: `${siteRoot}first-look/`
-        },
-        {
-            number: "6",
-            name: "Mairie",
-            slug: "mairie",
-            href: `${siteRoot}mairie/`
-        },
-        {
-            number: "7",
-            name: "Église",
-            slug: "eglise",
-            href: `${siteRoot}eglise/`
-        },
-        {
-            number: "8",
-            name: "Vin d’honneur",
-            slug: "vin-d-honneur",
-            href: `${siteRoot}vin_d_honneur/`
-        },
-        {
-            number: "9",
-            name: "Soirée",
-            slug: "soiree",
-            href: `${siteRoot}soiree/`
-        },
-        {
-            number: "10",
-            name: "Remerciements",
-            slug: "remerciements",
-            href: `${siteRoot}remerciements/`
-        },
-        {
-            number: "11",
-            name: "Souvenirs",
-            slug: "souvenirs",
-            href: `${siteRoot}souvenirs/`,
-            separated: true
-        }
+    const pageOrder = [
+        "bienvenue",
+        "sommaire",
+        "invitation",
+        "preparatifs",
+        "first-look",
+        "mairie",
+        "eglise",
+        "vin-d-honneur",
+        "soiree",
+        "remerciements",
+        "souvenirs"
     ];
 
     function normalizePath(pathname) {
@@ -100,7 +43,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function getCurrentPage() {
-        const currentPath = normalizePath(window.location.pathname);
+        const currentPath = normalizePath(
+            window.location.pathname
+        );
 
         if (
             currentPath === siteRoot ||
@@ -147,7 +92,11 @@ document.addEventListener("DOMContentLoaded", () => {
             return "soiree";
         }
 
-        if (currentPath.includes(`${siteRoot}remerciements/`)) {
+        if (
+            currentPath.includes(
+                `${siteRoot}remerciements/`
+            )
+        ) {
             return "remerciements";
         }
 
@@ -158,190 +107,176 @@ document.addEventListener("DOMContentLoaded", () => {
         return "bienvenue";
     }
 
-    const currentPage = getCurrentPage();
-    const currentIndex = pages.findIndex(
-        (page) => page.slug === currentPage
-    );
+    function applyPageProgression() {
+        const currentPage = getCurrentPage();
+        const currentIndex = pageOrder.indexOf(currentPage);
 
-    const button = document.createElement("button");
+        document
+            .querySelectorAll(".page-link")
+            .forEach((link) => {
+                const pageName = link.dataset.page;
+                const pageIndex = pageOrder.indexOf(pageName);
 
-    button.className = "mobile-menu-button";
-    button.type = "button";
-    button.setAttribute("aria-label", "Ouvrir le sommaire");
-    button.setAttribute("aria-controls", "book-sidebar");
-    button.setAttribute("aria-expanded", "false");
-    button.textContent = "☰";
+                link.classList.remove(
+                    "is-current",
+                    "is-visited"
+                );
 
-    const sidebar = document.createElement("aside");
+                link.removeAttribute("aria-current");
 
-    sidebar.className = "book-sidebar";
-    sidebar.id = "book-sidebar";
-    sidebar.setAttribute("aria-label", "Pages de l’album");
+                if (pageIndex < currentIndex) {
+                    link.classList.add("is-visited");
+                }
 
-    const sidebarInner = document.createElement("div");
-    sidebarInner.className = "sidebar-inner";
+                if (pageName === currentPage) {
+                    link.classList.add("is-current");
+                    link.setAttribute(
+                        "aria-current",
+                        "page"
+                    );
+                }
+            });
+    }
 
-    const logoLink = document.createElement("a");
-
-    logoLink.className = "logo-link";
-    logoLink.href = `${siteRoot}sommaire/`;
-    logoLink.setAttribute("aria-label", "Retourner au sommaire");
-
-    const logo = document.createElement("img");
-
-    logo.className = "wedding-logo";
-    logo.src = `${siteRoot}images/style/logo_couleur.png`;
-    logo.alt = "Logo du mariage d’Élodie et Alexandre";
-
-    logoLink.appendChild(logo);
-
-    const albumTitle = document.createElement("p");
-
-    albumTitle.className = "sidebar-section-title";
-    albumTitle.textContent = "Pages de l’album";
-
-    const nav = document.createElement("nav");
-    nav.setAttribute("aria-label", "Navigation principale");
-
-    const pageList = document.createElement("ol");
-    pageList.className = "page-list";
-
-    pages.forEach((page, index) => {
-        if (page.separated) {
-            const separator = document.createElement("li");
-
-            separator.className = "menu-annexe";
-            separator.setAttribute("aria-hidden", "true");
-
-            const separatorLine = document.createElement("span");
-            separatorLine.className = "menu-annexe-line";
-
-            const separatorTitle = document.createElement("span");
-
-            separatorTitle.className =
-                "sidebar-section-title menu-annexe-title";
-            separatorTitle.textContent = "À revivre";
-
-            separator.appendChild(separatorLine);
-            separator.appendChild(separatorTitle);
-            pageList.appendChild(separator);
-        }
-
-        const item = document.createElement("li");
-
-        item.className = page.separated
-            ? "page-item page-item-separated"
-            : "page-item";
-
-        const link = document.createElement("a");
-
-        link.className = "page-link";
-        link.href = page.href;
-        link.dataset.page = page.slug;
-
-        const dot = document.createElement("span");
-
-        dot.className = "page-dot";
-        dot.textContent = page.number;
-
-        const label = document.createElement("span");
-
-        label.className = "page-label";
-        label.textContent = page.name;
-
-        if (index < currentIndex) {
-            link.classList.add("is-visited");
-        }
-
-        if (page.slug === currentPage) {
-            link.classList.add("is-current");
-            link.setAttribute("aria-current", "page");
-        }
-
-        link.appendChild(dot);
-        link.appendChild(label);
-        item.appendChild(link);
-        pageList.appendChild(item);
-    });
-
-    nav.appendChild(pageList);
-
-    sidebarInner.appendChild(logoLink);
-    sidebarInner.appendChild(albumTitle);
-    sidebarInner.appendChild(nav);
-    sidebar.appendChild(sidebarInner);
-
-    document.body.prepend(sidebar);
-    document.body.prepend(button);
-
-    button.addEventListener("click", () => {
-        const isOpen = sidebar.classList.toggle("is-open");
-
-        button.setAttribute("aria-expanded", String(isOpen));
-        button.setAttribute(
-            "aria-label",
-            isOpen ? "Fermer le sommaire" : "Ouvrir le sommaire"
+    function initializeMobileMenu() {
+        const button = document.querySelector(
+            ".mobile-menu-button"
         );
 
-        button.textContent = isOpen ? "×" : "☰";
-    });
+        const sidebar = document.querySelector(
+            ".book-sidebar"
+        );
 
-    document.addEventListener("click", (event) => {
-        const clickedInsideSidebar = sidebar.contains(event.target);
-        const clickedMenuButton = button.contains(event.target);
+        if (!button || !sidebar) {
+            return;
+        }
 
-        if (
-            window.innerWidth <= 720 &&
-            sidebar.classList.contains("is-open") &&
-            !clickedInsideSidebar &&
-            !clickedMenuButton
-        ) {
-            sidebar.classList.remove("is-open");
-            button.setAttribute("aria-expanded", "false");
+        button.addEventListener("click", () => {
+            const isOpen = sidebar.classList.toggle(
+                "is-open"
+            );
+
+            button.setAttribute(
+                "aria-expanded",
+                String(isOpen)
+            );
+
             button.setAttribute(
                 "aria-label",
-                "Ouvrir le sommaire"
+                isOpen
+                    ? "Fermer le sommaire"
+                    : "Ouvrir le sommaire"
             );
-            button.textContent = "☰";
-        }
-    });
 
-    const prefersReducedMotion = window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
-    ).matches;
+            button.textContent = isOpen ? "×" : "☰";
+        });
 
-    document.querySelectorAll('a[href]').forEach((link) => {
-        link.addEventListener("click", (event) => {
-            const href = link.getAttribute("href");
+        document.addEventListener("click", (event) => {
+            const clickedInsideSidebar =
+                sidebar.contains(event.target);
+
+            const clickedMenuButton =
+                button.contains(event.target);
 
             if (
-                prefersReducedMotion ||
-                !href ||
-                href.startsWith("#") ||
-                link.target === "_blank" ||
-                event.ctrlKey ||
-                event.metaKey ||
-                event.shiftKey ||
-                event.altKey
+                window.innerWidth <= 720 &&
+                sidebar.classList.contains("is-open") &&
+                !clickedInsideSidebar &&
+                !clickedMenuButton
             ) {
-                return;
+                sidebar.classList.remove("is-open");
+
+                button.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
+
+                button.setAttribute(
+                    "aria-label",
+                    "Ouvrir le sommaire"
+                );
+
+                button.textContent = "☰";
             }
-
-            const destination = new URL(
-                link.href,
-                window.location.href
-            );
-
-            if (destination.origin !== window.location.origin) {
-                return;
-            }
-
-            event.preventDefault();
-            document.body.classList.add("page-leaving");
-
-            window.setTimeout(() => {
-                window.location.href = destination.href;
-            }, 400);
         });
-    });
+    }
+
+    function initializePageTransitions() {
+        const prefersReducedMotion =
+            window.matchMedia(
+                "(prefers-reduced-motion: reduce)"
+            ).matches;
+
+        document
+            .querySelectorAll('a[href]')
+            .forEach((link) => {
+                link.addEventListener("click", (event) => {
+                    const href = link.getAttribute("href");
+
+                    if (
+                        prefersReducedMotion ||
+                        !href ||
+                        href.startsWith("#") ||
+                        link.target === "_blank" ||
+                        event.ctrlKey ||
+                        event.metaKey ||
+                        event.shiftKey ||
+                        event.altKey
+                    ) {
+                        return;
+                    }
+
+                    const destination = new URL(
+                        link.href,
+                        window.location.href
+                    );
+
+                    if (
+                        destination.origin !==
+                        window.location.origin
+                    ) {
+                        return;
+                    }
+
+                    event.preventDefault();
+
+                    document.body.classList.add(
+                        "page-leaving"
+                    );
+
+                    window.setTimeout(() => {
+                        window.location.href =
+                            destination.href;
+                    }, 400);
+                });
+            });
+    }
+
+    try {
+        const response = await fetch(
+            `${siteRoot}components/menu-lateral.html`
+        );
+
+        if (!response.ok) {
+            throw new Error(
+                `Erreur HTTP : ${response.status}`
+            );
+        }
+
+        const menuHTML = await response.text();
+
+        document.body.insertAdjacentHTML(
+            "afterbegin",
+            menuHTML
+        );
+
+        applyPageProgression();
+        initializeMobileMenu();
+        initializePageTransitions();
+    } catch (error) {
+        console.error(
+            "Impossible de charger le menu latéral :",
+            error
+        );
+    }
 });
