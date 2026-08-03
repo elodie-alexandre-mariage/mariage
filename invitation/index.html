@@ -124,7 +124,7 @@
         ========================= */
 
         .invitations-page {
-            padding: 64px 30px 92px;
+            padding: 20px 30px 58px;
             border-top: 1px solid var(--line);
             background: var(--soft);
         }
@@ -135,7 +135,7 @@
         }
 
         .invitation-block {
-            margin-bottom: 100px;
+            margin-bottom: 22px;
             text-align: center;
         }
 
@@ -169,12 +169,12 @@
         .envelope-scene {
             position: relative;
             width: 100%;
-            min-height: 610px;
+            min-height: 510px;
             perspective: 1500px;
         }
 
         .envelope-viewer.is-square .envelope-scene {
-            min-height: 650px;
+            min-height: 540px;
         }
 
         .envelope-shell {
@@ -189,12 +189,12 @@
 
         .envelope-viewer.is-square .envelope-shell {
             width: min(92%, 515px);
-            height: 68%;
+            height: 82%;
         }
 
         .envelope-viewer.is-rectangle .envelope-shell {
             width: min(96%, 760px);
-            height: 56%;
+            height: 67%;
         }
 
         /* Dos de l’enveloppe */
@@ -788,11 +788,11 @@
             }
 
             .invitations-page {
-                padding: 42px 12px 66px;
+                padding: 16px 12px 48px;
             }
 
             .invitation-block {
-                margin-bottom: 78px;
+                margin-bottom: 18px;
             }
 
             .block-title {
@@ -801,20 +801,21 @@
             }
 
             .envelope-scene {
-                min-height: 430px;
+                min-height: 330px;
             }
 
             .envelope-viewer.is-square .envelope-scene {
-                min-height: 470px;
+                min-height: 390px;
             }
 
             .envelope-viewer.is-square .envelope-shell {
                 width: 94%;
+                height: 82%;
             }
 
             .envelope-viewer.is-rectangle .envelope-shell {
                 width: 98%;
-                height: 52%;
+                height: 68%;
             }
 
             .envelope-address {
@@ -1015,8 +1016,8 @@
         }
     </style>
 
-    <link rel="stylesheet" href="/mariage/components/menu-lateral.css?v=8">
-    <script src="/mariage/components/menu-lateral.js?v=8" defer></script>
+    <link rel="stylesheet" href="/mariage/components/menu-lateral.css?v=9">
+    <script src="/mariage/components/menu-lateral.js?v=9" defer></script>
 </head>
 
 <body>
@@ -1345,6 +1346,14 @@
                 const trigger = viewer.querySelector("[data-toggle-envelope]");
 
                 if (isOpen) {
+                    document
+                        .querySelectorAll(".envelope-viewer.is-open")
+                        .forEach((otherViewer) => {
+                            if (otherViewer !== viewer) {
+                                setEnvelopeOpen(otherViewer, false);
+                            }
+                        });
+
                     viewer.classList.remove("is-closing");
                     viewer.classList.add("is-open");
                     trigger.setAttribute("aria-expanded", "true");
