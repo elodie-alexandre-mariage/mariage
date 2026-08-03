@@ -1,26 +1,16 @@
 <!DOCTYPE html>
+
 <html lang="fr">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#080607">
-
-    <meta
-        name="description"
-        content="La soirée du mariage d’Élodie et Alexandre, entre dîner, discours, première danse et fête."
-    >
-
-    <title>La soirée — Élodie & Alexandre</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap"
-        rel="stylesheet"
-    >
-
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="#080607" name="theme-color"/>
+<meta content="La soirée du mariage d’Élodie et Alexandre, entre dîner, discours, première danse et fête." name="description"/>
+<title>La soirée — Élodie &amp; Alexandre</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<style>
         * {
             box-sizing: border-box;
             margin: 0;
@@ -2060,259 +2050,833 @@
             }
         }
 
-    </style>
+
+        /* =========================================================
+           FOND ANIMÉ — BANDES LUMINEUSES DE SOIRÉE
+           Ajouté pour créer des faisceaux doux traversant toute la page.
+        ========================================================= */
+
+        body {
+            background: #080607;
+        }
+
+        .night-effects {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            overflow: hidden;
+            pointer-events: none;
+            background:
+                radial-gradient(circle at 18% 20%, rgba(93, 19, 43, 0.16), transparent 34rem),
+                radial-gradient(circle at 82% 68%, rgba(37, 52, 104, 0.12), transparent 38rem),
+                linear-gradient(180deg, #080607 0%, #0b0809 48%, #050505 100%);
+        }
+
+        .night-effects::before {
+            position: absolute;
+            inset: 0;
+            content: "";
+            background:
+                radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.18) 58%, rgba(0, 0, 0, 0.66) 100%),
+                repeating-linear-gradient(0deg, rgba(255,255,255,0.008) 0 1px, transparent 1px 4px);
+        }
+
+        .light-beam {
+            position: absolute;
+            left: -70vw;
+            width: 245vw;
+            border-radius: 50%;
+            opacity: 0;
+            mix-blend-mode: screen;
+            will-change: transform, opacity;
+        }
+
+        .light-beam::before {
+            position: absolute;
+            inset: -70%;
+            border-radius: inherit;
+            content: "";
+            background: inherit;
+            filter: blur(46px);
+            opacity: 0.72;
+        }
+
+        .light-beam-one {
+            top: 5vh;
+            height: 13vh;
+            min-height: 105px;
+            background: linear-gradient(90deg, transparent 24%, rgba(255,255,255,0.015) 39%, rgba(248,241,225,0.62) 49.4%, rgba(255,255,255,0.05) 56%, transparent 72%);
+            filter: blur(14px);
+            animation: beamPassOne 15s cubic-bezier(.45,.05,.55,.95) infinite;
+        }
+
+        .light-beam-two {
+            top: 31vh;
+            height: 9vh;
+            min-height: 72px;
+            background: linear-gradient(90deg, transparent 20%, rgba(102,125,255,0.02) 39%, rgba(142,163,255,0.38) 48.8%, rgba(255,255,255,0.18) 51%, rgba(109,68,153,0.05) 58%, transparent 76%);
+            filter: blur(18px);
+            animation: beamPassTwo 20s cubic-bezier(.4,0,.6,1) -7s infinite;
+        }
+
+        .light-beam-three {
+            top: 56vh;
+            height: 16vh;
+            min-height: 125px;
+            background: linear-gradient(90deg, transparent 23%, rgba(124,23,55,0.03) 39%, rgba(188,48,91,0.36) 48%, rgba(255,226,218,0.18) 51%, rgba(139,35,57,0.08) 60%, transparent 77%);
+            filter: blur(24px);
+            animation: beamPassThree 24s cubic-bezier(.42,0,.58,1) -13s infinite;
+        }
+
+        .light-beam-four {
+            top: 79vh;
+            height: 7vh;
+            min-height: 58px;
+            background: linear-gradient(90deg, transparent 25%, rgba(255,255,255,0.015) 40%, rgba(242,218,174,0.36) 49.5%, rgba(255,255,255,0.05) 56%, transparent 74%);
+            filter: blur(17px);
+            animation: beamPassFour 18s cubic-bezier(.45,.05,.55,.95) -3s infinite;
+        }
+
+        .light-beam-five {
+            top: 44vh;
+            height: 4vh;
+            min-height: 36px;
+            background: linear-gradient(90deg, transparent 28%, rgba(255,255,255,0.02) 42%, rgba(255,255,255,0.28) 50%, rgba(255,255,255,0.03) 58%, transparent 72%);
+            filter: blur(9px);
+            animation: beamPassFive 12s linear -8s infinite;
+        }
+
+        .ambient-orb {
+            position: absolute;
+            width: 48vw;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            filter: blur(70px);
+            opacity: 0.18;
+            mix-blend-mode: screen;
+            animation: orbDrift 16s ease-in-out infinite alternate;
+        }
+
+        .ambient-orb-left {
+            top: -18vw;
+            left: -18vw;
+            background: radial-gradient(circle, rgba(153,38,71,0.45), transparent 68%);
+        }
+
+        .ambient-orb-right {
+            right: -22vw;
+            bottom: -20vw;
+            background: radial-gradient(circle, rgba(67,89,180,0.34), transparent 68%);
+            animation-delay: -8s;
+        }
+
+        @keyframes beamPassOne {
+            0%, 8% { opacity: 0; transform: translate3d(-23vw, -5vh, 0) rotate(-10deg) scaleX(.9); }
+            20% { opacity: .34; }
+            48% { opacity: .78; }
+            76% { opacity: .28; }
+            92%, 100% { opacity: 0; transform: translate3d(25vw, 12vh, 0) rotate(-4deg) scaleX(1.06); }
+        }
+
+        @keyframes beamPassTwo {
+            0%, 10% { opacity: 0; transform: translate3d(27vw, -9vh, 0) rotate(8deg); }
+            24% { opacity: .24; }
+            52% { opacity: .63; }
+            78% { opacity: .20; }
+            94%, 100% { opacity: 0; transform: translate3d(-25vw, 10vh, 0) rotate(2deg); }
+        }
+
+        @keyframes beamPassThree {
+            0%, 12% { opacity: 0; transform: translate3d(-25vw, 13vh, 0) rotate(-6deg); }
+            28% { opacity: .20; }
+            55% { opacity: .57; }
+            79% { opacity: .18; }
+            94%, 100% { opacity: 0; transform: translate3d(24vw, -10vh, 0) rotate(-1deg); }
+        }
+
+        @keyframes beamPassFour {
+            0%, 10% { opacity: 0; transform: translate3d(24vw, 5vh, 0) rotate(7deg); }
+            24% { opacity: .18; }
+            50% { opacity: .49; }
+            78% { opacity: .15; }
+            94%, 100% { opacity: 0; transform: translate3d(-26vw, -10vh, 0) rotate(1deg); }
+        }
+
+        @keyframes beamPassFive {
+            0% { opacity: 0; transform: translate3d(-30vw, 0, 0) rotate(-3deg); }
+            20% { opacity: .18; }
+            47% { opacity: .42; }
+            74% { opacity: .12; }
+            100% { opacity: 0; transform: translate3d(30vw, 3vh, 0) rotate(2deg); }
+        }
+
+        @keyframes orbDrift {
+            from { transform: translate3d(-3%, -2%, 0) scale(.94); opacity: .12; }
+            to { transform: translate3d(5%, 4%, 0) scale(1.08); opacity: .23; }
+        }
+
+        /* Les sections deviennent légèrement transparentes afin que les
+           faisceaux restent visibles derrière le contenu et la galerie. */
+        .hero,
+        .gallery-section,
+        .footer {
+            position: relative;
+            background-color: transparent;
+        }
+
+        .gallery-section {
+            background: linear-gradient(180deg, rgba(24,12,16,0.52), rgba(7,6,7,0.78) 24rem, rgba(5,5,5,0.86));
+        }
+
+        .hero::before {
+            opacity: 0.55;
+        }
+
+        .hero::after {
+            opacity: 0.34;
+        }
+
+        @media (max-width: 720px) {
+            .light-beam { left: -110vw; width: 330vw; }
+            .light-beam-one { height: 11vh; }
+            .light-beam-three { height: 13vh; }
+            .ambient-orb { width: 85vw; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .light-beam,
+            .ambient-orb {
+                animation: none !important;
+            }
+            .light-beam-one { opacity: .18; transform: rotate(-7deg); }
+            .light-beam-two { opacity: .10; transform: rotate(5deg); }
+            .light-beam-three { opacity: .12; transform: rotate(-4deg); }
+            .light-beam-four { opacity: .10; transform: rotate(4deg); }
+            .light-beam-five { opacity: .08; }
+        }
+
+    
+
+        /* =========================================================
+           MENU SOIRÉE — STRUCTURE IDENTIQUE AU MENU COMMUN
+           Palette sombre propre à la page soirée
+        ========================================================= */
+        :root {
+            --menu-sidebar-width: 290px;
+        }
+
+        .page-shell {
+            margin-left: var(--menu-sidebar-width);
+        }
+
+        .book-sidebar {
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            width: var(--menu-sidebar-width);
+            overflow-y: hidden;
+            overflow-x: hidden;
+            border-right: 1px solid rgba(214, 180, 119, 0.22);
+            background: rgba(8, 6, 7, 0.98);
+            -webkit-backdrop-filter: blur(14px);
+            backdrop-filter: blur(14px);
+            scrollbar-width: none;
+            isolation: isolate;
+        }
+
+        .book-sidebar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .sidebar-inner {
+            position: relative;
+            z-index: 3;
+            display: flex;
+            min-height: 100%;
+            flex-direction: column;
+            padding: 18px 25px 27px;
+        }
+
+        .logo-link {
+            display: block;
+            width: fit-content;
+            margin: 0 auto;
+            text-decoration: none;
+        }
+
+        .wedding-logo {
+            display: block;
+            width: 130px;
+            max-width: 100%;
+            height: auto;
+            margin: 0 auto;
+            filter: none;
+            animation: none;
+            transition: transform 0.35s ease;
+        }
+
+        .logo-link:hover .wedding-logo,
+        .logo-link:focus-visible .wedding-logo {
+            transform: scale(1.08);
+        }
+
+        .sidebar-section-title {
+            margin-top: 18px;
+            margin-bottom: 14px;
+            color: rgba(241, 219, 173, 0.82);
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .page-list {
+            position: relative;
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            min-height: 0;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .page-list::before {
+            position: absolute;
+            z-index: 0;
+            top: 17px;
+            left: 16px;
+            width: 1px;
+            height: 423px;
+            background: rgba(214, 180, 119, 0.34);
+            content: "";
+        }
+
+        .page-list::after {
+            display: none;
+        }
+
+        .page-item {
+            position: relative;
+        }
+
+        .page-item:not(.page-item-separated) {
+            margin-bottom: 5px;
+        }
+
+        .page-link {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 35px 1fr;
+            gap: 16px;
+            align-items: center;
+            min-height: 42px;
+            padding: 2px 5px;
+            background: transparent !important;
+            color: rgba(183, 173, 165, 0.92);
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
+            font-size: 15px;
+            font-weight: 300;
+            line-height: 1.35;
+            letter-spacing: 0.015em;
+            text-decoration: none;
+            text-shadow: none;
+            transition: color 0.35s ease, transform 0.35s ease;
+        }
+
+        .page-link:hover,
+        .page-link:focus-visible {
+            color: var(--gold-light);
+            text-shadow: 0 0 14px rgba(214, 180, 119, 0.24);
+            transform: translateX(2px);
+        }
+
+        .page-dot {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            width: 33px;
+            height: 33px;
+            place-items: center;
+            overflow: hidden;
+            border: 1px solid rgba(214, 180, 119, 0.32);
+            border-radius: 50%;
+            background: rgba(8, 6, 7, 0.96);
+            color: rgba(183, 173, 165, 0.92);
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
+            font-size: 10.5px;
+            font-weight: 400;
+            box-shadow: none;
+            transition: all 0.35s ease;
+        }
+
+        .page-dot::after {
+            display: none;
+        }
+
+        .page-label {
+            line-height: 1.35;
+        }
+
+        .page-link.is-visited {
+            color: rgba(214, 180, 119, 0.76);
+        }
+
+        .page-link.is-visited .page-dot {
+            border-color: rgba(214, 180, 119, 0.70);
+            background: rgba(8, 6, 7, 0.96);
+            color: var(--gold-light);
+            box-shadow: inset 0 0 0 3px rgba(214, 180, 119, 0.05);
+        }
+
+        .page-link.is-current {
+            color: var(--gold-light);
+            font-weight: 700;
+        }
+
+        .page-link.is-current .page-label {
+            position: static;
+            justify-self: center;
+            width: 100%;
+            padding-right: 8px;
+            font-family: "Segoe Script", "Lucida Handwriting", "Brush Script MT", "Snell Roundhand", cursive;
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 1.1;
+            text-align: center;
+        }
+
+        .page-link.is-current .page-label::after {
+            display: none;
+        }
+
+        .page-link.is-current .page-dot {
+            border-color: var(--gold);
+            background: var(--gold);
+            color: var(--black);
+            transform: scale(1.18);
+            box-shadow:
+                0 0 0 3px rgba(214, 180, 119, 0.12),
+                0 0 15px rgba(214, 180, 119, 0.22);
+            animation: none;
+        }
+
+        .menu-annexe {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-top: auto;
+            padding: 8px 5px 0;
+        }
+
+        .menu-annexe-line {
+            width: 100%;
+            height: 1px;
+            margin-bottom: 12px;
+            background: rgba(214, 180, 119, 0.24);
+        }
+
+        .menu-annexe-line::after {
+            display: none;
+        }
+
+        .menu-annexe-title {
+            width: 100%;
+            margin: 0 0 14px;
+            padding-left: 0;
+            color: rgba(241, 219, 173, 0.82);
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-align: center;
+        }
+
+        .page-item-separated {
+            margin-top: 0;
+            padding-top: 0;
+        }
+
+        .mobile-menu-button {
+            display: none;
+        }
+
+        /* Les mêmes bandes que sur la page, dupliquées à la même position
+           dans le menu. Le débordement du menu les découpe exactement à 290 px. */
+        .sidebar-light-bridge {
+            position: fixed;
+            z-index: 1;
+            inset: 0;
+            width: 100vw;
+            height: 100vh;
+            height: 100dvh;
+            overflow: visible;
+            pointer-events: none;
+            opacity: 0.82;
+        }
+
+        .sidebar-light-bridge::after {
+            position: absolute;
+            inset: 0;
+            content: "";
+            background: rgba(8, 6, 7, 0.18);
+            pointer-events: none;
+        }
+
+        .sidebar-beam {
+            position: absolute;
+            left: -72vw;
+            width: 205vw;
+            border-radius: 50%;
+            opacity: 0;
+            mix-blend-mode: screen;
+            will-change: transform, opacity;
+        }
+
+        .sidebar-beam::before {
+            position: absolute;
+            inset: -70%;
+            border-radius: inherit;
+            content: "";
+            background: inherit;
+            filter: blur(46px);
+            opacity: 0.72;
+        }
+
+        .sidebar-beam-one {
+            top: 5vh;
+            height: 13vh;
+            min-height: 105px;
+            background: linear-gradient(90deg, transparent 24%, rgba(255,255,255,0.015) 39%, rgba(248,241,225,0.62) 49.4%, rgba(255,255,255,0.05) 56%, transparent 72%);
+            filter: blur(14px);
+            animation: beamPassOne 15s cubic-bezier(.45,.05,.55,.95) infinite;
+        }
+
+        .sidebar-beam-two {
+            top: 31vh;
+            height: 9vh;
+            min-height: 72px;
+            background: linear-gradient(90deg, transparent 20%, rgba(102,125,255,0.02) 39%, rgba(142,163,255,0.38) 48.8%, rgba(255,255,255,0.18) 51%, rgba(109,68,153,0.05) 58%, transparent 76%);
+            filter: blur(18px);
+            animation: beamPassTwo 20s cubic-bezier(.4,0,.6,1) -7s infinite;
+        }
+
+        .sidebar-beam-three {
+            top: 56vh;
+            height: 16vh;
+            min-height: 125px;
+            background: linear-gradient(90deg, transparent 23%, rgba(124,23,55,0.03) 39%, rgba(188,48,91,0.36) 48%, rgba(255,226,218,0.18) 51%, rgba(139,35,57,0.08) 60%, transparent 77%);
+            filter: blur(24px);
+            animation: beamPassThree 24s cubic-bezier(.42,0,.58,1) -13s infinite;
+        }
+
+        .sidebar-beam-four {
+            top: 79vh;
+            height: 7vh;
+            min-height: 58px;
+            background: linear-gradient(90deg, transparent 25%, rgba(255,255,255,0.015) 40%, rgba(242,218,174,0.36) 49.5%, rgba(255,255,255,0.05) 56%, transparent 74%);
+            filter: blur(15px);
+            animation: beamPassFour 18s cubic-bezier(.4,0,.6,1) -4s infinite;
+        }
+
+        .sidebar-beam-five {
+            top: 43vh;
+            height: 4vh;
+            min-height: 34px;
+            background: linear-gradient(90deg, transparent 27%, rgba(255,255,255,0.01) 42%, rgba(255,255,255,0.26) 49.5%, rgba(102,125,255,0.08) 54%, transparent 71%);
+            filter: blur(10px);
+            animation: beamPassFive 13s cubic-bezier(.45,.05,.55,.95) -9s infinite;
+        }
+
+        @media (min-width: 721px) and (max-height: 820px) {
+            .sidebar-inner {
+                padding-top: 8px;
+                padding-bottom: 12px;
+            }
+
+            .wedding-logo {
+                width: 112px;
+            }
+
+            .sidebar-section-title {
+                margin-top: 12px;
+                margin-bottom: 8px;
+                font-size: 13.5px;
+            }
+
+            .page-item:not(.page-item-separated) {
+                margin-bottom: 2px;
+            }
+
+            .page-link {
+                min-height: 36px;
+                font-size: 13.5px;
+            }
+
+            .page-link.is-current .page-label {
+                font-size: 16.5px;
+            }
+
+            .page-dot {
+                width: 28px;
+                height: 28px;
+                font-size: 9.5px;
+            }
+
+            .page-list::before {
+                left: 13px;
+                height: 342px;
+            }
+
+            .menu-annexe {
+                padding-top: 6px;
+            }
+
+            .menu-annexe-line {
+                margin-bottom: 8px;
+            }
+
+            .menu-annexe-title {
+                margin-top: 0;
+                margin-bottom: 8px;
+                font-size: 13.5px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            :root {
+                --menu-sidebar-width: 250px;
+            }
+
+            .sidebar-inner {
+                padding-right: 18px;
+                padding-left: 18px;
+            }
+        }
+
+        @media (max-width: 720px) {
+            :root {
+                --menu-sidebar-width: 0px;
+            }
+
+            .mobile-menu-button {
+                position: fixed;
+                z-index: 1400;
+                top: 14px;
+                left: 14px;
+                display: inline-grid;
+                width: 44px;
+                height: 44px;
+                place-items: center;
+                border: 1px solid rgba(214, 180, 119, 0.34);
+                border-radius: 50%;
+                background: rgba(8, 6, 7, 0.96);
+                color: var(--gold-light);
+                font-size: 19px;
+                cursor: pointer;
+                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.32);
+            }
+
+            .book-sidebar {
+                width: min(88vw, 330px);
+                overflow-y: auto;
+                transform: translateX(-105%);
+                transition: transform 0.3s ease;
+            }
+
+            .book-sidebar.is-open {
+                transform: translateX(0);
+            }
+
+            .page-shell {
+                margin-left: 0;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .sidebar-beam {
+                animation: none !important;
+                opacity: 0.08;
+            }
+        }
+
+
+        /* =========================================================
+           UNIFORMISATION FINALE DU MENU SOMBRE
+           Le logo étant transparent, aucun masque noir séparé n'est nécessaire.
+        ========================================================= */
+        .book-sidebar {
+            background: #070707;
+        }
+
+        .book-sidebar::before,
+        .book-sidebar::after {
+            top: 0;
+        }
+
+        .book-sidebar::before {
+            background:
+                radial-gradient(circle at 24% 24%, rgba(230, 179, 91, 0.14), transparent 27%),
+                radial-gradient(circle at 85% 48%, rgba(57, 78, 184, 0.12), transparent 31%),
+                radial-gradient(circle at 30% 78%, rgba(175, 36, 112, 0.08), transparent 29%),
+                linear-gradient(180deg, #070707 0%, #0c090a 38%, #120b10 68%, #080708 100%);
+        }
+
+        .sidebar-inner::after {
+            display: none !important;
+        }
+
+</style>
 </head>
-
 <body>
-
-    <div class="night-effects" aria-hidden="true">
-        <span class="candle-glow candle-glow-left"></span>
-        <span class="candle-glow candle-glow-right"></span>
-        <span class="candle-glow candle-glow-bottom"></span>
-
-        <span class="strobe-flash strobe-flash-one"></span>
-        <span class="strobe-flash strobe-flash-two"></span>
-    </div>
-
-
-    <button
-        class="mobile-menu-button"
-        type="button"
-        aria-label="Ouvrir le sommaire"
-        aria-controls="book-sidebar"
-        aria-expanded="false"
-    >
-        ☰
-    </button>
-
-    <aside class="book-sidebar" id="book-sidebar" aria-label="Pages de l’album">
-        <div class="sidebar-inner">
-
-            <img
-                src="../images/style/logosansfondnoir.jpg"
-                alt="Logo du mariage d’Élodie et Alexandre"
-                class="wedding-logo"
-            >
-
-            <nav aria-label="Navigation principale">
-                <ol class="page-list">
-
-                    <li class="page-item">
-                        <a href="../" class="page-link" data-page="bienvenue">
-                            <span class="page-dot">1</span>
-                            <span class="page-label">Bienvenue</span>
-                        </a>
-                    </li>
-
-                    <li class="page-item">
-                        <a href="../sommaire/" class="page-link" data-page="sommaire">
-                            <span class="page-dot">2</span>
-                            <span class="page-label">Sommaire</span>
-                        </a>
-                    </li>
-
-                    <li class="page-item">
-                        <a href="../invitation/" class="page-link" data-page="invitation">
-                            <span class="page-dot">3</span>
-                            <span class="page-label">Invitation</span>
-                        </a>
-                    </li>
-
-                    <li class="page-item">
-                        <a href="../preparatifs/" class="page-link" data-page="preparatifs">
-                            <span class="page-dot">4</span>
-                            <span class="page-label">Préparatifs</span>
-                        </a>
-                    </li>
-
-                    <li class="page-item">
-                        <a href="../first-look/" class="page-link" data-page="first-look">
-                            <span class="page-dot">5</span>
-                            <span class="page-label">First Look</span>
-                        </a>
-                    </li>
-
-                    <li class="page-item">
-                        <a href="../mairie/" class="page-link" data-page="mairie">
-                            <span class="page-dot">6</span>
-                            <span class="page-label">Mairie</span>
-                        </a>
-                    </li>
-
-                    <li class="page-item">
-                        <a href="../eglise/" class="page-link" data-page="eglise">
-                            <span class="page-dot">7</span>
-                            <span class="page-label">Église</span>
-                        </a>
-                    </li>
-
-                    <li class="page-item">
-                        <a href="../vin_d_honneur/" class="page-link" data-page="vin-d-honneur">
-                            <span class="page-dot">8</span>
-                            <span class="page-label">Vin d’honneur</span>
-                        </a>
-                    </li>
-
-                    <li class="page-item">
-                        <a href="./" class="page-link" data-page="soiree">
-                            <span class="page-dot">9</span>
-                            <span class="page-label">Soirée</span>
-                        </a>
-                    </li>
-
-                    <li class="page-item">
-                        <a href="../remerciements/" class="page-link" data-page="remerciements">
-                            <span class="page-dot">10</span>
-                            <span class="page-label">Remerciements</span>
-                        </a>
-                    </li>
-
-                    <li class="menu-annexe" aria-hidden="true">
-                        <span class="menu-annexe-line"></span>
-                        <span class="menu-annexe-title">À revivre</span>
-                    </li>
-
-                    <li class="page-item page-item-separated">
-                        <a href="../souvenirs/" class="page-link" data-page="souvenirs">
-                            <span class="page-dot">11</span>
-                            <span class="page-label">Souvenirs</span>
-                        </a>
-                    </li>
-
-                </ol>
-            </nav>
-        </div>
-    </aside>
-
-    <main class="page-shell">
-
-        <section class="hero">
-
-            <div class="hero-content">
-
-                <p class="eyebrow">La soirée</p>
-
-                <h1>
-                    Jusqu’au bout<br>de la nuit
+<div aria-hidden="true" class="night-effects">
+<span class="ambient-orb ambient-orb-left"></span>
+<span class="ambient-orb ambient-orb-right"></span>
+<span class="light-beam light-beam-one"></span>
+<span class="light-beam light-beam-two"></span>
+<span class="light-beam light-beam-three"></span>
+<span class="light-beam light-beam-four"></span>
+<span class="light-beam light-beam-five"></span>
+</div>
+<button aria-controls="book-sidebar" aria-expanded="false" aria-label="Ouvrir le sommaire" class="mobile-menu-button" type="button">
+    ☰
+</button>
+<aside aria-label="Pages de l’album" class="book-sidebar" id="book-sidebar"><div aria-hidden="true" class="sidebar-light-bridge"><span class="sidebar-beam sidebar-beam-one"></span><span class="sidebar-beam sidebar-beam-two"></span><span class="sidebar-beam sidebar-beam-three"></span><span class="sidebar-beam sidebar-beam-four"></span><span class="sidebar-beam sidebar-beam-five"></span></div>
+<div class="sidebar-inner">
+<a aria-label="Retour au sommaire" class="logo-link" href="/mariage/sommaire/">
+<img alt="Logo du mariage d’Élodie et Alexandre" class="wedding-logo" src="/mariage/images/style/logo_blanc.png"/>
+</a>
+<p class="sidebar-section-title">
+            Pages de l’album
+        </p>
+<nav aria-label="Navigation principale">
+<ol class="page-list">
+<li class="page-item">
+<a class="page-link" data-page="bienvenue" href="/mariage/">
+<span class="page-dot">1</span>
+<span class="page-label">Bienvenue</span>
+</a>
+</li>
+<li class="page-item">
+<a class="page-link" data-page="sommaire" href="/mariage/sommaire/">
+<span class="page-dot">2</span>
+<span class="page-label">Sommaire</span>
+</a>
+</li>
+<li class="page-item">
+<a class="page-link" data-page="invitation" href="/mariage/invitation/">
+<span class="page-dot">3</span>
+<span class="page-label">L'invitation</span>
+</a>
+</li>
+<li class="page-item">
+<a class="page-link" data-page="preparatifs" href="/mariage/preparatifs/">
+<span class="page-dot">4</span>
+<span class="page-label">Nos préparatifs</span>
+</a>
+</li>
+<li class="page-item">
+<a class="page-link" data-page="first-look" href="/mariage/first-look/">
+<span class="page-dot">5</span>
+<span class="page-label">Le First-Look</span>
+</a>
+</li>
+<li class="page-item">
+<a class="page-link" data-page="mairie" href="/mariage/mairie/">
+<span class="page-dot">6</span>
+<span class="page-label">La mairie</span>
+</a>
+</li>
+<li class="page-item">
+<a class="page-link" data-page="eglise" href="/mariage/eglise/">
+<span class="page-dot">7</span>
+<span class="page-label">L'église</span>
+</a>
+</li>
+<li class="page-item">
+<a class="page-link" data-page="vin-d-honneur" href="/mariage/vin_d_honneur/">
+<span class="page-dot">8</span>
+<span class="page-label">Le vin d'honneur</span>
+</a>
+</li>
+<li class="page-item">
+<a class="page-link" data-page="soiree" href="/mariage/soiree/">
+<span class="page-dot">9</span>
+<span class="page-label">La soirée</span>
+</a>
+</li>
+<li class="page-item">
+<a class="page-link" data-page="remerciements" href="/mariage/remerciements/">
+<span class="page-dot">10</span>
+<span class="page-label">Remerciements</span>
+</a>
+</li>
+<li aria-hidden="true" class="menu-annexe">
+<span class="menu-annexe-line"></span>
+<span class="sidebar-section-title menu-annexe-title">
+                À revivre
+            </span>
+</li>
+<li class="page-item page-item-separated">
+<a class="page-link" data-page="souvenirs" href="/mariage/souvenirs/">
+<span class="page-dot">11</span>
+<span class="page-label">Les souvenirs</span>
+</a>
+</li>
+</ol>
+</nav>
+</div>
+</aside>
+<main class="page-shell">
+<section class="hero">
+<div class="hero-content">
+<p class="eyebrow">La soirée</p>
+<h1>
+                    Jusqu’au bout<br/>de la nuit
                 </h1>
-
-                <div class="title-line"></div>
-
-                <p class="intro">
+<div class="title-line"></div>
+<p class="intro">
                     Le dîner, les discours, les surprises, notre première danse…
                     puis la fête, les lumières et tous ces instants partagés
                     jusqu’aux dernières heures de la nuit.
                 </p>
-
-                <a
-                    href="https://open.spotify.com/playlist/5UpV5PpTRBuM89XHAKNVkj?si=IMlI4J-YS-ms3_mRRJWUpw"
-                    class="spotify-button"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Écouter la playlist de la soirée sur Spotify"
-                >
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 496 512"
-                        aria-hidden="true"
-                    >
-                        <path d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm101.7 357.6c-4 6.5-12.5 8.5-19 4.5-52-31.8-117.5-39-194.7-21.3-7.4 1.7-14.8-3-16.5-10.4-1.7-7.4 3-14.8 10.4-16.5 84.3-19.3 156.7-11.1 215.2 24.6 6.4 4 8.4 12.5 4.6 19.1zm27.2-60.5c-5 8.1-15.6 10.6-23.7 5.7-59.5-36.5-150.3-47.1-220.7-25.7-9.1 2.7-18.7-2.4-21.5-11.5-2.7-9.1 2.4-18.7 11.5-21.5 80.5-24.4 180.6-12.5 248.8 29.3 8.1 5 10.6 15.6 5.6 23.7zm2.3-63C308.2 200 190.6 196.3 126 216c-10.9 3.3-22.4-2.8-25.7-13.7-3.3-10.9 2.8-22.4 13.7-25.7 74.2-22.5 203.3-18.2 284.2 30.2 9.8 5.9 13 18.6 7.1 28.4-5.8 9.8-18.6 13-28.1 7z"/>
-                    </svg>
-
-                    <span>Écouter la playlist de la soirée</span>
-                </a>
-
-            </div>
-
-        </section>
-
-        <section
-            class="gallery-section"
-            id="gallery-section"
-            aria-labelledby="gallery-title"
-        >
-
-            <div class="gallery-heading">
-
-                <p>La fête</p>
-
-
-            </div>
-
-            <div class="gallery" id="gallery"></div>
-
-        </section>
-
-        <footer class="footer" aria-label="Signature de l’album">
-
-            <img
-                src="../images/style/nom_fondnoir.jpg"
-                alt="Élodie et Alexandre"
-                class="footer-name-logo"
-            >
-
-            <img
-                src="../images/style/date_fondnoir.jpg"
-                alt="23 mai 2026"
-                class="footer-date-logo"
-            >
-
-        </footer>
-
-    </main>
-
-    <div
-        class="lightbox"
-        id="lightbox"
-        role="dialog"
-        aria-modal="true"
-        aria-label="Agrandissement de la photographie"
-        aria-hidden="true"
-    >
-
-        <button
-            type="button"
-            class="lightbox-close"
-            id="closeButton"
-            aria-label="Fermer la photographie"
-        >
+<a aria-label="Écouter la playlist de la soirée sur Spotify" class="spotify-button" href="https://open.spotify.com/playlist/5UpV5PpTRBuM89XHAKNVkj?si=IMlI4J-YS-ms3_mRRJWUpw" rel="noopener noreferrer" target="_blank">
+<svg aria-hidden="true" viewbox="0 0 496 512" xmlns="http://www.w3.org/2000/svg">
+<path d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm101.7 357.6c-4 6.5-12.5 8.5-19 4.5-52-31.8-117.5-39-194.7-21.3-7.4 1.7-14.8-3-16.5-10.4-1.7-7.4 3-14.8 10.4-16.5 84.3-19.3 156.7-11.1 215.2 24.6 6.4 4 8.4 12.5 4.6 19.1zm27.2-60.5c-5 8.1-15.6 10.6-23.7 5.7-59.5-36.5-150.3-47.1-220.7-25.7-9.1 2.7-18.7-2.4-21.5-11.5-2.7-9.1 2.4-18.7 11.5-21.5 80.5-24.4 180.6-12.5 248.8 29.3 8.1 5 10.6 15.6 5.6 23.7zm2.3-63C308.2 200 190.6 196.3 126 216c-10.9 3.3-22.4-2.8-25.7-13.7-3.3-10.9 2.8-22.4 13.7-25.7 74.2-22.5 203.3-18.2 284.2 30.2 9.8 5.9 13 18.6 7.1 28.4-5.8 9.8-18.6 13-28.1 7z"></path>
+</svg>
+<span>Écouter la playlist de la soirée</span>
+</a>
+</div>
+</section>
+<section aria-labelledby="gallery-title" class="gallery-section" id="gallery-section">
+<div class="gallery-heading">
+<p>La fête</p>
+</div>
+<div class="gallery" id="gallery"></div>
+</section>
+<footer aria-label="Signature de l’album" class="footer">
+<img alt="Élodie et Alexandre" class="footer-name-logo" src="../images/style/nom_fondnoir.jpg"/>
+<img alt="23 mai 2026" class="footer-date-logo" src="../images/style/date_fondnoir.jpg"/>
+</footer>
+</main>
+<div aria-hidden="true" aria-label="Agrandissement de la photographie" aria-modal="true" class="lightbox" id="lightbox" role="dialog">
+<button aria-label="Fermer la photographie" class="lightbox-close" id="closeButton" type="button">
             ×
         </button>
-
-        <button
-            type="button"
-            class="lightbox-arrow previous"
-            id="previousButton"
-            aria-label="Photographie précédente"
-        >
+<button aria-label="Photographie précédente" class="lightbox-arrow previous" id="previousButton" type="button">
             ‹
         </button>
-
-        <img
-            class="lightbox-image"
-            id="lightboxImage"
-            src=""
-            alt="Soirée du mariage d’Élodie et Alexandre"
-        >
-
-        <button
-            type="button"
-            class="lightbox-arrow next"
-            id="nextButton"
-            aria-label="Photographie suivante"
-        >
+<img alt="Soirée du mariage d’Élodie et Alexandre" class="lightbox-image" id="lightboxImage" src=""/>
+<button aria-label="Photographie suivante" class="lightbox-arrow next" id="nextButton" type="button">
             ›
         </button>
-
-        <p
-            class="photo-counter"
-            id="photoCounter"
-            aria-live="polite"
-        ></p>
-
-    </div>
-
-    <script>
+<p aria-live="polite" class="photo-counter" id="photoCounter"></p>
+</div>
+<script>
 const firstPhotoNumber = 1;
         const lastPhotoNumber = 301;
 
@@ -2580,6 +3144,5 @@ const firstPhotoNumber = 1;
             });
         });
     </script>
-
 </body>
 </html>
