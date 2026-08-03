@@ -62,9 +62,7 @@
         .page-shell {
             display: flex;
             width: auto;
-            height: 100vh;
             min-height: 100vh;
-            overflow: hidden;
             flex-direction: column;
             opacity: 1;
             transform: translateX(0);
@@ -81,8 +79,7 @@
 
         .preparatifs-page {
             display: flex;
-            min-height: 0;
-            flex: 1;
+            flex: 0 0 auto;
             flex-direction: column;
             background: var(--background);
         }
@@ -134,11 +131,10 @@
 
         .choices-section {
             display: flex;
-            min-height: 0;
-            flex: 1;
+            flex: 0 0 auto;
             flex-direction: column;
             justify-content: flex-start;
-            padding: 0 28px;
+            padding: 0 28px 12px;
             border-top: 1px solid var(--line);
             background: var(--soft);
         }
@@ -177,9 +173,8 @@
 
         .choices {
             display: grid;
-            width: min(100%, 1120px);
-            min-height: 0;
-            flex: 1;
+            width: min(100%, 1080px);
+            height: clamp(270px, 34vh, 340px);
             grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 22px;
             align-items: stretch;
@@ -190,7 +185,7 @@
             position: relative;
             display: block;
             height: 100%;
-            min-height: 270px;
+            min-height: 0;
             overflow: hidden;
             border: 1px solid rgba(99, 9, 9, 0.10);
             border-radius: 5px;
@@ -378,12 +373,13 @@
             }
 
             .choices {
-                width: min(100%, 1140px);
+                width: min(100%, 1040px);
+                height: clamp(225px, 32vh, 285px);
             }
 
             .choice {
                 height: 100%;
-                min-height: 225px;
+                min-height: 0;
             }
 
             .choice-inner {
@@ -411,17 +407,15 @@
                 gap: 18px;
             }
 
-            .choice {
-                height: 100%;
+            .choices {
+                height: clamp(250px, 35vh, 320px);
             }
         }
 
         @media (max-width: 720px) {
 
             .page-shell {
-                height: auto;
                 min-height: 100vh;
-                overflow: visible;
                 margin-left: 0;
             }
 
@@ -448,14 +442,14 @@
             }
 
             .choices {
+                height: auto;
                 min-height: auto;
-                flex: none;
                 grid-template-columns: 1fr;
                 gap: 16px;
             }
 
             .choice {
-                height: 390px;
+                height: 340px;
             }
 
             .choice-inner {
@@ -497,8 +491,8 @@
         }
     </style>
 
-    <link rel="stylesheet" href="/mariage/components/menu-lateral.css?v=10">
-<script src="/mariage/components/menu-lateral.js?v=10" defer></script>
+    <link rel="stylesheet" href="/mariage/components/menu-lateral.css?v=13">
+<script src="/mariage/components/menu-lateral.js?v=13" defer></script>
 </head>
 
 <body>
