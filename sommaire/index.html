@@ -74,17 +74,21 @@
         }
 
         .summary-name {
-            width: min(420px, 72vw);
-            height: auto;
-            margin: 0 auto;
-        }
+    position: relative;
+    z-index: 2;
+    width: min(420px, 72vw);
+    height: auto;
+    margin: 0 auto;
+}
 
-        .summary-date {
-            width: 185px;
-            max-width: 34vw;
-            height: auto;
-            margin: 0 auto;
-        }
+.summary-date {
+    position: relative;
+    z-index: 1;
+    width: 185px;
+    max-width: 34vw;
+    height: auto;
+    margin: -1.5cm auto 0;
+}
 
         .summary-title {
             margin: 0 auto;
@@ -392,10 +396,10 @@
             }
 
             .summary-date {
-                width: 160px;
-                max-width: 48vw;
-                margin-bottom: 0;
-            }
+    width: 160px;
+    max-width: 48vw;
+    margin: -1.5cm auto 0;
+}
 
             .chapters-section {
                 padding: 48px 16px 72px;
