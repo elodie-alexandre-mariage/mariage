@@ -61,7 +61,10 @@
 
         .page-shell {
             display: flex;
+            width: auto;
+            height: 100vh;
             min-height: 100vh;
+            overflow: hidden;
             flex-direction: column;
             opacity: 1;
             transform: translateX(0);
@@ -78,18 +81,19 @@
 
         .preparatifs-page {
             display: flex;
+            min-height: 0;
             flex: 1;
             flex-direction: column;
             background: var(--background);
         }
 
         .hero {
-            padding: 48px 30px 38px;
+            padding: 30px 30px 24px;
             text-align: center;
         }
 
         .eyebrow {
-            margin-bottom: 14px;
+            margin-bottom: 9px;
             color: rgba(99, 9, 9, 0.72);
             font-family: "Montserrat", Arial, Helvetica, sans-serif;
             font-size: 11px;
@@ -112,14 +116,14 @@
             display: block;
             width: 88px;
             height: 1px;
-            margin: 18px auto 0;
+            margin: 12px auto 0;
             background: rgba(99, 9, 9, 0.48);
             content: "";
         }
 
         .intro {
             max-width: 650px;
-            margin: 18px auto 0;
+            margin: 12px auto 0;
             color: var(--muted);
             font-family: "Montserrat", Arial, Helvetica, sans-serif;
             font-size: 14px;
@@ -133,7 +137,7 @@
             flex: 1;
             flex-direction: column;
             justify-content: center;
-            padding: 24px 40px 28px;
+            padding: 16px 28px 18px;
             border-top: 1px solid var(--line);
             background: var(--soft);
         }
@@ -144,8 +148,8 @@
             justify-content: space-between;
             gap: 30px;
             max-width: 1180px;
-            margin: 0 auto 22px;
-            padding-bottom: 16px;
+            margin: 0 auto 14px;
+            padding-bottom: 10px;
             border-bottom: 1px solid rgba(99, 9, 9, 0.16);
         }
 
@@ -171,15 +175,15 @@
         .choices {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 26px;
-            width: min(100%, 940px);
+            gap: 22px;
+            width: min(100%, 1120px);
             margin: 0 auto;
         }
 
         .choice {
             position: relative;
             display: block;
-            height: clamp(275px, 40vh, 390px);
+            height: clamp(270px, 38vh, 370px);
             overflow: hidden;
             border: 1px solid rgba(99, 9, 9, 0.10);
             border-radius: 5px;
@@ -249,7 +253,7 @@
             flex-direction: column;
             justify-content: flex-end;
             align-items: flex-start;
-            padding: 31px 34px;
+            padding: 34px 38px;
         }
 
         .choice-kicker {
@@ -316,83 +320,80 @@
 
         .footer {
             flex: 0 0 auto;
-            padding: 12px 20px 16px;
+            padding: 5px 20px 7px;
             background: var(--background);
             text-align: center;
         }
 
         .footer-name-logo {
-            width: 145px;
+            width: 118px;
             max-width: 48vw;
             height: auto;
             margin: 0 auto;
         }
 
         .footer-date-logo {
-            width: 110px;
+            width: 72px;
             max-width: 28vw;
             height: auto;
-            margin: 5px auto 0;
+            margin: 1px auto 0;
         }
 
         /* Mise en page compacte pour conserver l’affichage sur un seul écran */
-        @media (min-width: 721px) and (max-height: 760px) {
+        @media (min-width: 721px) and (max-height: 820px) {
             .hero {
-                padding-top: 27px;
-                padding-bottom: 23px;
+                padding-top: 18px;
+                padding-bottom: 15px;
             }
 
             .eyebrow {
-                margin-bottom: 9px;
+                margin-bottom: 6px;
             }
 
             h1::after {
-                margin-top: 12px;
+                margin-top: 9px;
             }
 
             .intro {
-                margin-top: 12px;
-                line-height: 1.6;
+                margin-top: 9px;
+                line-height: 1.5;
             }
 
             .choices-section {
-                padding-top: 16px;
-                padding-bottom: 17px;
+                padding-top: 10px;
+                padding-bottom: 11px;
             }
 
             .choices-heading {
-                margin-bottom: 13px;
-                padding-bottom: 10px;
-            }
-
-            .choices {
-                max-width: 900px;
-            }
-
-            .choice {
-                height: clamp(235px, 36vh, 315px);
-            }
-
-            .choice-inner {
-                padding: 24px 28px;
-            }
-
-            .footer {
-                padding-top: 6px;
+                margin-bottom: 9px;
                 padding-bottom: 8px;
             }
 
+            .choices {
+                width: min(100%, 1140px);
+            }
+
+            .choice {
+                height: clamp(225px, 35vh, 310px);
+            }
+
+            .choice-inner {
+                padding: 25px 30px;
+            }
+
+            .footer {
+                padding-top: 3px;
+                padding-bottom: 4px;
+            }
+
             .footer-name-logo {
-                width: 122px;
+                width: 104px;
             }
 
             .footer-date-logo {
-                width: 68px;
-                margin-top: 2px;
+                width: 58px;
+                margin-top: 0;
             }
-        }
-        /* Écrans peu hauts */
-        @media (min-width: 721px) and (max-height: 820px) {
         }
 
         @media (max-width: 900px) {
@@ -409,6 +410,9 @@
         @media (max-width: 720px) {
 
             .page-shell {
+                height: auto;
+                min-height: 100vh;
+                overflow: visible;
                 margin-left: 0;
             }
 
@@ -443,6 +447,20 @@
             .choice-inner {
                 padding: 28px 26px;
             }
+
+
+            .footer {
+                padding: 12px 20px 16px;
+            }
+
+            .footer-name-logo {
+                width: 145px;
+            }
+
+            .footer-date-logo {
+                width: 110px;
+                margin-top: 5px;
+            }
         }
 
         @media (hover: none) {
@@ -465,8 +483,8 @@
         }
     </style>
 
-    <link rel="stylesheet" href="/mariage/components/menu-lateral.css?v=2">
-<script src="/mariage/components/menu-lateral.js?v=2" defer></script>
+    <link rel="stylesheet" href="/mariage/components/menu-lateral.css?v=8">
+<script src="/mariage/components/menu-lateral.js?v=8" defer></script>
 </head>
 
 <body>
