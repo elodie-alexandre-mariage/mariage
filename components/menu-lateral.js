@@ -254,8 +254,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     try {
         const response = await fetch(
-            `${siteRoot}components/menu-lateral.html`
-        );
+    `${siteRoot}components/menu-lateral.html?v=2`,
+    {
+        cache: "no-store"
+    }
+);
 
         if (!response.ok) {
             throw new Error(
