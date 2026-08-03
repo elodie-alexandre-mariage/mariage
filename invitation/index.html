@@ -184,7 +184,8 @@
             left: 0;
             height: 61%;
             margin: 0 auto;
-            filter: drop-shadow(0 22px 30px rgba(55, 40, 36, 0.14));
+            transform: translateZ(0);
+            will-change: transform;
         }
 
         .envelope-viewer.is-square .envelope-shell {
@@ -212,6 +213,7 @@
                     var(--envelope) 62%,
                     #ebe3db 100%
                 );
+            box-shadow: 0 18px 36px rgba(55, 40, 36, 0.13);
         }
 
         /* Le faire-part est entièrement caché au repos */
@@ -227,12 +229,15 @@
             background:
                 linear-gradient(145deg, #ffffff, #fffdf9);
             box-shadow:
-                0 14px 34px rgba(55, 40, 36, 0.13),
-                0 2px 5px rgba(55, 40, 36, 0.06);
+                0 27px 58px rgba(55, 40, 36, 0.19),
+                0 7px 16px rgba(55, 40, 36, 0.09);
             cursor: zoom-in;
             opacity: 0;
-            transform: translateX(-50%) translateY(28%) scale(0.965);
+            transform:
+                translate3d(-50%, 24%, 0)
+                scale(0.985);
             transform-origin: 50% 50%;
+            backface-visibility: hidden;
             will-change: transform, opacity;
         }
 
@@ -261,45 +266,38 @@
             width: 100%;
             height: 100%;
             object-fit: contain;
-            transition: transform 450ms ease;
-        }
-
-        .invitation-card:hover img {
-            transform: scale(1.008);
+            backface-visibility: hidden;
         }
 
         .envelope-viewer.is-open .invitation-card {
             z-index: 12;
             opacity: 1;
-            box-shadow:
-                0 36px 78px rgba(55, 40, 36, 0.23),
-                0 9px 22px rgba(55, 40, 36, 0.11);
         }
 
         .envelope-viewer.is-square.is-open .invitation-card {
             animation:
-                extract-square-card 1050ms
+                extract-square-card 820ms
                 cubic-bezier(0.22, 1, 0.36, 1)
-                300ms both;
+                120ms both;
         }
 
         .envelope-viewer.is-rectangle.is-open .invitation-card {
             animation:
-                extract-rectangle-card 1050ms
+                extract-rectangle-card 820ms
                 cubic-bezier(0.22, 1, 0.36, 1)
-                300ms both;
+                120ms both;
         }
 
         .envelope-viewer.is-square.is-closing .invitation-card {
             animation:
-                return-square-card 760ms
+                return-square-card 600ms
                 cubic-bezier(0.4, 0, 0.2, 1)
                 both;
         }
 
         .envelope-viewer.is-rectangle.is-closing .invitation-card {
             animation:
-                return-rectangle-card 760ms
+                return-rectangle-card 600ms
                 cubic-bezier(0.4, 0, 0.2, 1)
                 both;
         }
@@ -308,43 +306,27 @@
             0% {
                 z-index: 2;
                 opacity: 0;
-                transform:
-                    translateX(-50%)
-                    translateY(28%)
-                    scale(0.965);
+                transform: translate3d(-50%, 24%, 0) scale(0.985);
             }
 
-            42% {
+            18% {
+                opacity: 1;
+            }
+
+            54% {
                 z-index: 2;
                 opacity: 1;
-                transform:
-                    translateX(-50%)
-                    translateY(-43%)
-                    scale(0.99)
-                    rotate(-0.45deg);
+                transform: translate3d(-50%, -48%, 0) scale(0.995);
             }
 
-            43% {
+            55% {
                 z-index: 12;
-            }
-
-            72% {
-                z-index: 12;
-                transform:
-                    translateX(-50%)
-                    translateY(-32%)
-                    scale(1.028)
-                    rotate(0.22deg);
             }
 
             100% {
                 z-index: 12;
                 opacity: 1;
-                transform:
-                    translateX(-50%)
-                    translateY(-25%)
-                    scale(1.04)
-                    rotate(0);
+                transform: translate3d(-50%, -25%, 0) scale(1.025);
             }
         }
 
@@ -352,43 +334,27 @@
             0% {
                 z-index: 2;
                 opacity: 0;
-                transform:
-                    translateX(-50%)
-                    translateY(28%)
-                    scale(0.965);
+                transform: translate3d(-50%, 24%, 0) scale(0.985);
             }
 
-            42% {
+            18% {
+                opacity: 1;
+            }
+
+            54% {
                 z-index: 2;
                 opacity: 1;
-                transform:
-                    translateX(-50%)
-                    translateY(-19%)
-                    scale(0.99)
-                    rotate(-0.28deg);
+                transform: translate3d(-50%, -24%, 0) scale(0.995);
             }
 
-            43% {
+            55% {
                 z-index: 12;
-            }
-
-            72% {
-                z-index: 12;
-                transform:
-                    translateX(-50%)
-                    translateY(-10%)
-                    scale(1.025)
-                    rotate(0.14deg);
             }
 
             100% {
                 z-index: 12;
                 opacity: 1;
-                transform:
-                    translateX(-50%)
-                    translateY(-5%)
-                    scale(1.035)
-                    rotate(0);
+                transform: translate3d(-50%, -5%, 0) scale(1.02);
             }
         }
 
@@ -396,31 +362,23 @@
             0% {
                 z-index: 12;
                 opacity: 1;
-                transform:
-                    translateX(-50%)
-                    translateY(-25%)
-                    scale(1.04);
+                transform: translate3d(-50%, -25%, 0) scale(1.025);
             }
 
-            48% {
+            44% {
                 z-index: 12;
-                transform:
-                    translateX(-50%)
-                    translateY(-43%)
-                    scale(0.99);
+                opacity: 1;
+                transform: translate3d(-50%, -48%, 0) scale(0.995);
             }
 
-            49% {
+            45% {
                 z-index: 2;
             }
 
             100% {
                 z-index: 2;
                 opacity: 0;
-                transform:
-                    translateX(-50%)
-                    translateY(28%)
-                    scale(0.965);
+                transform: translate3d(-50%, 24%, 0) scale(0.985);
             }
         }
 
@@ -428,31 +386,23 @@
             0% {
                 z-index: 12;
                 opacity: 1;
-                transform:
-                    translateX(-50%)
-                    translateY(-5%)
-                    scale(1.035);
+                transform: translate3d(-50%, -5%, 0) scale(1.02);
             }
 
-            48% {
+            44% {
                 z-index: 12;
-                transform:
-                    translateX(-50%)
-                    translateY(-19%)
-                    scale(0.99);
+                opacity: 1;
+                transform: translate3d(-50%, -24%, 0) scale(0.995);
             }
 
-            49% {
+            45% {
                 z-index: 2;
             }
 
             100% {
                 z-index: 2;
                 opacity: 0;
-                transform:
-                    translateX(-50%)
-                    translateY(28%)
-                    scale(0.965);
+                transform: translate3d(-50%, 24%, 0) scale(0.985);
             }
         }
 
@@ -467,9 +417,10 @@
             background: var(--envelope);
             cursor: pointer;
             transition:
-                transform 650ms cubic-bezier(0.22, 1, 0.36, 1) 540ms,
-                filter 450ms ease 540ms,
-                opacity 450ms ease 540ms;
+                transform 480ms cubic-bezier(0.22, 1, 0.36, 1) 330ms,
+                opacity 280ms ease 330ms;
+            backface-visibility: hidden;
+            will-change: transform, opacity;
         }
 
         .envelope-front::before,
@@ -511,9 +462,10 @@
                 );
             pointer-events: none;
             transition:
-                transform 650ms cubic-bezier(0.22, 1, 0.36, 1) 540ms,
-                filter 450ms ease 540ms,
-                opacity 450ms ease 540ms;
+                transform 480ms cubic-bezier(0.22, 1, 0.36, 1) 330ms,
+                opacity 280ms ease 330ms;
+            backface-visibility: hidden;
+            will-change: transform, opacity;
         }
 
         /* Rabat supérieur */
@@ -536,8 +488,8 @@
             transform-style: preserve-3d;
             backface-visibility: hidden;
             transition:
-                transform 560ms cubic-bezier(0.4, 0, 0.2, 1),
-                filter 350ms ease;
+                transform 420ms cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform;
             pointer-events: none;
         }
 
@@ -549,15 +501,13 @@
         }
 
         .envelope-viewer.is-open .envelope-flap {
-            filter: brightness(0.985);
             transform: rotateX(180deg);
         }
 
         .envelope-viewer.is-open .envelope-front,
         .envelope-viewer.is-open .envelope-bottom-fold {
-            filter: brightness(0.975);
-            opacity: 0.93;
-            transform: translateY(14px) scale(0.985);
+            opacity: 0.95;
+            transform: translate3d(0, 10px, 0) scale(0.99);
         }
 
         .envelope-viewer.is-closing .envelope-front,
@@ -567,9 +517,8 @@
         }
 
         .envelope-viewer.is-closing .envelope-flap {
-            filter: brightness(1);
             transform: rotateX(0);
-            transition-delay: 390ms;
+            transition-delay: 300ms;
         }
 
         /* Bouton invisible couvrant l’enveloppe */
@@ -584,7 +533,8 @@
         }
 
         .envelope-viewer.is-open .envelope-trigger {
-            z-index: 3;
+            z-index: 9;
+            cursor: pointer;
         }
 
         /* Texte manuscrit */
@@ -637,52 +587,73 @@
             text-transform: uppercase;
         }
 
-        .face-controls {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            visibility: hidden;
-            margin-top: 18px;
-            opacity: 0;
-            transform: translateY(-7px);
-            transition:
-                opacity 280ms ease 520ms,
-                transform 280ms ease 520ms,
-                visibility 0ms linear 800ms;
-        }
-
-        .envelope-viewer.is-open .face-controls {
-            visibility: visible;
-            opacity: 1;
-            transform: translateY(0);
-            transition-delay: 520ms;
-        }
-
-        .face-button,
-        .close-envelope {
+        .card-image-button {
+            display: block;
+            width: 100%;
+            height: 100%;
+            padding: 0;
             border: 0;
             background: transparent;
-            color: var(--muted);
-            font-family: "Montserrat", Arial, Helvetica, sans-serif;
-            font-size: 9px;
-            font-weight: 500;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: color 180ms ease;
+            cursor: zoom-in;
         }
 
-        .face-button:hover,
-        .face-button.is-active,
-        .close-envelope:hover {
+        .card-arrow {
+            position: absolute;
+            top: 50%;
+            z-index: 4;
+            display: grid;
+            width: 43px;
+            height: 43px;
+            place-items: center;
+            visibility: hidden;
+            border: 1px solid rgba(99, 9, 9, 0.16);
+            border-radius: 50%;
+            background: rgba(254, 254, 254, 0.94);
             color: var(--bordeaux);
+            box-shadow: 0 8px 22px rgba(55, 40, 36, 0.13);
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
+            font-size: 1.45rem;
+            line-height: 1;
+            cursor: pointer;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(-50%) scale(0.88);
+            transition:
+                opacity 220ms ease 610ms,
+                transform 220ms ease 610ms,
+                visibility 0ms linear 830ms,
+                background 180ms ease,
+                color 180ms ease;
         }
 
-        .control-line {
-            width: 24px;
-            height: 1px;
-            background: rgba(99, 9, 9, 0.23);
+        .card-arrow:hover,
+        .card-arrow:focus-visible {
+            background: var(--bordeaux);
+            color: #ffffff;
+        }
+
+        .card-previous {
+            left: 14px;
+        }
+
+        .card-next {
+            right: 14px;
+        }
+
+        .envelope-viewer.is-open .card-arrow {
+            visibility: visible;
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(-50%) scale(1);
+            transition-delay: 610ms, 610ms, 610ms, 0ms, 0ms;
+        }
+
+        .envelope-viewer.is-closing .card-arrow {
+            visibility: hidden;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(-50%) scale(0.88);
+            transition-delay: 0ms;
         }
 
         /* =========================
@@ -837,32 +808,27 @@
                 0% {
                     z-index: 2;
                     opacity: 0;
-                    transform:
-                        translateX(-50%)
-                        translateY(28%)
-                        scale(0.965);
+                    transform: translate3d(-50%, 24%, 0) scale(0.985);
                 }
 
-                42% {
+                18% {
+                    opacity: 1;
+                }
+
+                54% {
                     z-index: 2;
                     opacity: 1;
-                    transform:
-                        translateX(-50%)
-                        translateY(-24%)
-                        scale(0.99);
+                    transform: translate3d(-50%, -24%, 0) scale(0.995);
                 }
 
-                43% {
+                55% {
                     z-index: 12;
                 }
 
                 100% {
                     z-index: 12;
                     opacity: 1;
-                    transform:
-                        translateX(-50%)
-                        translateY(5%)
-                        scale(1.025);
+                    transform: translate3d(-50%, 5%, 0) scale(1.015);
                 }
             }
 
@@ -870,32 +836,27 @@
                 0% {
                     z-index: 2;
                     opacity: 0;
-                    transform:
-                        translateX(-50%)
-                        translateY(28%)
-                        scale(0.965);
+                    transform: translate3d(-50%, 24%, 0) scale(0.985);
                 }
 
-                42% {
+                18% {
+                    opacity: 1;
+                }
+
+                54% {
                     z-index: 2;
                     opacity: 1;
-                    transform:
-                        translateX(-50%)
-                        translateY(-50%)
-                        scale(0.99);
+                    transform: translate3d(-50%, -50%, 0) scale(0.995);
                 }
 
-                43% {
+                55% {
                     z-index: 12;
                 }
 
                 100% {
                     z-index: 12;
                     opacity: 1;
-                    transform:
-                        translateX(-50%)
-                        translateY(-34%)
-                        scale(1.025);
+                    transform: translate3d(-50%, -34%, 0) scale(1.015);
                 }
             }
 
@@ -903,31 +864,23 @@
                 0% {
                     z-index: 12;
                     opacity: 1;
-                    transform:
-                        translateX(-50%)
-                        translateY(5%)
-                        scale(1.025);
+                    transform: translate3d(-50%, 5%, 0) scale(1.015);
                 }
 
-                48% {
+                44% {
                     z-index: 12;
-                    transform:
-                        translateX(-50%)
-                        translateY(-24%)
-                        scale(0.99);
+                    opacity: 1;
+                    transform: translate3d(-50%, -24%, 0) scale(0.995);
                 }
 
-                49% {
+                45% {
                     z-index: 2;
                 }
 
                 100% {
                     z-index: 2;
                     opacity: 0;
-                    transform:
-                        translateX(-50%)
-                        translateY(28%)
-                        scale(0.965);
+                    transform: translate3d(-50%, 24%, 0) scale(0.985);
                 }
             }
 
@@ -935,37 +888,38 @@
                 0% {
                     z-index: 12;
                     opacity: 1;
-                    transform:
-                        translateX(-50%)
-                        translateY(-34%)
-                        scale(1.025);
+                    transform: translate3d(-50%, -34%, 0) scale(1.015);
                 }
 
-                48% {
+                44% {
                     z-index: 12;
-                    transform:
-                        translateX(-50%)
-                        translateY(-50%)
-                        scale(0.99);
+                    opacity: 1;
+                    transform: translate3d(-50%, -50%, 0) scale(0.995);
                 }
 
-                49% {
+                45% {
                     z-index: 2;
                 }
 
                 100% {
                     z-index: 2;
                     opacity: 0;
-                    transform:
-                        translateX(-50%)
-                        translateY(28%)
-                        scale(0.965);
+                    transform: translate3d(-50%, 24%, 0) scale(0.985);
                 }
             }
 
-            .face-controls {
-                flex-wrap: wrap;
-                row-gap: 11px;
+            .card-arrow {
+                width: 38px;
+                height: 38px;
+                font-size: 1.25rem;
+            }
+
+            .card-previous {
+                left: 8px;
+            }
+
+            .card-next {
+                right: 8px;
             }
 
             .lightbox {
@@ -1001,12 +955,6 @@
             }
         }
 
-        @media (hover: none) {
-            .invitation-card:hover img {
-                transform: none;
-            }
-        }
-
         @media (prefers-reduced-motion: reduce) {
             *,
             *::before,
@@ -1016,8 +964,8 @@
         }
     </style>
 
-    <link rel="stylesheet" href="/mariage/components/menu-lateral.css?v=9">
-    <script src="/mariage/components/menu-lateral.js?v=9" defer></script>
+    <link rel="stylesheet" href="/mariage/components/menu-lateral.css?v=12">
+    <script src="/mariage/components/menu-lateral.js?v=12" defer></script>
 </head>
 
 <body>
@@ -1054,17 +1002,39 @@
 
                                 <div class="envelope-back"></div>
 
-                                <button
-                                    class="invitation-card"
-                                    type="button"
-                                    data-open-lightbox
-                                    aria-label="Agrandir le faire-part cérémonies et vin d’honneur"
-                                >
-                                    <img
-                                        src="../images/faireparts/fairepartvinhonneurrecto.jpg"
-                                        alt="Faire-part cérémonies et vin d’honneur — recto"
+                                <div class="invitation-card">
+
+                                    <button
+                                        class="card-image-button"
+                                        type="button"
+                                        data-open-lightbox
+                                        aria-label="Agrandir le faire-part cérémonies et vin d’honneur"
                                     >
-                                </button>
+                                        <img
+                                            src="../images/faireparts/fairepartvinhonneurrecto.jpg"
+                                            alt="Faire-part cérémonies et vin d’honneur — recto"
+                                        >
+                                    </button>
+
+                                    <button
+                                        class="card-arrow card-previous"
+                                        type="button"
+                                        data-card-direction="-1"
+                                        aria-label="Afficher le recto ou le verso précédent"
+                                    >
+                                        ‹
+                                    </button>
+
+                                    <button
+                                        class="card-arrow card-next"
+                                        type="button"
+                                        data-card-direction="1"
+                                        aria-label="Afficher le recto ou le verso suivant"
+                                    >
+                                        ›
+                                    </button>
+
+                                </div>
 
                                 <div class="envelope-front"></div>
                                 <div class="envelope-bottom-fold"></div>
@@ -1087,41 +1057,12 @@
 
                         </div>
 
-                        <p class="interaction-hint">
-                            Cliquez sur l’enveloppe
+                        <p
+                            class="interaction-hint"
+                            data-interaction-hint
+                        >
+                            Cliquez sur l’enveloppe pour ouvrir
                         </p>
-
-                        <div class="face-controls">
-
-                            <button
-                                class="face-button is-active"
-                                type="button"
-                                data-face="0"
-                            >
-                                Recto
-                            </button>
-
-                            <span class="control-line"></span>
-
-                            <button
-                                class="face-button"
-                                type="button"
-                                data-face="1"
-                            >
-                                Verso
-                            </button>
-
-                            <span class="control-line"></span>
-
-                            <button
-                                class="close-envelope"
-                                type="button"
-                                data-close-envelope
-                            >
-                                Refermer
-                            </button>
-
-                        </div>
 
                     </div>
 
@@ -1140,17 +1081,39 @@
 
                                 <div class="envelope-back"></div>
 
-                                <button
-                                    class="invitation-card"
-                                    type="button"
-                                    data-open-lightbox
-                                    aria-label="Agrandir le faire-part cérémonies, vin d’honneur et soirée"
-                                >
-                                    <img
-                                        src="../images/faireparts/fairepartrepasrecto.jpg"
-                                        alt="Faire-part cérémonies, vin d’honneur et soirée — recto"
+                                <div class="invitation-card">
+
+                                    <button
+                                        class="card-image-button"
+                                        type="button"
+                                        data-open-lightbox
+                                        aria-label="Agrandir le faire-part cérémonies, vin d’honneur et soirée"
                                     >
-                                </button>
+                                        <img
+                                            src="../images/faireparts/fairepartrepasrecto.jpg"
+                                            alt="Faire-part cérémonies, vin d’honneur et soirée — recto"
+                                        >
+                                    </button>
+
+                                    <button
+                                        class="card-arrow card-previous"
+                                        type="button"
+                                        data-card-direction="-1"
+                                        aria-label="Afficher le recto ou le verso précédent"
+                                    >
+                                        ‹
+                                    </button>
+
+                                    <button
+                                        class="card-arrow card-next"
+                                        type="button"
+                                        data-card-direction="1"
+                                        aria-label="Afficher le recto ou le verso suivant"
+                                    >
+                                        ›
+                                    </button>
+
+                                </div>
 
                                 <div class="envelope-front"></div>
                                 <div class="envelope-bottom-fold"></div>
@@ -1176,41 +1139,12 @@
 
                         </div>
 
-                        <p class="interaction-hint">
-                            Cliquez sur l’enveloppe
+                        <p
+                            class="interaction-hint"
+                            data-interaction-hint
+                        >
+                            Cliquez sur l’enveloppe pour ouvrir
                         </p>
-
-                        <div class="face-controls">
-
-                            <button
-                                class="face-button is-active"
-                                type="button"
-                                data-face="0"
-                            >
-                                Recto
-                            </button>
-
-                            <span class="control-line"></span>
-
-                            <button
-                                class="face-button"
-                                type="button"
-                                data-face="1"
-                            >
-                                Verso
-                            </button>
-
-                            <span class="control-line"></span>
-
-                            <button
-                                class="close-envelope"
-                                type="button"
-                                data-close-envelope
-                            >
-                                Refermer
-                            </button>
-
-                        </div>
 
                     </div>
 
@@ -1326,13 +1260,6 @@
                 image.src = face.src;
                 image.alt = face.alt;
 
-                viewer.querySelectorAll(".face-button").forEach((button) => {
-                    button.classList.toggle(
-                        "is-active",
-                        Number(button.dataset.face) === faceIndex
-                    );
-                });
-
                 if (
                     lightbox.classList.contains("open") &&
                     currentViewer === viewerIndex
@@ -1344,8 +1271,17 @@
 
             function setEnvelopeOpen(viewer, isOpen) {
                 const trigger = viewer.querySelector("[data-toggle-envelope]");
+                const hint = viewer.querySelector("[data-interaction-hint]");
+                const currentLabel = trigger.getAttribute("aria-label") || "";
 
                 if (isOpen) {
+                    hint.textContent =
+                        "Cliquez sur l’enveloppe pour refermer";
+
+                    trigger.setAttribute(
+                        "aria-label",
+                        currentLabel.replace(/^Ouvrir/, "Refermer")
+                    );
                     document
                         .querySelectorAll(".envelope-viewer.is-open")
                         .forEach((otherViewer) => {
@@ -1364,12 +1300,20 @@
                     return;
                 }
 
+                hint.textContent =
+                    "Cliquez sur l’enveloppe pour ouvrir";
+
+                trigger.setAttribute(
+                    "aria-label",
+                    currentLabel.replace(/^Refermer/, "Ouvrir")
+                );
+
                 viewer.classList.add("is-closing");
                 trigger.setAttribute("aria-expanded", "false");
 
                 window.setTimeout(() => {
                     viewer.classList.remove("is-open", "is-closing");
-                }, 780);
+                }, 620);
             }
 
             function openLightbox(viewerIndex) {
@@ -1422,19 +1366,22 @@
                     );
                 });
 
-                viewer.querySelectorAll("[data-face]").forEach((button) => {
-                    button.addEventListener("click", () => {
-                        updateViewer(
-                            viewerIndex,
-                            Number(button.dataset.face)
-                        );
-                    });
-                });
-
                 viewer
-                    .querySelector("[data-close-envelope]")
-                    .addEventListener("click", () => {
-                        setEnvelopeOpen(viewer, false);
+                    .querySelectorAll("[data-card-direction]")
+                    .forEach((button) => {
+                        button.addEventListener("click", () => {
+                            const faceCount =
+                                galleries[viewerIndex].length;
+
+                            const nextFace =
+                                (
+                                    currentFaces[viewerIndex] +
+                                    Number(button.dataset.cardDirection) +
+                                    faceCount
+                                ) % faceCount;
+
+                            updateViewer(viewerIndex, nextFace);
+                        });
                     });
 
                 viewer
