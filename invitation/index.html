@@ -339,6 +339,74 @@
         }
 
         /* =========================
+           FLÈCHES RECTO / VERSO
+           Style repris de la page Église
+        ========================= */
+
+        .invitation-visual {
+            position: relative;
+        }
+
+        .invitation-arrow {
+            position: absolute;
+            top: 50%;
+            z-index: 4;
+            display: flex;
+            width: 52px;
+            height: 52px;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(99, 9, 9, 0.24);
+            border-radius: 50%;
+            background: rgba(254, 254, 254, 0.94);
+            color: var(--bordeaux);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 31px;
+            font-weight: 200;
+            line-height: 1;
+            cursor: pointer;
+            box-shadow: 0 8px 22px rgba(52, 35, 31, 0.10);
+            transform: translateY(-50%);
+            transition:
+                background 0.20s ease,
+                border-color 0.20s ease,
+                color 0.20s ease,
+                box-shadow 0.20s ease,
+                transform 0.20s ease;
+        }
+
+        .invitation-arrow:hover,
+        .invitation-arrow:focus-visible {
+            border-color: var(--bordeaux);
+            background: var(--bordeaux);
+            color: var(--white);
+            box-shadow: 0 11px 28px rgba(52, 35, 31, 0.16);
+        }
+
+        .invitation-arrow:focus-visible {
+            outline: 1px solid rgba(99, 9, 9, 0.40);
+            outline-offset: 4px;
+        }
+
+        .invitation-previous {
+            left: 2px;
+        }
+
+        .invitation-previous:hover,
+        .invitation-previous:focus-visible {
+            transform: translate(-3px, -50%);
+        }
+
+        .invitation-next {
+            right: 2px;
+        }
+
+        .invitation-next:hover,
+        .invitation-next:focus-visible {
+            transform: translate(3px, -50%);
+        }
+
+        /* =========================
            COMMANDES RECTO / VERSO
         ========================= */
 
@@ -723,6 +791,30 @@
                 width: 100%;
             }
 
+            .invitation-arrow {
+                width: 42px;
+                height: 42px;
+                font-size: 27px;
+            }
+
+            .invitation-previous {
+                left: 6px;
+            }
+
+            .invitation-next {
+                right: 6px;
+            }
+
+            .invitation-previous:hover,
+            .invitation-previous:focus-visible {
+                transform: translate(-2px, -50%);
+            }
+
+            .invitation-next:hover,
+            .invitation-next:focus-visible {
+                transform: translate(2px, -50%);
+            }
+
             .lightbox {
                 padding: 70px 12px 66px;
             }
@@ -861,7 +953,17 @@
 
                         <div class="invitation-visual">
 
+                            
                             <button
+                                class="invitation-arrow invitation-previous"
+                                type="button"
+                                data-face-direction="-1"
+                                aria-label="Afficher le verso ou le recto précédent"
+                            >
+                                ‹
+                            </button>
+
+<button
                                 class="paper-button"
                                 type="button"
                                 data-open-lightbox
@@ -872,6 +974,16 @@
                                     alt="Faire-part cérémonies et vin d’honneur — recto"
                                 >
                             </button>
+
+                            <button
+                                class="invitation-arrow invitation-next"
+                                type="button"
+                                data-face-direction="1"
+                                aria-label="Afficher le verso ou le recto suivant"
+                            >
+                                ›
+                            </button>
+
 
                         </div>
 
@@ -935,7 +1047,17 @@
 
                         <div class="invitation-visual">
 
+                            
                             <button
+                                class="invitation-arrow invitation-previous"
+                                type="button"
+                                data-face-direction="-1"
+                                aria-label="Afficher le verso ou le recto précédent"
+                            >
+                                ‹
+                            </button>
+
+<button
                                 class="paper-button"
                                 type="button"
                                 data-open-lightbox
@@ -946,6 +1068,16 @@
                                     alt="Faire-part cérémonies, vin d’honneur et soirée — recto"
                                 >
                             </button>
+
+                            <button
+                                class="invitation-arrow invitation-next"
+                                type="button"
+                                data-face-direction="1"
+                                aria-label="Afficher le verso ou le recto suivant"
+                            >
+                                ›
+                            </button>
+
 
                         </div>
 
@@ -1315,6 +1447,27 @@
                                     .focus();
                             }
                         );
+                    });
+
+                item
+                    .querySelectorAll("[data-face-direction]")
+                    .forEach((button) => {
+                        button.addEventListener("click", () => {
+                            const gallery = galleries[galleryIndex];
+
+                            const nextFace =
+                                (
+                                    currentFaces[galleryIndex] +
+                                    Number(button.dataset.faceDirection) +
+                                    gallery.faces.length
+                                ) % gallery.faces.length;
+
+                            updateItem(
+                                galleryIndex,
+                                nextFace,
+                                true
+                            );
+                        });
                     });
 
                 item
