@@ -81,7 +81,7 @@ body.page-leaving .page-shell {
 
 .wedding-logo {
     display: block;
-    width: 145px;
+    width: 130px;
     max-width: 100%;
     height: auto;
     margin: 0 auto;
@@ -110,11 +110,11 @@ body.page-leaving .page-shell {
 }
 
 /*
-   Espace ciblé uniquement entre le logo
-   et le titre « Pages de l’album ».
+   Organisation rapprochée de la page « Soirée » :
+   le titre et la navigation commencent plus près du logo.
 */
 .logo-link + .sidebar-section-title {
-    margin-top: clamp(34px, 4.2vh, 46px);
+    margin-top: 18px;
     margin-bottom: 14px;
 }
 
@@ -313,16 +313,12 @@ body.page-leaving .page-shell {
     }
 
     .wedding-logo {
-        width: 125px;
+        width: 112px;
     }
 
-    /*
-       On conserve désormais un véritable espace,
-       même lorsque la fenêtre est peu haute.
-    */
     .logo-link + .sidebar-section-title {
-        margin-top: 30px;
-        margin-bottom: 10px;
+        margin-top: 12px;
+        margin-bottom: 8px;
     }
 
     .sidebar-section-title {
@@ -426,7 +422,7 @@ body.page-leaving .page-shell {
     }
 
     .logo-link + .sidebar-section-title {
-        margin-top: 34px;
+        margin-top: 18px;
     }
 }
 
