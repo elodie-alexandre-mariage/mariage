@@ -90,7 +90,7 @@ body.page-leaving .page-shell {
 ========================= */
 
 .sidebar-section-title {
-    margin-top: 18px;
+    margin-top: 36px;
     margin-bottom: 14px;
     color: rgba(99, 9, 9, 0.78);
     font-family: "Montserrat", Arial, Helvetica, sans-serif;
@@ -284,7 +284,7 @@ body.page-leaving .page-shell {
     }
 
     .sidebar-section-title {
-        margin-top: 12px;
+        margin-top: 22px;
         margin-bottom: 8px;
         font-size: 13.5px;
     }
