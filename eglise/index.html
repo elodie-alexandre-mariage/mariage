@@ -587,7 +587,7 @@
 
         .reading-card summary {
             display: grid;
-            grid-template-columns: 62px minmax(0, 1fr) auto;
+            grid-template-columns: minmax(0, 1fr) auto;
             gap: 24px;
             align-items: center;
             min-height: 118px;
@@ -666,18 +666,21 @@
 
         .reading-content {
             display: grid;
-            grid-template-columns: 62px minmax(0, 760px);
-            gap: 24px;
+            grid-template-columns: minmax(0, 760px);
+            gap: 0;
             padding: 0 28px 38px;
         }
 
         .reading-text {
-            grid-column: 2;
+            grid-column: 1;
             padding-top: 26px;
             border-top: 1px solid rgba(99, 9, 9, 0.12);
             color: #4d4541;
-            font-size: 17px;
-            line-height: 1.9;
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
+            font-size: 15px;
+            font-weight: 300;
+            line-height: 1.95;
+            letter-spacing: 0.015em;
         }
 
         .reading-text p + p {
@@ -933,7 +936,7 @@
             }
 
             .reading-card summary {
-                grid-template-columns: 38px minmax(0, 1fr) 34px;
+                grid-template-columns: minmax(0, 1fr) 34px;
                 gap: 12px;
                 min-height: 104px;
                 padding: 20px 16px;
@@ -953,14 +956,14 @@
             }
 
             .reading-content {
-                grid-template-columns: 38px minmax(0, 1fr);
-                gap: 12px;
+                grid-template-columns: minmax(0, 1fr);
+                gap: 0;
                 padding: 0 16px 30px;
             }
 
             .reading-text {
-                font-size: 16px;
-                line-height: 1.82;
+                font-size: 14px;
+                line-height: 1.9;
             }
 
             .lightbox {
@@ -1035,8 +1038,8 @@
         }
     </style>
 
-    <link rel="stylesheet" href="/mariage/components/menu-lateral.css?v=30">
-    <script src="/mariage/components/menu-lateral.js?v=30" defer></script>
+    <link rel="stylesheet" href="/mariage/components/menu-lateral.css?v=31">
+    <script src="/mariage/components/menu-lateral.js?v=31" defer></script>
 </head>
 
 <body>
@@ -1106,7 +1109,7 @@
             <div class="booklet-layout">
 
                 <div class="booklet-copy">
-                    <span class="section-number">01 — UN SOUVENIR À FEUILLETER</span>
+                    <span class="section-number">UN SOUVENIR À FEUILLETER</span>
 
                     <h3>
                         Revivre la cérémonie,
@@ -1132,14 +1135,6 @@
                             rel="noopener noreferrer"
                         >
                             Ouvrir le PDF
-                        </a>
-
-                        <a
-                            href="/mariage/images/eglise/livret_de_messe.pdf"
-                            class="booklet-link"
-                            download="Livret-de-ceremonie-Elodie-et-Alexandre.pdf"
-                        >
-                            Télécharger
                         </a>
                     </div>
                 </div>
@@ -1168,7 +1163,7 @@
                         <span class="booklet-page" id="bookletPage">
                             <img
                                 id="bookletImage"
-                                src="/mariage/images/eglise/livret/page-01.png"
+                                src="/mariage/images/eglise/livret_de_messe_page_1.jpg"
                                 alt="Couverture du livret de cérémonie d’Élodie et Alexandre"
                                 decoding="async"
                             >
@@ -1218,9 +1213,7 @@
 
                 <details class="reading-card">
                     <summary>
-                        <span class="reading-number">01</span>
-
-                        <span class="reading-heading">
+<span class="reading-heading">
                             <span class="reading-type">Première lecture</span>
 
                             <span class="reading-title">
@@ -1273,9 +1266,7 @@
 
                 <details class="reading-card">
                     <summary>
-                        <span class="reading-number">02</span>
-
-                        <span class="reading-heading">
+<span class="reading-heading">
                             <span class="reading-type">Psaume 127</span>
 
                             <span class="reading-title">
@@ -1318,9 +1309,7 @@
 
                 <details class="reading-card">
                     <summary>
-                        <span class="reading-number">03</span>
-
-                        <span class="reading-heading">
+<span class="reading-heading">
                             <span class="reading-type">Prière universelle</span>
 
                             <span class="reading-title">
@@ -1693,22 +1682,22 @@
 
         const bookletPages = [
             {
-                src: "/mariage/images/eglise/livret/page-01.png",
+                src: "/mariage/images/eglise/livret_de_messe_page_1.jpg",
                 label: "Couverture",
                 alt: "Couverture du livret de cérémonie d’Élodie et Alexandre"
             },
             {
-                src: "/mariage/images/eglise/livret/page-02.png",
+                src: "/mariage/images/eglise/livret_de_messe_page_2.jpg",
                 label: "Page 2",
                 alt: "Rite d’ouverture, liturgie de la Parole et célébration du mariage"
             },
             {
-                src: "/mariage/images/eglise/livret/page-03.png",
+                src: "/mariage/images/eglise/livret_de_messe_page_3.jpg",
                 label: "Page 3",
                 alt: "Prière de l’Église et conclusion de la célébration"
             },
             {
-                src: "/mariage/images/eglise/livret/page-04.png",
+                src: "/mariage/images/eglise/livret_de_messe_page_4.jpg",
                 label: "Dernière page",
                 alt: "Dernière page du livret avec les initiales d’Élodie et Alexandre"
             }
