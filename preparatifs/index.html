@@ -182,21 +182,23 @@
         .choices {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 26px;
-            width: min(100%, 940px);
+            gap: 30px;
+            width: 100%;
+            max-width: 1180px;
             margin: 0 auto;
         }
 
         .choice {
             position: relative;
             display: block;
-            height: clamp(275px, 40vh, 390px);
+            min-height: 460px;
             overflow: hidden;
             border: 1px solid rgba(99, 9, 9, 0.10);
             border-radius: 5px;
             background: #d8d1cd;
             color: #fffaf7;
             text-decoration: none;
+            cursor: pointer;
             isolation: isolate;
             transition:
                 transform 0.45s ease,
@@ -230,11 +232,12 @@
             background:
                 linear-gradient(
                     180deg,
-                    rgba(42, 31, 29, 0.22) 0%,
-                    rgba(42, 31, 29, 0.03) 48%,
-                    rgba(42, 31, 29, 0.09) 67%,
-                    rgba(42, 31, 29, 0.66) 100%
-                );
+                    rgba(42, 31, 29, 0.28) 0%,
+                    rgba(42, 31, 29, 0.05) 45%,
+                    rgba(42, 31, 29, 0.08) 66%,
+                    rgba(42, 31, 29, 0.62) 100%
+                ),
+                rgba(228, 216, 208, 0.18);
             content: "";
             transition: background 0.65s ease;
         }
@@ -249,10 +252,21 @@
         .choice:hover::before {
             filter:
                 grayscale(0)
-                saturate(1.12)
-                contrast(1.03)
+                saturate(1.18)
+                contrast(1.04)
                 brightness(1.01);
             transform: translateZ(0) scale(1.06);
+        }
+
+        .choice:hover::after {
+            background:
+                linear-gradient(
+                    180deg,
+                    rgba(32, 23, 21, 0.34) 0%,
+                    rgba(32, 23, 21, 0.04) 45%,
+                    rgba(32, 23, 21, 0.02) 64%,
+                    rgba(32, 23, 21, 0.36) 100%
+                );
         }
 
         .choice-inner {
@@ -262,7 +276,7 @@
             flex-direction: column;
             justify-content: flex-end;
             align-items: flex-start;
-            padding: 31px 34px;
+            padding: 38px 40px;
         }
 
         .choice-kicker {
@@ -278,9 +292,9 @@
 
         .choice h3 {
             color: #fffaf7;
-            font-size: clamp(1.9rem, 3vw, 2.55rem);
+            font-size: clamp(1.65rem, 2.5vw, 2.25rem);
             font-weight: normal;
-            line-height: 1.15;
+            line-height: 1.18;
             text-shadow: 0 2px 18px rgba(0, 0, 0, 0.48);
             transition: transform 0.6s ease;
         }
@@ -299,7 +313,7 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            margin-top: 18px;
+            margin-top: 20px;
             color: #fffaf7;
             font-family: "Montserrat", Arial, Helvetica, sans-serif;
             font-size: 9px;
@@ -379,11 +393,11 @@
             }
 
             .choices {
-                max-width: 900px;
+                max-width: 1180px;
             }
 
             .choice {
-                height: clamp(235px, 36vh, 315px);
+                min-height: 360px;
             }
 
             .choice-inner {
@@ -410,7 +424,7 @@
             }
 
             .choice {
-                height: clamp(265px, 39vh, 360px);
+                min-height: 360px;
             }
         }
 
@@ -441,11 +455,15 @@
             }
 
             .choice {
-                height: 390px;
+                min-height: 350px;
             }
 
             .choice-inner {
                 padding: 28px 26px;
+            }
+
+            .choice h3 {
+                font-size: 1.7rem;
             }
         }
 
@@ -469,8 +487,8 @@
         }
     </style>
 
-    <link rel="stylesheet" href="/mariage/components/menu-lateral.css?v=22">
-    <script src="/mariage/components/menu-lateral.js?v=22" defer></script>
+    <link rel="stylesheet" href="/mariage/components/menu-lateral.css?v=26">
+    <script src="/mariage/components/menu-lateral.js?v=26" defer></script>
 </head>
 
 <body>
