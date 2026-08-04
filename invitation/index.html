@@ -317,6 +317,7 @@
 
         .invitation-item.is-square .paper-button {
             width: min(100%, 390px);
+            max-width: 100%;
         }
 
         .invitation-item.is-triptych .paper-button {
@@ -1266,6 +1267,57 @@
                 );
             }
 
+            function synchronizeInvitationHeights() {
+                const squareItem = getItem(0);
+                const triptychItem = getItem(1);
+
+                if (!squareItem || !triptychItem) {
+                    return;
+                }
+
+                const squareButton =
+                    squareItem.querySelector(".paper-button");
+
+                const triptychButton =
+                    triptychItem.querySelector(".paper-button");
+
+                const squareVisual =
+                    squareItem.querySelector(".invitation-visual");
+
+                /*
+                   Sur tablette et mobile, les faire-part sont empilés :
+                   chacun reprend alors sa largeur naturelle.
+                */
+                if (window.innerWidth <= 820) {
+                    squareButton.style.width = "";
+                    return;
+                }
+
+                /*
+                   Le triptyque conserve les proportions exactes de son fichier.
+                   Sa hauteur affichée devient la référence du faire-part carré.
+                */
+                squareButton.style.width = "";
+
+                window.requestAnimationFrame(() => {
+                    const triptychHeight =
+                        triptychButton.getBoundingClientRect().height;
+
+                    const availableWidth =
+                        squareVisual.getBoundingClientRect().width;
+
+                    const targetSize = Math.min(
+                        triptychHeight,
+                        availableWidth
+                    );
+
+                    if (targetSize > 0) {
+                        squareButton.style.width =
+                            targetSize.toFixed(2) + "px";
+                    }
+                });
+            }
+
             function updateItem(
                 galleryIndex,
                 faceIndex,
@@ -1297,6 +1349,14 @@
                 const applyFace = () => {
                     image.src = face.src;
                     image.alt = face.alt;
+
+                    image.addEventListener(
+                        "load",
+                        synchronizeInvitationHeights,
+                        {
+                            once: true
+                        }
+                    );
 
                     if (
                         lightbox.classList.contains("open") &&
@@ -1554,7 +1614,24 @@
                 }
             });
 
+            let resizeTimer = null;
+
+            window.addEventListener("resize", () => {
+                window.clearTimeout(resizeTimer);
+
+                resizeTimer = window.setTimeout(
+                    synchronizeInvitationHeights,
+                    120
+                );
+            });
+
+            window.addEventListener(
+                "load",
+                synchronizeInvitationHeights
+            );
+
             preloadImages();
+            synchronizeInvitationHeights();
         })();
     </script>
 
