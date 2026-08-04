@@ -150,27 +150,33 @@
         }
 
         .choices-heading {
-            display: flex;
-            align-items: flex-end;
-            justify-content: space-between;
-            gap: 30px;
+            display: grid;
+            width: 100%;
             max-width: 1180px;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+            align-items: end;
+            gap: 30px;
             margin: 0 auto 26px;
             padding-bottom: 16px;
             border-bottom: 1px solid rgba(99, 9, 9, 0.16);
         }
 
         .choices-heading p {
+            justify-self: start;
+            margin: 0;
             color: var(--bordeaux);
             font-family: "Montserrat", Arial, Helvetica, sans-serif;
             font-size: 16px;
             font-weight: 500;
             letter-spacing: 0.16em;
+            text-align: left;
             text-transform: uppercase;
         }
 
         .choices-heading h2 {
+            justify-self: end;
             max-width: 540px;
+            margin: 0;
             color: var(--muted);
             font-family: "Montserrat", Arial, Helvetica, sans-serif;
             font-size: 14px;
@@ -439,13 +445,16 @@
             }
 
             .choices-heading {
-                display: block;
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 9px;
                 margin-bottom: 22px;
                 padding: 0 10px 14px;
             }
 
             .choices-heading h2 {
-                margin-top: 9px;
+                justify-self: start;
+                margin-top: 0;
                 text-align: left;
             }
 
@@ -487,8 +496,8 @@
         }
     </style>
 
-    <link rel="stylesheet" href="/mariage/components/menu-lateral.css?v=26">
-    <script src="/mariage/components/menu-lateral.js?v=26" defer></script>
+    <link rel="stylesheet" href="/mariage/components/menu-lateral.css?v=27">
+    <script src="/mariage/components/menu-lateral.js?v=27" defer></script>
 </head>
 
 <body>
