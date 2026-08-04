@@ -1,121 +1,220 @@
 /* =====================================================
    MENU LATÉRAL COMMUN — ÉLODIE & ALEXANDRE
-
-   Le HTML du menu se trouve dans :
-   /mariage/components/menu-lateral.html
-
-   Ce fichier :
-   - charge le menu ;
-   - détecte la page actuelle ;
-   - colore les pages précédentes ;
-   - active le menu mobile ;
-   - gère la transition entre les pages.
+   À charger avec defer sur toutes les pages.
 ===================================================== */
 
-document.addEventListener("DOMContentLoaded", async () => {
-    const siteRoot = "/mariage/";
+(() => {
+    "use strict";
 
-    const pageOrder = [
-        "bienvenue",
-        "sommaire",
-        "invitation",
-        "preparatifs",
-        "first-look",
-        "mairie",
-        "eglise",
-        "vin-d-honneur",
-        "soiree",
-        "remerciements",
-        "souvenirs"
+    const SITE_ROOT = "/mariage/";
+
+    /* Ajouter ici l’adresse du futur site quand il sera prêt. */
+    const HONEYMOON_URL = "";
+
+    const pages = [
+        { id: "bienvenue", label: "Bienvenue", number: "1", path: "" },
+        { id: "sommaire", label: "Sommaire", number: "2", path: "sommaire/" },
+        { id: "invitation", label: "Invitation", number: "3", path: "invitation/" },
+        { id: "preparatifs", label: "Préparatifs", number: "4", path: "preparatifs/" },
+        { id: "first-look", label: "Le First Look", number: "5", path: "first-look/" },
+        { id: "mairie", label: "Mairie", number: "6", path: "mairie/" },
+        { id: "eglise", label: "Église", number: "7", path: "eglise/" },
+        { id: "vin-d-honneur", label: "Vin d’honneur", number: "8", path: "vin_d_honneur/" },
+        { id: "soiree", label: "Soirée", number: "9", path: "soiree/" },
+        { id: "remerciements", label: "Remerciements", number: "10", path: "remerciements/" },
+        { id: "souvenirs", label: "Souvenirs", number: "11", path: "souvenirs/", separated: true }
     ];
 
-    function normalizePath(pathname) {
-        let path = pathname
-            .toLowerCase()
-            .replace(/index\.html$/, "")
-            .replace(/\/+/g, "/");
-
-        if (!path.endsWith("/")) {
-            path += "/";
-        }
-
-        return path;
+    function siteUrl(path = "") {
+        return `${SITE_ROOT}${path}`;
     }
 
-    function getCurrentPage() {
-        const currentPath = normalizePath(
-            window.location.pathname
-        );
+    function detectCurrentPage() {
+        const pathname = window.location.pathname
+            .replace(/\/index\.html$/i, "/")
+            .replace(/\/{2,}/g, "/");
 
-        if (
-            currentPath === siteRoot ||
-            currentPath === `${siteRoot}index.html/`
-        ) {
+        const relativePath = pathname.startsWith(SITE_ROOT)
+            ? pathname.slice(SITE_ROOT.length)
+            : pathname.replace(/^\//, "");
+
+        if (!relativePath || relativePath === "index.html") {
             return "bienvenue";
         }
 
-        if (currentPath.includes(`${siteRoot}sommaire/`)) {
-            return "sommaire";
-        }
+        const matchingPage = pages
+            .filter((page) => page.path)
+            .sort((a, b) => b.path.length - a.path.length)
+            .find((page) => relativePath.startsWith(page.path));
 
-        if (currentPath.includes(`${siteRoot}invitation/`)) {
-            return "invitation";
-        }
-
-        if (currentPath.includes(`${siteRoot}preparatifs/`)) {
-            return "preparatifs";
-        }
-
-        if (
-            currentPath.includes(`${siteRoot}first-look/`) ||
-            currentPath.includes(`${siteRoot}first_look/`)
-        ) {
-            return "first-look";
-        }
-
-        if (currentPath.includes(`${siteRoot}mairie/`)) {
-            return "mairie";
-        }
-
-        if (currentPath.includes(`${siteRoot}eglise/`)) {
-            return "eglise";
-        }
-
-        if (
-            currentPath.includes(`${siteRoot}vin_d_honneur/`) ||
-            currentPath.includes(`${siteRoot}vin-d-honneur/`)
-        ) {
-            return "vin-d-honneur";
-        }
-
-        if (currentPath.includes(`${siteRoot}soiree/`)) {
-            return "soiree";
-        }
-
-        if (
-            currentPath.includes(
-                `${siteRoot}remerciements/`
-            )
-        ) {
-            return "remerciements";
-        }
-
-        if (currentPath.includes(`${siteRoot}souvenirs/`)) {
-            return "souvenirs";
-        }
-
-        return "bienvenue";
+        return matchingPage ? matchingPage.id : "bienvenue";
     }
 
-    function applyPageProgression() {
-        const currentPage = getCurrentPage();
-        const currentIndex = pageOrder.indexOf(currentPage);
+    function createPageItem(page) {
+        const classes = ["page-item"];
+
+        if (page.separated) {
+            classes.push("page-item-separated");
+        }
+
+        return `
+            <li class="${classes.join(" ")}">
+                <a
+                    href="${siteUrl(page.path)}"
+                    class="page-link"
+                    data-page="${page.id}"
+                >
+                    <span class="page-dot">${page.number}</span>
+                    <span class="page-label">${page.label}</span>
+                </a>
+            </li>
+        `;
+    }
+
+    function createHoneymoonMarkup() {
+        const planeIcon = `
+            <span class="honeymoon-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                    <path d="M21 16.2 13.4 12V5.8C13.4 4.25 12.77 3 12 3s-1.4 1.25-1.4 2.8V12L3 16.2v1.9l7.6-2.4v3.5l-2.2 1.5V22l3.6-1 3.6 1v-1.3l-2.2-1.5v-3.5l7.6 2.4z"></path>
+                </svg>
+            </span>
+        `;
+
+        const copy = `
+            <span class="honeymoon-copy">
+                <span class="honeymoon-name">
+                    Notre voyage de noces
+                </span>
+
+                <span class="honeymoon-meta">
+                    Polynésie française${HONEYMOON_URL ? "" : " · Bientôt"}
+                </span>
+            </span>
+        `;
+
+        const entry = HONEYMOON_URL
+            ? `
+                <a
+                    href="${HONEYMOON_URL}"
+                    class="honeymoon-link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Découvrir notre voyage de noces en Polynésie française sur un nouveau site"
+                >
+                    ${planeIcon}
+                    ${copy}
+                </a>
+            `
+            : `
+                <div
+                    class="honeymoon-link is-disabled"
+                    aria-disabled="true"
+                    title="Le site du voyage de noces sera bientôt disponible"
+                >
+                    ${planeIcon}
+                    ${copy}
+                </div>
+            `;
+
+        return `
+            <li class="honeymoon-section">
+
+                <span class="sidebar-section-title honeymoon-title">
+                    Grâce à vous
+                </span>
+
+                ${entry}
+
+            </li>
+        `;
+    }
+
+    function createMenuMarkup() {
+        const mainPages = pages
+            .filter((page) => !page.separated)
+            .map(createPageItem)
+            .join("");
+
+        const separatedPages = pages
+            .filter((page) => page.separated)
+            .map(createPageItem)
+            .join("");
+
+        return `
+            <button
+                class="mobile-menu-button"
+                type="button"
+                aria-label="Ouvrir le sommaire"
+                aria-controls="book-sidebar"
+                aria-expanded="false"
+            >
+                ☰
+            </button>
+
+            <aside
+                class="book-sidebar"
+                id="book-sidebar"
+                aria-label="Pages de l’album"
+            >
+                <div class="sidebar-inner">
+
+                    <a
+                        href="${siteUrl("sommaire/")}"
+                        class="logo-link"
+                        aria-label="Retour au sommaire"
+                    >
+                        <img
+                            src="${siteUrl("images/style/logo_couleur.png")}"
+                            alt="Logo du mariage d’Élodie et Alexandre"
+                            class="wedding-logo"
+                        >
+                    </a>
+
+                    <p class="sidebar-section-title">
+                        Pages de l’album
+                    </p>
+
+                    <nav aria-label="Navigation principale">
+
+                        <ol class="page-list">
+
+                            ${mainPages}
+
+                            <li
+                                class="menu-annexe"
+                                aria-hidden="true"
+                            >
+                                <span class="menu-annexe-line"></span>
+
+                                <span class="menu-annexe-title sidebar-section-title">
+                                    À revivre
+                                </span>
+                            </li>
+
+                            ${separatedPages}
+
+                            ${createHoneymoonMarkup()}
+
+                        </ol>
+
+                    </nav>
+
+                </div>
+            </aside>
+        `;
+    }
+
+    function markProgress(currentPage) {
+        const currentIndex = pages.findIndex(
+            (page) => page.id === currentPage
+        );
 
         document
-            .querySelectorAll(".page-link")
+            .querySelectorAll(".page-link[data-page]")
             .forEach((link) => {
-                const pageName = link.dataset.page;
-                const pageIndex = pageOrder.indexOf(pageName);
+                const pageIndex = pages.findIndex(
+                    (page) => page.id === link.dataset.page
+                );
 
                 link.classList.remove(
                     "is-current",
@@ -128,33 +227,46 @@ document.addEventListener("DOMContentLoaded", async () => {
                     link.classList.add("is-visited");
                 }
 
-                if (pageName === currentPage) {
+                if (pageIndex === currentIndex) {
                     link.classList.add("is-current");
-                    link.setAttribute(
-                        "aria-current",
-                        "page"
-                    );
+                    link.setAttribute("aria-current", "page");
                 }
             });
     }
 
-    function initializeMobileMenu() {
-        const button = document.querySelector(
-            ".mobile-menu-button"
+    function closeMobileMenu() {
+        const sidebar = document.querySelector(".book-sidebar");
+        const button = document.querySelector(".mobile-menu-button");
+
+        if (!sidebar || !button) {
+            return;
+        }
+
+        sidebar.classList.remove("is-open");
+
+        button.setAttribute(
+            "aria-expanded",
+            "false"
         );
 
-        const sidebar = document.querySelector(
-            ".book-sidebar"
+        button.setAttribute(
+            "aria-label",
+            "Ouvrir le sommaire"
         );
 
-        if (!button || !sidebar) {
+        button.textContent = "☰";
+    }
+
+    function setupMobileMenu() {
+        const sidebar = document.querySelector(".book-sidebar");
+        const button = document.querySelector(".mobile-menu-button");
+
+        if (!sidebar || !button) {
             return;
         }
 
         button.addEventListener("click", () => {
-            const isOpen = sidebar.classList.toggle(
-                "is-open"
-            );
+            const isOpen = sidebar.classList.toggle("is-open");
 
             button.setAttribute(
                 "aria-expanded",
@@ -172,114 +284,107 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
 
         document.addEventListener("click", (event) => {
-            const clickedInsideSidebar =
-                sidebar.contains(event.target);
-
-            const clickedMenuButton =
-                button.contains(event.target);
-
             if (
                 window.innerWidth <= 720 &&
                 sidebar.classList.contains("is-open") &&
-                !clickedInsideSidebar &&
-                !clickedMenuButton
+                !sidebar.contains(event.target) &&
+                !button.contains(event.target)
             ) {
-                sidebar.classList.remove("is-open");
+                closeMobileMenu();
+            }
+        });
 
-                button.setAttribute(
-                    "aria-expanded",
-                    "false"
-                );
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape") {
+                closeMobileMenu();
+            }
+        });
 
-                button.setAttribute(
-                    "aria-label",
-                    "Ouvrir le sommaire"
-                );
-
-                button.textContent = "☰";
+        window.addEventListener("resize", () => {
+            if (window.innerWidth > 720) {
+                closeMobileMenu();
             }
         });
     }
 
-    function initializePageTransitions() {
-        const prefersReducedMotion =
-            window.matchMedia(
-                "(prefers-reduced-motion: reduce)"
-            ).matches;
+    function setupPageTransitions() {
+        const prefersReducedMotion = window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches;
+
+        document.addEventListener("click", (event) => {
+            const link = event.target.closest("a[href]");
+
+            if (!link) {
+                return;
+            }
+
+            const href = link.getAttribute("href");
+
+            if (
+                prefersReducedMotion ||
+                !href ||
+                href.startsWith("#") ||
+                link.target === "_blank" ||
+                link.hasAttribute("download") ||
+                event.ctrlKey ||
+                event.metaKey ||
+                event.shiftKey ||
+                event.altKey
+            ) {
+                return;
+            }
+
+            const destination = new URL(
+                link.href,
+                window.location.href
+            );
+
+            if (
+                destination.origin !==
+                window.location.origin
+            ) {
+                return;
+            }
+
+            event.preventDefault();
+
+            document.body.classList.add("page-leaving");
+
+            window.setTimeout(() => {
+                window.location.href = destination.href;
+            }, 400);
+        });
+    }
+
+    function initialiseMenu() {
+        document
+            .querySelector(".mobile-menu-button")
+            ?.remove();
 
         document
-            .querySelectorAll('a[href]')
-            .forEach((link) => {
-                link.addEventListener("click", (event) => {
-                    const href = link.getAttribute("href");
-
-                    if (
-                        prefersReducedMotion ||
-                        !href ||
-                        href.startsWith("#") ||
-                        link.target === "_blank" ||
-                        event.ctrlKey ||
-                        event.metaKey ||
-                        event.shiftKey ||
-                        event.altKey
-                    ) {
-                        return;
-                    }
-
-                    const destination = new URL(
-                        link.href,
-                        window.location.href
-                    );
-
-                    if (
-                        destination.origin !==
-                        window.location.origin
-                    ) {
-                        return;
-                    }
-
-                    event.preventDefault();
-
-                    document.body.classList.add(
-                        "page-leaving"
-                    );
-
-                    window.setTimeout(() => {
-                        window.location.href =
-                            destination.href;
-                    }, 400);
-                });
-            });
-    }
-
-    try {
-        const response = await fetch(
-    `${siteRoot}components/menu-lateral.html?v=2`,
-    {
-        cache: "no-store"
-    }
-);
-
-        if (!response.ok) {
-            throw new Error(
-                `Erreur HTTP : ${response.status}`
-            );
-        }
-
-        const menuHTML = await response.text();
+            .querySelector(".book-sidebar")
+            ?.remove();
 
         document.body.insertAdjacentHTML(
             "afterbegin",
-            menuHTML
+            createMenuMarkup()
         );
 
-        applyPageProgression();
-        initializeMobileMenu();
-        initializePageTransitions();
-    } catch (error) {
-        console.error(
-            "Impossible de charger le menu latéral :",
-            error
-        );
+        markProgress(detectCurrentPage());
+        setupMobileMenu();
+        setupPageTransitions();
     }
-});
+
+    if (document.readyState === "loading") {
+        document.addEventListener(
+            "DOMContentLoaded",
+            initialiseMenu,
+            {
+                once: true
+            }
+        );
+    } else {
+        initialiseMenu();
+    }
+})();
