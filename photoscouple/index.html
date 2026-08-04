@@ -194,6 +194,57 @@
             transform: translateY(-2px);
         }
 
+
+
+        /* =========================
+           ICÔNES DE NAVIGATION
+        ========================= */
+
+        .souvenir-link {
+            gap: 10px;
+        }
+
+        .souvenir-link-icon {
+            display: inline-flex;
+            width: 18px;
+            height: 12px;
+            flex: 0 0 auto;
+            align-items: center;
+            justify-content: center;
+            color: currentColor;
+            opacity: 0.86;
+            transition:
+                transform 0.3s ease,
+                opacity 0.3s ease;
+        }
+
+        .souvenir-link-icon svg {
+            width: 18px;
+            height: 12px;
+            fill: none;
+            stroke: currentColor;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-width: 1.45;
+        }
+
+        .souvenir-link:hover .souvenir-link-icon,
+        .souvenir-link:focus-visible .souvenir-link-icon {
+            opacity: 1;
+        }
+
+        .souvenir-link:hover .souvenir-link-icon.is-previous,
+        .souvenir-link:focus-visible .souvenir-link-icon.is-previous,
+        .souvenir-link:hover .souvenir-link-icon.is-return,
+        .souvenir-link:focus-visible .souvenir-link-icon.is-return {
+            transform: translateX(-4px);
+        }
+
+        .souvenir-link:hover .souvenir-link-icon.is-next,
+        .souvenir-link:focus-visible .souvenir-link-icon.is-next {
+            transform: translateX(4px);
+        }
+
         /* =========================
            GALERIE
         ========================= */
@@ -548,8 +599,8 @@
         }
     </style>
 
-    <link rel="stylesheet" href="/mariage/components/menu-lateral.css?v=37">
-    <script src="/mariage/components/menu-lateral.js?v=37" defer></script>
+    <link rel="stylesheet" href="/mariage/components/menu-lateral.css?v=42">
+    <script src="/mariage/components/menu-lateral.js?v=42" defer></script>
 </head>
 
 <body>
@@ -578,7 +629,16 @@
                 href="/mariage/souvenirs/"
                 class="souvenir-link souvenir-nav-back"
             >
-                ← Retour aux souvenirs
+                <span
+                    class="souvenir-link-icon is-return"
+                    aria-hidden="true"
+                >
+                    <svg viewBox="0 0 24 16">
+                        <path d="M8.5 3 3.5 8l5 5"></path>
+                        <path d="M4 8h9.5c3.1 0 5.5 2.2 5.5 5"></path>
+                    </svg>
+                </span>
+                <span>Retour aux souvenirs</span>
             </a>
 
             <div class="souvenir-nav-pages">
@@ -586,14 +646,32 @@
                     href="/mariage/videos/"
                     class="souvenir-link"
                 >
-                    ← Vidéos
+                    <span
+                        class="souvenir-link-icon is-previous"
+                        aria-hidden="true"
+                    >
+                        <svg viewBox="0 0 24 16">
+                            <path d="m8 3-5 5 5 5"></path>
+                            <path d="M4 8h16"></path>
+                        </svg>
+                    </span>
+                    <span>Vidéos</span>
                 </a>
 
                 <a
                     href="/mariage/photosgroupe/"
                     class="souvenir-link"
                 >
-                    Photos de groupe →
+                    <span>Photos de groupe</span>
+                    <span
+                        class="souvenir-link-icon is-next"
+                        aria-hidden="true"
+                    >
+                        <svg viewBox="0 0 24 16">
+                            <path d="m16 3 5 5-5 5"></path>
+                            <path d="M20 8H4"></path>
+                        </svg>
+                    </span>
                 </a>
             </div>
         </nav>
