@@ -16,6 +16,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+    <link
+        rel="preload"
+        as="image"
+        href="../images/preparatifs-elodie/Pre%CC%81paratifs%20%20-%20Elodie%20%26%20Alexandre-10.jpg"
+    >
+    <link
+        rel="preload"
+        as="image"
+        href="../images/vignettes/vignette_preparatifs_alexandre.jpg"
+    >
+
     <style id="page-style">
         * {
             box-sizing: border-box;
@@ -133,24 +144,23 @@
             flex: 1;
             flex-direction: column;
             justify-content: center;
-            padding: 12px 24px 24px;
+            padding: 24px 40px 28px;
             border-top: 1px solid var(--line);
             background: var(--soft);
         }
 
         .choices-heading {
             display: flex;
-            width: min(100%, 1240px);
             align-items: flex-end;
             justify-content: space-between;
-            gap: 42px;
+            gap: 30px;
+            max-width: 1180px;
             margin: 0 auto 22px;
             padding-bottom: 16px;
             border-bottom: 1px solid rgba(99, 9, 9, 0.16);
         }
 
         .choices-heading p {
-            flex: 0 0 auto;
             color: var(--bordeaux);
             font-family: "Montserrat", Arial, Helvetica, sans-serif;
             font-size: 16px;
@@ -160,8 +170,7 @@
         }
 
         .choices-heading h2 {
-            max-width: 570px;
-            margin-left: auto;
+            max-width: 540px;
             color: var(--muted);
             font-family: "Montserrat", Arial, Helvetica, sans-serif;
             font-size: 14px;
@@ -173,15 +182,15 @@
         .choices {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 34px;
-            width: min(100%, 1080px);
+            gap: 26px;
+            width: min(100%, 940px);
             margin: 0 auto;
         }
 
         .choice {
             position: relative;
             display: block;
-            height: clamp(332px, calc(40vh + 1.5cm), 447px);
+            height: clamp(275px, 40vh, 390px);
             overflow: hidden;
             border: 1px solid rgba(99, 9, 9, 0.10);
             border-radius: 5px;
@@ -206,10 +215,12 @@
                 saturate(0.12)
                 contrast(0.92)
                 brightness(0.92);
-            transform: scale(1.015);
+            backface-visibility: hidden;
+            transform: translateZ(0) scale(1.015);
             transition:
                 filter 0.75s ease,
                 transform 0.85s ease;
+            will-change: transform, filter;
         }
 
         .choice::after {
@@ -241,7 +252,7 @@
                 saturate(1.12)
                 contrast(1.03)
                 brightness(1.01);
-            transform: scale(1.06);
+            transform: translateZ(0) scale(1.06);
         }
 
         .choice-inner {
@@ -358,24 +369,21 @@
             }
 
             .choices-section {
-                padding-top: 8px;
-                padding-bottom: 14px;
+                padding-top: 16px;
+                padding-bottom: 17px;
             }
 
             .choices-heading {
-                width: min(100%, 1160px);
                 margin-bottom: 13px;
                 padding-bottom: 10px;
             }
 
             .choices {
-                width: min(100%, 1030px);
-                max-width: none;
-                gap: 30px;
+                max-width: 900px;
             }
 
             .choice {
-                height: clamp(292px, calc(36vh + 1.5cm), 372px);
+                height: clamp(235px, 36vh, 315px);
             }
 
             .choice-inner {
@@ -396,37 +404,24 @@
                 margin-top: 2px;
             }
         }
-
         @media (max-width: 900px) {
-            :root {
-                --sidebar-width: 250px;
-            }
-
             .choices {
-                gap: 24px;
+                gap: 18px;
             }
 
             .choice {
-                height: clamp(305px, calc(39vh + 1cm), 405px);
+                height: clamp(265px, 39vh, 360px);
             }
         }
 
         @media (max-width: 720px) {
-            :root {
-                --sidebar-width: 0px;
-            }
-
-            .page-shell {
-                margin-left: 0;
-            }
-
             .hero {
                 padding: 68px 20px 48px;
             }
 
             .choices-section {
                 justify-content: flex-start;
-                padding: 24px 16px 44px;
+                padding: 42px 16px 56px;
             }
 
             .choices-heading {
@@ -445,7 +440,7 @@
             }
 
             .choice {
-                height: 420px;
+                height: 390px;
             }
 
             .choice-inner {
@@ -473,8 +468,8 @@
         }
     </style>
 
-    <link rel="stylesheet" href="/mariage/components/menu-lateral.css?v=19">
-    <script src="/mariage/components/menu-lateral.js?v=19" defer></script>
+    <link rel="stylesheet" href="/mariage/components/menu-lateral.css?v=20">
+    <script src="/mariage/components/menu-lateral.js?v=20" defer></script>
 </head>
 
 <body>
@@ -518,7 +513,7 @@
                     <a
                         href="alexandre/"
                         class="choice"
-                        style="--choice-image: url('../images/preparatifs-alexandre/Pre%CC%81paratifs%20%20-%20Elodie%20%26%20Alexandre-86.jpg');"
+                        style="--choice-image: url('../images/vignettes/vignette_preparatifs_alexandre.jpg');"
                     >
                         <div class="choice-inner">
                             <span class="choice-kicker">Ses préparatifs</span>
