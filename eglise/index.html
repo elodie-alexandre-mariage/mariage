@@ -371,7 +371,11 @@
             border: 1px solid rgba(99, 9, 9, 0.11);
             border-radius: 6px;
             background:
-                radial-gradient(circle at 50% 42%, rgba(255, 255, 255, 0.98), rgba(247, 242, 239, 0.88)),
+                radial-gradient(
+                    circle at 50% 44%,
+                    rgba(255, 255, 255, 0.98),
+                    rgba(247, 242, 239, 0.90)
+                ),
                 var(--soft);
             box-shadow: 0 24px 70px rgba(55, 38, 34, 0.10);
             overflow: hidden;
@@ -402,30 +406,21 @@
             width: 100%;
             aspect-ratio: 1241 / 1754;
             overflow: hidden;
-            border-radius: 2px 5px 5px 2px;
+            border: 1px solid rgba(70, 53, 48, 0.08);
+            border-radius: 3px;
             background: #fff;
             box-shadow:
-                0 26px 55px rgba(39, 28, 25, 0.20),
-                -9px 0 17px rgba(63, 46, 41, 0.08);
-            transform-origin: left center;
+                0 24px 54px rgba(39, 28, 25, 0.17),
+                0 3px 10px rgba(39, 28, 25, 0.08);
+            transform-origin: right center;
             transition:
                 transform 250ms ease,
                 opacity 250ms ease;
         }
 
         .booklet-page::before {
-            position: absolute;
-            z-index: 2;
-            inset: 0 auto 0 0;
-            width: 22px;
-            background: linear-gradient(
-                90deg,
-                rgba(37, 25, 22, 0.12),
-                rgba(37, 25, 22, 0.025),
-                transparent
-            );
-            content: "";
-            pointer-events: none;
+            display: none;
+            content: none;
         }
 
         .booklet-page img {
@@ -437,13 +432,14 @@
 
         .booklet-page.turn-forward {
             opacity: 0.42;
-            transform: rotateY(-22deg) translateX(-10px) scale(0.985);
+            transform: rotateY(-18deg) translateX(-8px) scale(0.99);
+            transform-origin: right center;
         }
 
         .booklet-page.turn-back {
             opacity: 0.42;
-            transform: rotateY(18deg) translateX(10px) scale(0.985);
-            transform-origin: right center;
+            transform: rotateY(18deg) translateX(8px) scale(0.99);
+            transform-origin: left center;
         }
 
         .booklet-page.enter-forward {
@@ -457,7 +453,8 @@
         @keyframes pageEnterForward {
             from {
                 opacity: 0.45;
-                transform: rotateY(14deg) translateX(8px) scale(0.99);
+                transform: rotateY(12deg) translateX(7px) scale(0.992);
+                transform-origin: left center;
             }
             to {
                 opacity: 1;
@@ -468,7 +465,8 @@
         @keyframes pageEnterBack {
             from {
                 opacity: 0.45;
-                transform: rotateY(-14deg) translateX(-8px) scale(0.99);
+                transform: rotateY(-12deg) translateX(-7px) scale(0.992);
+                transform-origin: right center;
             }
             to {
                 opacity: 1;
@@ -1038,8 +1036,8 @@
         }
     </style>
 
-    <link rel="stylesheet" href="/mariage/components/menu-lateral.css?v=31">
-    <script src="/mariage/components/menu-lateral.js?v=31" defer></script>
+    <link rel="stylesheet" href="/mariage/components/menu-lateral.css?v=32">
+    <script src="/mariage/components/menu-lateral.js?v=32" defer></script>
 </head>
 
 <body>
@@ -1124,7 +1122,7 @@
 
                     <p>
                         Cliquez sur la page ou utilisez les flèches pour parcourir
-                        le livret comme le jour de la cérémonie.
+                        les quatre pages du livret.
                     </p>
 
                     <div class="booklet-links">
