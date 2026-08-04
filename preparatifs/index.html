@@ -16,7 +16,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <style>
+    <style id="page-style">
         * {
             box-sizing: border-box;
             margin: 0;
@@ -61,7 +61,6 @@
 
         .page-shell {
             display: flex;
-            width: auto;
             min-height: 100vh;
             flex-direction: column;
             opacity: 1;
@@ -79,18 +78,18 @@
 
         .preparatifs-page {
             display: flex;
-            flex: 0 0 auto;
+            flex: 1;
             flex-direction: column;
             background: var(--background);
         }
 
         .hero {
-            padding: 30px 30px 24px;
+            padding: 48px 30px 38px;
             text-align: center;
         }
 
         .eyebrow {
-            margin-bottom: 9px;
+            margin-bottom: 14px;
             color: rgba(99, 9, 9, 0.72);
             font-family: "Montserrat", Arial, Helvetica, sans-serif;
             font-size: 11px;
@@ -113,14 +112,14 @@
             display: block;
             width: 88px;
             height: 1px;
-            margin: 12px auto 0;
+            margin: 18px auto 0;
             background: rgba(99, 9, 9, 0.48);
             content: "";
         }
 
         .intro {
             max-width: 650px;
-            margin: 12px auto 0;
+            margin: 18px auto 0;
             color: var(--muted);
             font-family: "Montserrat", Arial, Helvetica, sans-serif;
             font-size: 14px;
@@ -131,24 +130,22 @@
 
         .choices-section {
             display: flex;
-            flex: 0 0 auto;
+            flex: 1;
             flex-direction: column;
-            justify-content: flex-start;
-            padding: 20px 28px 28px;
+            justify-content: center;
+            padding: 24px 40px 28px;
             border-top: 1px solid var(--line);
             background: var(--soft);
         }
 
         .choices-heading {
             display: flex;
-            width: 100%;
-            flex: 0 0 auto;
             align-items: flex-end;
             justify-content: space-between;
             gap: 30px;
             max-width: 1180px;
-            margin: 0 auto 8px;
-            padding: 8px 0;
+            margin: 0 auto 22px;
+            padding-bottom: 16px;
             border-bottom: 1px solid rgba(99, 9, 9, 0.16);
         }
 
@@ -173,19 +170,16 @@
 
         .choices {
             display: grid;
-            width: min(100%, 1080px);
-            height: clamp(250px, 31vh, 315px);
             grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 22px;
-            align-items: stretch;
+            gap: 26px;
+            width: min(100%, 940px);
             margin: 0 auto;
         }
 
         .choice {
             position: relative;
             display: block;
-            height: 100%;
-            min-height: 0;
+            height: clamp(275px, 40vh, 390px);
             overflow: hidden;
             border: 1px solid rgba(99, 9, 9, 0.10);
             border-radius: 5px;
@@ -255,7 +249,7 @@
             flex-direction: column;
             justify-content: flex-end;
             align-items: flex-start;
-            padding: 34px 38px;
+            padding: 31px 34px;
         }
 
         .choice-kicker {
@@ -322,100 +316,102 @@
 
         .footer {
             flex: 0 0 auto;
-            padding: 5px 20px 7px;
+            padding: 12px 20px 16px;
             background: var(--background);
             text-align: center;
         }
 
         .footer-name-logo {
-            width: 118px;
+            width: 145px;
             max-width: 48vw;
             height: auto;
             margin: 0 auto;
         }
 
         .footer-date-logo {
-            width: 72px;
+            width: 110px;
             max-width: 28vw;
             height: auto;
-            margin: 1px auto 0;
+            margin: 5px auto 0;
         }
 
         /* Mise en page compacte pour conserver l’affichage sur un seul écran */
-        @media (min-width: 721px) and (max-height: 820px) {
+        @media (min-width: 721px) and (max-height: 760px) {
             .hero {
-                padding-top: 18px;
-                padding-bottom: 15px;
+                padding-top: 27px;
+                padding-bottom: 23px;
             }
 
             .eyebrow {
-                margin-bottom: 6px;
+                margin-bottom: 9px;
             }
 
             h1::after {
-                margin-top: 9px;
+                margin-top: 12px;
             }
 
             .intro {
-                margin-top: 9px;
-                line-height: 1.5;
+                margin-top: 12px;
+                line-height: 1.6;
             }
 
             .choices-section {
-                padding-top: 14px;
-                padding-bottom: 18px;
+                padding-top: 16px;
+                padding-bottom: 17px;
             }
 
             .choices-heading {
-                margin-bottom: 6px;
-                padding-top: 6px;
-                padding-bottom: 6px;
+                margin-bottom: 13px;
+                padding-bottom: 10px;
             }
 
             .choices {
-                width: min(100%, 1040px);
-                height: clamp(210px, 29vh, 265px);
+                max-width: 900px;
             }
 
             .choice {
-                height: 100%;
-                min-height: 0;
+                height: clamp(235px, 36vh, 315px);
             }
 
             .choice-inner {
-                padding: 25px 30px;
+                padding: 24px 28px;
             }
 
             .footer {
-                padding-top: 3px;
-                padding-bottom: 4px;
+                padding-top: 6px;
+                padding-bottom: 8px;
             }
 
             .footer-name-logo {
-                width: 104px;
+                width: 122px;
             }
 
             .footer-date-logo {
-                width: 58px;
-                margin-top: 0;
+                width: 68px;
+                margin-top: 2px;
             }
         }
 
         @media (max-width: 900px) {
+            :root {
+                --sidebar-width: 250px;
+            }
 
             .choices {
                 gap: 18px;
             }
 
-            .choices {
-                height: clamp(235px, 32vh, 295px);
+            .choice {
+                height: clamp(265px, 39vh, 360px);
             }
         }
 
         @media (max-width: 720px) {
+            :root {
+                --sidebar-width: 0px;
+            }
 
             .page-shell {
-                min-height: 100vh;
                 margin-left: 0;
             }
 
@@ -424,16 +420,13 @@
             }
 
             .choices-section {
-                min-height: auto;
                 justify-content: flex-start;
-                padding: 38px 16px 50px;
+                padding: 42px 16px 56px;
             }
 
             .choices-heading {
                 display: block;
-                margin-bottom: 16px;
-                padding-top: 0;
-                padding-bottom: 12px;
+                margin-bottom: 22px;
             }
 
             .choices-heading h2 {
@@ -442,32 +435,16 @@
             }
 
             .choices {
-                height: auto;
-                min-height: auto;
                 grid-template-columns: 1fr;
                 gap: 16px;
             }
 
             .choice {
-                height: 315px;
+                height: 390px;
             }
 
             .choice-inner {
                 padding: 28px 26px;
-            }
-
-
-            .footer {
-                padding: 12px 20px 16px;
-            }
-
-            .footer-name-logo {
-                width: 145px;
-            }
-
-            .footer-date-logo {
-                width: 110px;
-                margin-top: 5px;
             }
         }
 
@@ -491,8 +468,8 @@
         }
     </style>
 
-    <link rel="stylesheet" href="/mariage/components/menu-lateral.css?v=16">
-<script src="/mariage/components/menu-lateral.js?v=16" defer></script>
+    <link rel="stylesheet" href="/mariage/components/menu-lateral.css?v=18">
+    <script src="/mariage/components/menu-lateral.js?v=18" defer></script>
 </head>
 
 <body>
@@ -567,5 +544,6 @@
         </footer>
 
     </main>
+
 </body>
 </html>
