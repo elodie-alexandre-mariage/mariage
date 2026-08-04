@@ -133,23 +133,24 @@
             flex: 1;
             flex-direction: column;
             justify-content: center;
-            padding: 24px 40px 28px;
+            padding: 12px 24px 24px;
             border-top: 1px solid var(--line);
             background: var(--soft);
         }
 
         .choices-heading {
             display: flex;
+            width: min(100%, 1240px);
             align-items: flex-end;
             justify-content: space-between;
-            gap: 30px;
-            max-width: 1180px;
+            gap: 42px;
             margin: 0 auto 22px;
             padding-bottom: 16px;
             border-bottom: 1px solid rgba(99, 9, 9, 0.16);
         }
 
         .choices-heading p {
+            flex: 0 0 auto;
             color: var(--bordeaux);
             font-family: "Montserrat", Arial, Helvetica, sans-serif;
             font-size: 16px;
@@ -159,7 +160,8 @@
         }
 
         .choices-heading h2 {
-            max-width: 540px;
+            max-width: 570px;
+            margin-left: auto;
             color: var(--muted);
             font-family: "Montserrat", Arial, Helvetica, sans-serif;
             font-size: 14px;
@@ -171,15 +173,15 @@
         .choices {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 26px;
-            width: min(100%, 940px);
+            gap: 34px;
+            width: min(100%, 1080px);
             margin: 0 auto;
         }
 
         .choice {
             position: relative;
             display: block;
-            height: clamp(275px, 40vh, 390px);
+            height: clamp(332px, calc(40vh + 1.5cm), 447px);
             overflow: hidden;
             border: 1px solid rgba(99, 9, 9, 0.10);
             border-radius: 5px;
@@ -356,21 +358,24 @@
             }
 
             .choices-section {
-                padding-top: 16px;
-                padding-bottom: 17px;
+                padding-top: 8px;
+                padding-bottom: 14px;
             }
 
             .choices-heading {
+                width: min(100%, 1160px);
                 margin-bottom: 13px;
                 padding-bottom: 10px;
             }
 
             .choices {
-                max-width: 900px;
+                width: min(100%, 1030px);
+                max-width: none;
+                gap: 30px;
             }
 
             .choice {
-                height: clamp(235px, 36vh, 315px);
+                height: clamp(292px, calc(36vh + 1.5cm), 372px);
             }
 
             .choice-inner {
@@ -398,11 +403,11 @@
             }
 
             .choices {
-                gap: 18px;
+                gap: 24px;
             }
 
             .choice {
-                height: clamp(265px, 39vh, 360px);
+                height: clamp(305px, calc(39vh + 1cm), 405px);
             }
         }
 
@@ -421,7 +426,7 @@
 
             .choices-section {
                 justify-content: flex-start;
-                padding: 42px 16px 56px;
+                padding: 24px 16px 44px;
             }
 
             .choices-heading {
@@ -440,7 +445,7 @@
             }
 
             .choice {
-                height: 390px;
+                height: 420px;
             }
 
             .choice-inner {
@@ -468,8 +473,8 @@
         }
     </style>
 
-    <link rel="stylesheet" href="/mariage/components/menu-lateral.css?v=18">
-    <script src="/mariage/components/menu-lateral.js?v=18" defer></script>
+    <link rel="stylesheet" href="/mariage/components/menu-lateral.css?v=19">
+    <script src="/mariage/components/menu-lateral.js?v=19" defer></script>
 </head>
 
 <body>
