@@ -2730,7 +2730,90 @@
             display: none !important;
         }
 
+
+        /* =========================================================
+           OPTIMISATIONS DE FLUIDITÉ
+           Le design et le menu restent inchangés.
+        ========================================================= */
+
+        .book-sidebar {
+            -webkit-backdrop-filter: none !important;
+            backdrop-filter: none !important;
+        }
+
+        .gallery-item {
+            content-visibility: auto;
+            contain-intrinsic-size: 324px 324px;
+        }
+
+        .gallery-load-sentinel {
+            width: 100%;
+            height: 1px;
+            max-width: 1240px;
+            margin: 0 auto;
+            pointer-events: none;
+        }
+
+        body.effects-paused .light-beam,
+        body.effects-paused .ambient-orb,
+        body.effects-paused .sidebar-beam,
+        body.effects-paused .candle-glow,
+        body.effects-paused .strobe-flash,
+        body.effects-paused .book-sidebar::before,
+        body.effects-paused .book-sidebar::after,
+        body.effects-paused .sidebar-inner::before,
+        body.effects-paused .hero::before,
+        body.effects-paused .hero::after,
+        body.effects-paused .page-link.is-current .page-dot {
+            animation-play-state: paused !important;
+        }
+
+        @media (max-width: 1020px) {
+            .light-beam-four,
+            .light-beam-five,
+            .sidebar-beam-four,
+            .sidebar-beam-five,
+            .ambient-orb-right {
+                display: none !important;
+            }
+
+            .light-beam::before {
+                filter: blur(28px);
+                opacity: 0.56;
+            }
+        }
+
+        @media (max-width: 720px) {
+            .ambient-orb,
+            .light-beam-three,
+            .sidebar-beam-three {
+                display: none !important;
+            }
+
+            .book-sidebar::before,
+            .book-sidebar::after {
+                animation: none !important;
+            }
+        }
+
+        @media (hover: none) {
+            .gallery-item:hover {
+                transform: none !important;
+                box-shadow: none !important;
+            }
+
+            .gallery-item:hover::before {
+                opacity: 0 !important;
+            }
+
+            .gallery-item:hover img {
+                filter: brightness(0.91) saturate(0.94) !important;
+                transform: none !important;
+            }
+        }
+
 </style>
+<link rel="preload" as="image" href="/mariage/images/soiree/soiree-1.jpg" fetchpriority="high"/>
 </head>
 <body>
 <div aria-hidden="true" class="night-effects">
@@ -2877,77 +2960,187 @@
 <p aria-live="polite" class="photo-counter" id="photoCounter"></p>
 </div>
 <script>
-const firstPhotoNumber = 1;
+        const firstPhotoNumber = 1;
         const lastPhotoNumber = 301;
-
-        const photoNumbers = [];
-
-        for (
-            let number = firstPhotoNumber;
-            number <= lastPhotoNumber;
-            number++
-        ) {
-            photoNumbers.push(number);
-        }
+        const initialBatchSize = 36;
+        const batchSize = 24;
+        const preloadDistance = 1400;
 
         const gallery = document.getElementById("gallery");
-
         const lightbox = document.getElementById("lightbox");
         const lightboxImage = document.getElementById("lightboxImage");
         const photoCounter = document.getElementById("photoCounter");
-
         const closeButton = document.getElementById("closeButton");
         const previousButton = document.getElementById("previousButton");
         const nextButton = document.getElementById("nextButton");
 
+        const photos = Array.from(
+            { length: lastPhotoNumber - firstPhotoNumber + 1 },
+            function(_, index) {
+                return (
+                    "/mariage/images/soiree/soiree-" +
+                    (firstPhotoNumber + index) +
+                    ".jpg"
+                );
+            }
+        );
+
+        let renderedPhotoCount = 0;
+        let batchRenderingScheduled = false;
         let currentImage = 0;
         let previousFocusedElement = null;
+        let touchStartX = 0;
+        let touchEndX = 0;
+        let effectsResumeTimer = 0;
 
-        const photos = photoNumbers.map(function(number, index) {
+        const loadSentinel = document.createElement("div");
+        loadSentinel.className = "gallery-load-sentinel";
+        loadSentinel.setAttribute("aria-hidden", "true");
+        gallery.insertAdjacentElement("afterend", loadSentinel);
 
-            const path =
-                "../images/soiree/soiree-" +
-                number +
-                ".jpg";
-
+        function createGalleryItem(index) {
             const button = document.createElement("button");
+            const image = document.createElement("img");
 
             button.type = "button";
             button.className = "gallery-item";
-
+            button.dataset.index = String(index);
             button.setAttribute(
                 "aria-label",
                 "Agrandir la photographie " +
                 (index + 1) +
                 " sur " +
-                photoNumbers.length
+                photos.length
             );
 
-            const image = document.createElement("img");
-
-            image.src = path;
-
+            image.src = photos[index];
             image.alt =
                 "Soirée du mariage d’Élodie et Alexandre — photographie " +
-                (index + 1);
+                (index + 1) +
+                " sur " +
+                photos.length;
 
-            image.loading = "lazy";
             image.decoding = "async";
+            image.loading = index < 8 ? "eager" : "lazy";
+
+            if (index === 0) {
+                image.fetchPriority = "high";
+            }
 
             button.appendChild(image);
+            return button;
+        }
 
-            button.addEventListener("click", function() {
-                openLightbox(index);
-            });
+        function renderNextBatch(amount) {
+            if (renderedPhotoCount >= photos.length) {
+                loadObserver?.disconnect();
+                loadSentinel.remove();
+                return;
+            }
 
-            gallery.appendChild(button);
+            const endIndex = Math.min(
+                renderedPhotoCount + amount,
+                photos.length
+            );
 
-            return path;
+            const fragment = document.createDocumentFragment();
 
+            for (
+                let index = renderedPhotoCount;
+                index < endIndex;
+                index++
+            ) {
+                fragment.appendChild(createGalleryItem(index));
+            }
+
+            gallery.appendChild(fragment);
+            renderedPhotoCount = endIndex;
+
+            if (renderedPhotoCount >= photos.length) {
+                loadObserver?.disconnect();
+                loadSentinel.remove();
+            }
+        }
+
+        function scheduleNextBatch() {
+            if (
+                batchRenderingScheduled ||
+                renderedPhotoCount >= photos.length
+            ) {
+                return;
+            }
+
+            batchRenderingScheduled = true;
+
+            const render = function() {
+                renderNextBatch(batchSize);
+                batchRenderingScheduled = false;
+
+                if (
+                    loadSentinel.isConnected &&
+                    loadSentinel.getBoundingClientRect().top <
+                        window.innerHeight + preloadDistance
+                ) {
+                    scheduleNextBatch();
+                }
+            };
+
+            if ("requestIdleCallback" in window) {
+                window.requestIdleCallback(render, { timeout: 250 });
+            } else {
+                window.setTimeout(render, 0);
+            }
+        }
+
+        renderNextBatch(initialBatchSize);
+
+        const loadObserver = "IntersectionObserver" in window
+            ? new IntersectionObserver(
+                function(entries) {
+                    if (entries.some(function(entry) {
+                        return entry.isIntersecting;
+                    })) {
+                        scheduleNextBatch();
+                    }
+                },
+                {
+                    rootMargin: preloadDistance + "px 0px"
+                }
+            )
+            : null;
+
+        if (loadObserver) {
+            loadObserver.observe(loadSentinel);
+        } else {
+            while (renderedPhotoCount < photos.length) {
+                renderNextBatch(batchSize);
+            }
+        }
+
+        gallery.addEventListener("click", function(event) {
+            const button = event.target.closest(".gallery-item");
+
+            if (!button || !gallery.contains(button)) {
+                return;
+            }
+
+            openLightbox(Number(button.dataset.index));
         });
 
-        function updateLightbox() {
+        function preloadAdjacentImages() {
+            const previousIndex =
+                (currentImage - 1 + photos.length) % photos.length;
 
+            const nextIndex =
+                (currentImage + 1) % photos.length;
+
+            [previousIndex, nextIndex].forEach(function(index) {
+                const image = new Image();
+                image.src = photos[index];
+            });
+        }
+
+        function updateLightbox() {
             lightboxImage.src = photos[currentImage];
 
             lightboxImage.alt =
@@ -2961,10 +3154,25 @@ const firstPhotoNumber = 1;
                 " / " +
                 photos.length;
 
+            preloadAdjacentImages();
+        }
+
+        function pauseEffects() {
+            document.body.classList.add("effects-paused");
+        }
+
+        function resumeEffects() {
+            if (
+                document.hidden ||
+                lightbox.classList.contains("open")
+            ) {
+                return;
+            }
+
+            document.body.classList.remove("effects-paused");
         }
 
         function openLightbox(index) {
-
             previousFocusedElement = document.activeElement;
             currentImage = index;
 
@@ -2972,42 +3180,31 @@ const firstPhotoNumber = 1;
 
             lightbox.classList.add("open");
             lightbox.setAttribute("aria-hidden", "false");
-
             document.body.classList.add("lightbox-open");
+            pauseEffects();
 
             closeButton.focus();
-
         }
 
         function closeLightbox() {
-
             lightbox.classList.remove("open");
             lightbox.setAttribute("aria-hidden", "true");
-
             document.body.classList.remove("lightbox-open");
 
             lightboxImage.src = "";
+            resumeEffects();
 
             if (previousFocusedElement) {
                 previousFocusedElement.focus();
             }
-
         }
 
         function changeImage(direction) {
-
-            currentImage += direction;
-
-            if (currentImage < 0) {
-                currentImage = photos.length - 1;
-            }
-
-            if (currentImage >= photos.length) {
-                currentImage = 0;
-            }
+            currentImage =
+                (currentImage + direction + photos.length) %
+                photos.length;
 
             updateLightbox();
-
         }
 
         closeButton.addEventListener("click", closeLightbox);
@@ -3021,15 +3218,36 @@ const firstPhotoNumber = 1;
         });
 
         lightbox.addEventListener("click", function(event) {
-
             if (event.target === lightbox) {
                 closeLightbox();
             }
-
         });
 
-        document.addEventListener("keydown", function(event) {
+        lightbox.addEventListener(
+            "touchstart",
+            function(event) {
+                touchStartX = event.changedTouches[0].screenX;
+            },
+            { passive: true }
+        );
 
+        lightbox.addEventListener(
+            "touchend",
+            function(event) {
+                touchEndX = event.changedTouches[0].screenX;
+
+                const distance = touchEndX - touchStartX;
+
+                if (Math.abs(distance) < 55) {
+                    return;
+                }
+
+                changeImage(distance > 0 ? -1 : 1);
+            },
+            { passive: true }
+        );
+
+        document.addEventListener("keydown", function(event) {
             if (!lightbox.classList.contains("open")) {
                 return;
             }
@@ -3046,7 +3264,53 @@ const firstPhotoNumber = 1;
                 changeImage(1);
             }
 
+            if (event.key === "Tab") {
+                const focusableElements = [
+                    closeButton,
+                    previousButton,
+                    nextButton
+                ];
+
+                const currentFocusIndex =
+                    focusableElements.indexOf(document.activeElement);
+
+                if (event.shiftKey && currentFocusIndex <= 0) {
+                    event.preventDefault();
+                    nextButton.focus();
+                } else if (
+                    !event.shiftKey &&
+                    currentFocusIndex === focusableElements.length - 1
+                ) {
+                    event.preventDefault();
+                    closeButton.focus();
+                }
+            }
         });
+
+        window.addEventListener(
+            "scroll",
+            function() {
+                pauseEffects();
+                window.clearTimeout(effectsResumeTimer);
+
+                effectsResumeTimer = window.setTimeout(
+                    resumeEffects,
+                    140
+                );
+            },
+            { passive: true }
+        );
+
+        document.addEventListener(
+            "visibilitychange",
+            function() {
+                if (document.hidden) {
+                    pauseEffects();
+                } else {
+                    resumeEffects();
+                }
+            }
+        );
 
         const currentPage = "soiree";
 
@@ -3066,7 +3330,7 @@ const firstPhotoNumber = 1;
 
         const currentIndex = pageOrder.indexOf(currentPage);
 
-        document.querySelectorAll(".page-link").forEach((link) => {
+        document.querySelectorAll(".page-link").forEach(function(link) {
             const pageName = link.dataset.page;
             const pageIndex = pageOrder.indexOf(pageName);
 
@@ -3083,18 +3347,29 @@ const firstPhotoNumber = 1;
             }
         });
 
-        const menuButton = document.querySelector(".mobile-menu-button");
-        const sidebar = document.querySelector(".book-sidebar");
+        const menuButton =
+            document.querySelector(".mobile-menu-button");
 
-        menuButton.addEventListener("click", () => {
+        const sidebar =
+            document.querySelector(".book-sidebar");
+
+        menuButton.addEventListener("click", function() {
             const isOpen = sidebar.classList.toggle("is-open");
-            menuButton.setAttribute("aria-expanded", String(isOpen));
+
+            menuButton.setAttribute(
+                "aria-expanded",
+                String(isOpen)
+            );
+
             menuButton.textContent = isOpen ? "×" : "☰";
         });
 
-        document.addEventListener("click", (event) => {
-            const clickedInsideSidebar = sidebar.contains(event.target);
-            const clickedMenuButton = menuButton.contains(event.target);
+        document.addEventListener("click", function(event) {
+            const clickedInsideSidebar =
+                sidebar.contains(event.target);
+
+            const clickedMenuButton =
+                menuButton.contains(event.target);
 
             if (
                 window.innerWidth <= 720 &&
@@ -3112,8 +3387,8 @@ const firstPhotoNumber = 1;
             "(prefers-reduced-motion: reduce)"
         ).matches;
 
-        document.querySelectorAll('a[href]').forEach((link) => {
-            link.addEventListener("click", (event) => {
+        document.querySelectorAll('a[href]').forEach(function(link) {
+            link.addEventListener("click", function(event) {
                 const href = link.getAttribute("href");
 
                 if (
@@ -3129,16 +3404,20 @@ const firstPhotoNumber = 1;
                     return;
                 }
 
-                const destination = new URL(link.href, window.location.href);
+                const destination =
+                    new URL(link.href, window.location.href);
 
-                if (destination.origin !== window.location.origin) {
+                if (
+                    destination.origin !==
+                    window.location.origin
+                ) {
                     return;
                 }
 
                 event.preventDefault();
                 document.body.classList.add("page-leaving");
 
-                window.setTimeout(() => {
+                window.setTimeout(function() {
                     window.location.href = destination.href;
                 }, 400);
             });
