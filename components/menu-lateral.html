@@ -1,3 +1,119 @@
+<!-- STYLE VOYAGE DE NOCES — IDENTIQUE À LA PAGE SOIRÉE -->
+<style id="voyage-menu-style">
+    /*
+       Le rendu géométrique est repris de la page Soirée.
+       Les couleurs continuent à venir du menu clair principal.
+    */
+    .book-sidebar .page-link.page-link-voyage {
+        position: relative;
+        display: grid;
+        grid-template-columns: 35px 1fr;
+        gap: 16px;
+        align-items: center;
+        min-height: 46px;
+        padding: 2px 5px;
+        font-family: "Montserrat", Arial, Helvetica, sans-serif;
+        font-size: 14px;
+        font-weight: 300;
+        line-height: 1.35;
+        letter-spacing: 0.015em;
+    }
+
+    .book-sidebar .page-link-voyage .page-dot-plane {
+        position: relative;
+        z-index: 2;
+        display: grid;
+        width: 33px;
+        height: 33px;
+        padding: 0;
+        place-items: center;
+        overflow: hidden;
+        border-radius: 50%;
+    }
+
+    .book-sidebar .page-link-voyage .page-dot-plane svg {
+        display: block;
+        width: 16px;
+        height: 16px;
+        fill: currentColor;
+        transform: rotate(-12deg);
+        transform-origin: center;
+    }
+
+    .book-sidebar .page-link-voyage .page-label-stack {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        gap: 3px;
+        line-height: 1;
+    }
+
+    .book-sidebar .page-link-voyage .page-label-main {
+        display: block;
+        line-height: 1.2;
+    }
+
+    .book-sidebar .page-link-voyage .page-label-subrow {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .book-sidebar .page-link-voyage .page-label-sub {
+        display: block;
+        font-family: "Montserrat", Arial, Helvetica, sans-serif;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 1.2;
+        letter-spacing: 0.02em;
+    }
+
+    .book-sidebar .page-link-voyage .page-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2px 8px;
+        border-radius: 999px;
+        font-family: "Montserrat", Arial, Helvetica, sans-serif;
+        font-size: 10px;
+        font-weight: 600;
+        line-height: 1;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        white-space: nowrap;
+    }
+
+    @media (max-width: 1180px) {
+        .book-sidebar .page-link-voyage .page-dot-plane svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        .book-sidebar .page-link-voyage .page-label-sub {
+            font-size: 11px;
+        }
+
+        .book-sidebar .page-link-voyage .page-badge {
+            padding: 2px 6px;
+            font-size: 9px;
+        }
+    }
+
+    @media (min-width: 721px) and (max-height: 820px) {
+        .book-sidebar .page-link.page-link-voyage {
+            min-height: 37px;
+            font-size: 12.5px;
+        }
+
+        .book-sidebar .page-link-voyage .page-dot-plane {
+            width: 28px;
+            height: 28px;
+        }
+    }
+</style>
+<!-- FIN STYLE VOYAGE DE NOCES -->
+
 <button
     class="mobile-menu-button"
     type="button"
