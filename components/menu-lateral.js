@@ -26,7 +26,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         "vin-d-honneur",
         "soiree",
         "remerciements",
-        "souvenirs"
+        "souvenirs",
+        "voyage-de-noces"
     ];
 
     function normalizePath(pathname) {
@@ -102,6 +103,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         if (currentPath.includes(`${siteRoot}souvenirs/`)) {
             return "souvenirs";
+        }
+
+        if (
+            currentPath.includes(`${siteRoot}voyage-de-noces/`) ||
+            currentPath.includes(`${siteRoot}voyage_de_noces/`)
+        ) {
+            return "voyage-de-noces";
         }
 
         return "bienvenue";
@@ -254,7 +262,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     try {
         const response = await fetch(
-    `${siteRoot}components/menu-lateral.html?v=2`,
+    `${siteRoot}components/menu-lateral.html?v=3`,
     {
         cache: "no-store"
     }
