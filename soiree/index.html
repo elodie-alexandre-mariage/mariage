@@ -2812,6 +2812,30 @@
             }
         }
 
+
+
+        /* =========================
+           RUBRIQUE « GRÂCE À VOUS »
+        ========================= */
+
+        .book-sidebar {
+            overflow-y: auto;
+        }
+
+        .menu-grace {
+            display: flex;
+            flex: 0 0 auto;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 12px 5px 0;
+        }
+
+        @media (min-width: 721px) and (max-height: 820px) {
+            .menu-grace {
+                padding-top: 6px;
+            }
+        }
+
 </style>
 <link rel="preload" as="image" href="/mariage/images/soiree/soiree-1.jpg" fetchpriority="high"/>
 </head>
@@ -2908,6 +2932,18 @@
 <a class="page-link" data-page="souvenirs" href="/mariage/souvenirs/">
 <span class="page-dot">11</span>
 <span class="page-label">Les souvenirs</span>
+</a>
+</li>
+<li aria-hidden="true" class="menu-grace">
+<span class="menu-annexe-line"></span>
+<span class="sidebar-section-title menu-annexe-title">
+                Grâce à vous
+            </span>
+</li>
+<li class="page-item page-item-separated">
+<a class="page-link" data-page="voyage-de-noces" href="/mariage/voyage-de-noces/">
+<span class="page-dot">12</span>
+<span class="page-label">Voyage de noces</span>
 </a>
 </li>
 </ol>
@@ -3325,7 +3361,8 @@
             "vin-d-honneur",
             "soiree",
             "remerciements",
-            "souvenirs"
+            "souvenirs",
+            "voyage-de-noces"
         ];
 
         const currentIndex = pageOrder.indexOf(currentPage);
