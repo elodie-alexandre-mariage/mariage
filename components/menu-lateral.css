@@ -289,6 +289,15 @@ body.page-leaving .page-shell {
     margin: 0 0 14px;
 }
 
+/* Deuxième rubrique secondaire : « Grâce à vous » */
+.menu-grace {
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px 5px 0;
+}
+
 .page-item-separated {
     margin-top: 0;
     padding-top: 0;
@@ -350,7 +359,8 @@ body.page-leaving .page-shell {
         height: 342px;
     }
 
-    .menu-annexe {
+    .menu-annexe,
+    .menu-grace {
         padding-top: 6px;
     }
 
