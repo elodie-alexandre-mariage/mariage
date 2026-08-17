@@ -1,0 +1,22 @@
+FICHIERS MENU LATERAL — VERSION CORRIGEE
+========================================
+
+Ces fichiers sont bases sur les fichiers actuels envoyes le 17/08/2026.
+
+Correction appliquee :
+- Les souvenirs reste selectionne dans le menu lateral sur :
+  * Souvenirs
+  * Videos
+  * Vos photos
+  * Photos de couple
+  * Photos de groupe
+  * Photobooth
+
+A remplacer dans :
+D:\Documents\SITE\MARIAGE\mariage\components\
+
+Fichiers du ZIP :
+- menu-lateral.css (inchangé)
+- menu-lateral.html (inchangé)
+- menu-lateral.js (corrigé)
+- menu-lateral.txt (copie texte du JS corrigé)
