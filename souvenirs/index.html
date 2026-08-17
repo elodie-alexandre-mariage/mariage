@@ -393,6 +393,11 @@
             transform: translateX(5px);
         }
 
+        .memory-card--wide {
+            grid-column: 1 / -1;
+            min-height: 390px;
+        }
+
         /* =========================
            PIED DE PAGE
         ========================= */
@@ -450,6 +455,11 @@
             }
 
             .memory-card {
+                min-height: 360px;
+            }
+
+            .memory-card--wide {
+                grid-column: auto;
                 min-height: 360px;
             }
 
@@ -621,6 +631,33 @@
                             </span>
 
                             <h2>Film &amp; vidéos</h2>
+                        </div>
+
+                        <span class="memory-arrow">
+                            Découvrir
+                        </span>
+                    </div>
+                </a>
+
+                <a
+                    href="/mariage/vosphotos/"
+                    class="memory-card memory-card--wide"
+                >
+                    <img
+                        src="/mariage/images/vos_photos/vos_photos_vin_d_honneur_0036.jpg"
+                        alt=""
+                        class="memory-card-image"
+                        loading="lazy"
+                        decoding="async"
+                    >
+
+                    <div class="memory-card-inner">
+                        <div class="memory-card-title">
+                            <span class="memory-kicker">
+                                À travers vos regards
+                            </span>
+
+                            <h2>Vos photos</h2>
                         </div>
 
                         <span class="memory-arrow">
