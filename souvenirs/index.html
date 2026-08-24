@@ -23,7 +23,7 @@
     <link
         rel="preload"
         as="image"
-        href="/mariage/images/vignettes/vignette_photoscouple.jpg"
+        href="../images/vignettes/vignette_photoscouple.jpg"
         fetchpriority="high"
     >
 
@@ -496,10 +496,113 @@
                 transition-duration: 0.01ms !important;
             }
         }
-    </style>
+    
 
-    <link rel="stylesheet" href="/mariage/components/menu-lateral.css?v=36">
-    <script src="/mariage/components/menu-lateral.js?v=36" defer></script>
+        /* =========================================================
+           SOUVENIRS — CARROUSEL TABLETTE / MOBILE V2
+           Desktop (> 1024 px) inchangé.
+        ========================================================= */
+        .mobile-memories-carousel-hint {
+            display: none;
+        }
+
+        @media (max-width: 1024px) {
+            .memories-section {
+                overflow: hidden;
+                padding-right: 0;
+                padding-left: 0;
+            }
+
+            .memories-section > .section-heading {
+                margin-right: 20px;
+                margin-left: 20px;
+            }
+
+            .mobile-memories-carousel-hint {
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                gap: 10px;
+                margin: -4px 20px 16px;
+                color: rgba(99, 9, 9, 0.66);
+                font-family: "Montserrat", Arial, Helvetica, sans-serif;
+                font-size: 9px;
+                font-weight: 600;
+                line-height: 1.4;
+                letter-spacing: 0.13em;
+                text-transform: uppercase;
+            }
+
+            .mobile-memories-carousel-hint span:last-child {
+                font-size: 18px;
+                font-weight: 300;
+                line-height: 1;
+            }
+
+            .memories-grid {
+                display: flex !important;
+                width: 100%;
+                max-width: none !important;
+                gap: 12px !important;
+                margin: 0 !important;
+                padding: 2px 20px 14px;
+                overflow-x: auto;
+                overflow-y: hidden;
+                scroll-behavior: smooth;
+                scroll-snap-type: x mandatory;
+                scrollbar-width: none;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .memories-grid::-webkit-scrollbar {
+                display: none;
+            }
+
+            .memories-grid > .memory-card,
+            .memories-grid > .memory-card--wide {
+                flex: 0 0 min(42vw, 390px) !important;
+                width: auto !important;
+                min-height: clamp(410px, 52svh, 520px) !important;
+                grid-column: auto !important;
+                scroll-snap-align: start;
+                scroll-snap-stop: normal;
+            }
+        }
+
+        @media (max-width: 720px) {
+            .memories-section > .section-heading {
+                margin-right: 16px;
+                margin-left: 16px;
+            }
+
+            .mobile-memories-carousel-hint {
+                justify-content: flex-start;
+                margin: -3px 16px 14px;
+                font-size: 8.5px;
+                letter-spacing: 0.105em;
+            }
+
+            .memories-grid {
+                gap: 10px !important;
+                padding-right: 16px;
+                padding-left: 16px;
+            }
+
+            .memories-grid > .memory-card,
+            .memories-grid > .memory-card--wide {
+                flex-basis: min(78vw, 335px) !important;
+                min-height: clamp(390px, 58svh, 500px) !important;
+            }
+
+            .memory-card-inner {
+                padding: 30px 27px;
+            }
+        }
+
+</style>
+
+    <link rel="stylesheet" href="../components/menu-lateral.css?v=51">
+    <script src="../components/menu-lateral.js?v=51" defer></script>
 </head>
 
 <body>
@@ -533,14 +636,19 @@
                 </p>
             </div>
 
+            <div class="mobile-memories-carousel-hint" aria-hidden="true">
+                <span>Glissez pour découvrir les souvenirs</span>
+                <span>→</span>
+            </div>
+
             <div class="memories-grid">
 
                 <a
-                    href="/mariage/photoscouple/"
+                    href="../photoscouple/index.html"
                     class="memory-card"
                 >
                     <img
-                        src="/mariage/images/vignettes/vignette_photoscouple.jpg"
+                        src="../images/vignettes/vignette_photoscouple.jpg"
                         alt=""
                         class="memory-card-image"
                         fetchpriority="high"
@@ -563,11 +671,11 @@
                 </a>
 
                 <a
-                    href="/mariage/photosgroupe/"
+                    href="../photosgroupe/index.html"
                     class="memory-card"
                 >
                     <img
-                        src="/mariage/images/vignettes/vignette_photosgroupe.jpg"
+                        src="../images/vignettes/vignette_photosgroupe.jpg"
                         alt=""
                         class="memory-card-image"
                         loading="lazy"
@@ -590,11 +698,11 @@
                 </a>
 
                 <a
-                    href="/mariage/photobooth/"
+                    href="../photobooth/index.html"
                     class="memory-card"
                 >
                     <img
-                        src="/mariage/images/vignettes/vignette_photobooth.jpg"
+                        src="../images/vignettes/vignette_photobooth.jpg"
                         alt=""
                         class="memory-card-image"
                         loading="lazy"
@@ -617,11 +725,11 @@
                 </a>
 
                 <a
-                    href="/mariage/videos/"
+                    href="../videos/index.html"
                     class="memory-card"
                 >
                     <img
-                        src="/mariage/images/vignettes/vignette_videos.jpg"
+                        src="../images/vignettes/vignette_videos.jpg"
                         alt=""
                         class="memory-card-image"
                         loading="lazy"
@@ -644,11 +752,11 @@
                 </a>
 
                 <a
-                    href="/mariage/vosphotos/"
+                    href="../vosphotos/index.html"
                     class="memory-card memory-card--wide"
                 >
                     <img
-                        src="/mariage/images/vos_photos/vos_photos_vin_d_honneur_0036.jpg"
+                        src="../images/vos_photos/vos_photos_vin_d_honneur_0036.jpg"
                         alt=""
                         class="memory-card-image memory-card-image-vosphotos"
                         loading="lazy"
@@ -677,7 +785,7 @@
         <footer class="footer" aria-label="Signature de l’album">
 
             <img
-                src="/mariage/images/style/nomsansfond.jpg"
+                src="../images/style/nomsansfond.jpg"
                 alt="Élodie et Alexandre"
                 class="footer-name-logo"
                 loading="lazy"
@@ -685,7 +793,7 @@
             >
 
             <img
-                src="/mariage/images/style/datesansfond.jpg"
+                src="../images/style/datesansfond.jpg"
                 alt="23 mai 2026"
                 class="footer-date-logo"
                 loading="lazy"

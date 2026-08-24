@@ -1,0 +1,15 @@
+VERSION BRANCHE MOBILE — CORRECTION TEST LOCAL
+
+Cette version corrige le problème « Index de D:\...\sommaire\ ».
+Les liens internes pointent désormais explicitement vers index.html et les ressources utilisent des chemins relatifs.
+
+Elle fonctionne :
+- en ouvrant directement mariage/index.html dans Chrome pour tester le mobile ;
+- sur GitHub Pages après Commit/Push.
+
+Important : en ouverture locale file://, Chrome bloque le chargement du menu latéral externe.
+Ce n'est pas gênant pour le test téléphone : le menu latéral est volontairement masqué sur téléphone.
+Les carrousels, la navigation Précédent / Sommaire / Suivant et le retour en haut fonctionnent localement.
+Sur GitHub Pages, le menu desktop/tablette est chargé normalement.
+
+Aucune image n'est incluse ni modifiée.

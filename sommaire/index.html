@@ -452,10 +452,190 @@
                 transition-duration: 0.01ms !important;
             }
         }
-    </style>
+    
 
-    <link rel="stylesheet" href="/mariage/components/menu-lateral.css?v=4">
-    <script src="/mariage/components/menu-lateral.js?v=4" defer></script>
+        /* =========================================================
+           SOMMAIRE — UX TABLETTE / MOBILE
+           Desktop (> 1024 px) inchangé.
+        ========================================================= */
+        .mobile-summary-carousel-heading,
+        .mobile-summary-replay {
+            display: none;
+        }
+
+        @media (max-width: 1024px) {
+            .chapters-section {
+                overflow: hidden;
+                padding: 38px 0 48px;
+            }
+
+            .mobile-summary-carousel-heading {
+                display: flex;
+                width: 100%;
+                max-width: 1180px;
+                align-items: center;
+                justify-content: space-between;
+                gap: 18px;
+                margin: 0 auto 18px;
+                padding: 0 20px;
+                color: var(--bordeaux);
+                font-family: "Montserrat", Arial, Helvetica, sans-serif;
+                font-size: 9px;
+                font-weight: 600;
+                line-height: 1.4;
+                letter-spacing: 0.13em;
+                text-transform: uppercase;
+            }
+
+            .mobile-summary-carousel-heading span:last-child {
+                display: inline-flex;
+                align-items: center;
+                gap: 10px;
+                color: rgba(99, 9, 9, 0.66);
+            }
+
+            .mobile-summary-carousel-heading .mobile-summary-arrow {
+                font-size: 18px;
+                font-weight: 300;
+                line-height: 1;
+            }
+
+            .chapters-grid {
+                display: flex !important;
+                width: 100%;
+                max-width: none;
+                gap: 12px !important;
+                margin: 0;
+                padding: 2px 20px 14px;
+                overflow-x: auto;
+                overflow-y: hidden;
+                scroll-behavior: smooth;
+                scroll-snap-type: x mandatory;
+                scrollbar-width: none;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .chapters-grid::-webkit-scrollbar {
+                display: none;
+            }
+
+            .chapters-grid > .section-heading {
+                display: none !important;
+            }
+
+            .chapters-grid > .chapter-card,
+            .chapters-grid > .memories-card {
+                flex: 0 0 min(42vw, 390px);
+                width: auto;
+                min-height: clamp(410px, 52svh, 520px);
+                grid-column: auto !important;
+                scroll-snap-align: start;
+                scroll-snap-stop: normal;
+            }
+
+            .mobile-summary-replay {
+                display: flex;
+                max-width: 760px;
+                align-items: center;
+                justify-content: space-between;
+                gap: 20px;
+                margin: 24px 20px 0;
+                padding: 18px 20px;
+                border: 1px solid rgba(99, 9, 9, 0.16);
+                border-radius: 4px;
+                background: rgba(255, 255, 255, 0.76);
+                font-family: "Montserrat", Arial, Helvetica, sans-serif;
+            }
+
+            .mobile-summary-replay-copy {
+                color: var(--muted);
+                font-size: 11px;
+                font-weight: 300;
+                line-height: 1.55;
+            }
+
+            .mobile-summary-replay-copy strong {
+                display: block;
+                margin-bottom: 4px;
+                color: var(--bordeaux);
+                font-size: 10px;
+                font-weight: 600;
+                letter-spacing: 0.14em;
+                text-transform: uppercase;
+            }
+
+            .mobile-summary-replay-link {
+                display: inline-flex;
+                min-height: 44px;
+                flex: 0 0 auto;
+                align-items: center;
+                gap: 8px;
+                padding: 10px 15px;
+                border: 1px solid rgba(99, 9, 9, 0.32);
+                border-radius: 999px;
+                color: var(--bordeaux);
+                font-size: 9px;
+                font-weight: 600;
+                letter-spacing: 0.10em;
+                text-decoration: none;
+                text-transform: uppercase;
+                white-space: nowrap;
+            }
+        }
+
+        @media (max-width: 720px) {
+            .summary-intro {
+                padding-bottom: 34px;
+            }
+
+            .chapters-section {
+                padding-top: 28px;
+                padding-bottom: 38px;
+            }
+
+            .mobile-summary-carousel-heading {
+                display: block;
+                margin-bottom: 14px;
+            }
+
+            .mobile-summary-carousel-heading > span:first-child {
+                display: block;
+                margin-bottom: 7px;
+            }
+
+            .chapters-grid {
+                gap: 10px !important;
+                padding-right: 16px;
+                padding-left: 16px;
+            }
+
+            .chapters-grid > .chapter-card,
+            .chapters-grid > .memories-card {
+                flex-basis: min(78vw, 335px);
+                min-height: clamp(390px, 58svh, 500px);
+            }
+
+            .chapter-card-inner {
+                padding: 30px 27px;
+            }
+
+            .mobile-summary-replay {
+                display: block;
+                margin: 20px 16px 0;
+                padding: 17px 18px;
+            }
+
+            .mobile-summary-replay-link {
+                width: 100%;
+                justify-content: center;
+                margin-top: 13px;
+            }
+        }
+
+</style>
+
+    <link rel="stylesheet" href="../components/menu-lateral.css?v=51">
+    <script src="../components/menu-lateral.js?v=51" defer></script>
 </head>
 
 <body>
@@ -485,56 +665,61 @@
             </header>
 
             <section class="chapters-section" aria-label="Chapitres de l’album">
-                <div class="chapters-grid">
+                <div class="mobile-summary-carousel-heading" aria-hidden="true">
+                        <span>Les chapitres</span>
+                        <span>Glissez pour découvrir les chapitres <span class="mobile-summary-arrow">→</span></span>
+                    </div>
+
+                    <div class="chapters-grid">
 
                     <div class="section-heading">
                         <span>Notre mariage</span>
                         <p>De l’invitation aux derniers éclats de rire.</p>
                     </div>
 
-                    <a href="../invitation/" class="chapter-card" style="--card-image: url('../images/vignettes/vignette_invitation.jpg');">
+                    <a href="../invitation/index.html" class="chapter-card" style="--card-image: url('../images/vignettes/vignette_invitation.jpg');">
                         <div class="chapter-card-inner">
                             <div class="chapter-card-title"><h2>L'invitation</h2></div>
                         </div>
                     </a>
 
-                    <a href="../preparatifs/" class="chapter-card" style="--card-image: url('../images/vignettes/vignette_preparatifs.jpg');">
+                    <a href="../preparatifs/index.html" class="chapter-card" style="--card-image: url('../images/vignettes/vignette_preparatifs.jpg');">
                         <div class="chapter-card-inner">
                             <div class="chapter-card-title"><h2>Nos préparatifs</h2></div>
                         </div>
                     </a>
 
-                    <a href="../first-look/" class="chapter-card" style="--card-image: url('../images/vignettes/vignette_first-look.jpg');">
+                    <a href="../first-look/index.html" class="chapter-card" style="--card-image: url('../images/vignettes/vignette_first-look.jpg');">
                         <div class="chapter-card-inner">
                             <div class="chapter-card-title"><h2>Le First-Look</h2></div>
                         </div>
                     </a>
 
-                    <a href="../mairie/" class="chapter-card" style="--card-image: url('../images/vignettes/vignette_mairie.jpg');">
+                    <a href="../mairie/index.html" class="chapter-card" style="--card-image: url('../images/vignettes/vignette_mairie.jpg');">
                         <div class="chapter-card-inner">
                             <div class="chapter-card-title"><h2>La mairie</h2></div>
                         </div>
                     </a>
 
-                    <a href="../eglise/" class="chapter-card" style="--card-image: url('../images/vignettes/vignette_eglise.jpg');">
+                    <a href="../eglise/index.html" class="chapter-card" style="--card-image: url('../images/vignettes/vignette_eglise.jpg');">
                         <div class="chapter-card-inner">
                             <div class="chapter-card-title"><h2>L'église</h2></div>
                         </div>
                     </a>
 
-                    <a href="../vin_d_honneur/" class="chapter-card" style="--card-image: url('../images/vignettes/vignette_vin_d_honneur.jpg');">
+                    <a href="../vin_d_honneur/index.html" class="chapter-card" style="--card-image: url('../images/vignettes/vignette_vin_d_honneur.jpg');">
                         <div class="chapter-card-inner">
                             <div class="chapter-card-title"><h2>Le vin d’honneur</h2></div>
                         </div>
                     </a>
 
-                    <a href="../soiree/" class="chapter-card" style="--card-image: url('../images/vignettes/vignette_soiree.jpg');">
+                    <a href="../soiree/index.html" class="chapter-card" style="--card-image: url('../images/vignettes/vignette_soiree.jpg');">
                         <div class="chapter-card-inner">
                             <div class="chapter-card-title"><h2>La soirée</h2></div>
                         </div>
                     </a>
 
-                    <a href="../remerciements/" class="chapter-card" style="--card-image: url('../images/vignettes/vignette_remerciements_v2.jpg');">
+                    <a href="../remerciements/index.html" class="chapter-card" style="--card-image: url('../images/vignettes/vignette_remerciements_v2.jpg');">
                         <div class="chapter-card-inner">
                             <div class="chapter-card-title"><h2>Remerciements</h2></div>
                         </div>
@@ -545,7 +730,7 @@
                         <p>Le film et les galeries qui complètent notre histoire.</p>
                     </div>
                     <a
-                        href="../souvenirs/"
+                        href="../souvenirs/index.html"
                         class="chapter-card memories-card"
                         style="--card-image: url('../images/vignettes/vignette_souvenirs.jpg');"
                         aria-label="Découvrir les souvenirs"
@@ -558,6 +743,16 @@
                     </a>
 
 
+                </div>
+
+                <div class="mobile-summary-replay">
+                    <p class="mobile-summary-replay-copy">
+                        <strong>Revivre le mariage</strong>
+                        Commencez par l’invitation, puis parcourez chaque chapitre dans l’ordre.
+                    </p>
+                    <a class="mobile-summary-replay-link" href="../invitation/index.html">
+                        Commencer <span aria-hidden="true">→</span>
+                    </a>
                 </div>
             </section>
 

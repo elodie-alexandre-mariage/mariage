@@ -23,7 +23,7 @@
     <link
         rel="preload"
         as="image"
-        href="/mariage/images/photobooth/IMG_7134_20260523_184837_3600.JPG"
+        href="../images/photobooth/IMG_7134_20260523_184837_3600.JPG"
         fetchpriority="high"
     >
 
@@ -764,10 +764,166 @@
                 transition-duration: 0.01ms !important;
             }
         }
+
+
+        /* =========================================================
+           MOBILE / TABLETTE — CARROUSEL DES PASSAGES PHOTOBOOTH
+           Desktop inchangé.
+        ========================================================= */
+
+        .passage-mobile-tools {
+            display: none;
+        }
+
+        @media (max-width: 1024px) {
+            .passage-mobile-tools {
+                display: flex;
+                width: 100%;
+                max-width: 1180px;
+                align-items: center;
+                justify-content: space-between;
+                gap: 18px;
+                margin: -3px auto 18px;
+                padding: 0 2px 11px;
+                border-bottom: 1px solid rgba(99, 9, 9, 0.12);
+                font-family: "Montserrat", Arial, Helvetica, sans-serif;
+            }
+
+            .passage-mobile-hint {
+                display: inline-flex;
+                align-items: center;
+                gap: 12px;
+                color: rgba(99, 9, 9, 0.72);
+                font-size: 9px;
+                font-weight: 600;
+                letter-spacing: 0.15em;
+                text-transform: uppercase;
+                white-space: nowrap;
+            }
+
+            .passage-mobile-hint::after {
+                color: rgba(99, 9, 9, 0.56);
+                font-size: 20px;
+                font-weight: 300;
+                line-height: 1;
+                content: "→";
+            }
+
+            .passage-view-toggle {
+                min-height: 42px;
+                padding: 0 0 2px;
+                border: 0;
+                border-bottom: 1px solid rgba(99, 9, 9, 0.42);
+                background: transparent;
+                color: var(--bordeaux);
+                font-family: "Montserrat", Arial, Helvetica, sans-serif;
+                font-size: 9px;
+                font-weight: 600;
+                letter-spacing: 0.11em;
+                text-transform: uppercase;
+                cursor: pointer;
+                white-space: nowrap;
+            }
+
+            .passage-view-toggle:focus-visible {
+                outline: 2px solid rgba(99, 9, 9, 0.35);
+                outline-offset: 5px;
+            }
+
+            .gallery {
+                display: flex;
+                width: 100%;
+                max-width: 1180px;
+                gap: 11px;
+                overflow-x: auto;
+                overflow-y: hidden;
+                margin: 0 auto;
+                padding: 0 2px 12px;
+                scroll-padding-inline: 2px;
+                scroll-snap-type: x mandatory;
+                scrollbar-width: none;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .gallery::-webkit-scrollbar {
+                display: none;
+            }
+
+            .gallery .photo {
+                width: clamp(210px, 32vw, 300px);
+                min-width: 0;
+                flex: 0 0 clamp(210px, 32vw, 300px);
+                aspect-ratio: 1 / 1;
+                scroll-snap-align: start;
+                scroll-snap-stop: normal;
+            }
+
+            .gallery.is-expanded {
+                display: grid;
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 9px;
+                overflow: visible;
+                padding-bottom: 0;
+                scroll-snap-type: none;
+            }
+
+            .gallery.is-expanded .photo {
+                width: auto;
+                min-width: 0;
+                flex: none;
+            }
+
+            .gallery.is-expanded + * {
+                clear: both;
+            }
+        }
+
+        @media (max-width: 720px) {
+            .passage-mobile-tools {
+                gap: 10px;
+                margin-bottom: 15px;
+                padding-right: 1px;
+                padding-left: 1px;
+            }
+
+            .passage-mobile-hint {
+                gap: 8px;
+                font-size: 8.5px;
+                letter-spacing: 0.13em;
+            }
+
+            .passage-mobile-hint::after {
+                font-size: 17px;
+            }
+
+            .passage-view-toggle {
+                font-size: 8.5px;
+                letter-spacing: 0.09em;
+            }
+
+            .gallery {
+                gap: 8px;
+                padding-right: 20px;
+                padding-left: 1px;
+            }
+
+            .gallery .photo {
+                width: calc((100vw - 60px) / 2);
+                flex-basis: calc((100vw - 60px) / 2);
+            }
+
+            .gallery.is-expanded {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 7px;
+                padding-right: 0;
+                padding-left: 0;
+            }
+        }
+
     </style>
 
-    <link rel="stylesheet" href="/mariage/components/menu-lateral.css?v=42">
-    <script src="/mariage/components/menu-lateral.js?v=42" defer></script>
+    <link rel="stylesheet" href="../components/menu-lateral.css?v=51">
+    <script src="../components/menu-lateral.js?v=51" defer></script>
 </head>
 
 <body>
@@ -794,7 +950,7 @@
             aria-label="Navigation entre les souvenirs"
         >
             <a
-                href="/mariage/souvenirs/"
+                href="../souvenirs/index.html"
                 class="souvenir-link souvenir-nav-back"
             >
                 <span
@@ -811,7 +967,7 @@
 
             <div class="souvenir-nav-pages">
                 <a
-                    href="/mariage/photosgroupe/"
+                    href="../photosgroupe/index.html"
                     class="souvenir-link"
                 >
                     <span
@@ -827,7 +983,7 @@
                 </a>
 
                 <a
-                    href="/mariage/videos/"
+                    href="../videos/index.html"
                     class="souvenir-link"
                 >
                     <span>Vidéos</span>
@@ -857,6 +1013,19 @@
                 </h2>
             </div>
 
+            <div class="passage-mobile-tools" aria-label="Affichage des passages">
+                <span class="passage-mobile-hint">Glissez les passages</span>
+                <button
+                    type="button"
+                    class="passage-view-toggle"
+                    id="passageViewToggle"
+                    aria-controls="gallery"
+                    aria-expanded="false"
+                >
+                    Voir tous les passages
+                </button>
+            </div>
+
             <div
                 class="gallery"
                 id="gallery"
@@ -868,7 +1037,7 @@
         <footer class="footer" aria-label="Signature de l’album">
 
             <img
-                src="/mariage/images/style/nomsansfond.jpg"
+                src="../images/style/nomsansfond.jpg"
                 alt="Élodie et Alexandre"
                 class="footer-name-logo"
                 loading="lazy"
@@ -876,7 +1045,7 @@
             >
 
             <img
-                src="/mariage/images/style/datesansfond.jpg"
+                src="../images/style/datesansfond.jpg"
                 alt="23 mai 2026"
                 class="footer-date-logo"
                 loading="lazy"
@@ -991,7 +1160,7 @@
     </div>
 
     <script>
-        const photoFolder = "/mariage/images/photobooth/";
+        const photoFolder = "../images/photobooth/";
 
         const mainPhotos = [
             "20260523_184901_640.jpg",
@@ -1770,6 +1939,43 @@
         });
 
         gallery.appendChild(galleryFragment);
+
+        const passageViewToggle =
+            document.getElementById("passageViewToggle");
+
+        let passageCarouselScrollLeft = 0;
+
+        if (passageViewToggle) {
+            passageViewToggle.addEventListener("click", function() {
+                const willExpand =
+                    !gallery.classList.contains("is-expanded");
+
+                if (willExpand) {
+                    passageCarouselScrollLeft = gallery.scrollLeft;
+                    gallery.classList.add("is-expanded");
+                    passageViewToggle.textContent =
+                        "Revenir au défilement";
+                    passageViewToggle.setAttribute(
+                        "aria-expanded",
+                        "true"
+                    );
+                } else {
+                    gallery.classList.remove("is-expanded");
+                    passageViewToggle.textContent =
+                        "Voir tous les passages";
+                    passageViewToggle.setAttribute(
+                        "aria-expanded",
+                        "false"
+                    );
+
+                    requestAnimationFrame(function() {
+                        gallery.scrollLeft =
+                            passageCarouselScrollLeft;
+                    });
+                }
+            });
+        }
+
 
         function preloadAdjacentPhotos() {
             const group = groups[currentGroupIndex];

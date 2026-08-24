@@ -2951,9 +2951,321 @@
         }
 
     </style>
-<link rel="preload" as="image" href="/mariage/images/soiree/soiree-1.jpg" fetchpriority="high"/>
+<link rel="preload" as="image" href="../images/soiree/soiree-1.jpg" fetchpriority="high"/>
+
+<style id="mobile-navigation-test">
+    /* UX tablette / mobile uniquement. Desktop > 1024 px inchangé. */
+    .night-menu-overlay,
+    .mobile-chapter-nav-night,
+    .mobile-back-to-top-night {
+        display: none;
+    }
+
+    @media (max-width: 1024px) {
+        :root { --sidebar-width: 0px; }
+
+        body.mobile-menu-open { overflow: hidden; }
+        .page-shell { margin-left: 0 !important; }
+
+        .mobile-menu-button {
+            z-index: 2450 !important;
+            display: inline-grid !important;
+            width: 44px !important;
+            height: 44px !important;
+            top: 14px !important;
+            left: 14px !important;
+            place-items: center;
+            border: 1px solid rgba(214, 180, 119, 0.30) !important;
+            border-radius: 50%;
+            background: rgba(8, 6, 7, 0.96) !important;
+            color: var(--gold-light) !important;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.30);
+            transition: left 0.30s ease, transform 0.25s ease;
+        }
+
+        body.mobile-menu-open .mobile-menu-button {
+            left: min(calc(86vw - 58px), 282px) !important;
+        }
+
+        .book-sidebar {
+            z-index: 2400 !important;
+            width: min(86vw, 340px) !important;
+            transform: translateX(-105%) !important;
+            transition: transform 0.30s cubic-bezier(0.22, 1, 0.36, 1) !important;
+            box-shadow: 24px 0 64px rgba(0, 0, 0, 0.46);
+        }
+
+        .book-sidebar.is-open {
+            transform: translateX(0) !important;
+        }
+
+        .night-menu-overlay {
+            position: fixed;
+            z-index: 2350;
+            inset: 0;
+            display: block;
+            background: rgba(0, 0, 0, 0.58);
+            -webkit-backdrop-filter: blur(2px);
+            backdrop-filter: blur(2px);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.28s ease, visibility 0.28s ease;
+        }
+
+        body.mobile-menu-open .night-menu-overlay {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-chapter-nav-night {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+            align-items: center;
+            gap: 7px;
+            padding: 12px 14px;
+            border-top: 1px solid rgba(214, 180, 119, 0.16);
+            border-bottom: 1px solid rgba(214, 180, 119, 0.16);
+            background: #090708;
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
+        }
+
+        .mobile-chapter-nav-night a {
+            display: inline-flex;
+            min-height: 44px;
+            align-items: center;
+            gap: 7px;
+            padding: 8px 7px;
+            color: var(--gold-light);
+            font-size: 9px;
+            font-weight: 500;
+            line-height: 1.25;
+            letter-spacing: 0.08em;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .mobile-chapter-nav-night .previous-chapter { justify-self: start; }
+        .mobile-chapter-nav-night .summary-chapter {
+            justify-self: center;
+            padding-right: 12px;
+            padding-left: 12px;
+            border: 1px solid rgba(214, 180, 119, 0.34);
+            border-radius: 999px;
+            white-space: nowrap;
+        }
+        .mobile-chapter-nav-night .next-chapter { justify-self: end; text-align: right; }
+
+        .mobile-back-to-top-night {
+            position: fixed;
+            z-index: 2250;
+            right: 16px;
+            bottom: max(16px, env(safe-area-inset-bottom));
+            display: grid;
+            width: 44px;
+            height: 44px;
+            place-items: center;
+            border: 1px solid rgba(214, 180, 119, 0.34);
+            border-radius: 50%;
+            background: rgba(8, 6, 7, 0.94);
+            color: var(--gold-light);
+            font-size: 18px;
+            cursor: pointer;
+            box-shadow: 0 8px 26px rgba(0, 0, 0, 0.35);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(8px);
+            transition: opacity .22s ease, visibility .22s ease, transform .22s ease;
+        }
+
+        .mobile-back-to-top-night.is-visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        body.lightbox-open .mobile-back-to-top-night,
+        body.mobile-menu-open .mobile-back-to-top-night {
+            opacity: 0 !important;
+            visibility: hidden !important;
+        }
+    }
+
+    @media (max-width: 720px) {
+        .mobile-chapter-nav-night { gap: 3px; padding: 10px 8px; }
+        .mobile-chapter-nav-night a { font-size: 8px; letter-spacing: 0.055em; padding-right: 4px; padding-left: 4px; }
+        .mobile-chapter-nav-night .summary-chapter { padding-right: 9px; padding-left: 9px; }
+    }
+</style>
+
+
+<style id="mobile-night-gallery-v2">
+    /* =========================================================
+       SOIRÉE — GALERIE MOBILE V2
+       Même logique que les autres galeries, esthétique nuit.
+       Desktop (> 1024 px) inchangé.
+    ========================================================= */
+    .mobile-gallery-toolbar-night {
+        display: none;
+    }
+
+    @media (max-width: 1024px) {
+        .mobile-gallery-toolbar-night {
+            display: flex;
+            width: 100%;
+            max-width: 1240px;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            margin: 0 auto 16px;
+            padding: 0 2px;
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
+        }
+
+        .mobile-gallery-toolbar-night__hint,
+        .mobile-gallery-toolbar-night__toggle {
+            color: var(--gold-light);
+            font-size: 9px;
+            font-weight: 600;
+            line-height: 1.35;
+            letter-spacing: 0.13em;
+            text-transform: uppercase;
+        }
+
+        .mobile-gallery-toolbar-night__hint {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: rgba(241, 219, 173, 0.72);
+            white-space: nowrap;
+        }
+
+        .mobile-gallery-toolbar-night__hint-arrow {
+            font-size: 17px;
+            font-weight: 300;
+            line-height: 1;
+        }
+
+        .mobile-gallery-toolbar-night__toggle {
+            min-height: 40px;
+            padding: 0 0 3px;
+            border: 0;
+            border-bottom: 1px solid rgba(214, 180, 119, 0.42);
+            background: transparent;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .gallery.mobile-gallery-enhanced-night {
+            display: flex !important;
+            grid-auto-flow: initial !important;
+            grid-auto-rows: initial !important;
+            grid-template-columns: none !important;
+            gap: 10px !important;
+            max-width: none !important;
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding: 2px 2px 10px;
+            scroll-behavior: smooth;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .gallery.mobile-gallery-enhanced-night::-webkit-scrollbar {
+            display: none;
+        }
+
+        .gallery.mobile-gallery-enhanced-night .gallery-item,
+        .gallery.mobile-gallery-enhanced-night .gallery-item:nth-child(n) {
+            flex: 0 0 clamp(158px, 30vw, 238px) !important;
+            width: auto !important;
+            min-width: 0 !important;
+            min-height: 0 !important;
+            height: auto !important;
+            aspect-ratio: 1 / 1 !important;
+            grid-column: auto !important;
+            grid-row: auto !important;
+            border-radius: 10px !important;
+            scroll-snap-align: start;
+            scroll-snap-stop: normal;
+        }
+
+        .gallery.mobile-gallery-enhanced-night .gallery-item img {
+            width: 100% !important;
+            height: 100% !important;
+            aspect-ratio: auto !important;
+            object-fit: cover !important;
+            object-position: center !important;
+        }
+
+        .gallery.mobile-gallery-enhanced-night.mobile-gallery-grid-night {
+            display: grid !important;
+            grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+            gap: 9px !important;
+            overflow: visible;
+            padding-bottom: 0;
+            scroll-snap-type: none;
+        }
+
+        .gallery.mobile-gallery-enhanced-night.mobile-gallery-grid-night .gallery-item,
+        .gallery.mobile-gallery-enhanced-night.mobile-gallery-grid-night .gallery-item:nth-child(n) {
+            width: 100% !important;
+            min-width: 0 !important;
+            flex: none !important;
+            aspect-ratio: 1 / 1 !important;
+        }
+
+        .mobile-gallery-toolbar-night.is-grid-view {
+            justify-content: flex-end;
+        }
+
+        .mobile-gallery-toolbar-night.is-grid-view .mobile-gallery-toolbar-night__hint {
+            display: none;
+        }
+    }
+
+    @media (max-width: 720px) {
+        .mobile-gallery-toolbar-night {
+            margin-bottom: 13px;
+            padding: 0 1px;
+        }
+
+        .mobile-gallery-toolbar-night__hint,
+        .mobile-gallery-toolbar-night__toggle {
+            font-size: 8.5px;
+            letter-spacing: 0.105em;
+        }
+
+        .gallery.mobile-gallery-enhanced-night .gallery-item,
+        .gallery.mobile-gallery-enhanced-night .gallery-item:nth-child(n) {
+            flex-basis: min(43vw, 190px) !important;
+        }
+
+        .gallery.mobile-gallery-enhanced-night.mobile-gallery-grid-night {
+            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+            gap: 8px !important;
+        }
+    }
+</style>
+
+
+<style id="phone-no-sidebar-final">
+    /* Téléphone <= 720 px : navigation par chapitres, sans menu latéral. */
+    @media (max-width: 720px) {
+        .mobile-menu-button,
+        .book-sidebar,
+        .night-menu-overlay {
+            display: none !important;
+        }
+
+        body.mobile-menu-open {
+            overflow: auto !important;
+        }
+    }
+</style>
 </head>
 <body>
+<div class="night-menu-overlay" aria-hidden="true"></div>
 <div aria-hidden="true" class="night-effects">
 <span class="ambient-orb ambient-orb-left"></span>
 <span class="ambient-orb ambient-orb-right"></span>
@@ -2968,8 +3280,8 @@
 </button>
 <aside aria-label="Pages de l’album" class="book-sidebar" id="book-sidebar"><div aria-hidden="true" class="sidebar-light-bridge"><span class="sidebar-beam sidebar-beam-one"></span><span class="sidebar-beam sidebar-beam-two"></span><span class="sidebar-beam sidebar-beam-three"></span><span class="sidebar-beam sidebar-beam-four"></span><span class="sidebar-beam sidebar-beam-five"></span></div>
 <div class="sidebar-inner">
-<a aria-label="Retour au sommaire" class="logo-link" href="/mariage/sommaire/">
-<img alt="Logo du mariage d’Élodie et Alexandre" class="wedding-logo" src="/mariage/images/style/logo_blanc.png"/>
+<a aria-label="Retour au sommaire" class="logo-link" href="../sommaire/index.html">
+<img alt="Logo du mariage d’Élodie et Alexandre" class="wedding-logo" src="../images/style/logo_blanc.png"/>
 </a>
 <p class="sidebar-section-title">
             Pages de l’album
@@ -2977,61 +3289,61 @@
 <nav aria-label="Navigation principale">
 <ol class="page-list">
 <li class="page-item">
-<a class="page-link" data-page="bienvenue" href="/mariage/">
+<a class="page-link" data-page="bienvenue" href="../index.html">
 <span class="page-dot">1</span>
 <span class="page-label">Bienvenue</span>
 </a>
 </li>
 <li class="page-item">
-<a class="page-link" data-page="sommaire" href="/mariage/sommaire/">
+<a class="page-link" data-page="sommaire" href="../sommaire/index.html">
 <span class="page-dot">2</span>
 <span class="page-label">Sommaire</span>
 </a>
 </li>
 <li class="page-item">
-<a class="page-link" data-page="invitation" href="/mariage/invitation/">
+<a class="page-link" data-page="invitation" href="../invitation/index.html">
 <span class="page-dot">3</span>
 <span class="page-label">L'invitation</span>
 </a>
 </li>
 <li class="page-item">
-<a class="page-link" data-page="preparatifs" href="/mariage/preparatifs/">
+<a class="page-link" data-page="preparatifs" href="../preparatifs/index.html">
 <span class="page-dot">4</span>
 <span class="page-label">Nos préparatifs</span>
 </a>
 </li>
 <li class="page-item">
-<a class="page-link" data-page="first-look" href="/mariage/first-look/">
+<a class="page-link" data-page="first-look" href="../first-look/index.html">
 <span class="page-dot">5</span>
 <span class="page-label">Le First-Look</span>
 </a>
 </li>
 <li class="page-item">
-<a class="page-link" data-page="mairie" href="/mariage/mairie/">
+<a class="page-link" data-page="mairie" href="../mairie/index.html">
 <span class="page-dot">6</span>
 <span class="page-label">La mairie</span>
 </a>
 </li>
 <li class="page-item">
-<a class="page-link" data-page="eglise" href="/mariage/eglise/">
+<a class="page-link" data-page="eglise" href="../eglise/index.html">
 <span class="page-dot">7</span>
 <span class="page-label">L'église</span>
 </a>
 </li>
 <li class="page-item">
-<a class="page-link" data-page="vin-d-honneur" href="/mariage/vin_d_honneur/">
+<a class="page-link" data-page="vin-d-honneur" href="../vin_d_honneur/index.html">
 <span class="page-dot">8</span>
 <span class="page-label">Le vin d'honneur</span>
 </a>
 </li>
 <li class="page-item">
-<a class="page-link" data-page="soiree" href="/mariage/soiree/">
+<a class="page-link" data-page="soiree" href="../soiree/index.html">
 <span class="page-dot">9</span>
 <span class="page-label">La soirée</span>
 </a>
 </li>
 <li class="page-item">
-<a class="page-link" data-page="remerciements" href="/mariage/remerciements/">
+<a class="page-link" data-page="remerciements" href="../remerciements/index.html">
 <span class="page-dot">10</span>
 <span class="page-label">Remerciements</span>
 </a>
@@ -3043,7 +3355,7 @@
             </span>
 </li>
 <li class="page-item page-item-separated">
-<a class="page-link" data-page="souvenirs" href="/mariage/souvenirs/">
+<a class="page-link" data-page="souvenirs" href="../souvenirs/index.html">
 <span class="page-dot">11</span>
 <span class="page-label">Les souvenirs</span>
 </a>
@@ -3055,7 +3367,7 @@
             </span>
 </li>
 <li class="page-item page-item-separated">
-<a class="page-link page-link-voyage" data-page="voyage-de-noces" href="/mariage/voyage-de-noces/">
+<a class="page-link page-link-voyage" data-page="voyage-de-noces" href="../voyage-de-noces/index.html">
 <span aria-hidden="true" class="page-dot page-dot-plane">
 <svg aria-hidden="true" focusable="false" viewBox="0 0 448 448">
 <path d="M416 192H288L192 32h-64l48 160H64l-32-48H0l32 80L0 304h32l32-48h112l-48 160h64l96-160h128c17.7 0 32-14.3 32-32s-14.3-32-32-32z"></path>
@@ -3095,6 +3407,11 @@
 </a>
 </div>
 </section>
+<nav class="mobile-chapter-nav-night" aria-label="Navigation entre les chapitres du mariage">
+<a class="previous-chapter" href="../vin_d_honneur/index.html"><span aria-hidden="true">←</span><span>Vin d’honneur</span></a>
+<a class="summary-chapter" href="../sommaire/index.html">Sommaire</a>
+<a class="next-chapter" href="../remerciements/index.html"><span>Remerciements</span><span aria-hidden="true">→</span></a>
+</nav>
 <section aria-labelledby="gallery-title" class="gallery-section" id="gallery-section">
 <div class="gallery-heading">
 <p>La fête</p>
@@ -3106,6 +3423,7 @@
 <img alt="23 mai 2026" class="footer-date-logo" src="../images/style/date_fondnoir.jpg"/>
 </footer>
 </main>
+<button type="button" class="mobile-back-to-top-night" aria-label="Revenir en haut de la page"><span aria-hidden="true">↑</span></button>
 <div aria-hidden="true" aria-label="Agrandissement de la photographie" aria-modal="true" class="lightbox" id="lightbox" role="dialog">
 <button aria-label="Fermer la photographie" class="lightbox-close" id="closeButton" type="button">
             ×
@@ -3138,7 +3456,7 @@
             { length: lastPhotoNumber - firstPhotoNumber + 1 },
             function(_, index) {
                 return (
-                    "/mariage/images/soiree/soiree-" +
+                    "../images/soiree/soiree-" +
                     (firstPhotoNumber + index) +
                     ".jpg"
                 );
@@ -3508,41 +3826,71 @@
             }
         });
 
-        const menuButton =
-            document.querySelector(".mobile-menu-button");
+        const menuButton = document.querySelector(".mobile-menu-button");
+        const sidebar = document.querySelector(".book-sidebar");
+        const menuOverlay = document.querySelector(".night-menu-overlay");
 
-        const sidebar =
-            document.querySelector(".book-sidebar");
+        function closeMobileMenu() {
+            sidebar.classList.remove("is-open");
+            document.body.classList.remove("mobile-menu-open");
+            menuButton.setAttribute("aria-expanded", "false");
+            menuButton.setAttribute("aria-label", "Ouvrir le sommaire");
+            menuButton.textContent = "☰";
+        }
+
+        function openMobileMenu() {
+            if (window.innerWidth <= 720 || window.innerWidth > 1024) return;
+            sidebar.classList.add("is-open");
+            document.body.classList.add("mobile-menu-open");
+            menuButton.setAttribute("aria-expanded", "true");
+            menuButton.setAttribute("aria-label", "Fermer le sommaire");
+            menuButton.textContent = "×";
+        }
 
         menuButton.addEventListener("click", function() {
-            const isOpen = sidebar.classList.toggle("is-open");
-
-            menuButton.setAttribute(
-                "aria-expanded",
-                String(isOpen)
-            );
-
-            menuButton.textContent = isOpen ? "×" : "☰";
-        });
-
-        document.addEventListener("click", function(event) {
-            const clickedInsideSidebar =
-                sidebar.contains(event.target);
-
-            const clickedMenuButton =
-                menuButton.contains(event.target);
-
-            if (
-                window.innerWidth <= 720 &&
-                sidebar.classList.contains("is-open") &&
-                !clickedInsideSidebar &&
-                !clickedMenuButton
-            ) {
-                sidebar.classList.remove("is-open");
-                menuButton.setAttribute("aria-expanded", "false");
-                menuButton.textContent = "☰";
+            if (sidebar.classList.contains("is-open")) {
+                closeMobileMenu();
+            } else {
+                openMobileMenu();
             }
         });
+
+        menuOverlay.addEventListener("click", closeMobileMenu);
+
+        sidebar.addEventListener("click", function(event) {
+            if (window.innerWidth > 720 && window.innerWidth <= 1024 && event.target.closest("a[href]")) {
+                closeMobileMenu();
+            }
+        });
+
+        document.addEventListener("keydown", function(event) {
+            if (event.key === "Escape" && sidebar.classList.contains("is-open")) {
+                closeMobileMenu();
+                menuButton.focus();
+            }
+        });
+
+        window.addEventListener("resize", function() {
+            if (window.innerWidth <= 720 || window.innerWidth > 1024) closeMobileMenu();
+        });
+
+        const backToTopButton = document.querySelector(".mobile-back-to-top-night");
+
+        function updateBackToTopButton() {
+            const visible =
+                window.innerWidth <= 1024 &&
+                window.scrollY > Math.max(460, window.innerHeight * 0.62);
+            backToTopButton.classList.toggle("is-visible", visible);
+        }
+
+        backToTopButton.addEventListener("click", function() {
+            const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+            window.scrollTo({ top: 0, behavior: reducedMotion ? "auto" : "smooth" });
+        });
+
+        window.addEventListener("scroll", updateBackToTopButton, { passive: true });
+        window.addEventListener("resize", updateBackToTopButton);
+        updateBackToTopButton();
 
         const prefersReducedMotion = window.matchMedia(
             "(prefers-reduced-motion: reduce)"
@@ -3584,5 +3932,59 @@
             });
         });
     </script>
+
+<script id="mobile-night-gallery-behavior-v2">
+document.addEventListener("DOMContentLoaded", function() {
+    const nightGallery = document.getElementById("gallery");
+    if (!nightGallery || nightGallery.dataset.mobileGalleryReady === "true") return;
+
+    nightGallery.dataset.mobileGalleryReady = "true";
+    nightGallery.classList.add("mobile-gallery-enhanced-night");
+
+    const total = typeof photos !== "undefined" ? photos.length : nightGallery.querySelectorAll(".gallery-item").length;
+    const toolbar = document.createElement("div");
+    toolbar.className = "mobile-gallery-toolbar-night";
+    toolbar.innerHTML = `
+        <span class="mobile-gallery-toolbar-night__hint">
+            <span>Glissez les photos</span>
+            <span class="mobile-gallery-toolbar-night__hint-arrow" aria-hidden="true">→</span>
+        </span>
+        <button type="button" class="mobile-gallery-toolbar-night__toggle" aria-expanded="false">
+            Voir les ${total} photos
+        </button>
+    `;
+    nightGallery.insertAdjacentElement("beforebegin", toolbar);
+
+    const toggle = toolbar.querySelector(".mobile-gallery-toolbar-night__toggle");
+    let savedScrollLeft = 0;
+
+    toggle.addEventListener("click", function() {
+        const willOpenGrid = !nightGallery.classList.contains("mobile-gallery-grid-night");
+
+        if (willOpenGrid && typeof renderNextBatch === "function" && typeof renderedPhotoCount !== "undefined") {
+            while (renderedPhotoCount < total) {
+                renderNextBatch(Math.min(120, total - renderedPhotoCount));
+            }
+        }
+
+        const isGrid = nightGallery.classList.toggle("mobile-gallery-grid-night");
+
+        if (isGrid) {
+            savedScrollLeft = nightGallery.scrollLeft;
+            toolbar.classList.add("is-grid-view");
+            toggle.textContent = "Revenir au défilement";
+            toggle.setAttribute("aria-expanded", "true");
+        } else {
+            toolbar.classList.remove("is-grid-view");
+            toggle.textContent = `Voir les ${total} photos`;
+            toggle.setAttribute("aria-expanded", "false");
+            window.requestAnimationFrame(function() {
+                nightGallery.scrollLeft = savedScrollLeft;
+            });
+        }
+    });
+});
+</script>
+
 </body>
 </html>
