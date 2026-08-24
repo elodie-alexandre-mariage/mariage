@@ -623,6 +623,349 @@
             transform: translateX(3px);
         }
 
+
+
+        /* =========================
+           CARTES DE REMERCIEMENT
+           Recto / verso, sur le modèle de la page Invitation
+        ========================= */
+
+        body.thanks-lightbox-open {
+            overflow: hidden;
+        }
+
+        .thankyou-card {
+            width: min(900px, 100%);
+            margin: 38px auto 0;
+            padding: 24px;
+            border: 1px solid rgba(99, 9, 9, 0.10);
+            border-radius: 5px;
+            background: var(--paper);
+            box-shadow: 0 12px 30px rgba(52, 35, 31, 0.06);
+            transition:
+                border-color 0.40s ease,
+                box-shadow 0.40s ease,
+                transform 0.40s ease;
+        }
+
+        .thankyou-card:hover {
+            border-color: rgba(99, 9, 9, 0.24);
+            box-shadow: 0 20px 44px rgba(52, 35, 31, 0.10);
+            transform: translateY(-3px);
+        }
+
+        .thankyou-card-heading {
+            margin-bottom: 24px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid rgba(99, 9, 9, 0.12);
+            text-align: left;
+        }
+
+        .thankyou-card-kicker {
+            margin-bottom: 10px;
+            color: rgba(99, 9, 9, 0.70);
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
+            font-size: 9px;
+            font-weight: 500;
+            letter-spacing: 0.23em;
+            text-transform: uppercase;
+        }
+
+        .thankyou-card-heading h3 {
+            color: var(--bordeaux);
+            font-size: clamp(1.55rem, 2.4vw, 2.12rem);
+            font-weight: 400;
+            line-height: 1.14;
+        }
+
+        .thankyou-visual {
+            position: relative;
+            display: flex;
+            min-height: 520px;
+            align-items: center;
+            justify-content: center;
+            padding: 0 54px;
+        }
+
+        .thankyou-paper {
+            position: relative;
+            display: inline-flex;
+            max-width: 100%;
+            align-items: center;
+            justify-content: center;
+            padding: 6px;
+            border: 0;
+            background: var(--white);
+            box-shadow:
+                0 20px 42px rgba(52, 35, 31, 0.13),
+                0 4px 12px rgba(52, 35, 31, 0.06);
+            cursor: pointer;
+            transition:
+                transform 0.38s ease,
+                box-shadow 0.38s ease;
+        }
+
+        .thankyou-paper::after {
+            position: absolute;
+            inset: 6px;
+            border: 1px solid rgba(99, 9, 9, 0.035);
+            content: "";
+            pointer-events: none;
+        }
+
+        .thankyou-paper:hover,
+        .thankyou-paper:focus-visible {
+            box-shadow:
+                0 26px 54px rgba(52, 35, 31, 0.16),
+                0 6px 16px rgba(52, 35, 31, 0.07);
+            transform: translateY(-2px);
+        }
+
+        .thankyou-paper:focus-visible {
+            outline: 1px solid rgba(99, 9, 9, 0.40);
+            outline-offset: 5px;
+        }
+
+        .thankyou-paper img {
+            display: block;
+            width: auto;
+            max-width: 100%;
+            height: auto;
+            max-height: 510px;
+            background: #ffffff;
+            opacity: 1;
+            transform: translateY(0);
+            transition:
+                opacity 220ms ease,
+                transform 220ms ease;
+        }
+
+        .thankyou-card.is-changing .thankyou-paper img {
+            opacity: 0;
+            transform: translateY(4px);
+        }
+
+        .thankyou-arrow {
+            position: absolute;
+            top: 50%;
+            z-index: 4;
+            display: flex;
+            width: 52px;
+            height: 52px;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(99, 9, 9, 0.24);
+            border-radius: 50%;
+            background: rgba(254, 254, 254, 0.94);
+            color: var(--bordeaux);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 31px;
+            font-weight: 200;
+            line-height: 1;
+            cursor: pointer;
+            box-shadow: 0 8px 22px rgba(52, 35, 31, 0.10);
+            transform: translateY(-50%);
+            transition:
+                background 0.20s ease,
+                border-color 0.20s ease,
+                color 0.20s ease,
+                box-shadow 0.20s ease,
+                transform 0.20s ease;
+        }
+
+        .thankyou-arrow:hover,
+        .thankyou-arrow:focus-visible {
+            border-color: var(--bordeaux);
+            background: var(--bordeaux);
+            color: var(--white);
+            box-shadow: 0 11px 28px rgba(52, 35, 31, 0.16);
+        }
+
+        .thankyou-arrow:focus-visible {
+            outline: 1px solid rgba(99, 9, 9, 0.40);
+            outline-offset: 4px;
+        }
+
+        .thankyou-previous { left: 2px; }
+        .thankyou-next { right: 2px; }
+
+        .thankyou-previous:hover,
+        .thankyou-previous:focus-visible {
+            transform: translate(-3px, -50%);
+        }
+
+        .thankyou-next:hover,
+        .thankyou-next:focus-visible {
+            transform: translate(3px, -50%);
+        }
+
+        .thankyou-controls {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 26px;
+            text-align: center;
+        }
+
+        .thankyou-face-switcher {
+            display: inline-flex;
+            gap: 28px;
+            border-bottom: 1px solid rgba(99, 9, 9, 0.15);
+        }
+
+        .thankyou-face-tab {
+            position: relative;
+            padding: 0 1px 11px;
+            border: 0;
+            background: transparent;
+            color: rgba(64, 57, 54, 0.50);
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
+            font-size: 9px;
+            font-weight: 500;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: color 240ms ease;
+        }
+
+        .thankyou-face-tab::after {
+            position: absolute;
+            right: 0;
+            bottom: -1px;
+            left: 0;
+            height: 1px;
+            background: var(--bordeaux);
+            content: "";
+            opacity: 0;
+            transform: scaleX(0.35);
+            transition:
+                opacity 240ms ease,
+                transform 240ms ease;
+        }
+
+        .thankyou-face-tab:hover,
+        .thankyou-face-tab:focus-visible,
+        .thankyou-face-tab[aria-selected="true"] {
+            color: var(--bordeaux);
+        }
+
+        .thankyou-face-tab[aria-selected="true"]::after {
+            opacity: 1;
+            transform: scaleX(1);
+        }
+
+        .thankyou-face-tab:focus-visible {
+            outline: 1px solid rgba(99, 9, 9, 0.34);
+            outline-offset: 4px;
+        }
+
+        .thankyou-hint {
+            max-width: 430px;
+            margin-top: 17px;
+            color: rgba(64, 57, 54, 0.50);
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
+            font-size: 8.5px;
+            font-weight: 400;
+            line-height: 1.6;
+            letter-spacing: 0.07em;
+        }
+
+        .thanks-lightbox {
+            position: fixed;
+            z-index: 3000;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            visibility: hidden;
+            padding: 70px 96px;
+            background: rgba(20, 16, 15, 0.96);
+            opacity: 0;
+            transition:
+                opacity 250ms ease,
+                visibility 250ms ease;
+        }
+
+        .thanks-lightbox.open {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .thanks-lightbox img {
+            max-width: 92vw;
+            max-height: 84vh;
+            object-fit: contain;
+            box-shadow: 0 18px 58px rgba(0, 0, 0, 0.36);
+            opacity: 1;
+            transform: translateY(0);
+            transition:
+                opacity 200ms ease,
+                transform 200ms ease;
+        }
+
+        .thanks-lightbox.is-changing img {
+            opacity: 0;
+            transform: translateY(4px);
+        }
+
+        .thanks-lightbox-close,
+        .thanks-lightbox-arrow {
+            position: fixed;
+            z-index: 3002;
+            display: grid;
+            place-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.32);
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+            color: #ffffff;
+            cursor: pointer;
+            transition:
+                background 220ms ease,
+                border-color 220ms ease;
+        }
+
+        .thanks-lightbox-close:hover,
+        .thanks-lightbox-close:focus-visible,
+        .thanks-lightbox-arrow:hover,
+        .thanks-lightbox-arrow:focus-visible {
+            border-color: rgba(255, 255, 255, 0.72);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .thanks-lightbox-close {
+            top: 22px;
+            right: 28px;
+            width: 46px;
+            height: 46px;
+            font-size: 28px;
+        }
+
+        .thanks-lightbox-arrow {
+            top: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 28px;
+            transform: translateY(-50%);
+        }
+
+        .thanks-lightbox-previous { left: 28px; }
+        .thanks-lightbox-next { right: 28px; }
+
+        .thanks-lightbox-label {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            color: rgba(255, 255, 255, 0.72);
+            font-family: "Montserrat", Arial, Helvetica, sans-serif;
+            font-size: 9px;
+            font-weight: 500;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            transform: translateX(-50%);
+        }
+
+
         /* =========================
            PIED DE PAGE
         ========================= */
@@ -784,6 +1127,72 @@
             .closing {
                 padding: 68px 22px;
             }
+
+            .thankyou-card {
+                width: auto;
+                margin: 32px 10px 0;
+                padding: 18px 14px 20px;
+            }
+
+            .thankyou-card-heading {
+                margin-bottom: 18px;
+                padding: 0 4px 15px;
+            }
+
+            .thankyou-card-heading h3 {
+                font-size: 1.55rem;
+            }
+
+            .thankyou-visual {
+                min-height: 430px;
+                padding: 0 42px;
+            }
+
+            .thankyou-paper img {
+                max-height: 64vh;
+            }
+
+            .thankyou-arrow {
+                width: 44px;
+                height: 44px;
+                font-size: 27px;
+            }
+
+            .thankyou-controls {
+                margin-top: 20px;
+            }
+
+            .thankyou-hint {
+                padding: 0 8px;
+            }
+
+            .thanks-lightbox {
+                padding: 70px 12px 65px;
+            }
+
+            .thanks-lightbox img {
+                max-width: 96vw;
+                max-height: 79vh;
+            }
+
+            .thanks-lightbox-close {
+                top: 14px;
+                right: 14px;
+                width: 42px;
+                height: 42px;
+            }
+
+            .thanks-lightbox-arrow {
+                top: auto;
+                bottom: 14px;
+                width: 44px;
+                height: 44px;
+                transform: none;
+            }
+
+            .thanks-lightbox-previous { left: 15px; }
+            .thanks-lightbox-next { right: 15px; }
+            .thanks-lightbox-label { bottom: 29px; }
         }
 
         @media (max-width: 430px) {
@@ -898,6 +1307,59 @@
                         </p>
                     </div>
 
+                </article>
+
+                <article
+                    class="thankyou-card"
+                    data-thanks-gallery="0"
+                    aria-label="Carte de remerciement destinée à nos invités"
+                >
+                    <header class="thankyou-card-heading">
+                        <p class="thankyou-card-kicker">À nos invités</p>
+                        <h3>Notre carte de remerciement</h3>
+                    </header>
+
+                    <div class="thankyou-visual">
+                        <button
+                            class="thankyou-arrow thankyou-previous"
+                            type="button"
+                            data-thanks-direction="-1"
+                            aria-label="Afficher la face précédente"
+                        >‹</button>
+
+                        <button
+                            class="thankyou-paper"
+                            type="button"
+                            data-thanks-open
+                            aria-label="Agrandir la carte de remerciement destinée aux invités"
+                        >
+                            <img
+                                src="../images/remerciements/remerciement_recto.jpg"
+                                alt="Carte de remerciement d’Élodie et Alexandre — recto"
+                                loading="lazy"
+                                decoding="async"
+                            >
+                        </button>
+
+                        <button
+                            class="thankyou-arrow thankyou-next"
+                            type="button"
+                            data-thanks-direction="1"
+                            aria-label="Afficher la face suivante"
+                        >›</button>
+                    </div>
+
+                    <div class="thankyou-controls">
+                        <div
+                            class="thankyou-face-switcher"
+                            role="tablist"
+                            aria-label="Choisir une face de la carte de remerciement destinée aux invités"
+                        >
+                            <button class="thankyou-face-tab" type="button" role="tab" aria-selected="true" tabindex="0" data-thanks-face="0">Recto</button>
+                            <button class="thankyou-face-tab" type="button" role="tab" aria-selected="false" tabindex="-1" data-thanks-face="1">Verso</button>
+                        </div>
+                        <p class="thankyou-hint">Sélectionnez une face ou cliquez sur la carte pour l’agrandir.</p>
+                    </div>
                 </article>
 
             </div>
@@ -1048,6 +1510,60 @@
                     </p>
 
                 </div>
+
+                <article
+                    class="thankyou-card"
+                    data-thanks-gallery="1"
+                    aria-label="Carte de remerciement destinée à nos prestataires"
+                >
+                    <header class="thankyou-card-heading">
+                        <p class="thankyou-card-kicker">À nos prestataires</p>
+                        <h3>Notre carte de remerciement</h3>
+                    </header>
+
+                    <div class="thankyou-visual">
+                        <button
+                            class="thankyou-arrow thankyou-previous"
+                            type="button"
+                            data-thanks-direction="-1"
+                            aria-label="Afficher la face précédente"
+                        >‹</button>
+
+                        <button
+                            class="thankyou-paper"
+                            type="button"
+                            data-thanks-open
+                            aria-label="Agrandir la carte de remerciement destinée aux prestataires"
+                        >
+                            <img
+                                src="../images/remerciements/remerciement_recto.jpg"
+                                alt="Carte de remerciement d’Élodie et Alexandre — recto"
+                                loading="lazy"
+                                decoding="async"
+                            >
+                        </button>
+
+                        <button
+                            class="thankyou-arrow thankyou-next"
+                            type="button"
+                            data-thanks-direction="1"
+                            aria-label="Afficher la face suivante"
+                        >›</button>
+                    </div>
+
+                    <div class="thankyou-controls">
+                        <div
+                            class="thankyou-face-switcher"
+                            role="tablist"
+                            aria-label="Choisir une face de la carte de remerciement destinée aux prestataires"
+                        >
+                            <button class="thankyou-face-tab" type="button" role="tab" aria-selected="true" tabindex="0" data-thanks-face="0">Recto</button>
+                            <button class="thankyou-face-tab" type="button" role="tab" aria-selected="false" tabindex="-1" data-thanks-face="1">Verso</button>
+                        </div>
+                        <p class="thankyou-hint">Sélectionnez une face ou cliquez sur la carte pour l’agrandir.</p>
+                    </div>
+                </article>
+
 
                 <div class="vendors-grid">
 
@@ -1308,6 +1824,291 @@
         </footer>
 
     </main>
+
+    <div
+        class="thanks-lightbox"
+        id="thanksLightbox"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Agrandissement de la carte de remerciement"
+        aria-hidden="true"
+    >
+        <button
+            class="thanks-lightbox-close"
+            id="thanksLightboxClose"
+            type="button"
+            aria-label="Fermer"
+        >×</button>
+
+        <button
+            class="thanks-lightbox-arrow thanks-lightbox-previous"
+            type="button"
+            data-thanks-lightbox-direction="-1"
+            aria-label="Face précédente"
+        >‹</button>
+
+        <img
+            id="thanksLightboxImage"
+            src=""
+            alt=""
+        >
+
+        <button
+            class="thanks-lightbox-arrow thanks-lightbox-next"
+            type="button"
+            data-thanks-lightbox-direction="1"
+            aria-label="Face suivante"
+        >›</button>
+
+        <p
+            class="thanks-lightbox-label"
+            id="thanksLightboxLabel"
+            aria-live="polite"
+        ></p>
+    </div>
+
+
+    <script>
+        (() => {
+            const thankyouGalleries = [
+                {
+                    title: "Remerciement à nos invités",
+                    faces: [
+                        {
+                            label: "Recto",
+                            src: "../images/remerciements/remerciement_recto.jpg",
+                            alt: "Carte de remerciement d’Élodie et Alexandre — recto"
+                        },
+                        {
+                            label: "Verso",
+                            src: "../images/remerciements/remerciement_verso_invites.jpg",
+                            alt: "Carte de remerciement destinée à nos invités — verso"
+                        }
+                    ]
+                },
+                {
+                    title: "Remerciement à nos prestataires",
+                    faces: [
+                        {
+                            label: "Recto",
+                            src: "../images/remerciements/remerciement_recto.jpg",
+                            alt: "Carte de remerciement d’Élodie et Alexandre — recto"
+                        },
+                        {
+                            label: "Verso",
+                            src: "../images/remerciements/remerciement_verso_prestataires.jpg",
+                            alt: "Carte de remerciement destinée à nos prestataires — verso"
+                        }
+                    ]
+                }
+            ];
+
+            const thankyouItems = Array.from(
+                document.querySelectorAll("[data-thanks-gallery]")
+            );
+            const currentThankyouFaces = thankyouGalleries.map(() => 0);
+
+            const lightbox = document.getElementById("thanksLightbox");
+            const lightboxImage = document.getElementById("thanksLightboxImage");
+            const lightboxClose = document.getElementById("thanksLightboxClose");
+            const lightboxLabel = document.getElementById("thanksLightboxLabel");
+
+            let currentGallery = 0;
+            let previousFocusedElement = null;
+            let touchStartX = 0;
+
+            function getItem(galleryIndex) {
+                return thankyouItems.find(
+                    (item) => Number(item.dataset.thanksGallery) === galleryIndex
+                );
+            }
+
+            function updateItem(galleryIndex, faceIndex, animate = true) {
+                const gallery = thankyouGalleries[galleryIndex];
+                const item = getItem(galleryIndex);
+                const image = item.querySelector(".thankyou-paper img");
+                const tabs = item.querySelectorAll("[data-thanks-face]");
+                const face = gallery.faces[faceIndex];
+
+                currentThankyouFaces[galleryIndex] = faceIndex;
+
+                tabs.forEach((tab) => {
+                    const isCurrent = Number(tab.dataset.thanksFace) === faceIndex;
+                    tab.setAttribute("aria-selected", String(isCurrent));
+                    tab.setAttribute("tabindex", isCurrent ? "0" : "-1");
+                });
+
+                const applyFace = () => {
+                    image.src = face.src;
+                    image.alt = face.alt;
+                    if (
+                        lightbox.classList.contains("open") &&
+                        currentGallery === galleryIndex
+                    ) {
+                        updateLightbox(false);
+                    }
+                };
+
+                if (!animate) {
+                    applyFace();
+                    return;
+                }
+
+                item.classList.add("is-changing");
+                window.setTimeout(() => {
+                    applyFace();
+                    window.requestAnimationFrame(() => {
+                        item.classList.remove("is-changing");
+                    });
+                }, 170);
+            }
+
+            function changeItemFace(galleryIndex, direction) {
+                const gallery = thankyouGalleries[galleryIndex];
+                const nextFace = (
+                    currentThankyouFaces[galleryIndex] +
+                    direction +
+                    gallery.faces.length
+                ) % gallery.faces.length;
+                updateItem(galleryIndex, nextFace, true);
+            }
+
+            function updateLightbox(animate = true) {
+                const gallery = thankyouGalleries[currentGallery];
+                const faceIndex = currentThankyouFaces[currentGallery];
+                const face = gallery.faces[faceIndex];
+
+                const applyFace = () => {
+                    lightboxImage.src = face.src;
+                    lightboxImage.alt = face.alt;
+                    lightboxLabel.textContent = gallery.title + " — " + face.label;
+                };
+
+                if (!animate) {
+                    applyFace();
+                    return;
+                }
+
+                lightbox.classList.add("is-changing");
+                window.setTimeout(() => {
+                    applyFace();
+                    window.requestAnimationFrame(() => {
+                        lightbox.classList.remove("is-changing");
+                    });
+                }, 160);
+            }
+
+            function openLightbox(galleryIndex) {
+                currentGallery = galleryIndex;
+                previousFocusedElement = document.activeElement;
+                updateLightbox(false);
+                lightbox.classList.add("open");
+                lightbox.setAttribute("aria-hidden", "false");
+                document.body.classList.add("thanks-lightbox-open");
+                window.setTimeout(() => lightboxClose.focus(), 30);
+            }
+
+            function closeLightbox() {
+                lightbox.classList.remove("open");
+                lightbox.setAttribute("aria-hidden", "true");
+                document.body.classList.remove("thanks-lightbox-open");
+                window.setTimeout(() => {
+                    lightboxImage.src = "";
+                }, 250);
+                if (previousFocusedElement) {
+                    previousFocusedElement.focus();
+                }
+            }
+
+            function changeLightboxFace(direction) {
+                changeItemFace(currentGallery, direction);
+                updateLightbox(true);
+            }
+
+            thankyouItems.forEach((item) => {
+                const galleryIndex = Number(item.dataset.thanksGallery);
+
+                item.querySelectorAll("[data-thanks-face]").forEach((tab) => {
+                    tab.addEventListener("click", () => {
+                        updateItem(
+                            galleryIndex,
+                            Number(tab.dataset.thanksFace),
+                            true
+                        );
+                    });
+                });
+
+                item.querySelectorAll("[data-thanks-direction]").forEach((button) => {
+                    button.addEventListener("click", () => {
+                        changeItemFace(
+                            galleryIndex,
+                            Number(button.dataset.thanksDirection)
+                        );
+                    });
+                });
+
+                item.querySelector("[data-thanks-open]").addEventListener("click", () => {
+                    openLightbox(galleryIndex);
+                });
+            });
+
+            lightboxClose.addEventListener("click", closeLightbox);
+
+            lightbox.querySelectorAll("[data-thanks-lightbox-direction]").forEach((button) => {
+                button.addEventListener("click", () => {
+                    changeLightboxFace(
+                        Number(button.dataset.thanksLightboxDirection)
+                    );
+                });
+            });
+
+            lightbox.addEventListener("click", (event) => {
+                if (event.target === lightbox) {
+                    closeLightbox();
+                }
+            });
+
+            lightbox.addEventListener(
+                "touchstart",
+                (event) => {
+                    touchStartX = event.changedTouches[0].screenX;
+                },
+                { passive: true }
+            );
+
+            lightbox.addEventListener(
+                "touchend",
+                (event) => {
+                    const distance = event.changedTouches[0].screenX - touchStartX;
+                    if (Math.abs(distance) >= 55) {
+                        changeLightboxFace(distance > 0 ? -1 : 1);
+                    }
+                },
+                { passive: true }
+            );
+
+            document.addEventListener("keydown", (event) => {
+                if (!lightbox.classList.contains("open")) {
+                    return;
+                }
+
+                if (event.key === "Escape") {
+                    closeLightbox();
+                } else if (event.key === "ArrowLeft") {
+                    changeLightboxFace(-1);
+                } else if (event.key === "ArrowRight") {
+                    changeLightboxFace(1);
+                }
+            });
+
+            thankyouGalleries.forEach((gallery) => {
+                gallery.faces.forEach((face) => {
+                    const image = new Image();
+                    image.src = face.src;
+                });
+            });
+        })();
+    </script>
 
 </body>
 </html>
