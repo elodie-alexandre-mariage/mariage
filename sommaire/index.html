@@ -464,6 +464,22 @@
         }
 
         @media (max-width: 1024px) {
+            /* Sur écran tactile, les vignettes sont visibles directement en couleur.
+               On conserve uniquement un léger dégradé en bas pour la lisibilité du titre. */
+            .chapter-card::before {
+                filter: none !important;
+            }
+
+            .chapter-card::after {
+                background:
+                    linear-gradient(
+                        180deg,
+                        rgba(32, 23, 21, 0.03) 0%,
+                        rgba(32, 23, 21, 0.00) 58%,
+                        rgba(32, 23, 21, 0.44) 100%
+                    ) !important;
+            }
+
             .chapters-section {
                 overflow: hidden;
                 padding: 38px 0 48px;

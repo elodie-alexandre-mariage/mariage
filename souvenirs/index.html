@@ -507,6 +507,22 @@
         }
 
         @media (max-width: 1024px) {
+            /* Sur écran tactile, pas de voile/gris sur les vignettes :
+               l'image est affichée directement en couleur. */
+            .memory-card-image {
+                filter: none !important;
+            }
+
+            .memory-card::after {
+                background:
+                    linear-gradient(
+                        180deg,
+                        rgba(32, 23, 21, 0.03) 0%,
+                        rgba(32, 23, 21, 0.00) 58%,
+                        rgba(32, 23, 21, 0.48) 100%
+                    ) !important;
+            }
+
             .memories-section {
                 overflow: hidden;
                 padding-right: 0;
